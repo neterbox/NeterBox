@@ -21,13 +21,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Registration extends AppCompatActivity {
+public class Registration extends AppCompatActivity implements View.OnClickListener{
 
-    EditText name, username, register_eday, register_emonth, register_eyear, register_eemail, register_epassword;
-    ImageView register_iday, register_imonth, register_iyear;
+    EditText name, username, register_eemail, register_epassword;
     Button btnRegistration;
     TextView tbirthday;
     int mYear, mMonth, mDay;
+
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     @Override
@@ -40,15 +40,9 @@ public class Registration extends AppCompatActivity {
         register_eemail = (EditText) findViewById(R.id.register_eemail);
         register_epassword = (EditText) findViewById(R.id.register_epassword);
         tbirthday = (TextView) findViewById(R.id.tbirthday);
-
-
-//        register_emonth = (EditText) findViewById(R.id. register_emonth);
-//        register_eyear = (EditText) findViewById(R.id. register_efname);
-//        register_iday= (ImageView) findViewById(R.id.register_iday);
-//        register_imonth= (ImageView) findViewById(R.id.register_imonth);
-//        register_iyear= (ImageView) findViewById(R.id.register_iyear);
-
         btnRegistration = (Button) findViewById(R.id.btnRegistration);
+        tbirthday.setOnClickListener(this);
+
 
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +74,7 @@ public class Registration extends AppCompatActivity {
             }
 
         });
+
     }
 
     public void onClick(View v) {
