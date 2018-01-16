@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/settingbg">
 
+    <include layout="@layout/custom_action_bar"/>
     <LinearLayout
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginLeft="@dimen/_10sdp"

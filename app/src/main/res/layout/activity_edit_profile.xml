@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/loginbg"
     tools:context="com.neterbox.EditProfile">
+    <include layout="@layout/custom_action_bar"/>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">

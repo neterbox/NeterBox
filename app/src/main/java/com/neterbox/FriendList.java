@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neterbox.customadapter.Friendpro_Adapter;
@@ -18,6 +19,8 @@ import com.neterbox.customadapter.Search_Friend_Adapter;
 public class FriendList extends Activity {
     ListView listview;
     Activity activity;
+    ImageView ileft,iright;
+    TextView title;
     String[] itemname ={
             "Charmis",
             "Camera",
@@ -56,10 +59,24 @@ public class FriendList extends Activity {
 
             }
         });
+        ileft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(FriendList.this,HomePage.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void idMappings()
     {
+
         listview=(ListView)findViewById(R.id.listview);
+        ileft=(ImageView)findViewById(R.id.ileft);
+        iright=(ImageView)findViewById(R.id.iright);
+        title=(TextView)findViewById(R.id.title);
+        ileft.setImageResource(R.drawable.home);
+        iright.setVisibility(View.INVISIBLE);
+        title.setText("Friends");
     }
 }

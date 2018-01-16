@@ -7,7 +7,7 @@
     android:background="@drawable/circlesbg"
     android:orientation="vertical"
     tools:context="com.neterbox.Circles">
-
+    <include layout="@layout/custom_action_bar"/>
     <LinearLayout
         android:id="@+id/lselectcountry"
         android:layout_width="match_parent"

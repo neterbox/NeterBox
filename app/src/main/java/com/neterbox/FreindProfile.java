@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.neterbox.customadapter.Friendpro_Adapter;
 import com.neterbox.customadapter.Search_Friend_Adapter;
@@ -21,6 +23,8 @@ public class FreindProfile extends Activity{
 
     ListView frnd_listview;
     LinearLayout lfrnd_chat;
+    ImageView ileft,iright;
+    TextView title;
     Friendpro_Adapter adapter;
     Activity activity ;
     String[] itemname ={
@@ -52,6 +56,12 @@ public class FreindProfile extends Activity{
 
         frnd_listview=(ListView)findViewById(R.id.frnd_listview);
         lfrnd_chat = (LinearLayout) findViewById(R.id.lfrnd_chat);
+        ileft=(ImageView)findViewById(R.id.ileft);
+        iright=(ImageView)findViewById(R.id.iright);
+        title=(TextView)findViewById(R.id.title);
+        ileft.setImageResource(R.drawable.back);
+        iright.setImageResource(R.drawable.playdot);
+        title.setText("Jane Wilson");
 
         Friendpro_Adapter adapter = new Friendpro_Adapter(this, itemname, imgid, itemname1, imgid1);
         frnd_listview.setAdapter(adapter);
@@ -60,6 +70,20 @@ public class FreindProfile extends Activity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(FreindProfile.this, One_To_OneChat.class);
+                startActivity(i);
+            }
+        });
+        ileft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(FreindProfile.this,FriendList.class);
+                startActivity(i);
+            }
+        });
+        iright.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(FreindProfile.this,FriendSetting.class);
                 startActivity(i);
             }
         });
