@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/lchatforone"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/icontactsforone"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/charmis"
+            app:civ_border_color="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tonechatitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="2dp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="#000000" />
+            <TextView
+            android:id="@+id/tonechatitem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ionechatback"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/friendlistarrow" />
+    </LinearLayout>
+</LinearLayout>

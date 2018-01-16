@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_250sdp"
+    android:layout_height="@dimen/_150sdp"
+    android:layout_gravity="center"
+    android:background="@drawable/friendrequestpopupbg"
+    android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:paddingTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_12sdp"
+            android:text="Are you sure want to add as a friend?"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="@dimen/_550sdp"
+        android:layout_gravity="center"
+        android:padding="@dimen/_20sdp">
+
+
+        <Button
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+           android:gravity="center"
+            android:text="Accept"
+            android:background="#ED1C24"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/_5sdp"
+
+            />
+        <Button
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#ED1C24"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Decline"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

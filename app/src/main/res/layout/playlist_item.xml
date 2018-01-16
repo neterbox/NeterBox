@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lplaylistitem"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:scaleType="fitXY"
+            android:id="@+id/iplaylistitem"
+            android:src="@drawable/profilpicture" />
+    </LinearLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Travel Time"
+    android:textSize="@dimen/_12sdp"
+    android:textColor="#fff"
+    android:id="@+id/tplaylistitem"
+    android:textStyle="bold"
+    android:layout_gravity="bottom"
+    android:padding="@dimen/_8sdp"
+    android:layout_marginLeft="@dimen/_10sdp"
+
+    />
+
+</FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:scaleType="fitXY"
+                android:id="@+id/iplaylistitem2"
+                android:src="@drawable/profilpicture2" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lifestyle"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="#fff"
+            android:id="@+id/tplaylistitem2"
+            android:textStyle="bold"
+            android:layout_gravity="bottom"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_10sdp" />
+
+    </FrameLayout>
+</LinearLayout>

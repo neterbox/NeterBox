@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.neterbox.FollowerProfile">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_280sdp"
+        android:background="#fff"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_320sdp"
+                android:layout_weight="1"
+                android:background="@drawable/profilebg"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:gravity="center"
+                    android:text="Jane Willson"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:gravity="center"
+                    android:text="designer | GM Studio"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_10sdp" />
+
+
+                <LinearLayout
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/profileblankbox">
+
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:src="@drawable/profileabout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:text="About"
+                        android:id="@+id/tfollowerabout"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_9sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="@dimen/_2sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/lfollower_likes"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        android:text="556"
+                        android:id="@+id/tfollower_likesno"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:gravity="center"
+                        android:id="@+id/tfollower_likes"
+                        android:text="LIKES"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/lfollower_subscribers"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        android:id="@+id/tfollower_subscribersno"
+                        android:text="56"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="SUBSCRIBERS"
+                        android:id="@+id/tfollower_subscribers"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:id="@+id/lfollower_followers"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        android:id="@+id/tfollower_followersno"
+                        android:text="50"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/tfollower_followers"
+                        android:text="FOLLOWERS"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_8sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:id="@+id/lfollower_postlikes"
+                    android:gravity="center"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        android:id="@+id/tfollower_postlikesno"
+                        android:text="100"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_4sdp"
+                        android:gravity="center"
+                        android:text="POST LIKES"
+                        android:id="@+id/tfollower_postlikes"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:padding="@dimen/_4sdp"
+                android:id="@+id/lfollower_addfrnd"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_70sdp"
+                android:layout_marginRight="@dimen/_70sdp"
+                android:orientation="horizontal"
+                android:background="@drawable/greenbox">
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:id="@+id/ifollower_addfrnd"
+                    android:src="@drawable/profileaddfriends"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Friend"
+                    android:textStyle="bold"
+                    android:id="@+id/tfollower_addfrnd"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_gravity="center"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="@dimen/_4sdp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/followerprofile"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:src="@drawable/img1"
+            android:layout_gravity="center"
+            app:civ_border_width="5dp"
+            app:civ_border_color="#fff"/>
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10sdp"
+        android:background="#fff">
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="#dadada"
+        android:layout_marginTop="@dimen/_2sdp"></View>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/follower_listview"
+        android:background="#fff"
+        android:layout_weight="1">
+    </ListView>
+
+</LinearLayout>

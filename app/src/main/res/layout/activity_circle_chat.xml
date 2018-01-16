@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/chatbg1"
+    android:padding="@dimen/_5sdp"
+    tools:context="com.neterbox.Circle_chat">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_25sdp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="@drawable/whitebox">
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:gravity="center"
+        android:layout_height="@dimen/_15sdp"
+        android:id="@+id/iplaylist"
+        android:src="@drawable/playlistsearch" />
+    <EditText
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:hint="Search Circle"
+        android:gravity="center"
+        android:id="@+id/eplaylist"
+        android:background="@android:color/transparent"
+        android:textSize="@dimen/_10sdp"/>
+
+</LinearLayout>
+</LinearLayout>
