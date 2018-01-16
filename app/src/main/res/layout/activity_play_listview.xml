@@ -74,7 +74,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:src="@drawable/subscribe" />
+                android:src="@drawable/videowhitelineatbottomforselectedstate" />
 
         </LinearLayout>
 </LinearLayout>

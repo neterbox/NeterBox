@@ -43,6 +43,7 @@
             android:id="@+id/name"
             android:inputType="text"
             android:layout_gravity="center"
+            android:textColor="#ffffff"
             android:background="@android:color/transparent"
             android:textColorHint="#dcdcdc"
             />
@@ -75,6 +76,7 @@
             android:hint="User Name"
             android:inputType="text"
             android:id="@+id/username"
+            android:textColor="#ffffff"
             android:textColorHint="#dcdcdc" />
     </LinearLayout>
     <View
@@ -233,6 +235,7 @@
             android:layout_gravity="center"
             android:inputType="textEmailAddress"
             android:background="@android:color/transparent"
+            android:textColor="#ffffff"
             android:textColorHint="#dcdcdc"
             />
     </LinearLayout>
@@ -266,6 +269,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_3sdp"
             android:background="@android:color/transparent"
+            android:textColor="#ffffff"
             android:textColorHint="#dcdcdc"
             />
       <ImageView

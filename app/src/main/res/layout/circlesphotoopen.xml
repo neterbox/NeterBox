@@ -20,19 +20,19 @@
             <ImageView
                 android:id="@+id/icirclepicprevious"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:src="@drawable/previous"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_260sdp">
+                android:layout_marginLeft="@dimen/_220sdp">
 
 
             <ImageView
                 android:id="@+id/icirclepicnext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:src="@drawable/next"/>
         </LinearLayout>
         </LinearLayout>
@@ -48,8 +48,8 @@
                 android:padding="@dimen/_5sdp">
                 <ImageView
                     android:id="@+id/ilikecirclepic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_18sdp"
                     android:src="@drawable/heart"
                     android:layout_marginLeft="@dimen/_5sdp"/>
                 <TextView
