@@ -11,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.neterbox.customadapter.Circle_Adapter;
 import com.neterbox.customadapter.Followers_Adapter;
@@ -18,6 +19,8 @@ import com.neterbox.customadapter.Followers_Adapter;
 public class Circles extends Activity {
     GridView gcirclegrid;
     Activity activity;
+    ImageView ileft,iright;
+    TextView title;
 
     String[] itemname ={
             "Charmis",
@@ -80,6 +83,13 @@ public class Circles extends Activity {
                 startActivity(i);
             }
         });
+        ileft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(Circles.this,HomePage.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void idMappings()
@@ -89,5 +99,11 @@ public class Circles extends Activity {
         ichat=(ImageView)findViewById(R.id.ichat);
         icircle=(ImageView)findViewById(R.id.icircle);
         iplay=(ImageView)findViewById(R.id.iplay);
+        ileft=(ImageView)findViewById(R.id.ileft);
+        iright=(ImageView)findViewById(R.id.iright);
+        title=(TextView)findViewById(R.id.title);
+        ileft.setImageResource(R.drawable.home);
+        iright.setVisibility(View.INVISIBLE);
+        title.setText("Channels");
     }
-}
+    }

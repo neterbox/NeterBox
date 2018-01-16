@@ -14,9 +14,7 @@ import android.widget.Toast;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
-
 import java.util.Calendar;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +42,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         tbirthday.setOnClickListener(this);
 
 
-
         btnRegistration.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -52,29 +49,37 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 if ((name.getText().toString().length() == 0)) {
                     name.setError("Enter Name");
                 }
-                if (username.getText().toString().length() == 0) {
+                else if (username.getText().toString().length() == 0) {
                     username.setError("Enter Last Name");
 
                 }
-                if (tbirthday.getText().toString().length() == 0) {
+                else if (tbirthday.getText().toString().length() == 0) {
                     tbirthday.setError("Enter BirthDay");
 
                 }
-                if (register_eemail.getText().toString().length() == 0) {
+                else if (register_eemail.getText().toString().length() == 0) {
                     register_eemail.setError("Enter Email Address");
 
                 }
-                if (register_epassword.getText().toString().length() == 0) {
+                else if(!(isValidEmail(register_eemail.getText().toString())))
+                {
+                    register_eemail.setError("Enter Valid Email ID");
+                }
+                else if (register_epassword.getText().toString().length() == 0) {
                     register_epassword.setError("Enter Password");
-                } else {
-                    Toast.makeText(Registration.this, "sucessfully register", Toast.LENGTH_SHORT).show();
-                    RegistrationMethod(name.getText().toString(), username.getText().toString(), tbirthday.getText().toString(), register_eemail.getText().toString(), register_epassword.getText().toString(), "1234567890", "Female", "surat", "hcuboid", "hello", "5",
+                }
+                else
+                {
+                    RegistrationMethod(name.getText().toString(), username.getText().toString(),
+                            tbirthday.getText().toString(), register_eemail.getText().toString(),
+                            register_epassword.getText().toString(), "1234567890",
+                            "Female", "surat", "hcuboid", "hello", "5",
                             "9", "0");
                 }
+
             }
 
         });
-
     }
 
     public void onClick(View v) {
@@ -110,7 +115,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                    String register_epassword, String phone_number , String gender,
                                    String address , String company , String title  , String latitude  ,
                                    String longitude ,String type  ) {
-        {
+
 
             Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username, tbirthday,
                                     register_eemail , register_epassword, phone_number , gender, address ,
@@ -120,7 +125,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
                     if (response.body().getStatus().equals("Success")) {
-                        Intent it = new Intent(getApplicationContext(), HomePage.class);
+                        Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
                     }
                     else
@@ -129,8 +134,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                     }
                 }
-
-
                 @Override
                 public void onFailure(Call<RegistrationPojo> call, Throwable t) {
 
@@ -138,5 +141,4 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             });
         }
     }
-}
 

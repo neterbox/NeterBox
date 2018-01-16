@@ -7,6 +7,7 @@
     android:background="@drawable/chatbg1"
     android:orientation="vertical"
     tools:context="com.neterbox.Create_group">
+    <include layout="@layout/custom_action_bar"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="horizontal"

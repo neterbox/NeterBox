@@ -6,6 +6,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context="com.neterbox.search_followers">
+    <include layout="@layout/custom_action_bar"/>
 
         <LinearLayout
             android:layout_marginTop="@dimen/_10sdp"

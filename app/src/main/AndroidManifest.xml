@@ -3,6 +3,9 @@
     package="com.neterbox">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -50,7 +53,8 @@
         <activity
             android:name=".PlayGridview"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/NoActionBar" >
+        </activity>
         <activity
             android:name=".One_To_OneChat"
             android:screenOrientation="portrait"

@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.neterbox.customadapter.Followers_Adapter;
 import com.neterbox.customadapter.Search_Following_Adapter;
@@ -18,6 +20,8 @@ public class search_followers extends AppCompatActivity {
     ListView list1;
     Activity activity;
     LinearLayout lfollowerlist;
+    ImageView ileft,iright;
+    TextView title;
 
     String[] itemname ={
             "Charmis",
@@ -55,10 +59,24 @@ public class search_followers extends AppCompatActivity {
 
             }
         });
+        ileft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(search_followers.this,HomePage.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void idMappings()
     {
+
         list1=(ListView)findViewById(R.id.list1);
+        ileft=(ImageView)findViewById(R.id.ileft);
+        iright=(ImageView)findViewById(R.id.iright);
+        title=(TextView)findViewById(R.id.title);
+        ileft.setImageResource(R.drawable.home);
+        iright.setVisibility(View.INVISIBLE);
+        title.setText("Followers");
     }
 }

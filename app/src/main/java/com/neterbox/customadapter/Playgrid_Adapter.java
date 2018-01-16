@@ -43,7 +43,7 @@ public class Playgrid_Adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 15;
+        return itemname.length;
     }
 
     @Override
