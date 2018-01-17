@@ -18,14 +18,14 @@ public class Channel_comment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel_comment);
 
-        backblue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Channel_comment.this, Playvideo_page.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        backblue.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(Channel_comment.this, Playvideo_page.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
     }
 
 

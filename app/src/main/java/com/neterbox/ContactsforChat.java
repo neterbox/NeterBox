@@ -16,7 +16,7 @@ import com.neterbox.customadapter.ContactsforChatAdapter;
 public class ContactsforChat extends AppCompatActivity{
     ListView groupchat;
     Button boneononechat;
-    ImageView ileft,iright;
+    ImageView ileft,iright,ichat, icircle, iplay;
     TextView title;
     ContactsforChatAdapter adapter;
     public ContactsforChat contactsforChat;
@@ -35,6 +35,9 @@ public class ContactsforChat extends AppCompatActivity{
         title=(TextView)findViewById(R.id.title);
         ileft.setImageResource(R.drawable.home);
         iright.setImageResource(R.drawable.plus);
+        ichat = (ImageView) findViewById(R.id.ichat);
+        icircle = (ImageView) findViewById(R.id.icircle);
+        iplay = (ImageView) findViewById(R.id.iplay);
         title.setText("Contacts");
 
 
@@ -68,6 +71,32 @@ public class ContactsforChat extends AppCompatActivity{
             }
         });
 
+        ichat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ContactsforChat.this, ContactsforChat.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        icircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ContactsforChat.this, Circles.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        iplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ContactsforChat.this, PlayGridview.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 

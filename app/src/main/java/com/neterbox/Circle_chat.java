@@ -1,10 +1,8 @@
 package com.neterbox;
 
 import android.content.Intent;
-<<<<<<< HEAD
-=======
+
 import android.media.Image;
->>>>>>> 56f18088548bbf6bcdd0f66e634b03ea75312377
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,14 +41,7 @@ ImageView ileft,iright;
             }
         });
     }
-    @Override
-    public void onBackPressed() {
-        Intent i=new Intent(Circle_chat.this,HomePage.class);
-        startActivity(i);
-        finish();
-    }
-
-    @Override
+       @Override
     public void onBackPressed() {
         Intent i=new Intent(Circle_chat.this,Circles.class);
         startActivity(i);
