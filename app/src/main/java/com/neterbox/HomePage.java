@@ -27,12 +27,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomePage extends Activity {
 
     TextView taddfriend, tlogout;
     LinearLayout lph;
     RelativeLayout relative_following, relative_follower, relative_frnd, relative_settings;
-    ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay, profile_image;
+    ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
+    CircleImageView profile_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,7 @@ public class HomePage extends Activity {
         relative_follower = (RelativeLayout) findViewById(R.id.relative_follower);
         relative_frnd = (RelativeLayout) findViewById(R.id.relative_frnd);
         relative_settings = (RelativeLayout) findViewById(R.id.relative_settings);
-        profile_image = (ImageView) findViewById(R.id.profile_image);
+        profile_image = (CircleImageView) findViewById(R.id.profile_image);
         ichat = (ImageView) findViewById(R.id.ichat);
         icircle = (ImageView) findViewById(R.id.icircle);
         iplay = (ImageView) findViewById(R.id.iplay);
@@ -131,7 +134,7 @@ public class HomePage extends Activity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, Contactsforoneononechat.class);
+                Intent i = new Intent(HomePage.this, ContactsforChat.class);
                 startActivity(i);
                 finish();
             }

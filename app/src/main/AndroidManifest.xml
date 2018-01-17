@@ -139,11 +139,6 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".Contactsforoneononechat"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".CircleImageview"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"

@@ -37,7 +37,7 @@ public class FollowerProfile extends AppCompatActivity {
         iright=(ImageView)findViewById(R.id.iright);
         title=(TextView)findViewById(R.id.title);
         ileft.setImageResource(R.drawable.back);
-        iright.setImageResource(R.drawable.playdot);
+        iright.setImageResource(R.drawable.menu);
         title.setText("Jane Wilson");
 
         adapter=new Followerpro_Adapter(followerProfile);

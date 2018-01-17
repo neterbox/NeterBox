@@ -3,6 +3,7 @@ package com.neterbox;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 import com.neterbox.customadapter.ContactsforChatAdapter;
 
-public class ContactsforChat extends AppCompatActivity {
+public class ContactsforChat extends AppCompatActivity{
     ListView groupchat;
     Button boneononechat;
     ImageView ileft,iright;
@@ -41,9 +42,10 @@ public class ContactsforChat extends AppCompatActivity {
         groupchat.setAdapter(adapter);
         boneononechat=(Button)findViewById(R.id.boneononechat);
         boneononechat.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(ContactsforChat.this,Contactsforoneononechat.class);
+                Intent it=new Intent(ContactsforChat.this,ContactsforChat.class);
                 startActivity(it);
                 finish();
             }

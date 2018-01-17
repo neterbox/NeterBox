@@ -8,10 +8,12 @@
     android:background="@drawable/chatbg1"
     android:padding="@dimen/_5sdp"
     tools:context="com.neterbox.Circle_chat">
+    <include layout="@layout/image_custom_actionbar"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="@dimen/_25sdp"
     android:orientation="horizontal"
+    android:layout_marginTop="@dimen/_10sdp"
     android:gravity="center"
     android:background="@drawable/whitebox">
     <ImageView
