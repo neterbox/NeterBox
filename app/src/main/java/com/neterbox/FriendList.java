@@ -56,7 +56,7 @@ public class FriendList extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it =new Intent(FriendList.this,FreindProfile.class);
                 startActivity(it);
-
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +64,7 @@ public class FriendList extends Activity {
             public void onClick(View v) {
                 Intent i= new Intent(FriendList.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
     }

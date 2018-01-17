@@ -55,6 +55,7 @@ public class SearchFollowings extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it =new Intent(SearchFollowings.this,FollowingProfile.class);
                 startActivity(it);
+                finish();
 
             }
         });
@@ -63,6 +64,7 @@ public class SearchFollowings extends Activity {
             public void onClick(View v) {
                 Intent i= new Intent(SearchFollowings.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
 

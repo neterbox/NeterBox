@@ -55,6 +55,7 @@ public class PlayListview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =new Intent(PlayListview.this,Contactsforoneononechat.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -63,6 +64,7 @@ public class PlayListview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =new Intent(PlayListview.this,Circles.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -71,6 +73,7 @@ public class PlayListview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =new Intent(PlayListview.this,PlayGridview.class);
                 startActivity(i);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +81,7 @@ public class PlayListview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(PlayListview.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +89,7 @@ public class PlayListview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(PlayListview.this,PlayGridview.class);
                 startActivity(i);
+                finish();
             }
         });
 

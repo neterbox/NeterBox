@@ -137,6 +137,7 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
                     {
                         Intent i = new Intent(EditProfile.this, HomePage.class);
                         startActivity(i);
+                        finish();
                     }
                     else
                     {

@@ -56,6 +56,7 @@ public class search_followers extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it =new Intent(search_followers.this,FollowerProfile.class);
                 startActivity(it);
+                finish();
 
             }
         });
@@ -64,6 +65,7 @@ public class search_followers extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(search_followers.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
     }

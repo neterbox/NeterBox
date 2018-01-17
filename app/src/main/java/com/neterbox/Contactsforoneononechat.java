@@ -44,6 +44,7 @@ public class Contactsforoneononechat extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it=new Intent(Contactsforoneononechat.this,ContactsforChat.class);
                 startActivity(it);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +52,7 @@ public class Contactsforoneononechat extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(Contactsforoneononechat.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +60,16 @@ public class Contactsforoneononechat extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(Contactsforoneononechat.this,Create_group.class);
                 startActivity(i);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Contactsforoneononechat.this,ContactsforChat.class);
+        startActivity(i);
+        finish();
+
     }
 }

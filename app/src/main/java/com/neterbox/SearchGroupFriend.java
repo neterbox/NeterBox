@@ -32,6 +32,7 @@ LinearLayout lnearby,laddtofollower;
             public void onClick(View view) {
                 Intent i=new Intent(SearchGroupFriend.this,FriendList.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -40,6 +41,7 @@ LinearLayout lnearby,laddtofollower;
             public void onClick(View view) {
                 Intent i=new Intent(SearchGroupFriend.this,search_followers.class);
                 startActivity(i);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,7 @@ LinearLayout lnearby,laddtofollower;
             public void onClick(View v) {
                 Intent i= new Intent(SearchGroupFriend.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
 

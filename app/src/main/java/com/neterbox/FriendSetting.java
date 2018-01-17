@@ -28,6 +28,7 @@ public class FriendSetting extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(FriendSetting.this,FriendList.class);
                 startActivity(i);
+                finish();
             }
         });
     }

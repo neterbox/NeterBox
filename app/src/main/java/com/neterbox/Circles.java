@@ -57,6 +57,7 @@ public class Circles extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it =new Intent(Circles.this,Circle_chat.class);
                 startActivity(it);
+                finish();
 
             }
         });
@@ -65,6 +66,7 @@ public class Circles extends Activity {
             public void onClick(View v) {
                 Intent i =new Intent(Circles.this,Contactsforoneononechat.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -73,6 +75,7 @@ public class Circles extends Activity {
             public void onClick(View v) {
                 Intent i =new Intent(Circles.this,Circles.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -81,6 +84,7 @@ public class Circles extends Activity {
             public void onClick(View v) {
                 Intent i =new Intent(Circles.this,PlayGridview.class);
                 startActivity(i);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +92,7 @@ public class Circles extends Activity {
             public void onClick(View v) {
                 Intent i= new Intent(Circles.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
     }

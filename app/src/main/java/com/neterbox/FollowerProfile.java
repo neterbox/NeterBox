@@ -48,6 +48,7 @@ public class FollowerProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(FollowerProfile.this,search_followers.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +56,7 @@ public class FollowerProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(FollowerProfile.this,FriendSetting.class);
                 startActivity(i);
+                finish();
             }
         });
 //        follower_listview.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +68,14 @@ public class FollowerProfile extends AppCompatActivity {
 //        });
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(FollowerProfile.this,search_followers.class);
+        startActivity(i);
+        finish();
 
     }
 }

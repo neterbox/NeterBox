@@ -71,6 +71,7 @@ public class FreindProfile extends Activity{
             public void onClick(View v) {
                 Intent i = new Intent(FreindProfile.this, One_To_OneChat.class);
                 startActivity(i);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,7 @@ public class FreindProfile extends Activity{
             public void onClick(View v) {
                 Intent i= new Intent(FreindProfile.this,FriendList.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,16 @@ public class FreindProfile extends Activity{
             public void onClick(View v) {
                 Intent i= new Intent(FreindProfile.this,FriendSetting.class);
                 startActivity(i);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(FreindProfile.this,SearchGroupFriend.class);
+        startActivity(i);
+        finish();
+
     }
 }

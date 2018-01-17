@@ -42,6 +42,8 @@ public class FollowingProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(FollowingProfile.this,SearchFollowings.class);
                 startActivity(i);
+                finish();
+
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +51,15 @@ public class FollowingProfile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(FollowingProfile.this,FriendSetting.class);
                 startActivity(i);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(FollowingProfile.this,SearchFollowings.class);
+        startActivity(i);
+        finish();
     }
 }

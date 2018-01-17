@@ -24,9 +24,17 @@ public class Circleprofilepic extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i =new Intent(Circleprofilepic.this,Circle_comment.class);
                 startActivity(i);
+                finish();
             }
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Circleprofilepic.this,Circles.class);
+        startActivity(i);
+        finish();
     }
 }

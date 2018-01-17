@@ -26,6 +26,7 @@
                 android:id="@+id/boneononechat"
                 android:layout_width="match_parent"
                 android:background="#049BE6"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
                 android:text="One-on-One"
                 />
@@ -37,6 +38,7 @@
             <Button
                 android:id="@+id/bgroupchat"
                 android:background="#ffffff"
+                android:textColor="#049BE6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Group Chats"/>

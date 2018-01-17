@@ -28,6 +28,7 @@ public class Create_group extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(Create_group.this,ContactsforChat.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,7 @@ public class Create_group extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(Create_group.this,Create_group.class);
                 startActivity(i);
+                finish();
             }
         });
 

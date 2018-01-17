@@ -127,6 +127,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     if (response.body().getStatus().equals("Success")) {
                         Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
+                        finish();
                     }
                     else
                     {

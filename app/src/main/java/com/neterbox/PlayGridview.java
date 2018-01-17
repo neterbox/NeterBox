@@ -68,6 +68,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it = new Intent(PlayGridview.this, Playvideo_page.class);
                 startActivity(it);
+                finish();
 
             }
         });
@@ -76,6 +77,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(PlayGridview.this, Contactsforoneononechat.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -84,6 +86,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(PlayGridview.this, Circles.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -92,6 +95,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(PlayGridview.this, PlayGridview.class);
                 startActivity(i);
+                finish();
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +103,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(PlayGridview.this,HomePage.class);
                 startActivity(i);
+                finish();
             }
         });
         iright.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +111,7 @@ public class PlayGridview extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(PlayGridview.this,PlayListview.class);
                 startActivity(i);
+                finish();
             }
         });
     }

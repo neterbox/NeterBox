@@ -60,6 +60,7 @@ public class HomePage extends Activity {
                                             public void onClick(View v) {
                                                 Intent i = new Intent(HomePage.this, EditProfile.class);
                                                 startActivity(i);
+                                                finish();
                                             }
        });
 
@@ -68,6 +69,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, UserProfile.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -76,6 +78,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, SearchGroupFriend.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -85,6 +88,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, FriendList.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -93,6 +97,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, SearchFollowings.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -101,6 +106,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, search_followers.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -109,6 +115,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, Settings.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -117,6 +124,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, LoginPage.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -125,6 +133,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, Contactsforoneononechat.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -133,6 +142,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, Circles.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -141,6 +151,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, PlayGridview.class);
                 startActivity(i);
+                finish();
             }
         });
         profile_image.setOnClickListener(new View.OnClickListener() {

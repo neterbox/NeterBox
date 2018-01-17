@@ -56,6 +56,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent it = new Intent(LoginPage.this, Registration.class);
                 startActivity(it);
+                finish();
             }
         });
     }
@@ -70,6 +71,7 @@ public class LoginPage extends AppCompatActivity {
                 {
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
+                    finish();
                 }
                 else
                 {
