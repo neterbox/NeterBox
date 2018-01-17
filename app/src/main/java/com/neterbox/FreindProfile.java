@@ -97,7 +97,5 @@ public class FreindProfile extends Activity{
         Intent i=new Intent(FreindProfile.this,SearchGroupFriend.class);
         startActivity(i);
         finish();
-        finish();
-
     }
 }
