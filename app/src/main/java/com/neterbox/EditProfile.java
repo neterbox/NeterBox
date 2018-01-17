@@ -153,6 +153,10 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
 
         }
 
-
-
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(EditProfile.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
 }

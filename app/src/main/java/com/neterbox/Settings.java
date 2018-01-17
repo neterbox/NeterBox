@@ -12,7 +12,12 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-//
+    }
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Settings.this,HomePage.class);
+        startActivity(i);
+        finish();
     }
 }

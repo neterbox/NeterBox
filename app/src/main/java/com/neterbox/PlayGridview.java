@@ -116,6 +116,13 @@ public class PlayGridview extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(PlayGridview.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
+
     private void idMappings() {
 
         playgrid_view = (GridView) findViewById(R.id.playgrid_view);

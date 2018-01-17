@@ -42,4 +42,11 @@ public class Create_group extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Create_group.this,ContactsforChat.class);
+        startActivity(i);
+        finish();
+    }
 }

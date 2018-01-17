@@ -32,4 +32,11 @@ public class FriendSetting extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(FriendSetting.this,FreindProfile.class);
+        startActivity(i);
+        finish();
+    }
 }

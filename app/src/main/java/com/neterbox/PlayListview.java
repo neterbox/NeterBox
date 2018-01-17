@@ -103,5 +103,10 @@ public class PlayListview extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(PlayListview.this,PlayGridview.class);
+        startActivity(i);
+        finish();
+    }
 }

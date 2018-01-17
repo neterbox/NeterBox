@@ -1,8 +1,10 @@
 package com.neterbox;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
+import com.neterbox.utils.Constants;
+import com.neterbox.utils.Securedpreferences;
+
 import java.util.Calendar;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +30,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     Button btnRegistration;
     TextView tbirthday;
     int mYear, mMonth, mDay;
+    ImageView pwdeye;
 
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
@@ -39,6 +45,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         register_epassword = (EditText) findViewById(R.id.register_epassword);
         tbirthday = (TextView) findViewById(R.id.tbirthday);
         btnRegistration = (Button) findViewById(R.id.btnRegistration);
+        pwdeye=(ImageView)findViewById(R.id.pwdeye);
+
         tbirthday.setOnClickListener(this);
 
 
@@ -79,6 +87,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
             }
 
+        });
+        pwdeye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register_epassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
         });
     }
 
@@ -125,6 +139,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
                     if (response.body().getStatus().equals("Success")) {
+                        Securedpreferences.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
+
                         Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
                         finish();
@@ -141,5 +157,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 }
             });
         }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Registration.this,LoginPage.class);
+        startActivity(i);
+        finish();
     }
+}
 

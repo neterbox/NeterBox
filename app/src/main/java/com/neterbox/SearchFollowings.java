@@ -70,6 +70,13 @@ public class SearchFollowings extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(SearchFollowings.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
+
     private void idMappings()
     {
 

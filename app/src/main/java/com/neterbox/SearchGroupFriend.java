@@ -54,4 +54,11 @@ LinearLayout lnearby,laddtofollower;
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(SearchGroupFriend.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
 }

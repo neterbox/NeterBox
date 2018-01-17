@@ -36,11 +36,18 @@ public class Playvideo_page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Playvideo_page.this,Channel_comment.class);
+                startActivity(i);
+                finish();
             }
         });
 
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Playvideo_page.this,PlayListview.class);
+        startActivity(i);
+        finish();
+    }
 }

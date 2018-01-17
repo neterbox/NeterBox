@@ -69,4 +69,11 @@ public class CircleImageview extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(CircleImageview.this,Circle_chat.class);
+        startActivity(i);
+        finish();
+    }
 }

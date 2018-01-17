@@ -69,6 +69,13 @@ public class FriendList extends Activity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(FriendList.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
+
     private void idMappings()
     {
 

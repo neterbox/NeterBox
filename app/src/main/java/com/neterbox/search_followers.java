@@ -70,6 +70,13 @@ public class search_followers extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(search_followers.this,HomePage.class);
+        startActivity(i);
+        finish();
+    }
+
     private void idMappings()
     {
 

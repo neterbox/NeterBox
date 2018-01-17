@@ -1,16 +1,19 @@
 package com.neterbox;
-
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Constants;
+import com.neterbox.utils.Securedpreferences;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,19 +22,19 @@ import retrofit2.Response;
 public class LoginPage extends AppCompatActivity {
     EditText login_email, login_epassword;
     TextView login_tlogin, login_tsignin, login_tforgot;
+    ImageView login_user,login_password;
     APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         login_email = (EditText) findViewById(R.id.login_email);
         login_epassword = (EditText) findViewById(R.id.login_epassword);
+        login_password = (ImageView) findViewById(R.id.login_password);
+        login_user = (ImageView) findViewById(R.id.login_user);
         login_tlogin = (TextView) findViewById(R.id.login_tlogin);
         login_tsignin = (TextView) findViewById(R.id.login_tsignin);
         login_tforgot = (TextView) findViewById(R.id.login_tforgot);
-
-
         login_tlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +53,6 @@ public class LoginPage extends AppCompatActivity {
                 LoginPage(login_email.getText().toString(), login_epassword.getText().toString());
             }
         });
-
         login_tsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +61,33 @@ public class LoginPage extends AppCompatActivity {
                 finish();
             }
         });
+        login_email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    login_user.setImageResource(R.drawable.usernameblue);
+                }
+                else {
+                    login_user.setImageResource(R.drawable.usernamegray);
+                }
+            }
+        });
+        login_epassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    login_password.setImageResource(R.drawable.passwordblue);
+                }
+                else {
+                    login_password.setImageResource(R.drawable.passwordgray);
+                }
+            }
+        });
     }
-
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
     public void LoginPage(String email, String password) {
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {
@@ -69,6 +96,8 @@ public class LoginPage extends AppCompatActivity {
             {
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
+                    Securedpreferences.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
+
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
                     finish();
@@ -78,10 +107,8 @@ public class LoginPage extends AppCompatActivity {
                     Toast.makeText(LoginPage.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
-
             }
         });
     }
