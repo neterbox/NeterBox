@@ -277,7 +277,7 @@
           android:layout_height="@dimen/_20sdp"
           android:id="@+id/pwdeye"
           android:layout_gravity="center"
-          android:src="@drawable/registrationeye"/>
+          android:src="@drawable/eyeclosed"/>
 
 
     </LinearLayout>

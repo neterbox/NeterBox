@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.neterbox.One_To_OneChat">
+    <include layout="@layout/image_custom_actionbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -27,6 +27,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     TextView tbirthday;
     int mYear, mMonth, mDay;
     ImageView pwdeye;
+    private int passwordNotVisible=1;
 
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
@@ -41,7 +42,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         register_epassword = (EditText) findViewById(R.id.register_epassword);
         tbirthday = (TextView) findViewById(R.id.tbirthday);
         btnRegistration = (Button) findViewById(R.id.btnRegistration);
-        pwdeye=(ImageView)findViewById(R.id.pwdeye);
+        pwdeye = (ImageView) findViewById(R.id.pwdeye);
 
         tbirthday.setOnClickListener(this);
 
@@ -52,28 +53,20 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 if ((name.getText().toString().length() == 0)) {
                     name.setError("Enter Name");
-                }
-                else if (username.getText().toString().length() == 0) {
+                } else if (username.getText().toString().length() == 0) {
                     username.setError("Enter Last Name");
 
-                }
-                else if (tbirthday.getText().toString().length() == 0) {
+                } else if (tbirthday.getText().toString().length() == 0) {
                     tbirthday.setError("Enter BirthDay");
 
-                }
-                else if (register_eemail.getText().toString().length() == 0) {
+                } else if (register_eemail.getText().toString().length() == 0) {
                     register_eemail.setError("Enter Email Address");
 
-                }
-                else if(!(isValidEmail(register_eemail.getText().toString())))
-                {
+                } else if (!(isValidEmail(register_eemail.getText().toString()))) {
                     register_eemail.setError("Enter Valid Email ID");
-                }
-                else if (register_epassword.getText().toString().length() == 0) {
+                } else if (register_epassword.getText().toString().length() == 0) {
                     register_epassword.setError("Enter Password");
-                }
-                else
-                {
+                } else {
                     RegistrationMethod(name.getText().toString(), username.getText().toString(),
                             tbirthday.getText().toString(), register_eemail.getText().toString(),
                             register_epassword.getText().toString(), "1234567890",
@@ -87,11 +80,19 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         pwdeye.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register_epassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                if (passwordNotVisible == 1) {
+                    register_epassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    passwordNotVisible = 0;
+                    pwdeye.setImageResource(R.drawable.registrationeye);
+                } else {
+
+                    register_epassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordNotVisible = 1;
+                    pwdeye.setImageResource(R.drawable.eyeclosed);
+                }
             }
         });
     }
-
     public void onClick(View v) {
         if (v == tbirthday) {
             final Calendar c = Calendar.getInstance();
@@ -119,8 +120,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
-
-
     public void RegistrationMethod(String name, String username, String tbirthday, String register_eemail,
                                    String register_epassword, String phone_number , String gender,
                                    String address , String company , String title  , String latitude  ,

@@ -60,7 +60,7 @@ public class FreindProfile extends Activity{
         iright=(ImageView)findViewById(R.id.iright);
         title=(TextView)findViewById(R.id.title);
         ileft.setImageResource(R.drawable.back);
-        iright.setImageResource(R.drawable.playdot);
+        iright.setImageResource(R.drawable.menu);
         title.setText("Jane Wilson");
 
         Friendpro_Adapter adapter = new Friendpro_Adapter(this, itemname, imgid, itemname1, imgid1);
