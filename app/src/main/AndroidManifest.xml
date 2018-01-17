@@ -27,9 +27,16 @@
         <activity
             android:name=".LoginPage"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".Registration" />
-        <activity android:name=".EditProfile" />
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Registration"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".EditProfile"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".FollowingProfile"
             android:screenOrientation="portrait"
@@ -85,33 +92,68 @@
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".HomePage"
-            android:theme="@style/NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".FriendList"
-            android:theme="@style/NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".SearchFollowings"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".search_followers"
-            android:theme="@style/NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Settings"
-            android:theme="@style/NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".Circles"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".ChannelSettings" />
-        <activity android:name=".FriendSetting" />
-        <activity android:name=".SearchGroupFriend" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".ChannelSettings"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".FriendSetting"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".SearchGroupFriend"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".ContactsforChat"
-            android:theme="@style/NoActionBar" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".Contactsforoneononechat"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".CircleImageview" />
-        <activity android:name=".Circleprofilepic"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CircleImageview"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".Circleprofilepic"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>

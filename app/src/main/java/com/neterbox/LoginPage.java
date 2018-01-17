@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import retrofit2.Response;
 public class LoginPage extends AppCompatActivity {
     EditText login_email, login_epassword;
     TextView login_tlogin, login_tsignin, login_tforgot;
+    ImageView login_user,login_password;
     APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
 
     @Override
@@ -27,6 +29,8 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login_page);
         login_email = (EditText) findViewById(R.id.login_email);
         login_epassword = (EditText) findViewById(R.id.login_epassword);
+        login_password = (ImageView) findViewById(R.id.login_password);
+        login_user = (ImageView) findViewById(R.id.login_user);
         login_tlogin = (TextView) findViewById(R.id.login_tlogin);
         login_tsignin = (TextView) findViewById(R.id.login_tsignin);
         login_tforgot = (TextView) findViewById(R.id.login_tforgot);
@@ -56,6 +60,29 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent it = new Intent(LoginPage.this, Registration.class);
                 startActivity(it);
+                finish();
+            }
+        });
+        login_email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    login_user.setImageResource(R.drawable.usernameblue);
+                }
+                else {
+                    login_user.setImageResource(R.drawable.usernamegray);
+                }
+            }
+        });
+        login_epassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    login_password.setImageResource(R.drawable.passwordblue);
+                }
+                else {
+                    login_password.setImageResource(R.drawable.passwordgray);
+                }
             }
         });
     }

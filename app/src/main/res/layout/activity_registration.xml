@@ -263,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:hint="Your Password"
             android:id="@+id/register_epassword"
             android:layout_gravity="center"
@@ -274,9 +274,10 @@
             />
       <ImageView
           android:layout_width="@dimen/_20sdp"
-          android:layout_height="@dimen/_10sdp"
+          android:layout_height="@dimen/_20sdp"
+          android:id="@+id/pwdeye"
           android:layout_gravity="center"
-          android:src="@drawable/registrationpasseye"/>
+          android:src="@drawable/registrationeye"/>
 
 
     </LinearLayout>
