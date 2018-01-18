@@ -212,6 +212,7 @@
                 android:padding="@dimen/_4sdp"
                 android:id="@+id/lfollower_addfrnd"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_70sdp"
                 android:layout_marginRight="@dimen/_70sdp"
                 android:orientation="horizontal"
