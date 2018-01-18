@@ -81,10 +81,10 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-//    @Override
-//    public void onBackPressed() {
-//        System.exit(0);
-//    }
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
     public void LoginPage(String email, String password) {
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {

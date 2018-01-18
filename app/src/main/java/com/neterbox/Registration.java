@@ -155,11 +155,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             });
         }
 
-//    @Override
-//    public void onBackPressed() {
-//        Intent i=new Intent(Registration.this,LoginPage.class);
-//        startActivity(i);
-//        finish();
-//    }
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Registration.this,LoginPage.class);
+        startActivity(i);
+        finish();
+    }
 }
 
