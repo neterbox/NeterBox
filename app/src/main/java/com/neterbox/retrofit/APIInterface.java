@@ -48,13 +48,6 @@ public interface APIInterface {
                                             @Field("password") String password,
                                             @Field("birth_date ") String birth_date,
                                             @Field("email") String email,
-                                            @Field("phone_number ") String phone_number ,
-                                            @Field("gender") String gender,
-                                            @Field("address ") String address ,
-                                            @Field("company ") String company ,
-                                            @Field("title  ") String title  ,
-                                            @Field("latitude   ") String latitude ,
-                                            @Field("longitude   ") String longitude ,
                                             @Field("type") int type );
 
 

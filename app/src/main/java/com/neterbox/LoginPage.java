@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Constants;
+import com.neterbox.utils.Securedpreferences;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -93,6 +95,7 @@ public class LoginPage extends AppCompatActivity {
             {
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
+                    Securedpreferences.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
             finish();

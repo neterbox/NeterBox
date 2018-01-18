@@ -14,11 +14,14 @@ import android.widget.Toast;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
+import com.neterbox.utils.Constants;
+import com.neterbox.utils.Securedpreferences;
 
 import java.util.Calendar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Field;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener{
 
@@ -70,10 +73,9 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     register_epassword.setError("Enter Minimum 8 Digit");
                 } else {
                     RegistrationMethod(name.getText().toString(), username.getText().toString(),
+                            register_epassword.getText().toString(),
                             tbirthday.getText().toString(), register_eemail.getText().toString(),
-                            register_epassword.getText().toString(), "1234567890",
-                            "Female", "surat", "hcuboid", "hello", "5",
-                            "9", "0");
+                             "0");
                 }
 
             }
@@ -122,22 +124,19 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
-    public void RegistrationMethod(String name, String username, String tbirthday, String register_eemail,
-                                   String register_epassword, String phone_number , String gender,
-                                   String address , String company , String title  , String latitude  ,
-                                   String longitude ,String type  ) {
+
+    public void RegistrationMethod(String name, String username,String register_epassword,String tbirthday, String register_eemail
+                                   ,String type  ) {
 
 
-            Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username, tbirthday,
-                                    register_eemail , register_epassword, phone_number , gender, address ,
-                                    company ,title , latitude , longitude ,0);
+            Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username,register_epassword, tbirthday,
+                                    register_eemail ,0);
 
             registercall.enqueue(new Callback<RegistrationPojo>() {
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
                     if (response.body().getStatus().equals("Success")) {
-//                       /
-
+                        Securedpreferences.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
                         Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
                         finish();
