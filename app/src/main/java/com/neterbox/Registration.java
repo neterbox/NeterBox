@@ -136,7 +136,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
                     if (response.body().getStatus().equals("Success")) {
-                        Securedpreferences.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
+//                       /
 
                         Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
@@ -155,11 +155,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             });
         }
 
-    @Override
-    public void onBackPressed() {
-        Intent i=new Intent(Registration.this,LoginPage.class);
-        startActivity(i);
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent i=new Intent(Registration.this,LoginPage.class);
+//        startActivity(i);
+//        finish();
+//    }
 }
 
