@@ -6,51 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
-
 public class Splash_screen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-//        Thread mythread = new Thread(){
-//            @Override
-//            public void run() {
-//                try {
-//                    sleep(1000);
-//                    Intent intent = new Intent(getApplicationContext(),LoginPage.class);
-//                    startActivity(intent);
-//                    finish();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }finally {
-//
-//                }
-//            }
-//        };
-//        mythread.start();
 
-        new Handler().postDelayed(new Runnable(){
+
+        Thread mythread = new Thread(){
             @Override
             public void run() {
-                Log.e("boolean",":"+ Securedpreferences.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false));
-
-                if(Securedpreferences.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false))
-                {
-                    Intent mainIntent = new Intent(Splash_screen.this, HomePage.class);
-                    startActivity(mainIntent);
+                try {
+                    sleep(1000);
+                    Intent intent = new Intent(getApplicationContext(),LoginPage.class);
+                    startActivity(intent);
                     finish();
-                }
-                else
-                {
-                    Intent mainIntent = new Intent(Splash_screen.this, LoginPage.class);
-                    startActivity(mainIntent);
-                    finish();
-                }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }finally {
 
+                }
             }
-        }, 1000);
+        };
+        mythread.start();
+
     }
 }

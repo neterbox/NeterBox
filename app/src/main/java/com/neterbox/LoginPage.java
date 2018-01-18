@@ -1,6 +1,5 @@
 package com.neterbox;
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.Toast;
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
-import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,22 +32,22 @@ public class LoginPage extends AppCompatActivity {
         login_tlogin = (TextView) findViewById(R.id.login_tlogin);
         login_tsignin = (TextView) findViewById(R.id.login_tsignin);
         login_tforgot = (TextView) findViewById(R.id.login_tforgot);
+
         login_tlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (login_email.getText().toString().length() == 0) {
                     login_email.setError("Enter Email");
-                    return;
                 }
-                if (login_epassword.getText().toString().length() == 0) {
+               else if (login_epassword.getText().toString().length() == 0) {
                     login_epassword.setError("Enter Password");
-                    return;
                 }
-                if (login_epassword.getText().toString().length() < 8) {
+                else if (login_epassword.getText().toString().length() < 8) {
                     login_epassword.setError("Enter Minimum 8 digit");
-                    return;
                 }
-                LoginPage(login_email.getText().toString(), login_epassword.getText().toString());
+                else {
+                    LoginPage(login_email.getText().toString(), login_epassword.getText().toString());
+                }
             }
         });
         login_tsignin.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +81,10 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onBackPressed() {
-        System.exit(0);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        System.exit(0);
+//    }
     public void LoginPage(String email, String password) {
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {
@@ -96,11 +93,9 @@ public class LoginPage extends AppCompatActivity {
             {
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
-                    Securedpreferences.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
-
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
-                    finish();
+            finish();
                 }
                 else
                 {

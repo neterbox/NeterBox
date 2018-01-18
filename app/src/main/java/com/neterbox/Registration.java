@@ -1,7 +1,6 @@
 package com.neterbox;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,14 +9,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
-import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
 
 import java.util.Calendar;
 import retrofit2.Call;
@@ -70,6 +66,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     register_eemail.setError("Enter Valid Email ID");
                 } else if (register_epassword.getText().toString().length() == 0) {
                     register_epassword.setError("Enter Password");
+                }else if (register_epassword.getText().toString().length()<8) {
+                    register_epassword.setError("Enter Minimum 8 Digit");
                 } else {
                     RegistrationMethod(name.getText().toString(), username.getText().toString(),
                             tbirthday.getText().toString(), register_eemail.getText().toString(),
