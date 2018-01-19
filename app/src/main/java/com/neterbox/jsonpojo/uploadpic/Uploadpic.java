@@ -1,16 +1,13 @@
-package com.neterbox.jsonpojo.register;
+package com.neterbox.jsonpojo.uploadpic;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by sejal on 1/12/2018.
+ * Created by DeLL on 18-01-2018.
  */
 
-public class RegistrationPojo {
-    @SerializedName("data")
-    @Expose
-    private RegistrationDatum data;
+public class Uploadpic {
     @SerializedName("status")
     @Expose
     private String status;
@@ -20,14 +17,9 @@ public class RegistrationPojo {
     @SerializedName("code")
     @Expose
     private Integer code;
-
-    public RegistrationDatum getData() {
-        return data;
-    }
-
-    public void setData(RegistrationDatum data) {
-        this.data = data;
-    }
+    @SerializedName("data")
+    @Expose
+    private UploadpicDatum data;
 
     public String getStatus() {
         return status;
@@ -53,6 +45,13 @@ public class RegistrationPojo {
         this.code = code;
     }
 
+    public UploadpicDatum getData() {
+        return data;
+    }
 
+    public void setData(UploadpicDatum data) {
+        this.data = data;
+    }
 
 }
+

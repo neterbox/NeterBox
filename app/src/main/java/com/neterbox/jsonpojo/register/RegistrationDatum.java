@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class RegistrationDatum {
-    @SerializedName("user")
+    @SerializedName("User")
     @Expose
     private registrationuser user;
 

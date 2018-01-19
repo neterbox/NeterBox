@@ -10,4 +10,5 @@ public class ServerUrl {
     public static final String LOGIN = "users/login";
     public static final String EDITPROFILE = "users/edit";
     public static final String REGISTER = "users/signup";
+    public static final String UPLOADPIC = "users/profileimage";
 }

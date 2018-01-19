@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
+import com.neterbox.utils.Sessionmanager;
 
 public class Splash_screen extends AppCompatActivity {
 
@@ -20,9 +20,9 @@ public class Splash_screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Log.e("boolean",":"+ Securedpreferences.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false));
+                Log.e("boolean",":"+ Sessionmanager.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false));
 
-                if(Securedpreferences.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false))
+                if(Sessionmanager.getPreferenceBoolean(Splash_screen.this, Constants.IS_LOGIN,false))
                 {
                     Intent mainIntent = new Intent(Splash_screen.this, HomePage.class);
                     startActivity(mainIntent);

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NeterBox</string>
 
+<<<<<<< HEAD
         
     <string name="title_activity_main">Location From GPS</string>
         
@@ -10,6 +11,10 @@
     <string name="country_prompt">Choose a country</string>
     <string name="City">Choose a city</string>
     <string name="state">Choose a State</string>
+=======
+    <string name="country">Choose a country</string>
+
+>>>>>>> 6ad1e7c87d9f62d4971fe65ee23df7c32c86c689
     <string-array name="country_arrays">
         <item>Malaysia</item>
         <item>United States</item>
@@ -19,6 +24,7 @@
         <item>Singapore</item>
         <item>New Zealand</item>
         <item>India</item>
+<<<<<<< HEAD
     </string-array>
     <string-array name="city_arrays">
         <item>Surat</item>
@@ -36,10 +42,21 @@
         <item>Assam</item>
         <item>Bihar</item>
         <item>Madhya Pradesh</item>
+=======
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="state">Choose a country</string>
 
+    <string-array name="state_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+>>>>>>> 6ad1e7c87d9f62d4971fe65ee23df7c32c86c689
+    </string-array>
 </resources>
 
