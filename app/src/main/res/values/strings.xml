@@ -1,34 +1,41 @@
 <resources>
     <string name="app_name">NeterBox</string>
 
-    <string name="day">Choose a country</string>
+        
+    <string name="title_activity_main">Location From GPS</string>
+        
+    <string name="str_tv_location">Current Location</string>
 
-    <string-array name="day_arrays">
-        <item>01</item>
-        <item>02</item>
-        <item>03</item>
-        <item>04</item>
-        <item>05</item>
-        <item>06</item>
-        <item>07</item>
-        <item>08</item>
-        <item>09</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
 
+    <string name="country_prompt">Choose a country</string>
+    <string name="City">Choose a city</string>
+    <string name="state">Choose a State</string>
+    <string-array name="country_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+    <string-array name="city_arrays">
+        <item>Surat</item>
+        <item>Ahemdabad</item>
+        <item>Vadodara</item>
+        <item>Bardoli</item>
+        <item>Bharuch</item>
     </string-array>
 
-    <string name="month">Choose a country</string>
-
-    <string-array name="month_arrays">
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
+    <string-array name="state_arrays">
+        <item>Gujarat</item>
+        <item>Maharastra</item>
+        <item>Haryana</item>
+        <item>Goa</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Madhya Pradesh</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
