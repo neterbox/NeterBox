@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,15 +21,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditProfile extends AppCompatActivity implements
-        View.OnClickListener{
+public class EditProfile extends AppCompatActivity implements View.OnClickListener{
 
     Button edit_bsave;
-    TextView edit_tbirthday;
+    TextView edit_tbirthday,title;
     int mYear, mMonth, mDay;
-
+    ImageView ileft,iright;
     EditText edit_ename,edit_euname,edit_ephone,edit_eemail,edit_egender,edit_eaddress,edit_ecompany,edit_etitle;
-APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
+
+    APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,25 +47,13 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
         edit_etitle = (EditText) findViewById(R.id.edit_etitle);
 
         edit_tbirthday.setOnClickListener(this);
-    }
+        ileft = (ImageView) findViewById(R.id.ileft);
+        iright = (ImageView) findViewById(R.id.iright);
+        title = (TextView) findViewById(R.id.title);
+        ileft.setImageResource(R.drawable.back);
+        iright.setVisibility(View.INVISIBLE);
+        title.setText("Edit Profile");
 
-    public void onClick(View v) {
-        if (v == edit_tbirthday) {
-            final Calendar c = Calendar.getInstance();
-            mYear = c.get(Calendar.YEAR);
-            mMonth = c.get(Calendar.MONTH);
-            mDay = c.get(Calendar.DAY_OF_MONTH);
-
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    new DatePickerDialog.OnDateSetListener() {
-
-                        @Override
-                        public void onDateSet(DatePicker view, int year,int monthOfYear, int dayOfMonth) {
-                            edit_tbirthday.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                        }
-                    }, mYear, mMonth, mDay);
-            datePickerDialog.show();
-        }
         edit_bsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,10 +77,9 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
                     edit_eemail.setError("Enter Email");
                     return;
                 }
-                if(!(isValidEmail(edit_eemail.getText().toString())))
-                    {
-                        edit_eemail.setError("Enter Valid Email ID");
-                    }
+                if (!(isValidEmail(edit_eemail.getText().toString()))) {
+                    edit_eemail.setError("Enter Valid Email ID");
+                }
                 if (edit_egender.getText().toString().length() == 0) {
                     edit_egender.setError("Enter gender");
                     return;
@@ -108,14 +96,46 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
                     edit_etitle.setError("Enter Title");
                     return;
                 }
-                edit_tbirthday.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                if (edit_tbirthday.getText().toString().length() == 0) {
+                    edit_tbirthday.setError("Select Birthdate");
+                    return;
+                }
 
-                    }
-                });
+                EditProfile("110", edit_ename.getText().toString(), edit_euname.getText().toString(), "123456789", edit_tbirthday.getText().toString(), edit_ephone.getText().toString(), edit_eemail.getText().toString(), edit_egender.getText().toString(), edit_eaddress.getText().toString(), edit_ecompany.getText().toString(), edit_etitle.getText().toString());
 
-                EditProfile("40", edit_ename.getText().toString(), edit_euname.getText().toString(), "123456789", edit_tbirthday.getText().toString(), edit_ephone.getText().toString(), edit_eemail.getText().toString(), edit_egender.getText().toString(), edit_eaddress.getText().toString(), edit_ecompany.getText().toString(), edit_etitle.getText().toString());
+                Intent i=new Intent(EditProfile.this,HomePage.class);
+                startActivity(i);
+                finish();
+            }
+        });
+    }
+    public void onClick(View v) {
+        if (v == edit_tbirthday) {
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,int monthOfYear, int dayOfMonth) {
+                            edit_tbirthday.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+        }
+
+
+
+        ileft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(EditProfile.this,HomePage.class);
+                startActivity(i);
+                finish();
             }
         });
     }
@@ -155,7 +175,7 @@ APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(EditProfile.this,HomePage.class);
+        Intent i=new Intent(EditProfile.this,Settings.class);
         startActivity(i);
         finish();
     }

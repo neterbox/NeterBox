@@ -1,4 +1,5 @@
 package com.neterbox;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
+import com.neterbox.utils.Sessionmanager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,11 +23,18 @@ public class LoginPage extends AppCompatActivity {
     EditText login_email, login_epassword;
     TextView login_tlogin, login_tsignin, login_tforgot;
     ImageView login_user,login_password;
+    Sessionmanager sessionmanager;
+    Context context;
+    public static final String Id = "idKey";
+    public static final String Email = "emailKey";
+    public static final String Name = "nameKey";
     APIInterface apiInterface= APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        context = this;
+        sessionmanager=new Sessionmanager(context);
         login_email = (EditText) findViewById(R.id.login_email);
         login_epassword = (EditText) findViewById(R.id.login_epassword);
         login_password = (ImageView) findViewById(R.id.login_password);
@@ -95,7 +103,8 @@ public class LoginPage extends AppCompatActivity {
             {
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
-                    Securedpreferences.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
+                    sessionmanager.putSessionValue(Sessionmanager.Id,response.body().getData().getUser().getId());
+                    Sessionmanager.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
             finish();

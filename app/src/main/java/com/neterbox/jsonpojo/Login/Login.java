@@ -13,7 +13,7 @@ public class Login {
     private String status;
     @SerializedName("data")
     @Expose
-    private com.neterbox.jsonpojo.Login.Loginuser data;
+    private LoginDatum data;
     @SerializedName("message")
     @Expose
     private String message;
@@ -29,11 +29,11 @@ public class Login {
         this.status = status;
     }
 
-    public com.neterbox.jsonpojo.Login.Loginuser getData() {
+    public LoginDatum getData() {
         return data;
     }
 
-    public void setData(com.neterbox.jsonpojo.Login.Loginuser data) {
+    public void setData(LoginDatum data) {
         this.data = data;
     }
 

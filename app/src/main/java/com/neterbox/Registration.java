@@ -9,25 +9,26 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.utils.Constants;
-import com.neterbox.utils.Securedpreferences;
+import com.neterbox.utils.Sessionmanager;
 
 import java.util.Calendar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener{
 
     EditText name, username, register_eemail, register_epassword;
     Button btnRegistration;
     TextView tbirthday;
+    LinearLayout lbirthday;
     int mYear, mMonth, mDay;
     ImageView pwdeye;
     private int passwordNotVisible=1;
@@ -42,12 +43,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         username = (EditText) findViewById(R.id.username);
 //        register_eday = (EditText) findViewById(R.id. register_eday);
         register_eemail = (EditText) findViewById(R.id.register_eemail);
+        lbirthday=(LinearLayout)findViewById(R.id.lbirthday);
         register_epassword = (EditText) findViewById(R.id.register_epassword);
         tbirthday = (TextView) findViewById(R.id.tbirthday);
         btnRegistration = (Button) findViewById(R.id.btnRegistration);
         pwdeye = (ImageView) findViewById(R.id.pwdeye);
 
-        tbirthday.setOnClickListener(this);
+        lbirthday.setOnClickListener(this);
 
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +76,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 } else {
                     RegistrationMethod(name.getText().toString(), username.getText().toString(),
                             register_epassword.getText().toString(),
-                            tbirthday.getText().toString(), register_eemail.getText().toString(),
-                             "0");
+                            tbirthday.getText().toString(), register_eemail.getText().toString()
+                             );
                 }
 
             }
@@ -98,7 +100,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         });
     }
     public void onClick(View v) {
-        if (v == tbirthday) {
+        if (v == lbirthday) {
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
@@ -109,10 +111,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                         @Override
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            tbirthday.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            tbirthday.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
         }
     }
 
@@ -126,7 +129,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     }
 
     public void RegistrationMethod(String name, String username,String register_epassword,String tbirthday, String register_eemail
-                                   ,String type  ) {
+                                   ) {
 
 
             Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username,register_epassword, tbirthday,
@@ -136,7 +139,9 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
                     if (response.body().getStatus().equals("Success")) {
-                        Securedpreferences.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
+                        Sessionmanager.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
+                        new Sessionmanager(Registration.this).putSessionValue(Sessionmanager.Id,response.body().getData().getUser().getId());
+
                         Intent it = new Intent(Registration.this, HomePage.class);
                         startActivity(it);
                         finish();

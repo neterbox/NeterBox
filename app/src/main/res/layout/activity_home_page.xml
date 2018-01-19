@@ -25,9 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/charmis"
                 app:civ_border_color="#c8e0f7"
-
+                android:src="@drawable/dummy"
                 app:civ_border_width="@dimen/_12sdp" />
         </RelativeLayout>
 
