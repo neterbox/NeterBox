@@ -26,7 +26,7 @@ public class Create_group extends AppCompatActivity {
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(Create_group.this,ContactsforChat.class);
+                Intent i= new Intent(Create_group.this,ContactsForChatActivityNew.class);
                 startActivity(i);
                 finish();
             }
@@ -45,7 +45,7 @@ public class Create_group extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(Create_group.this,ContactsforChat.class);
+        Intent i=new Intent(Create_group.this,ContactsForChatActivityNew.class);
         startActivity(i);
         finish();
     }

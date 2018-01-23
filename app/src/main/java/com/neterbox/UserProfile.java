@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,13 @@ public class UserProfile extends AppCompatActivity {
 
         adapter=new Userpro_Adapter(userProfile);
         user_listview.setAdapter( adapter );
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(UserProfile.this,HomePage.class);
+        startActivity(i);
+        finish();
     }
 }
 

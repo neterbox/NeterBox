@@ -91,10 +91,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onBackPressed() {
-        System.exit(0);
-    }
     public void LoginPage(String email, String password) {
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {
@@ -107,7 +103,7 @@ public class LoginPage extends AppCompatActivity {
                     Sessionmanager.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                     startActivity(i);
-            finish();
+                    finish();
                 }
                 else
                 {
@@ -118,5 +114,11 @@ public class LoginPage extends AppCompatActivity {
             public void onFailure(Call<Login> call, Throwable t) {
             }
         });
+
     }
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+    }
+
 }

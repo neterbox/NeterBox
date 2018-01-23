@@ -71,7 +71,7 @@ public class HomePage extends Activity {
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
 
-   public static final int GALLARY_REQUEST=2;
+    public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
     public static final int MY_PERMISSIONS_REQUEST_GALLARY=11;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA=12;
@@ -181,7 +181,7 @@ public class HomePage extends Activity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, ContactsforChat.class);
+                Intent i = new Intent(HomePage.this, ContactsForChatActivityNew.class);
                 startActivity(i);
                 finish();
             }

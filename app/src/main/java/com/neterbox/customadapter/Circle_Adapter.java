@@ -69,7 +69,7 @@ public class Circle_Adapter extends BaseAdapter {
         return view;
     }
 
-    class MyViewHolder {
+    public class MyViewHolder {
         public TextView tcircletext;
         public CircleImageView icircleprofile;
         public LinearLayout lcircleitem;

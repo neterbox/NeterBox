@@ -30,7 +30,7 @@ public class One_To_OneChat extends AppCompatActivity {
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(One_To_OneChat.this,ContactsforChat.class);
+                Intent i=new Intent(One_To_OneChat.this,ContactsForChatActivityNew.class);
                 startActivity(i);
                 finish();
             }
@@ -38,7 +38,7 @@ public class One_To_OneChat extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(One_To_OneChat.this,ContactsforChat.class);
+        Intent i=new Intent(One_To_OneChat.this,ContactsForChatActivityNew.class);
         startActivity(i);
         finish();
     }
