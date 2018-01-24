@@ -131,11 +131,7 @@ public class Circles extends Activity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                Intent i = new Intent(Circles.this, ContactsforChat.class);
-=======
                 Intent i =new Intent(Circles.this,ContactsForChatActivityNew.class);
->>>>>>> b39b7c6175fe30a0026c88559d03744dfa464134
                 startActivity(i);
                 finish();
             }
