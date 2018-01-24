@@ -8,137 +8,170 @@
     android:orientation="vertical"
     tools:context="com.neterbox.Circles">
     <include layout="@layout/custom_action_bar"/>
-    <LinearLayout
-        android:id="@+id/lselectcountry"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
+    <!--<LinearLayout-->
+        <!--android:id="@+id/lselectcountry"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_40sdp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp">
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/simplerectangle"
-            android:gravity="center">
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/spinner1">
 
-            <TextView
-                android:id="@+id/tselectcountry"
-                android:layout_width="411dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:text="  SELECT COUNTRY"
-                android:textColor="#000000"
-                android:textSize="@dimen/_12sdp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="match_parent"
-            android:background="#4FC1E9"
-            android:gravity="center">
+        </Spinner>
+</LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/simplerectangle"-->
+            <!--android:gravity="center">-->
 
-            <ImageView
-                android:id="@+id/icountrydropdowan"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/dropdownarrow" />
+            <!--<TextView-->
+                <!--android:id="@+id/tselectcountry"-->
+                <!--android:layout_width="411dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#ffffff"-->
+                <!--android:gravity="center"-->
+                <!--android:text="  SELECT COUNTRY"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="@dimen/_12sdp" />-->
+        <!--</LinearLayout>-->
 
-        </LinearLayout>
-    </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="@dimen/_40sdp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#4FC1E9"-->
+            <!--android:gravity="center">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/icountrydropdowan"-->
+                <!--android:layout_width="@dimen/_15sdp"-->
+                <!--android:layout_height="@dimen/_15sdp"-->
+                <!--android:src="@drawable/dropdownarrow" />-->
+
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_marginTop="@dimen/_1sdp"
         android:background="#B0B5BB"></View>
     <LinearLayout
-        android:id="@+id/lselectstate"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
+        android:layout_height="@dimen/_40sdp">
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/simplerectangle"
-            android:gravity="center">
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/spinner2">
+        </Spinner>
+    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/lselectstate"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_40sdp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/tselectstate"
-                android:layout_width="411dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:text="  SELECT STATE"
-                android:textColor="#000000"
-                android:textSize="@dimen/_12sdp" />
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/simplerectangle"-->
+            <!--android:gravity="center">-->
 
-        <LinearLayout
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="match_parent"
-            android:background="#4FC1E9"
-            android:gravity="center">
+            <!--<TextView-->
+                <!--android:id="@+id/tselectstate"-->
+                <!--android:layout_width="411dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#ffffff"-->
+                <!--android:gravity="center"-->
+                <!--android:text="  SELECT STATE"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="@dimen/_12sdp" />-->
+        <!--</LinearLayout>-->
 
-            <ImageView
-                android:id="@+id/istatedropdowan"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/dropdownarrow" />
+        <!--<LinearLayout-->
+            <!--android:layout_width="@dimen/_40sdp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#4FC1E9"-->
+            <!--android:gravity="center">-->
 
-        </LinearLayout>
+            <!--<ImageView-->
+                <!--android:id="@+id/istatedropdowan"-->
+                <!--android:layout_width="@dimen/_15sdp"-->
+                <!--android:layout_height="@dimen/_15sdp"-->
+                <!--android:src="@drawable/dropdownarrow" />-->
+
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="#B0B5BB"></View>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/lselectcity"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_40sdp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/simplerectangle"-->
+            <!--android:gravity="center">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tselectcity"-->
+                <!--android:layout_width="411dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#ffffff"-->
+                <!--android:gravity="center"-->
+                <!--android:text="  SELECT CITIES(Optional)"-->
+                <!--android:textColor="#000000"-->
+                <!--android:textSize="@dimen/_12sdp" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="@dimen/_40sdp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#4FC1E9"-->
+            <!--android:gravity="center">-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/icitydropdowan"-->
+                <!--android:layout_width="@dimen/_15sdp"-->
+                <!--android:layout_height="@dimen/_15sdp"-->
+                <!--android:src="@drawable/dropdownarrow" />-->
+
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/spinner3">
+        </Spinner>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_marginTop="@dimen/_1sdp"
         android:background="#B0B5BB"></View>
-    <LinearLayout
-        android:id="@+id/lselectcity"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/simplerectangle"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tselectcity"
-                android:layout_width="411dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:gravity="center"
-                android:text="  SELECT CITIES(Optional)"
-                android:textColor="#000000"
-                android:textSize="@dimen/_12sdp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="match_parent"
-            android:background="#4FC1E9"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/icitydropdowan"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/dropdownarrow" />
-
-        </LinearLayout>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
