@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NeterBox</string>
+<<<<<<< HEAD
     <string name="Country">Select Country</string>
     <string-array name="country_arrays">
         <item>Malaysia</item>
@@ -41,5 +42,17 @@
         <item>Nagpur</item>
     </string-array>
 
+=======
+
+
+        
+    <string name="title_activity_main">Location From GPS</string>
+        
+    <string name="str_tv_location">Current Location</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+>>>>>>> b39b7c6175fe30a0026c88559d03744dfa464134
 </resources>
 

@@ -30,7 +30,7 @@ public class Group_chat extends AppCompatActivity {
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Group_chat.this,ContactsforChat.class);
+                Intent i=new Intent(Group_chat.this,ContactsForChatActivityNew.class);
                 startActivity(i);
                 finish();
             }
@@ -38,7 +38,7 @@ public class Group_chat extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(Group_chat.this,ContactsforChat.class);
+        Intent i=new Intent(Group_chat.this,ContactsForChatActivityNew.class);
         startActivity(i);
         finish();
 

@@ -1,4 +1,4 @@
-package com.neterbox;
+package com.neterbox.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,11 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+
+import com.neterbox.R;
 
 
-public class contact_group_chat extends Fragment {
-
+public class GroupChatFragment extends Fragment {
 
 
     @Override
@@ -19,9 +19,7 @@ public class contact_group_chat extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_group_chat, container, false);
-
-
-
-
     }
+
+
 }

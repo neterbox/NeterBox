@@ -2,6 +2,7 @@ package com.neterbox;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,8 +11,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import android.location.Location;
+
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -31,6 +36,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
@@ -62,7 +71,7 @@ public class HomePage extends Activity {
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
 
-   public static final int GALLARY_REQUEST=2;
+    public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
     public static final int MY_PERMISSIONS_REQUEST_GALLARY=11;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA=12;
@@ -94,11 +103,22 @@ public class HomePage extends Activity {
         iplay = (ImageView) findViewById(R.id.iplay);
 
 
+       profile_image.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Intent i = new Intent(HomePage.this, EditProfile.class);
+                                                startActivity(i);
+                                                finish();
+                                            }
+       });
+
+
         if(  new Sessionmanager(context).getValue(Sessionmanager.profile) != null)
         {
             Glide.with(context).load(new Sessionmanager(context).getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(profile_image);
 
         }
+
 
 
         lph.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +129,6 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
         taddfriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,8 +137,6 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
-
         relative_frnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,8 +145,7 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
-        relative_following.setOnClickListener(new View.OnClickListener() {
+       relative_following.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, SearchFollowings.class);
@@ -137,7 +153,6 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
         relative_follower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +161,6 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
         relative_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +169,6 @@ public class HomePage extends Activity {
                 finish();
             }
         });
-
         tlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,12 +181,11 @@ public class HomePage extends Activity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, ContactsforChat.class);
+                Intent i = new Intent(HomePage.this, ContactsForChatActivityNew.class);
                 startActivity(i);
                 finish();
             }
         });
-
         icircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +225,11 @@ public class HomePage extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        System.exit(0);
+       }
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -489,3 +506,4 @@ public class HomePage extends Activity {
 //        openImageChooser();
 //    }
 //}
+

@@ -47,45 +47,79 @@
 
 </GridView>
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
 
         <LinearLayout
-            android:id="@+id/strip"
+            android:id="@+id/groupstrip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#0095ff">
+            android:background="#0095ff"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/ichat"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:src="@drawable/chat" />
 
-            <ImageView
-                android:id="@+id/ichat"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:src="@drawable/chat" />
 
-            <ImageView
-                android:id="@+id/icircle"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:src="@drawable/circle" />
 
-            <ImageView
-                android:id="@+id/iplay"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:src="@drawable/videowhitelineatbottomforselectedstate" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/icircle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:src="@drawable/circle" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/iplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:src="@drawable/videoplay" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:background="#ffffff"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
