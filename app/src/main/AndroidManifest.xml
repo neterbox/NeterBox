@@ -20,8 +20,8 @@
 
     <!-- -google map key: -->
     <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyAVzxRv9QTZF8jBZ-mXZwisqkiH1h81MTg" />
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyBt43eiX1p44QIaVMC9uqVpZJMh5gtM8Gw" />
 
     <application
         android:allowBackup="true"
@@ -34,11 +34,7 @@
             android:name=".Splash_screen"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".LoginPage"
@@ -83,7 +79,8 @@
         <activity
             android:name=".PlayGridview"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".One_To_OneChat"
             android:screenOrientation="portrait"
@@ -173,10 +170,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ContactsForChatActivityNew"
+        <activity
+            android:name=".ContactsForChatActivityNew"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".FetchLocation"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

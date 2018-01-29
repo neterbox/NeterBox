@@ -90,14 +90,14 @@ public class PlayGridview extends AppCompatActivity {
             }
         });
 
-        iplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(PlayGridview.this, PlayGridview.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        iplay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(PlayGridview.this, PlayGridview.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

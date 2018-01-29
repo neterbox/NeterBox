@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -139,14 +140,14 @@ public class Circles extends Activity {
             }
         });
 
-        icircle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Circles.this, Circles.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        icircle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(Circles.this, Circles.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
 
         iplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,10 +172,10 @@ public class Circles extends Activity {
                 if (spinner1 == null) {
                     spinner2.setEnabled(false);
                 }
-                Log.e("datumCountry",":"+new Gson().toJson(datumcountry));
-                Log.e("position","=============="+ position);
-
-                Log.e("datumCountry","=========="+new Gson().toJson(datumcountry.get(position)));
+//                Log.e("datumCountry",":"+new Gson().toJson(datumcountry));
+//                Log.e("position","=============="+ position);
+//
+//                Log.e("datumCountry","=========="+new Gson().toJson(datumcountry.get(position)));
                 if(position!=0){
                 countrystr = country.get(position);
                     country_id = datumcountry.get(position-1).getCountry().getId();
@@ -209,7 +210,11 @@ public class Circles extends Activity {
     }
 
     public void country_api() {
-
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+        dialog.dismiss();
         final Call<Country> countrycall = apiInterface.countrypojo();
         countrycall.enqueue(new Callback<Country>() {
             @Override
@@ -239,6 +244,11 @@ public class Circles extends Activity {
     }
 
     public void state_api(String country_id) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+        dialog.dismiss();
         final Call<State> stateCall = apiInterface.statepojo(country_id);
         stateCall.enqueue(new Callback<State>() {
             @Override
