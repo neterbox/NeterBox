@@ -80,7 +80,11 @@
             android:name=".PlayGridview"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
+<<<<<<< HEAD
             android:windowSoftInputMode="stateHidden" />
+=======
+            android:windowSoftInputMode="stateHidden"></activity>
+>>>>>>> d95b5808a023758e146f4508d5b8906ad0ee4d24
         <activity
             android:name=".One_To_OneChat"
             android:screenOrientation="portrait"

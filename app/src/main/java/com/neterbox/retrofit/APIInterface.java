@@ -4,6 +4,7 @@ import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.country.Country;
 import com.neterbox.jsonpojo.editprofile.Editpage;
 import com.neterbox.Registration;
+import com.neterbox.jsonpojo.near_by_friend.Nearbyfriend;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
@@ -68,6 +69,14 @@ public interface APIInterface {
 
     @GET(ServerUrl.STATE + "/{country_id}")
     Call<State> statepojo(@Path("country_id") String country_id);
+
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.NERBYFRIEND)
+    Call<Nearbyfriend> Nerbyfriendpojo(@Field("id") String id,
+                                       @Field("latitude") String latitude,
+                                       @Field("longitude") String longitude );
 
 }
 
