@@ -13,4 +13,5 @@ public class ServerUrl {
     public static final String UPLOADPIC = "users/profileimage";
     public static final String COUNTRY =  "circles/country_list";
     public static final String STATE =  "circles/state_list";
+    public static final String NERBYFRIEND = "users/nearby";
 }
