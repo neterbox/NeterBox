@@ -3,13 +3,14 @@ package com.neterbox.jsonpojo.circle;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by sejal on 1/30/2018.
  */
 
-public class Circlepage {
+public class Circlepage implements Serializable {
 
     @SerializedName("meesae")
     @Expose

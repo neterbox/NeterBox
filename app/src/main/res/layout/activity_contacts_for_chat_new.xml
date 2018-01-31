@@ -24,10 +24,9 @@
             app:tabMode="fixed"
             app:tabIndicatorHeight="0dp"
             app:tabTextColor="#ffffff"
-<<<<<<< HEAD
-=======
+
             app:tabBackground="@drawable/tab_selector"
->>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
+
             app:tabSelectedTextColor="#049BE6"
              />
     </RelativeLayout>

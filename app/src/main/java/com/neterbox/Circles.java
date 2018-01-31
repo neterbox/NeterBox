@@ -27,6 +27,7 @@ import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Sessionmanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,17 +47,6 @@ public class Circles extends Activity {
 
     private Spinner spinner1, spinner2, spinner3;
 
-//    String[] itemname = {
-//            "Charmis",
-//            "Camera",
-//            "Cold War"
-//    };
-//
-//    Integer[] imgid = {
-//            R.drawable.pic1,
-//            R.drawable.pic2,
-//            R.drawable.pic3,
-//    };
 
     ArrayList<String> country = new ArrayList<>();
     ArrayList<String> state = new ArrayList<>();
@@ -105,8 +95,6 @@ public class Circles extends Activity {
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner3 = (Spinner) findViewById(R.id.spinner3);
-
-
     }
 
     private void listener() {
@@ -131,20 +119,6 @@ public class Circles extends Activity {
                 finish();
             }
         });
-
-<<<<<<< HEAD
-
-=======
-//        icircle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(Circles.this, Circles.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
->>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
-
         iplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,6 +213,10 @@ public class Circles extends Activity {
                     gcirclegrid.setAdapter(adapter);
                     gcirclegrid.setOnScrollListener(inanswerScrolled);
 
+                    Intent i = new Intent(Circles.this, Circle_chat.class);
+                    i.putExtra("circledataextra",(Serializable) res.body().getData());
+                    startActivity(i);
+                    finish();
 
 //                    Toast.makeText(Circles.this, res.body().getMeesae(), Toast.LENGTH_SHORT).show();
                 } else {

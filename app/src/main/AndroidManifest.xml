@@ -34,7 +34,11 @@
             android:name=".Splash_screen"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".LoginPage"
@@ -46,6 +50,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".HomePage"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name=".Circles"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+
         <activity
             android:name=".EditProfile"
             android:screenOrientation="portrait"
@@ -80,113 +97,115 @@
             android:name=".PlayGridview"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-<<<<<<< HEAD
             android:windowSoftInputMode="stateHidden" />
-=======
-            android:windowSoftInputMode="stateHidden"></activity>
->>>>>>> d95b5808a023758e146f4508d5b8906ad0ee4d24
+            </application>
+
         <activity
             android:name=".One_To_OneChat"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Circle_chat"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Circle_comment"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Channel_comment"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Playvideo_page"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Group_chat"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Create_group"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".HomePage"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+
         <activity
             android:name=".FriendList"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".SearchFollowings"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".search_followers"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Settings"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Circles"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".ChannelSettings"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".FriendSetting"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".SearchGroupFriend"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".CircleImageview"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".Circleprofilepic"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".ContactsForChatActivityNew"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar"
+            tools:ignore="WrongManifestParent"></activity>
         <activity android:name=".FetchLocation"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/NoActionBar"
+            tools:ignore="WrongManifestParent">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-    </application>
-
 </manifest>
+

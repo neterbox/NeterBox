@@ -27,6 +27,7 @@ public class Circle_imageAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     public Resources res;
 
+
     public Circle_imageAdapter(Activity a) {
         this.activity = a;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
@@ -78,6 +79,7 @@ public class Circle_imageAdapter extends BaseAdapter {
             holder.llistview_channel = (LinearLayout) v.findViewById(R.id.llistview_channel);
             holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
             v.setTag(holder);
+
         }
         else
             holder=(Circle_imageAdapter.ViewHolder)
