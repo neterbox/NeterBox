@@ -1,4 +1,6 @@
 package com.neterbox;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -91,7 +93,13 @@ public class LoginPage extends AppCompatActivity {
             }
         });
     }
+
     public void LoginPage(String email, String password) {
+            final ProgressDialog dialog = new ProgressDialog(context);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("Please Wait...");
+            dialog.show();
+            dialog.dismiss();
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {
             @Override

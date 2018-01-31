@@ -46,7 +46,7 @@ public class Playvideo_page extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(Playvideo_page.this,PlayListview.class);
+        Intent i=new Intent(Playvideo_page.this,PlayGridview.class);
         startActivity(i);
         finish();
     }

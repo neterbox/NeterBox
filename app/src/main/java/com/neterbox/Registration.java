@@ -1,5 +1,7 @@
 package com.neterbox;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     EditText name, username, register_eemail, register_epassword;
     Button btnRegistration;
+    Context context;
     TextView tbirthday;
     LinearLayout lbirthday;
     int mYear, mMonth, mDay;
@@ -130,7 +133,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     public void RegistrationMethod(String name, String username,String register_epassword,String tbirthday, String register_eemail
                                    ) {
-
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+        dialog.dismiss();
 
             Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username,register_epassword, tbirthday,
                                     register_eemail ,0);

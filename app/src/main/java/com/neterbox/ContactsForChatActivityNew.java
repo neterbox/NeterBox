@@ -30,7 +30,11 @@ import com.neterbox.fragment.OneToOneFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 public class ContactsForChatActivityNew extends AppCompatActivity implements View.OnClickListener,TabHost.OnTabChangeListener {
+=======
+public class ContactsForChatActivityNew extends AppCompatActivity {
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
 
     Context context;
 
@@ -56,7 +60,11 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
         final PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
 
+<<<<<<< HEAD
         context=ContactsForChatActivityNew.this;
+=======
+        context = ContactsForChatActivityNew.this;
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -64,8 +72,11 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
 
         contactsforChat = this;
 
+<<<<<<< HEAD
         Resources res = getResources();
 
+=======
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
@@ -95,6 +106,7 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
                 finish();
             }
         });
+<<<<<<< HEAD
 
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +116,17 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
                 finish();
             }
         });
+=======
+//
+//        ichat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(ContactsForChatActivityNew.this, ContactsForChatActivityNew.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
 
         icircle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +146,10 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
             }
         });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new OneToOneFragment(), "One-on-One");
@@ -130,6 +157,7 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
         viewPager.setAdapter(adapter);
     }
 
+<<<<<<< HEAD
     @Override
     public void onClick(View view) {
         bottom_layout.setBackgroundColor(R.drawable.loginbluebox);
@@ -151,6 +179,25 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
             } tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.WHITE); tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
         }
     }
+=======
+//    @Override
+//    public void onTabChanged(String s) {
+//          String tabs = null; {
+//            TabActivity tHost = null;
+//            if (tabs.equals("first"))
+//            {
+//                //tHost.getTabWidget().getChildAt(1) .setBackgroundResource(R.drawable.tab_selector);
+//           // tHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.WHITE);
+//          //  tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
+//            }
+//            else if (tabs.equals("second")) {
+//               // tHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_selector);
+//              //  tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.BLUE);
+//                // tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
+//            }
+//        }
+//    }
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
