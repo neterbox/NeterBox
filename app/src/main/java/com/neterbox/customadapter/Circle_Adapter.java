@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.circle.CircleListDatum;
+import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -23,27 +26,23 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Circle_Adapter extends BaseAdapter {
     Activity activity;
-    String[] itemname;
-    Integer[] imgid;
-    private ArrayList data;
     private LayoutInflater inflater;
-    public Resources res;
 
-    public Circle_Adapter(Activity a,String[] itemname, Integer[] imgid) {
+    List<CircleListDatum> circleList;
+    public Circle_Adapter(Activity a,List<CircleListDatum> circleList) {
         this.activity = a;
-        this.itemname = itemname;
-        this.imgid = imgid;
+        this.circleList=circleList;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return (itemname != null ? itemname.length : 0);
+        return circleList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return itemname[i];
+        return circleList.get(i);
     }
 
     @Override
@@ -64,8 +63,19 @@ public class Circle_Adapter extends BaseAdapter {
             viewHolder = (MyViewHolder) view.getTag();
         }
 
-        viewHolder.tcircletext.setText(itemname[i]);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.icircleprofile);
+
+
+        if(!(circleList.get(i).getCircle().getName().equals("")))
+        {
+            viewHolder.tcircletext.setText(circleList.get(i).getCircle().getName());
+        }
+//        if(!(circleList.get(i).getCircle().getFiles().equals("")))
+//        {
+//            Glide.with(activity).load(circleList.get(i).getCircle().getFiles()).into(viewHolder.icircleprofile);
+//        }
+//        else{
+            Glide.with(activity).load(circleList.get(i).getCircle().getFiles()).placeholder(R.drawable.dummy).into(viewHolder.icircleprofile);
+//        }
         return view;
     }
 

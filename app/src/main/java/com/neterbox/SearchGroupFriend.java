@@ -1,5 +1,4 @@
 package com.neterbox;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static junit.runner.Version.id;
-
 public class SearchGroupFriend extends AppCompatActivity {
 LinearLayout lnearby,laddtofollower;
     ImageView ileft,iright,inearbyback,inearby;
@@ -38,20 +36,15 @@ LinearLayout lnearby,laddtofollower;
     Activity activity;
     int i;
     String id="",latitude="",longitude="";
-
     ArrayList<NearbyfriendDatum> nearbyfriendData = new ArrayList<>();
-
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_group_friend);
-
         idmapping();
      nearbyfriend(id,latitude,longitude);
         listner();
-
-
     }
     public void idmapping() {
         laddtofollower = (LinearLayout) findViewById(R.id.laddtofollower);
@@ -72,7 +65,6 @@ LinearLayout lnearby,laddtofollower;
                 finish();
             }
         });
-
         laddtofollower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,11 +81,9 @@ LinearLayout lnearby,laddtofollower;
                 finish();
             }
         });
-
     }
     public void nearbyfriend(String id, String latitude ,String longitude)
     {
-
         Call<Nearbyfriend> nearbyfriendCall = apiInterface.Nerbyfriendpojo(id ,latitude ,longitude);
 
         nearbyfriendCall.enqueue(new Callback <Nearbyfriend>() {
@@ -108,20 +98,15 @@ LinearLayout lnearby,laddtofollower;
                         Intent it = new Intent(SearchGroupFriend.this, HomePage.class);
                         startActivity(it);
                         finish();
-
                     } else {
                             Toast.makeText(SearchGroupFriend.this, res.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 }
-
-
             @Override
             public void onFailure(Call<Nearbyfriend> call, Throwable t) {
-
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         Intent i=new Intent(SearchGroupFriend.this,HomePage.class);
