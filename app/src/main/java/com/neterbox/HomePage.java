@@ -42,6 +42,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.bumptech.glide.Glide;
+import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
+import com.neterbox.jsonpojo.register.RegistrationDatum;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
@@ -53,7 +56,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -65,18 +70,21 @@ import retrofit2.Response;
 
 public class HomePage extends Activity {
 
-    TextView taddfriend, tlogout;
+    TextView taddfriend, tlogout,tprofilename;
     LinearLayout lph;
     RelativeLayout relative_following, relative_follower, relative_frnd, relative_settings;
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
 
+   String Loginname;
+
     public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
     public static final int MY_PERMISSIONS_REQUEST_GALLARY=11;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA=12;
-    Sessionmanager sessionmanager;
+
     Context context;
+    Sessionmanager sessionmanager;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     @Override
@@ -85,8 +93,11 @@ public class HomePage extends Activity {
         setContentView(R.layout.activity_home_page);
 
         context = this;
+        sessionmanager = new Sessionmanager(this);
+        this.Loginname =Loginname;
 
         taddfriend = (TextView) findViewById(R.id.taddfriend);
+        tprofilename = (TextView) findViewById(R.id.tprofilename);
         lph = (LinearLayout) findViewById(R.id.lph);
         iback1 = (ImageView) findViewById(R.id.iback1);
         iback2 = (ImageView) findViewById(R.id.iback2);
@@ -111,15 +122,17 @@ public class HomePage extends Activity {
                                                 finish();
                                             }
        });
-
-
+        // set dummy profile if profile pic is not selected
         if(  new Sessionmanager(context).getValue(Sessionmanager.profile) != null)
         {
             Glide.with(context).load(new Sessionmanager(context).getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(profile_image);
 
         }
-
-
+        // Store username in Homepage
+        Loginname = sessionmanager.getValue(Sessionmanager.Name);
+        if(!(tprofilename.getText().toString().equals(""))) {
+            tprofilename.setText(Loginname);
+        }
 
         lph.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,9 +185,13 @@ public class HomePage extends Activity {
         tlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sessionmanager.logoutUser();
                 Intent i = new Intent(HomePage.this, LoginPage.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
                 finish();
+
+
             }
         });
 
@@ -404,6 +421,7 @@ public class HomePage extends Activity {
                         progressDialog.dismiss();
 
                         Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 }
 

@@ -20,6 +20,7 @@ import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.utils.Constants;
 import com.neterbox.utils.Sessionmanager;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +35,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     LinearLayout lbirthday;
     int mYear, mMonth, mDay;
     ImageView pwdeye;
+    Sessionmanager sessionmanager;
     private int passwordNotVisible=1;
 
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -42,6 +44,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        context=this;
+        sessionmanager = new Sessionmanager(this);
         name = (EditText) findViewById(R.id.name);
         username = (EditText) findViewById(R.id.username);
 //        register_eday = (EditText) findViewById(R.id. register_eday);
@@ -131,25 +135,27 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void RegistrationMethod(String name, String username,String register_epassword,String tbirthday, String register_eemail
+    public void RegistrationMethod(String name, String username,String register_epassword,String tbirthday,
+                                   String register_eemail
                                    ) {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setMessage("Please Wait...");
         dialog.show();
-        dialog.dismiss();
-
-            Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username,register_epassword, tbirthday,
+         Call<RegistrationPojo> registercall = apiInterface.registerPojoCall(name ,username,register_epassword, tbirthday,
                                     register_eemail ,0);
 
             registercall.enqueue(new Callback<RegistrationPojo>() {
                 @Override
                 public void onResponse(Call<RegistrationPojo> call, Response<RegistrationPojo> response) {
+                    dialog.dismiss();
                     if (response.body().getStatus().equals("Success")) {
+                        sessionmanager.createSession_userRegister((response.body().getData()));
                         Sessionmanager.setPreferenceBoolean(Registration.this, Constants.IS_LOGIN,true);
-                        new Sessionmanager(Registration.this).putSessionValue(Sessionmanager.Id,response.body().getData().getUser().getId());
+//                        new Sessionmanager(Registration.this).putSessionValue(Sessionmanager.Id,response.body().getData().getUser().getId());
 
                         Intent it = new Intent(Registration.this, HomePage.class);
+                        it.putExtra("login_name",response.body().getData().getUser().getName());
                         startActivity(it);
                         finish();
                     }
@@ -161,7 +167,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 }
                 @Override
                 public void onFailure(Call<RegistrationPojo> call, Throwable t) {
-
+                    dialog.dismiss();
                 }
             });
         }

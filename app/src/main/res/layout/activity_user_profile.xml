@@ -27,6 +27,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_text"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -38,6 +39,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/user_text2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
