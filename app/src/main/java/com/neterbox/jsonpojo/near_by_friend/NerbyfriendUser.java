@@ -3,11 +3,13 @@ package com.neterbox.jsonpojo.near_by_friend;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by sejal on 1/29/2018.
  */
 
-public class NerbyfriendUser {
+public class NerbyfriendUser implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;

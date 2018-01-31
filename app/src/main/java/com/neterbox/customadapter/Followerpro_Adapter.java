@@ -24,7 +24,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Followerpro_Adapter extends BaseAdapter {
 
     Activity activity;
-    private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
 

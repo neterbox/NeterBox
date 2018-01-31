@@ -6,6 +6,7 @@ import com.neterbox.jsonpojo.editprofile.Editpage;
 import com.neterbox.Registration;
 import com.neterbox.jsonpojo.near_by_friend.Nearbyfriend;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
+import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
 import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.utils.ServerUrl;
@@ -75,9 +76,14 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST(ServerUrl.NERBYFRIEND)
     Call<Nearbyfriend> Nerbyfriendpojo(@Field("id") String id,
-                                       @Field("latitude") String latitude,
-                                       @Field("longitude") String longitude );
+                                       @Field("latitude") Double latitude,
+                                       @Field("longitude") Double longitude );
 
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.SENDREQUEST)
+    Call<SendRequest> sendrequestpojo(@Field("sender_id") String sender_id,
+                                      @Field("receiver_id") String receiver_id);
 }
 
 

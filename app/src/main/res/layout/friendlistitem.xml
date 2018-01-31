@@ -20,7 +20,6 @@
             android:padding="@dimen/_5sdp"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
-            android:src="@drawable/charmis"
             app:civ_border_color="#000000" />
 
 
@@ -34,7 +33,6 @@
                     android:id="@+id/titem3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
@@ -45,7 +43,6 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="fhdfgfhgdfdfdfdfdhgfdgdgfdgdf"
                     android:textSize="@dimen/_10sdp"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>

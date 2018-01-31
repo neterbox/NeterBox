@@ -1,15 +1,14 @@
-package com.neterbox.jsonpojo.register;
+package com.neterbox.jsonpojo.sendfriendrequest;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
- * Created by sejal on 1/12/2018.
+ * Created by DeLL on 30-01-2018.
  */
 
-public class registrationuser implements Serializable {
+public class SendRequestSender {
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -221,4 +220,3 @@ public class registrationuser implements Serializable {
     }
 
 }
-

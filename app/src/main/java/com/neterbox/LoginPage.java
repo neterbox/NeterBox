@@ -36,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         context = this;
-        sessionmanager=new Sessionmanager(context);
+        sessionmanager=new Sessionmanager(this);
         login_email = (EditText) findViewById(R.id.login_email);
         login_epassword = (EditText) findViewById(R.id.login_epassword);
         login_password = (ImageView) findViewById(R.id.login_password);
@@ -99,17 +99,19 @@ public class LoginPage extends AppCompatActivity {
             dialog.setCanceledOnTouchOutside(false);
             dialog.setMessage("Please Wait...");
             dialog.show();
-            dialog.dismiss();
+
         Call<Login> logincall = apiInterface.loginpojocall(email, password);
         logincall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response)
             {
+                dialog.dismiss();
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
-                    sessionmanager.putSessionValue(Sessionmanager.Id,response.body().getData().getUser().getId());
+                    sessionmanager.createSession_userLogin((response.body().getData()));
                     Sessionmanager.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
                     Intent i = new Intent(LoginPage.this, HomePage.class);
+                   // i.putExtra("login_name",response.body().getData().getUser().getName());
                     startActivity(i);
                     finish();
                 }
@@ -120,6 +122,7 @@ public class LoginPage extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
+                dialog.dismiss();
             }
         });
 
