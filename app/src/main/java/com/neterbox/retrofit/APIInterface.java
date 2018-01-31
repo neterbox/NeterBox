@@ -1,9 +1,11 @@
 package com.neterbox.retrofit;
 
+import com.neterbox.jsonpojo.Decline_friend_request.DeclineFriend;
 import com.neterbox.jsonpojo.Login.Login;
+import com.neterbox.jsonpojo.accept_friend_request.AcceptFriend;
+import com.neterbox.jsonpojo.circle.Circlepage;
 import com.neterbox.jsonpojo.country.Country;
 import com.neterbox.jsonpojo.editprofile.Editpage;
-import com.neterbox.Registration;
 import com.neterbox.jsonpojo.near_by_friend.Nearbyfriend;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
@@ -79,11 +81,32 @@ public interface APIInterface {
                                        @Field("latitude") Double latitude,
                                        @Field("longitude") Double longitude );
 
+<<<<<<< HEAD
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @FormUrlEncoded
     @POST(ServerUrl.SENDREQUEST)
     Call<SendRequest> sendrequestpojo(@Field("sender_id") String sender_id,
                                       @Field("receiver_id") String receiver_id);
+=======
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.CIRCLELIST)
+    Call<Circlepage> Circlelistpojo(@Field("index") String index);
+
+
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.ACCEPTFRIENDREQUEST)
+    Call<AcceptFriend> AcceptFriendListtpojo(@Field("id") String id);
+
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.DECLINEFRIENDREQUEST)
+    Call<DeclineFriend> DeclineFriendListtpojo(@Field("id") String id);
+>>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
 }
 
 

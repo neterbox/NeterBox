@@ -3,33 +3,28 @@ package com.neterbox;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.neterbox.customadapter.Circle_Adapter;
-import com.neterbox.customadapter.Followers_Adapter;
-import com.neterbox.jsonpojo.Login.Login;
+import com.neterbox.jsonpojo.circle.Circlepage;
+import com.neterbox.jsonpojo.circle.CircleListDatum;
 import com.neterbox.jsonpojo.country.Country;
 import com.neterbox.jsonpojo.country.CountryDatum;
 import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.state.StateDatum;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
-import com.neterbox.utils.Constants;
 import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
@@ -39,64 +34,59 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.R.attr.country;
-import static com.neterbox.R.id.parent;
-
 public class Circles extends Activity {
     GridView gcirclegrid;
     Activity activity;
     ImageView ileft, iright;
     TextView title;
     int i;
-    String countrystr = "", statestr = "", citystr = "";
+    String countrystr = "", statestr = "", citystr = "" ,index="1";
     String country_id = "0", state_id = "0";
 
 
     private Spinner spinner1, spinner2, spinner3;
 
-    String[] itemname = {
-            "Charmis",
-            "Camera",
-            "Cold War"
-    };
-
-    Integer[] imgid = {
-            R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
-
-    };
+//    String[] itemname = {
+//            "Charmis",
+//            "Camera",
+//            "Cold War"
+//    };
+//
+//    Integer[] imgid = {
+//            R.drawable.pic1,
+//            R.drawable.pic2,
+//            R.drawable.pic3,
+//    };
 
     ArrayList<String> country = new ArrayList<>();
     ArrayList<String> state = new ArrayList<>();
     ArrayList<String> city = new ArrayList<>();
     ArrayList<CountryDatum> datumcountry = new ArrayList<>();
     ArrayList<StateDatum> datumstate = new ArrayList<>();
-
+    List<CircleListDatum> circleListData = new ArrayList<>();
+    Sessionmanager sessionmanager;
     ImageView ichat, icircle, iplay;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+    private int firstVisiblePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circles);
+        Log.i("TAG","test");
 
         activity = this;
-
         datumstate = new ArrayList<>();
         datumcountry = new ArrayList<>();
-
-
+        circleListData = new ArrayList<>();
+        sessionmanager = new Sessionmanager(activity);
         idMappings();
+        List<CircleListDatum> circleList= new ArrayList<>();
 
         country_api();
         listener();
 
-
-
-
-        Circle_Adapter adapter = new Circle_Adapter(this, itemname, imgid);
-        gcirclegrid.setAdapter(adapter);
+        Circle(index);
     }
 
     private void idMappings() {
@@ -122,7 +112,9 @@ public class Circles extends Activity {
     private void listener() {
         gcirclegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+
+                sessionmanager.createSession_circledata(circleListData.get(pos));
                 Intent it = new Intent(Circles.this, Circle_chat.class);
                 startActivity(it);
                 finish();
@@ -140,6 +132,9 @@ public class Circles extends Activity {
             }
         });
 
+<<<<<<< HEAD
+
+=======
 //        icircle.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -148,6 +143,7 @@ public class Circles extends Activity {
 //                finish();
 //            }
 //        });
+>>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
 
         iplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +197,59 @@ public class Circles extends Activity {
             }
         });
     }
+    int currentFirstVisPos = getFirstVisiblePosition();
+
+//    int myLastVisiblePos = gcirclegrid.getFirstVisiblePosition();
+    private GridView.OnScrollListener inanswerScrolled = new GridView.OnScrollListener() {
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollstate) {
+
+            int myLastVisiblePos = 0;
+            if (currentFirstVisPos > myLastVisiblePos) {
+                //scroll down
+            }
+            if (currentFirstVisPos < myLastVisiblePos) {
+                //scroll up
+            }
+            myLastVisiblePos = currentFirstVisPos;
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            Log.e("GridView", "firstVisibleItem" + firstVisibleItem + "\nLastVisibleItem" + totalItemCount);
+        }
+
+    };
+
+    public void Circle(String index)
+    {
+        Call<Circlepage> circleCall = apiInterface.Circlelistpojo(index);
+
+        circleCall.enqueue(new Callback <Circlepage>() {
+            @Override
+            public void onResponse(Call<Circlepage> call, Response<Circlepage> res) {
+                if (res.body().getStatus() .equals( "Success")) {
+                    for(CircleListDatum  circleListDatum :res.body().getData())
+                    {
+                        circleListData.add(circleListDatum);
+                    }
+
+                    Circle_Adapter adapter = new Circle_Adapter(activity, circleListData);
+                    gcirclegrid.setAdapter(adapter);
+                    gcirclegrid.setOnScrollListener(inanswerScrolled);
+
+
+//                    Toast.makeText(Circles.this, res.body().getMeesae(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Circles.this, "Success", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Circlepage> call, Throwable t) {
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
@@ -236,6 +285,7 @@ public class Circles extends Activity {
         });
 
     }
+
 
     public void adapter_country() {
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, country);
@@ -274,5 +324,9 @@ public class Circles extends Activity {
         ArrayAdapter ss = new ArrayAdapter(this, android.R.layout.simple_spinner_item, state);
         ss.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(ss);
+    }
+
+    public int getFirstVisiblePosition() {
+        return firstVisiblePosition;
     }
 }

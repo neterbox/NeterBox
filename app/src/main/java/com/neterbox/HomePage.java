@@ -365,7 +365,7 @@ public class HomePage extends Activity {
             {
                 Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             }
-//            Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -380,8 +380,7 @@ public class HomePage extends Activity {
         }
 
         try {
-            File path = Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES);
+            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             File f = new File(path, "DemoPicture.jpg");
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());
@@ -436,92 +435,3 @@ public class HomePage extends Activity {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//    private void selectImage() {
-//        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
-//        AlertDialog.Builder builder = new AlertDialog.Builder(HomePage.this);
-//        builder.setTitle("Add Photo!");
-//        builder.setItems(options, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int item) {
-//                if (options[item].equals("Take Photo"))
-//                {
-//                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-//                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-//                    startActivityForResult(intent, 1);
-//                }
-//                else if (options[item].equals("Choose from Gallery"))
-//                {
-//                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    startActivityForResult(intent, 2);
-//                }
-//                else if (options[item].equals("Cancel")) {
-//                    dialog.dismiss();
-//                }
-//            }
-//        });
-//        builder.show();
-//    }
-//    void openImageChooser() {
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK) {
-//            if (requestCode == 2) {
-//                Uri selectedImageUri = data.getData();
-//                if (null != selectedImageUri) {
-//                    String path = getPathFromURI(selectedImageUri);
-//                    Log.i(TAG, "Image Path : " + path);
-//                    ((CircleImageView) findViewById(R.id.profile_image)).setImageURI(selectedImageUri);
-//                }
-//            }
-//        }
-//    }
-//    public String getPathFromURI(Uri contentUri) {
-//        String res = null;
-//        String[] proj = {MediaStore.Images.Media.DATA};
-//        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-//        if (cursor.moveToFirst()) {
-//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            res = cursor.getString(column_index);
-//        }
-//        cursor.close();
-//        return res;
-//    }
-//
-////
-////            } else if (requestCode == 2) {
-//
-//
-//
-//    @Override
-//    public void onBackPressed() {
-//        System.exit(0);
-//    }
-//
-//    @Override
-//    public void onClick(View v) {
-//        openImageChooser();
-//    }
-//}
-

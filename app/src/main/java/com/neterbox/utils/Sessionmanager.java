@@ -2,7 +2,8 @@ package com.neterbox.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.View;
+
+import com.neterbox.jsonpojo.circle.CircleListDatum;
 
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.Login.LoginDatum;
@@ -21,6 +22,7 @@ public class Sessionmanager {
     public static final String Id = "idKey";
     public static final String Email = "emailKey";
     public static final String Name = "nameKey";
+<<<<<<< HEAD
     public static final String Username = "UsernameKey";
     public static final String Address = "AddressKey";
     public static final String Birthdate = "BirthdateKey";
@@ -35,22 +37,33 @@ public class Sessionmanager {
     public static final String Type = "TypeKey";
     public static final String Usertype = "UsertypeKey";
     public static final String profile ="pickey";
+=======
+    public static final String profile = "pickey";
+    public static final String Files = "Fileskey";
+    public static final String index = "indexkey";
+>>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
 
     public Sessionmanager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(mypreference, Context.MODE_PRIVATE);
     }
 
+<<<<<<< HEAD
     public String getValue(String KEY_ID){
             return sharedPreferences.getString(KEY_ID, "");
         }
+=======
+    public String getValue(String KEY_ID) {
+        return sharedPreferences.getString(KEY_ID, "");
+    }
+>>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
 
     public void putSessionValue(String KEY_NAME, String KEY_VALUE) {
         sharedPreferences.edit().putString(KEY_NAME, KEY_VALUE).apply();
     }
 
-    public static void setPreferenceBoolean( Context activity,String key, boolean value) {
-        sharedPreferences = activity.getSharedPreferences(mypreference,Context.MODE_PRIVATE);
+    public static void setPreferenceBoolean(Context activity, String key, boolean value) {
+        sharedPreferences = activity.getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
         editor.commit();
@@ -59,8 +72,8 @@ public class Sessionmanager {
     public static boolean getPreferenceBoolean(Context activity, String key, boolean Default) {
         sharedPreferences = activity.getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(key, Default);
-
     }
+<<<<<<< HEAD
     public void logoutUser()
     {
         sharedPreferences.edit().clear().apply();
@@ -109,4 +122,12 @@ public class Sessionmanager {
     }
 
 }
+=======
+>>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
 
+    public void createSession_circledata(CircleListDatum circledata) {
+        sharedPreferences.edit().putString(Id, circledata.getCircle().getId()).apply();
+        sharedPreferences.edit().putString(Name, circledata.getCircle().getName()).apply();
+        sharedPreferences.edit().putString(Files, circledata.getCircle().getFiles()).apply();
+    }
+}
