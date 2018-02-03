@@ -74,9 +74,11 @@ public class Circles extends Activity {
         List<CircleListDatum> circleList= new ArrayList<>();
 
         country_api();
+        Circle(index);
+
         listener();
 
-        Circle(index);
+
     }
 
     private void idMappings() {
@@ -103,8 +105,12 @@ public class Circles extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
                 sessionmanager.createSession_circledata(circleListData.get(pos));
-                Intent it = new Intent(Circles.this, Circle_chat.class);
-                startActivity(it);
+
+                Log.e("data",":"+new Gson().toJson(circleListData.get(pos)));
+                Intent i = new Intent(Circles.this, Circle_chat.class);
+                i.putExtra("circledataextra",(Serializable)circleListData.get(pos));
+
+                startActivity(i);
                 finish();
 
             }
@@ -196,7 +202,7 @@ public class Circles extends Activity {
 
     };
 
-    public void Circle(String index)
+    public void Circle(final String index)
     {
         Call<Circlepage> circleCall = apiInterface.Circlelistpojo(index);
 
@@ -213,10 +219,7 @@ public class Circles extends Activity {
                     gcirclegrid.setAdapter(adapter);
                     gcirclegrid.setOnScrollListener(inanswerScrolled);
 
-                    Intent i = new Intent(Circles.this, Circle_chat.class);
-                    i.putExtra("circledataextra",(Serializable) res.body().getData());
-                    startActivity(i);
-                    finish();
+
 
 //                    Toast.makeText(Circles.this, res.body().getMeesae(), Toast.LENGTH_SHORT).show();
                 } else {

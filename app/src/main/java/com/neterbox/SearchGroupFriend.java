@@ -1,9 +1,7 @@
 package com.neterbox;
-<<<<<<< HEAD
+
 
 import android.Manifest;
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -44,18 +42,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static junit.runner.Version.id;
-<<<<<<< HEAD
+
 
 public class SearchGroupFriend extends AppCompatActivity implements LocationListener{
-=======
-public class SearchGroupFriend extends AppCompatActivity {
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
-LinearLayout lnearby,laddtofollower;
+LinearLayout lnearby,laddtofollower,lfriendrequestlist;
     ImageView ileft,iright,inearbyback,inearby;
     TextView title,tnearby;
     Activity activity;
     int i;
-<<<<<<< HEAD
+
     RelativeLayout relative_nearby;
     LocationManager locationManager;
     String mprovider,id="";
@@ -63,31 +58,27 @@ LinearLayout lnearby,laddtofollower;
     Context context;
     Double latitude,longitude;
 
-=======
-    String id="",latitude="",longitude="";
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
+
+
     ArrayList<NearbyfriendDatum> nearbyfriendData = new ArrayList<>();
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_group_friend);
-<<<<<<< HEAD
+
         context = this;
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
         idmapping();
      //nearbyfriend(id,latitude,longitude);
         listner();
-<<<<<<< HEAD
+
         fetchlocation();
         Log.e("**-----ID-----**:",""+Sessionmanager.Id);
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
     }
     public void idmapping() {
         laddtofollower = (LinearLayout) findViewById(R.id.laddtofollower);
         lnearby = (LinearLayout) findViewById(R.id.lnearby);
+        lfriendrequestlist = (LinearLayout) findViewById(R.id.lfriendrequestlist);
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
@@ -103,15 +94,18 @@ LinearLayout lnearby,laddtofollower;
                 nearbyfriend(new Sessionmanager(context).getValue(Sessionmanager.Id),latitude,longitude);
             }
         });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
         laddtofollower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(SearchGroupFriend.this,search_followers.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        lfriendrequestlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(SearchGroupFriend.this,FriendRequestList.class);
                 startActivity(i);
                 finish();
             }
@@ -150,8 +144,6 @@ LinearLayout lnearby,laddtofollower;
             }
         });
     }
-<<<<<<< HEAD
-
     public void fetchlocation()
     {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -174,16 +166,12 @@ LinearLayout lnearby,laddtofollower;
         }
 
     }
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
     @Override
     public void onBackPressed() {
         Intent i=new Intent(SearchGroupFriend.this,HomePage.class);
         startActivity(i);
         finish();
     }
-<<<<<<< HEAD
-
     @Override
     public void onLocationChanged(Location location) {
         latitude=location.getLatitude();
@@ -205,6 +193,3 @@ LinearLayout lnearby,laddtofollower;
 
     }
 }
-=======
-}
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3

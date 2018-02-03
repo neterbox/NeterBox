@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -52,8 +53,6 @@ public class FollowerProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_follower_profile);
-
-
         activity = this;
         sessionmanager = new Sessionmanager(this);
         nearbyfriendData = (NearbyfriendDatum) getIntent().getSerializableExtra("profile");
@@ -92,8 +91,7 @@ public class FollowerProfile extends AppCompatActivity {
         tprofile_name=(TextView)findViewById(R.id.tprofile_name);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
-        title.setEnabled(false);
-
+       title.setVisibility(View.INVISIBLE);
     }
 
     public void listener() {

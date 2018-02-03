@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +10,7 @@
         android:padding="@dimen/_3sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/listview_profile"
+            android:id="@+id/cvcircle_post_profile"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginLeft="@dimen/_5sdp"
@@ -29,7 +28,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tlistview_name"
+                android:id="@+id/tcircle_post_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,7 +55,7 @@
                         android:src="@drawable/profileeye" />
 
                     <TextView
-                        android:id="@+id/tlistview_seen"
+                        android:id="@+id/tcirce_post_seen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_3sdp"
@@ -80,7 +79,7 @@
                         android:src="@drawable/profiletimer" />
 
                     <TextView
-                        android:id="@+id/tlistview_time"
+                        android:id="@+id/tcircle_post_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_3sdp"
@@ -90,83 +89,119 @@
             </LinearLayout>
 
         </LinearLayout>
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tlistview_cap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
-        android:text="Go where you are celebrated not where you are tolerated.Go where you are celebrated not where you are tolerated."
-        android:textSize="@dimen/_10sdp" />
+        android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
-        android:id="@+id/ilistview_pic"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:src="@drawable/profilpicture"
-        />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tcircle_post_cap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:text="Go where you are celebrated not where you are tolerated.Go where you are celebrated not where you are tolerated."
+            android:textSize="@dimen/_10sdp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:id="@+id/icircle_post_pic"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:src="@drawable/profilpicture"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_5sdp">
+        android:layout_marginTop="@dimen/_10sdp">
         <LinearLayout
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:id="@+id/llistview_comment"
-            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/lcircle_post_comment"
             android:background="@drawable/profilecomment">
-       <TextView
-           android:layout_width="@dimen/_55sdp"
-           android:layout_height="wrap_content"
-           android:text="Comments"
-           android:id="@+id/tlistview_comment"
-           android:layout_marginLeft="@dimen/_15sdp"
-           android:layout_gravity="center"
-           android:textSize="@dimen/_10sdp"/>
             <TextView
-                android:layout_width="@dimen/_60sdp"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="wrap_content"
+                android:text="Comments"
+                android:id="@+id/tcircle_post_comment"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_10sdp"/>
+            <TextView
+                android:layout_width="@dimen/_30sdp"
                 android:layout_height="wrap_content"
                 android:text="(12)"
-                android:id="@+id/tlistview_commentno"
+                android:id="@+id/tcircle_post_commentno"
                 android:textSize="@dimen/_10sdp"
                 android:layout_gravity="center"
 
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:id="@+id/llistview_likes"
+            android:id="@+id/lcircle_post_likes"
             android:layout_marginLeft="@dimen/_5sdp"
             android:background="@drawable/profilecomment">
             <TextView
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="wrap_content"
                 android:text="36 Likes"
-                android:id="@+id/tlistview_likes"
+                android:id="@+id/tcircle_post_likes"
                 android:gravity="center"
                 android:textSize="@dimen/_10sdp"/>
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
-                android:id="@+id/ilistview_likes"
+                android:id="@+id/icircle_post_likes"
                 android:layout_height="@dimen/_15sdp"
                 android:src="@drawable/heart" />
 
-                   </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/lfollowing"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:background="@drawable/profilecomment">
+            <TextView
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="match_parent"
+                android:text="Following"
+                android:background="#049BE6"
+                android:id="@+id/tfollowing"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/lcircle_post_channel"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:background="@drawable/profilecomment">
+            <TextView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:text="Channel"
+                android:id="@+id/tcircle_post_channel"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"/>
 
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:id="@+id/icircle_post_share"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/shareoption" />
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

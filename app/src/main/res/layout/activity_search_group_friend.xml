@@ -8,24 +8,24 @@
     tools:context="com.neterbox.SearchGroupFriend"
     android:background="@drawable/settingbg">
     <include layout="@layout/custom_action_bar"/>
-    <LinearLayout
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:gravity="center"
-        android:background="@drawable/whitesearchbox">
-        <EditText
-            android:id="@+id/tsearchfriend"
-            android:layout_width="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="  Search Group"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_marginTop="@dimen/_10sdp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_30sdp"-->
+        <!--android:layout_margin="@dimen/_10sdp"-->
+        <!--android:gravity="center"-->
+        <!--android:background="@drawable/whitesearchbox">-->
+        <!--<EditText-->
+            <!--android:id="@+id/tsearchfriend"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:hint="  Search Group"-->
+            <!--android:textSize="@dimen/_12sdp"-->
+            <!--android:textColor="#000000"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_height="match_parent" />-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,6 +57,11 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:src="@drawable/nearby" />
 
+                <!--<View-->
+                    <!--android:layout_width="@dimen/_1sdp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="#049BE6"/>-->
+
                 <TextView
                     android:id="@+id/tnearby"
                     android:layout_width="match_parent"
@@ -68,6 +73,10 @@
                     android:text=" People Nearby"
                     android:textColor="#525252"
                     android:textSize="@dimen/_15sdp" />
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="#049BE6"/>
 
                 <ImageView
                     android:id="@+id/inearbyback"
@@ -123,6 +132,48 @@
                     android:textSize="@dimen/_15sdp" />
                 <ImageView
                     android:id="@+id/iaddfriendfromfollowersback"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/settingback" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_1sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/lfriendrequestlist"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/settingbox">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tfriendrequestlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:text="              Friend Request List"
+                    android:textColor="#525252"
+                    android:textSize="@dimen/_15sdp" />
+                <ImageView
+                    android:id="@+id/ifriendrequestlistback"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentRight="true"

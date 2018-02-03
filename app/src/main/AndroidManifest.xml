@@ -62,7 +62,6 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
-
         <activity
             android:name=".EditProfile"
             android:screenOrientation="portrait"
@@ -95,15 +94,9 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PlayGridview"
-<<<<<<< HEAD
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-            </application>
-
-=======
-            android:screenOrientation="portrait"></activity>
->>>>>>> bb336a9f7ce0ed7ccc0998da1f799f0e391bc240
         <activity
             android:name=".One_To_OneChat"
             android:screenOrientation="portrait"
@@ -146,7 +139,6 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
-
         <activity
             android:name=".FriendList"
             android:screenOrientation="portrait"
@@ -204,26 +196,15 @@
             android:name=".ContactsForChatActivityNew"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-<<<<<<< HEAD
-            tools:ignore="WrongManifestParent"></activity>
-        <activity android:name=".FetchLocation"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            tools:ignore="WrongManifestParent">
-
-=======
-            android:windowSoftInputMode="stateHidden"/>
+            tools:ignore="WrongManifestParent" />
         <activity
             android:name=".FetchLocation"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-        <activity android:name=".NearbyFriendlist"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden">
->>>>>>> bb336a9f7ce0ed7ccc0998da1f799f0e391bc240
-        </activity>
-</manifest>
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+        <activity android:name=".FriendRequestList" />
+        <activity android:name=".CirclePost"></activity>
+    </application>
 
+</manifest>

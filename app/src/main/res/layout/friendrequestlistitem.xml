@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/lfrequets"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/civiewfrequest"
+            android:padding="@dimen/_3sdp"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:src="@drawable/charmis"
+            app:civ_border_color="#000000"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/lfriend_req_pname"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/friendrequestname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="xyz"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:padding="2dp"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="@dimen/_550sdp"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp">
+
+
+            <Button
+                android:id="@+id/bfriend_request_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Accept"
+                android:background="#049BE6"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/_5sdp"/>
+            <Button
+                android:id="@+id/bfriend_request_decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="#ED1C24"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:text="Decline"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

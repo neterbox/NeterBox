@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
+import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,29 +27,30 @@ public class Circle_chat extends AppCompatActivity {
     Activity activity;
     TextView title;
     CircleImageView image;
-    CircleListDatum circleListData = new CircleListDatum();
-
+    CircleListDatum circleListData;
+//    List<CircleListDatum> circlelistdata = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_chat);
 
+        activity=this;
+
+        circleListData= new CircleListDatum();
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
-        title = (TextView) findViewById(R.id.title);
+        title=(TextView)findViewById(R.id.title);
         image = (CircleImageView) findViewById(R.id.image);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.pencile);
-        image.setImageResource(R.drawable.pic4);
+        circleListData = (CircleListDatum)getIntent().getSerializableExtra("circledataextra");
 
-        this.circleListData = circleListData;
-
+        Log.e("data",":"+new Gson().toJson(circleListData));
 
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Circle_chat.this, Circles.class);
-                circleListData = (CircleListDatum) getIntent().getSerializableExtra("circledataextra");
                 startActivity(i);
                 finish();
             }
@@ -55,12 +59,6 @@ public class Circle_chat extends AppCompatActivity {
             title.setText(circleListData.getCircle().getName());
             Glide.with(activity).load(circleListData.getCircle().getFiles()).placeholder(R.drawable.dummy).into(image);
         }
-//        if(circleListData.getCircle().getName().equals("")){
-//            title.setText(circleListData.getCircle().getName());
-//        }
-//        if(circleListData.getCircle().getFiles().equals("")){
-//
-//        }
     }
         @Override
         public void onBackPressed () {
