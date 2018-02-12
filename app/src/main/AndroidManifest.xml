@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     package="com.neterbox">
 
     <!-- map permission access -->
@@ -203,8 +204,21 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
-        <activity android:name=".FriendRequestList" />
-        <activity android:name=".CirclePost"></activity>
+        <activity
+            android:name=".FriendRequestList"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".CirclePost"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".NearbyFriendlist"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

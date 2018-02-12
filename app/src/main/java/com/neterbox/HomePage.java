@@ -400,7 +400,7 @@ public class HomePage extends Activity implements LocationListener {
         }
         return "";
     }
-
+// TO DO UPDATE PROFILE API
     public void Uploadpic(String Id, File fileCamera) {
         final ProgressDialog progressDialog = Helper.showProgressDialog(context);
 
@@ -437,6 +437,8 @@ public class HomePage extends Activity implements LocationListener {
             });
         }
     }
+
+    //TO DO FETCH LOCATION API
     public void fetchlocation()
     {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

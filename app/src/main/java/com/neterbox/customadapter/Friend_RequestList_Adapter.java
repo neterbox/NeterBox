@@ -37,7 +37,6 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return friendRequestListDatumList.size();
@@ -65,7 +64,6 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
         } else {
             viewHolder = (Friend_RequestList_Adapter.MyViewHolder) convertView.getTag();
         }
-
         if(!(friendRequestListDatumList.get(i).getReceiver().getProfilePic().equals("")))
         {
             Glide.with(activity).load(friendRequestListDatumList.get(i).getReceiver().getProfilePic()).into(viewHolder.civiewfrequest);
@@ -74,7 +72,6 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
         {
             viewHolder.friendrequestname.setText(friendRequestListDatumList.get(i).getReceiver().getUsername());
         }
-
         return convertView;
     }
     static class MyViewHolder {

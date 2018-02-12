@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.neterbox.customadapter.Circle_Adapter;
+import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddP;
 import com.neterbox.jsonpojo.circle.Circlepage;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 import com.neterbox.jsonpojo.country.Country;
@@ -25,15 +26,19 @@ import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.state.StateDatum;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Constants;
 import com.neterbox.utils.Sessionmanager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.neterbox.utils.Sessionmanager.user_id;
 
 public class Circles extends Activity {
     GridView gcirclegrid;
@@ -41,7 +46,7 @@ public class Circles extends Activity {
     ImageView ileft, iright;
     TextView title;
     int i;
-    String countrystr = "", statestr = "", citystr = "" ,index="1";
+    String countrystr = "", statestr = "", citystr = "" ,index="";
     String country_id = "0", state_id = "0";
 
 
@@ -68,16 +73,19 @@ public class Circles extends Activity {
         activity = this;
         datumstate = new ArrayList<>();
         datumcountry = new ArrayList<>();
-        circleListData = new ArrayList<>();
         sessionmanager = new Sessionmanager(activity);
         idMappings();
         List<CircleListDatum> circleList= new ArrayList<>();
-
         country_api();
         Circle(index);
 
         listener();
 
+        String comments = null;
+        MultipartBody.Part post_files = null;
+        String circle_id = null;
+        String countries_id = null;
+//        CirclePostAdd(user_id, circle_id, countries_id, state_id, comments, post_files);
 
     }
 
@@ -103,11 +111,7 @@ public class Circles extends Activity {
         gcirclegrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-
-                sessionmanager.createSession_circledata(circleListData.get(pos));
-
-                Log.e("data",":"+new Gson().toJson(circleListData.get(pos)));
-                Intent i = new Intent(Circles.this, Circle_chat.class);
+                Intent i = new Intent(Circles.this, CirclePost.class);
                 i.putExtra("circledataextra",(Serializable)circleListData.get(pos));
 
                 startActivity(i);
@@ -141,6 +145,7 @@ public class Circles extends Activity {
                 finish();
             }
         });
+
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -204,12 +209,18 @@ public class Circles extends Activity {
 
     public void Circle(final String index)
     {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
         Call<Circlepage> circleCall = apiInterface.Circlelistpojo(index);
-
         circleCall.enqueue(new Callback <Circlepage>() {
             @Override
             public void onResponse(Call<Circlepage> call, Response<Circlepage> res) {
-                if (res.body().getStatus() .equals( "Success")) {
+                dialog.dismiss();
+                if (res.body().getStatus().equals( "Success")) {
+
+                    circleListData.clear();
                     for(CircleListDatum  circleListDatum :res.body().getData())
                     {
                         circleListData.add(circleListDatum);
@@ -228,8 +239,42 @@ public class Circles extends Activity {
             }
             @Override
             public void onFailure(Call<Circlepage> call, Throwable t) {
+                dialog.dismiss();
             }
         });
+    }
+
+
+      /*  TODO CIrcle PostADD  API */
+
+    public void CirclePostAdd(final String user_id , String circle_id, String countries_id, String state_id, String comments, MultipartBody.Part post_files){
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        final Call<CirclePostAddP> circlePostAddPCall = apiInterface.circlepostaddpojocall(user_id , circle_id, countries_id, state_id, comments, post_files);
+        circlePostAddPCall.enqueue(new Callback<CirclePostAddP>() {
+            @Override
+            public void onResponse(Call<CirclePostAddP> call, Response<CirclePostAddP> response) {
+                dialog.dismiss();
+                if (response.body().getStatus().equals("Success")) {
+                    sessionmanager.createSession_circlepostadddata(response.body());
+                    Sessionmanager.setPreferenceBoolean(Circles.this, Constants.IS_LOGIN, true);
+                    Intent i = new Intent(Circles.this, CirclePost.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Toast.makeText(Circles.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+            @Override
+            public void onFailure(Call<CirclePostAddP> call, Throwable t) {
+                dialog.dismiss();
+            }
+        });
+
     }
 
     @Override

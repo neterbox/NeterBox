@@ -40,7 +40,6 @@ public class Playgrid_Adapter extends BaseAdapter {
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return itemname.length;
@@ -60,7 +59,6 @@ public class Playgrid_Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         final MyViewHolder viewHolder;
-
         if (view == null) {
             view = inflater.inflate(R.layout.playgrid_item, viewGroup, false);
             viewHolder = new MyViewHolder(view);
@@ -80,7 +78,6 @@ public class Playgrid_Adapter extends BaseAdapter {
         public ImageView iplaygrid_pic,iplaygrid_text;
         public LinearLayout lplaygrid_item,lplaygrid_text;
 
-
     public MyViewHolder(View item) {
         tplaygrid_text = (TextView) item.findViewById(R.id.tplaygrid_text);
         tplaygrid_subtext = (TextView) item.findViewById(R.id.tplaygrid_subtext);
@@ -88,7 +85,6 @@ public class Playgrid_Adapter extends BaseAdapter {
         iplaygrid_text = (ImageView) item.findViewById(R.id.iplaygrid_text);
         lplaygrid_item = (LinearLayout) item.findViewById(R.id.lplaygrid_item);
         lplaygrid_text = (LinearLayout) item.findViewById(R.id.lplaygrid_text);
-
     }
 }
 }

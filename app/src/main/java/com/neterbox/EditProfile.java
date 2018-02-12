@@ -147,6 +147,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
+
+    // TO DO EDIT PROFILE API
         public void EditProfile(String id,String name,String username,String password,String birhday,String phone,String email,String gender,String address,String company,String title)
         {
             Call<Editpage> editcall = apiInterface.editpojocall(id,name,username,password,birhday,phone,email,gender,address,company,title);

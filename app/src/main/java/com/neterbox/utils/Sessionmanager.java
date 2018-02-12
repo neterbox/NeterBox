@@ -3,11 +3,14 @@ package com.neterbox.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddP;
 import com.neterbox.jsonpojo.FriendRequestList.FriendRequestListDatum;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.neterbox.jsonpojo.circlepostdelete.CirclePostDeleteP;
+import com.neterbox.jsonpojo.circlepostlist.CirclePostListPojo;
 import com.neterbox.jsonpojo.register.RegistrationDatum;
 
 import static android.accounts.AccountManager.KEY_PASSWORD;
@@ -42,7 +45,9 @@ public class Sessionmanager {
     public static final String Files = "Fileskey";
     public static final String index = "indexkey";
     public static final String loginuserid = "loginuserkey";
-
+    public static final String circlepostindex = "indexkey";
+    public static final String user_id = "user_idkey";
+    public static final String postid = "post_idkey";
 
     public Sessionmanager(Context context) {
         this.context = context;
@@ -52,7 +57,6 @@ public class Sessionmanager {
     public String getValue(String KEY_ID) {
         return sharedPreferences.getString(KEY_ID, "");
     }
-
 
     public void putSessionValue(String KEY_NAME, String KEY_VALUE) {
         sharedPreferences.edit().putString(KEY_NAME, KEY_VALUE).apply();
@@ -123,5 +127,21 @@ public class Sessionmanager {
 
     public void createSession_friendrequestlistdata(FriendRequestListDatum frienrequestlistdata) {
         sharedPreferences.edit().putString(loginuserid, frienrequestlistdata.getFriend().getId()).apply();
+    }
+
+    public void createSession_circlepostlistdata(CirclePostListPojo circlelistdata) {
+        sharedPreferences.edit().putString(circlepostindex, circlelistdata.getCode()).apply();
+
+    }
+
+    public void createSession_circlepostadddata(CirclePostAddP circlePostAddP) {
+        sharedPreferences.edit().putString(user_id, circlePostAddP.getResponse()).apply();
+
+    }
+
+
+    public void createSession_circlepostDeletdata(CirclePostDeleteP circlePostDeleteP) {
+        sharedPreferences.edit().putString(postid, circlePostDeleteP.getResponse()).apply();
+
     }
 }

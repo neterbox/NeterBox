@@ -20,5 +20,7 @@ public class ServerUrl {
     public static final String DECLINEFRIENDREQUEST = "friends/decline";
     public static final String FRIENDREQUESTLIST = "friends/requestlists/loginuserid";
     public static final String CIRCLEPOSTLIST = "posts/lists";
+    public static final String CIRCLEPOSTLISTADD = "posts/add";
+    public static final String CIRCLEPOSTLISTDELET = "posts/delete";
 
 }

@@ -36,6 +36,7 @@
             android:src="@drawable/registrationuser" />
 
         <EditText
+            android:paddingLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
@@ -68,6 +69,7 @@
             android:src="@drawable/registrationuser" />
 
         <EditText
+            android:paddingLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_3sdp"
@@ -99,6 +101,7 @@
             android:src="@drawable/registrationdob" />
 
         <TextView
+            android:paddingLeft="@dimen/_10sdp"
             android:id="@+id/tbirthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -227,6 +230,7 @@
             android:src="@drawable/registrationmail" />
 
         <EditText
+            android:paddingLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/register_eemail"
@@ -260,6 +264,7 @@
             android:src="@drawable/registrationkey" />
 
         <EditText
+            android:paddingLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="7"

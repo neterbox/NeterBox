@@ -22,16 +22,18 @@
 
 
     <LinearLayout
+        android:id="@+id/lpost_upload_option"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="@dimen/_80sdp"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/lcirclestrip"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_80sdp"
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:orientation="horizontal">

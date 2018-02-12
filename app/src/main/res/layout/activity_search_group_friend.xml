@@ -57,10 +57,6 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:src="@drawable/nearby" />
 
-                <!--<View-->
-                    <!--android:layout_width="@dimen/_1sdp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:background="#049BE6"/>-->
 
                 <TextView
                     android:id="@+id/tnearby"
@@ -73,10 +69,10 @@
                     android:text=" People Nearby"
                     android:textColor="#525252"
                     android:textSize="@dimen/_15sdp" />
-                <View
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="match_parent"
-                    android:background="#049BE6"/>
+                <!--<View-->
+                    <!--android:layout_width="@dimen/_1sdp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="#049BE6"/>-->
 
                 <ImageView
                     android:id="@+id/inearbyback"

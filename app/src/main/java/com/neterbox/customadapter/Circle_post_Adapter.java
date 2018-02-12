@@ -1,6 +1,7 @@
 package com.neterbox.customadapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.neterbox.R;
 import com.neterbox.jsonpojo.FriendRequestList.FriendRequestListDatum;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,10 +33,11 @@ public class Circle_post_Adapter extends BaseAdapter {
     Activity activity;
     private LayoutInflater inflater;
     public Resources res;
-    List<CircleListDatum> circleListData;
+    List<CircleListDatum> circleListData=new ArrayList<>();
 
-    public Circle_post_Adapter(Activity a) {
+    public Circle_post_Adapter(Activity a,List<CircleListDatum> circleListData) {
         this.activity = a;
+        this.circleListData=circleListData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -53,9 +56,6 @@ public class Circle_post_Adapter extends BaseAdapter {
         return i;
     }
 
-    public static class ViewHolder {
-
-    }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -70,15 +70,6 @@ public class Circle_post_Adapter extends BaseAdapter {
         } else {
             viewHolder = (Circle_post_Adapter.MyViewHolder) convertView.getTag();
         }
-
-
-
-//        if (!(circleListData.get(i).getReceiver().getProfilePic().equals(""))) {
-//            Glide.with(activity).load(circleListData.get(i).getReceiver().getProfilePic()).into(viewHolder.civiewfrequest);
-//        }
-//        if (!(circleListData.get(i).getReceiver().getUsername().equals(""))) {
-//            viewHolder.friendrequestname.setText(circleListData.get(i).getReceiver().getUsername());
-//        }
 
         return convertView;
     }
