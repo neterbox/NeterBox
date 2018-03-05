@@ -4,37 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/lchatforone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/searchbox"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_12sdp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/icontactsforone"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/charmis"
+            app:civ_border_color="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tonechatitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:padding="2dp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="#000000" />
+        </LinearLayout>
 
         <ImageView
-            android:id="@+id/isearch"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
+            android:id="@+id/ionechatback"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:paddingRight="@dimen/_10sdp"
             android:layout_gravity="center"
-            android:src="@drawable/search" />
-
-        <EditText
-            android:id="@+id/tsearchfollowers"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:hint="  Search Group"
-            android:textColor="#000000"
-            android:textSize="@dimen/_12sdp" />
+            android:src="@drawable/friendlistarrow" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/groupchat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_weight="1"></ListView>
-
 </LinearLayout>

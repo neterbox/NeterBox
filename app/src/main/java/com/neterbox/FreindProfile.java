@@ -2,50 +2,33 @@ package com.neterbox;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.neterbox.customadapter.Friendpro_Adapter;
-import com.neterbox.customadapter.Search_Friend_Adapter;
-import com.neterbox.customadapter.Userpro_Adapter;
+import com.neterbox.fragment.MainChat;
+import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.utils.Sessionmanager;
 
-import static com.neterbox.R.id.listview;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FreindProfile extends Activity{
 
+    Sessionmanager sessionmanager;
     ListView frnd_listview;
     LinearLayout lfrnd_chat;
     ImageView ileft,iright;
-    TextView title;
+    TextView title,tprofile_name,tcompany_name;
     Friendpro_Adapter adapter;
     Activity activity ;
-    String[] itemname ={
-            "Charmis",
-            "sejal"
-    };
 
-    Integer[] imgid={
-            R.drawable.pic1,
-            R.drawable.pic2,
-    };
-    String[] itemname1 ={
-            "20",
-            "30"
-    };
-
-    Integer[] imgid1={
-            R.drawable.pic3,
-            R.drawable.pic4,
-
-    };
+    CircleImageView frnd_profile;
+    FriendListDatum friendListdata = new FriendListDatum();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +36,39 @@ public class FreindProfile extends Activity{
         setContentView(R.layout.activity_freind_profile);
 
         activity = this;
+        friendListdata = (FriendListDatum) getIntent().getSerializableExtra("friendlist");
+        sessionmanager = new Sessionmanager(this);
+        idMappings();
+        listener();
 
-        frnd_listview=(ListView)findViewById(R.id.frnd_listview);
-        lfrnd_chat = (LinearLayout) findViewById(R.id.lfrnd_chat);
-        ileft=(ImageView)findViewById(R.id.ileft);
-        iright=(ImageView)findViewById(R.id.iright);
-        title=(TextView)findViewById(R.id.title);
-        ileft.setImageResource(R.drawable.back);
-        iright.setImageResource(R.drawable.menu);
-        title.setText("Jane Wilson");
-
-        Friendpro_Adapter adapter = new Friendpro_Adapter(this, itemname, imgid, itemname1, imgid1);
+        Friendpro_Adapter adapter = new Friendpro_Adapter(activity);
         frnd_listview.setAdapter(adapter);
 
+        if(friendListdata!=null)
+        {
+            tprofile_name.setText(friendListdata.getReceiver().getName());
+            Glide.with(activity).load(friendListdata.getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(frnd_profile);
+        }
+    }
+    public void idMappings() {
+        frnd_listview = (ListView) findViewById(R.id.frnd_listview);
+        lfrnd_chat = (LinearLayout) findViewById(R.id.lfrnd_chat);
+        ileft = (ImageView) findViewById(R.id.ileft);
+        iright = (ImageView) findViewById(R.id.iright);
+        title = (TextView) findViewById(R.id.title);
+        tprofile_name = (TextView) findViewById(R.id.tprofile_name);
+        tcompany_name = (TextView) findViewById(R.id.tcompany_name);
+        frnd_profile = (CircleImageView) findViewById(R.id.frnd_profile);
+        ileft.setImageResource(R.drawable.back);
+        iright.setImageResource(R.drawable.menu);
+        title.setVisibility(View.INVISIBLE);
+    }
+
+    public void listener() {
         lfrnd_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(FreindProfile.this, One_To_OneChat.class);
+                Intent i = new Intent(FreindProfile.this, MainChat.class);
                 startActivity(i);
                 finish();
             }
@@ -77,7 +76,7 @@ public class FreindProfile extends Activity{
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(FreindProfile.this,FriendList.class);
+                Intent i = new Intent(FreindProfile.this, FriendList.class);
                 startActivity(i);
                 finish();
             }
@@ -85,16 +84,17 @@ public class FreindProfile extends Activity{
         iright.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(FreindProfile.this,FriendSetting.class);
+                Intent i = new Intent(FreindProfile.this, FriendSetting.class);
                 startActivity(i);
                 finish();
             }
         });
     }
 
+
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(FreindProfile.this,SearchGroupFriend.class);
+        Intent i=new Intent(FreindProfile.this,FriendList.class);
         startActivity(i);
         finish();
     }

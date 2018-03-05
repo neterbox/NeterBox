@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Constants;
+import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 
 import retrofit2.Call;
@@ -58,7 +60,12 @@ public class LoginPage extends AppCompatActivity {
                     login_epassword.setError("Enter Minimum 8 digit");
                 }
                 else {
-                    LoginPage(login_email.getText().toString(), login_epassword.getText().toString());
+                    if(Helper.isConnectingToInternet(context)){
+                        LoginPage(login_email.getText().toString(), login_epassword.getText().toString());
+                    }
+                    else {
+                        Helper.showToastMessage(context,"No Internet Connection");
+                    }
                 }
             }
         });
@@ -92,6 +99,7 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public void LoginPage(String email, String password) {
@@ -114,6 +122,8 @@ public class LoginPage extends AppCompatActivity {
                    // i.putExtra("login_name",response.body().getData().getUser().getName());
                     startActivity(i);
                     finish();
+
+                    Log.e("LoginID",response.body().getData().getUser().getId());
                 }
                 else
                 {

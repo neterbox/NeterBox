@@ -75,7 +75,7 @@ public class PlayGridview extends AppCompatActivity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(PlayGridview.this,ContactsForChatActivityNew.class);
+                Intent i = new Intent(PlayGridview.this,ChatModule.class);
                 startActivity(i);
                 finish();
             }

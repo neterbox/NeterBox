@@ -19,12 +19,15 @@ import com.google.gson.Gson;
 import com.neterbox.customadapter.Circle_Adapter;
 import com.neterbox.jsonpojo.circle.Circlepage;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
+import com.neterbox.jsonpojo.city.City;
+import com.neterbox.jsonpojo.city.CityDatum;
 import com.neterbox.jsonpojo.country.Country;
 import com.neterbox.jsonpojo.country.CountryDatum;
 import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.state.StateDatum;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
@@ -46,23 +49,12 @@ public class Circles extends Activity {
 
     private Spinner spinner1, spinner2, spinner3;
 
-//    String[] itemname = {
-//            "Charmis",
-//            "Camera",
-//            "Cold War"
-//    };
-//
-//    Integer[] imgid = {
-//            R.drawable.pic1,
-//            R.drawable.pic2,
-//            R.drawable.pic3,
-//    };
-
     ArrayList<String> country = new ArrayList<>();
     ArrayList<String> state = new ArrayList<>();
     ArrayList<String> city = new ArrayList<>();
     ArrayList<CountryDatum> datumcountry = new ArrayList<>();
     ArrayList<StateDatum> datumstate = new ArrayList<>();
+    List<CityDatum> datumcity = new ArrayList<>();
     List<CircleListDatum> circleListData = new ArrayList<>();
     Sessionmanager sessionmanager;
     ImageView ichat, icircle, iplay;
@@ -73,22 +65,28 @@ public class Circles extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circles);
-        Log.i("TAG","test");
+        Log.i("TAG", "test");
 
         activity = this;
         datumstate = new ArrayList<>();
         datumcountry = new ArrayList<>();
+        datumcity = new ArrayList<>();
         circleListData = new ArrayList<>();
         sessionmanager = new Sessionmanager(activity);
         idMappings();
-        List<CircleListDatum> circleList= new ArrayList<>();
-
-        country_api();
         listener();
-
+        country_api();
         Circle(index);
-    }
+        if (country_id.equals("0")&& state_id.equals("0"))
+        {
+            gcirclegrid.setEnabled(false);
+        }
+        else
+        {
+            gcirclegrid.setEnabled(true);
+        }
 
+    }
     private void idMappings() {
 
         gcirclegrid = (GridView) findViewById(R.id.gcirclegrid);
@@ -114,8 +112,17 @@ public class Circles extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
+                if (country_id.equals("0")&& state_id.equals("0"))
+                {
+                    Toast.makeText(activity, "Please Select Country", Toast.LENGTH_SHORT).show();
+                    gcirclegrid.setEnabled(false);
+                }
+                else
+                {
+                    gcirclegrid.setEnabled(true);
+                }
                 sessionmanager.createSession_circledata(circleListData.get(pos));
-                Intent it = new Intent(Circles.this, Circle_chat.class);
+                Intent it = new Intent(Circles.this, CirclePost.class);
                 startActivity(it);
                 finish();
 
@@ -125,25 +132,12 @@ public class Circles extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent i =new Intent(Circles.this,ContactsForChatActivityNew.class);
+                Intent i = new Intent(Circles.this, ChatModule.class);
 
                 startActivity(i);
                 finish();
             }
         });
-
-<<<<<<< HEAD
-
-=======
-//        icircle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(Circles.this, Circles.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
->>>>>>> a0de5c62a9502ef0dea4c15546a815d39399a20f
 
         iplay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,19 +162,29 @@ public class Circles extends Activity {
                 if (spinner1 == null) {
                     spinner2.setEnabled(false);
                 }
-//                Log.e("datumCountry",":"+new Gson().toJson(datumcountry));
-//                Log.e("position","=============="+ position);
-//
-//                Log.e("datumCountry","=========="+new Gson().toJson(datumcountry.get(position)));
-                if(position!=0){
-                countrystr = country.get(position);
-                    country_id = datumcountry.get(position-1).getCountry().getId();
-                    state_api(country_id);
-            }else{
+                if (position != 0) {
+                    countrystr = country.get(position);
+                    country_id = datumcountry.get(position - 1).getCountry().getId();
+                    if (country_id.equals("0") || state_id.equals("0"))
+                    {
+                        Toast.makeText(activity, "Please Select State", Toast.LENGTH_SHORT).show();
+                        gcirclegrid.setEnabled(false);
+                    }
+                    else
+                    {
+                        gcirclegrid.setEnabled(true);
+                    }
+                    if (Helper.isConnectingToInternet(activity)) {
+                        state_api(country_id);
+                    } else {
+                        Helper.showToastMessage(activity, "No Internet Connection");
+                    }
+                } else {
                     spinner2.setEnabled(true);
                 }
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -189,17 +193,50 @@ public class Circles extends Activity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                statestr = state.get(position);
+                if (spinner2 == null) {
+                    spinner3.setEnabled(false);
+                }
+                if (position != 0) {
+                    statestr = state.get(position);
+                    state_id = datumstate.get(position - 1).getState().getId();
+                    if (country_id.equals("0")|| state_id.equals("0"))
+                    {
+                        gcirclegrid.setEnabled(false);
+                    }
+                else
+                    {
+                        gcirclegrid.setEnabled(true);
+                    }
+                    if (Helper.isConnectingToInternet(activity)) {
+                        city_api(state_id);
+                    } else {
+                        Helper.showToastMessage(activity, "No Internet Connection");
+                    }
+                } else {
+                    spinner3.setEnabled(true);
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                citystr = city.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
     int currentFirstVisPos = getFirstVisiblePosition();
-
-//    int myLastVisiblePos = gcirclegrid.getFirstVisiblePosition();
     private GridView.OnScrollListener inanswerScrolled = new GridView.OnScrollListener() {
 
         @Override
@@ -207,10 +244,8 @@ public class Circles extends Activity {
 
             int myLastVisiblePos = 0;
             if (currentFirstVisPos > myLastVisiblePos) {
-                //scroll down
             }
             if (currentFirstVisPos < myLastVisiblePos) {
-                //scroll up
             }
             myLastVisiblePos = currentFirstVisPos;
         }
@@ -221,7 +256,6 @@ public class Circles extends Activity {
         }
 
     };
-
     public void Circle(String index)
     {
         Call<Circlepage> circleCall = apiInterface.Circlelistpojo(index);
@@ -234,19 +268,15 @@ public class Circles extends Activity {
                     {
                         circleListData.add(circleListDatum);
                     }
-
                     Circle_Adapter adapter = new Circle_Adapter(activity, circleListData);
                     gcirclegrid.setAdapter(adapter);
-                    gcirclegrid.setOnScrollListener(inanswerScrolled);
-
-
-//                    Toast.makeText(Circles.this, res.body().getMeesae(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Circles.this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Circles.this,"Please try Again", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<Circlepage> call, Throwable t) {
+                Toast.makeText(activity, "Please try Again", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -263,14 +293,15 @@ public class Circles extends Activity {
         dialog.setCanceledOnTouchOutside(false);
         dialog.setMessage("Please Wait...");
         dialog.show();
-        dialog.dismiss();
         final Call<Country> countrycall = apiInterface.countrypojo();
         countrycall.enqueue(new Callback<Country>() {
             @Override
             public void onResponse(Call<Country> call, Response<Country> response) {
+                dialog.dismiss();
                 datumcountry.clear();
                 country.clear();
                 country.add("Country");
+
                 for (i = 0; i < response.body().getData().size(); i++) {
                     datumcountry.add(response.body().getData().get(i));
                     country.add(response.body().getData().get(i).getCountry().getName());
@@ -281,6 +312,8 @@ public class Circles extends Activity {
 
             @Override
             public void onFailure(Call<Country> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(activity, "Please Try Again", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -293,29 +326,30 @@ public class Circles extends Activity {
         spinner1.setAdapter(aa);
     }
 
-    public void state_api(String country_id) {
+    public void state_api(final String country_id) {
         final ProgressDialog dialog = new ProgressDialog(activity);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setMessage("Please Wait...");
         dialog.show();
-        dialog.dismiss();
         final Call<State> stateCall = apiInterface.statepojo(country_id);
         stateCall.enqueue(new Callback<State>() {
             @Override
             public void onResponse(Call<State> call, Response<State> response) {
+                dialog.dismiss();
                 datumstate.clear();
                 state.clear();
                 state.add("State");
                 for (i = 0; i < response.body().getData().size(); i++) {
                     datumstate.add(response.body().getData().get(i));
                     state.add(response.body().getData().get(i).getState().getName());
-                    //Log.e("state", new Gson().toJson(datumstate));
                     adapter_state();
                 }
             }
 
             @Override
             public void onFailure(Call<State> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(activity, "Please Try Again", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -324,6 +358,50 @@ public class Circles extends Activity {
         ArrayAdapter ss = new ArrayAdapter(this, android.R.layout.simple_spinner_item, state);
         ss.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(ss);
+    }
+
+    public void city_api(String state_id) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        final Call<City> stateCall = apiInterface.citypojo(state_id);
+        stateCall.enqueue(new Callback<City>() {
+            @Override
+            public void onResponse(Call<City> call, Response<City> response) {
+                dialog.dismiss();
+                datumcity.clear();
+                city.clear();
+                city.add("City");
+
+                datumcity = response.body().getData();
+
+                if (datumcity!=null)
+                {
+                    for(i=0;i<response.body().getData().size();i++)
+                    {
+//                    datumcity.add(response.body().getData().get(i));
+                        city.add(response.body().getData().get(i).getCity().getName());
+                        adapter_city();
+                    }
+                }
+                else {
+                    Toast.makeText(activity, "No City Found", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            @Override
+            public void onFailure(Call<City> call, Throwable t) {
+                Toast.makeText(activity, "Please Try Again", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void adapter_city() {
+        ArrayAdapter ss = new ArrayAdapter(this, android.R.layout.simple_spinner_item, city);
+        ss.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(ss);
     }
 
     public int getFirstVisiblePosition() {

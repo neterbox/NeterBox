@@ -58,7 +58,7 @@ public class FollowingProfile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(FollowingProfile.this,SearchFollowings.class);
+        Intent i=new Intent(FollowingProfile.this,HomePage.class);
         startActivity(i);
         finish();
     }

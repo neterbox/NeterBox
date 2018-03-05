@@ -3,11 +3,18 @@ package com.neterbox.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddP;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.neterbox.jsonpojo.circlepostdelete.CirclePostDeleteP;
+import com.neterbox.jsonpojo.circlepostlist.CirclePostListPojo;
+import com.neterbox.jsonpojo.editprofile.EditpageDatum;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
+import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 import com.neterbox.jsonpojo.register.RegistrationDatum;
+import com.neterbox.jsonpojo.sendfriendrequest.SendRequestDatum;
 
 import static android.accounts.AccountManager.KEY_PASSWORD;
 
@@ -22,7 +29,6 @@ public class Sessionmanager {
     public static final String Id = "idKey";
     public static final String Email = "emailKey";
     public static final String Name = "nameKey";
-<<<<<<< HEAD
     public static final String Username = "UsernameKey";
     public static final String Address = "AddressKey";
     public static final String Birthdate = "BirthdateKey";
@@ -37,26 +43,39 @@ public class Sessionmanager {
     public static final String Type = "TypeKey";
     public static final String Usertype = "UsertypeKey";
     public static final String profile ="pickey";
-=======
-    public static final String profile = "pickey";
+    public static final String CircleId ="CircleIdkey";
+    public static final String CircleName ="CircleNamekey";
     public static final String Files = "Fileskey";
     public static final String index = "indexkey";
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
+    public static final String req_receiverId = "req_receiverIdkey";
+    public static final String req_friendId = "req_friendIdkey";
+    public static final String circlepostindex = "indexkey";
+    public static final String user_id = "user_idkey";
+    public static final String postid = "post_idkey";
+    public static final String nearbyId = "nearbyId_idkey";
+    public static final String profileId = "profileId_idkey";
+    public static final String profileName = "profileName_idkey";
+    public static final String profileuname = "profileuname_idkey";
+    public static final String profilecreated = "profilecreated_idkey";
+    public static final String profilecompany = "profilecompany_idkey";
+    public static final String profile_profilepic = "profile_profilepic_idkey";
+    public static final String profiletype = "profiletype_idkey";
+    public static final String profilefollower = "profilefollower_idkey";
+    public static final String profilefollowing = "profilefollowing_idkey";
+    public static final String profilefriend = "profilefriend_idkey";
+    public static final String profilepostdetail = "profilepostdetail_idkey";
+
 
     public Sessionmanager(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(mypreference, Context.MODE_PRIVATE);
     }
 
-<<<<<<< HEAD
+
     public String getValue(String KEY_ID){
             return sharedPreferences.getString(KEY_ID, "");
         }
-=======
-    public String getValue(String KEY_ID) {
-        return sharedPreferences.getString(KEY_ID, "");
-    }
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
+
 
     public void putSessionValue(String KEY_NAME, String KEY_VALUE) {
         sharedPreferences.edit().putString(KEY_NAME, KEY_VALUE).apply();
@@ -73,7 +92,7 @@ public class Sessionmanager {
         sharedPreferences = activity.getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(key, Default);
     }
-<<<<<<< HEAD
+
     public void logoutUser()
     {
         sharedPreferences.edit().clear().apply();
@@ -121,13 +140,72 @@ public class Sessionmanager {
         sharedPreferences.edit().putString(Usertype,userregister.getUser().getUsertype()).apply();
     }
 
-}
-=======
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
+    public void createSession_userEdit(EditpageDatum useredit)
+    {
+        sharedPreferences.edit().putString(Id,useredit.getUser().getId()).apply();
+        sharedPreferences.edit().putString(Name,useredit.getUser().getName()).apply();
+        sharedPreferences.edit().putString(Username,useredit.getUser().getUsername()).apply();
+        sharedPreferences.edit().putString(Address,useredit.getUser().getAddress()).apply();
+        sharedPreferences.edit().putString(Birthdate,useredit.getUser().getBirthDate()).apply();
+        sharedPreferences.edit().putString(Company,useredit.getUser().getCompany()).apply();
+        sharedPreferences.edit().putString(Email,useredit.getUser().getEmail()).apply();
+        sharedPreferences.edit().putString(Gender,useredit.getUser().getGender()).apply();
+        sharedPreferences.edit().putString(Latitude,useredit.getUser().getLatitude()).apply();
+        sharedPreferences.edit().putString(Longitude,useredit.getUser().getLongitude()).apply();
+        sharedPreferences.edit().putString(Password,useredit.getUser().getPassword()).apply();
+        sharedPreferences.edit().putString(Phone_number,useredit.getUser().getPhoneNumber()).apply();
+        sharedPreferences.edit().putString(profile,useredit.getUser().getProfilePic()).apply();
+        sharedPreferences.edit().putString(Quickbox_Id,useredit.getUser().getQuickbloxId()).apply();
+        sharedPreferences.edit().putString(Title,useredit.getUser().getTitle()).apply();
+        sharedPreferences.edit().putString(Type,useredit.getUser().getType()).apply();
+        sharedPreferences.edit().putString(Usertype,useredit.getUser().getUsertype()).apply();
+    }
 
     public void createSession_circledata(CircleListDatum circledata) {
-        sharedPreferences.edit().putString(Id, circledata.getCircle().getId()).apply();
-        sharedPreferences.edit().putString(Name, circledata.getCircle().getName()).apply();
+        sharedPreferences.edit().putString(CircleId, circledata.getCircle().getId()).apply();
+        sharedPreferences.edit().putString(CircleName, circledata.getCircle().getName()).apply();
         sharedPreferences.edit().putString(Files, circledata.getCircle().getFiles()).apply();
     }
+
+    public void createSession_userprofile(GetProfileDatum getProfileDatum) {
+        sharedPreferences.edit().putString(profileId, getProfileDatum.getUser().getId()).apply();
+        sharedPreferences.edit().putString(profileName, getProfileDatum.getUser().getName()).apply();
+        sharedPreferences.edit().putString(profileuname, getProfileDatum.getUser().getEmail()).apply();
+        sharedPreferences.edit().putString(profilecreated, getProfileDatum.getUser().getCreated()).apply();
+        sharedPreferences.edit().putString(profilecompany, getProfileDatum.getUser().getCompany()).apply();
+        sharedPreferences.edit().putString(profile_profilepic, getProfileDatum.getUser().getProfilePic()).apply();
+        sharedPreferences.edit().putString(profiletype, getProfileDatum.getUser().getType()).apply();
+        sharedPreferences.edit().putString(profilefollower, getProfileDatum.getFollowerCount().toString()).apply();
+        sharedPreferences.edit().putString(profilefollowing, getProfileDatum.getFollowingCount().toString()).apply();
+        sharedPreferences.edit().putString(profilefriend, getProfileDatum.getFriendCount().toString()).apply();
+        sharedPreferences.edit().putString(profilepostdetail, getProfileDatum.getPosetdetail().toString()).apply();
+    }
+
+
+    public void createSession_nearbydata(NearbyfriendDatum nearbyfriendDatum) {
+        sharedPreferences.edit().putString(nearbyId, nearbyfriendDatum.getUsers().getId()).apply();
+    }
+
+    public void send_request(SendRequestDatum sendRequestdata) {
+        sharedPreferences.edit().putString(req_receiverId, sendRequestdata.getReceiver().getId()).apply();
+        sharedPreferences.edit().putString(req_friendId, sendRequestdata.getFriend().getId()).apply();
+
+    }
+
+    public void createSession_circlepostlistdata(CirclePostListPojo circlelistdata) {
+        sharedPreferences.edit().putString(circlepostindex, circlelistdata.getCode()).apply();
+
+    }
+
+    public void createSession_circlepostadddata(CirclePostAddP circlePostAddP) {
+        sharedPreferences.edit().putString(user_id, circlePostAddP.getResponse()).apply();
+
+    }
+
+
+    public void createSession_circlepostDeletdata(CirclePostDeleteP circlePostDeleteP) {
+        sharedPreferences.edit().putString(postid, circlePostDeleteP.getResponse()).apply();
+
+    }
+
 }

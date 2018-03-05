@@ -1,5 +1,6 @@
 package com.neterbox;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import android.media.Image;
@@ -9,29 +10,58 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.neterbox.utils.Sessionmanager;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Circle_chat extends AppCompatActivity {
 
 ImageView ileft,iright;
     TextView title;
+    Activity activity;
+    String Loginname;
+    Sessionmanager sessionmanager;
     CircleImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_chat);
+        activity=this;
+        idMappings();
+        Listner();
+        sessionmanager = new Sessionmanager(this);
+        Loginname = sessionmanager.getValue(Sessionmanager.CircleName);
+        if(!(title.getText().toString().equals(""))) {
+            title.setText(Loginname);
+        }
+        if(  new Sessionmanager(activity).getValue(Sessionmanager.Files) != null)
+        {
+            Glide.with(activity).load(new Sessionmanager(activity).getValue(Sessionmanager.Files)).placeholder(R.drawable.dummy).into(image);
 
+        }
+
+    }
+       @Override
+    public void onBackPressed() {
+        Intent i=new Intent(Circle_chat.this,CirclePost.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void idMappings()
+    {
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
         title=(TextView) findViewById(R.id.title);
         image=(CircleImageView) findViewById(R.id.image);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.pencile);
-        image.setImageResource(R.drawable.pic4);
-        title.setText("Travel");
+    }
 
-
+    public void Listner()
+    {
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,11 +70,5 @@ ImageView ileft,iright;
                 finish();
             }
         });
-    }
-       @Override
-    public void onBackPressed() {
-        Intent i=new Intent(Circle_chat.this,Circles.class);
-        startActivity(i);
-        finish();
     }
 }

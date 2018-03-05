@@ -74,8 +74,9 @@ public class Circle_Adapter extends BaseAdapter {
 //            Glide.with(activity).load(circleList.get(i).getCircle().getFiles()).into(viewHolder.icircleprofile);
 //        }
 //        else{
+        if(!(circleList.get(i).getCircle().getFiles().equals(""))){
             Glide.with(activity).load(circleList.get(i).getCircle().getFiles()).placeholder(R.drawable.dummy).into(viewHolder.icircleprofile);
-//        }
+        }
         return view;
     }
 

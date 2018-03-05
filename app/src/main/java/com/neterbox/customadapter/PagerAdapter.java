@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.neterbox.fragment.FragmentOneToOne;
 import com.neterbox.fragment.GroupChatFragment;
-import com.neterbox.fragment.OneToOneFragment;
 
 /**
  * Created by sejal on 1/22/2018.
@@ -27,7 +27,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 GroupChatFragment tab1 = new GroupChatFragment();
                 return tab1;
             case 1:
-                OneToOneFragment tab2 = new OneToOneFragment();
+                FragmentOneToOne tab2 = new FragmentOneToOne();
                 return tab2;
             default:
                 return null;

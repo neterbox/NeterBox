@@ -9,8 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class AcceptFriendRequestDatum {
 
+    @SerializedName("Friend")
     @Expose
-    private AcceptFriend friend;
+    private AcceptFriendRequest friend;
     @SerializedName("Sender")
     @Expose
     private AcceptFriendRequestSender sender;
@@ -18,11 +19,11 @@ public class AcceptFriendRequestDatum {
     @Expose
     private AcceptFriendRequestReceiver receiver;
 
-    public AcceptFriend getFriend() {
+    public AcceptFriendRequest getFriend() {
         return friend;
     }
 
-    public void setFriend(AcceptFriend friend) {
+    public void setFriend(AcceptFriendRequest friend) {
         this.friend = friend;
     }
 
@@ -40,5 +41,4 @@ public class AcceptFriendRequestDatum {
 
     public void setReceiver(AcceptFriendRequestReceiver receiver) {
         this.receiver = receiver;
-    }
-}
+    }}

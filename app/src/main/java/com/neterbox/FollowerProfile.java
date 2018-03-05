@@ -17,11 +17,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.neterbox.customadapter.Followerpro_Adapter;
 import com.neterbox.customadapter.Friendpro_Adapter;
+import com.neterbox.jsonpojo.cancel_friend_request.CancelFriendRequest;
 import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequestReceiver;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.neterbox.R.drawable.greenbox;
+
 public class FollowerProfile extends AppCompatActivity {
 
     ListView follower_listview;
@@ -40,7 +44,7 @@ public class FollowerProfile extends AppCompatActivity {
     ImageView ileft,iright;
     TextView title,tprofile_name;
     Activity activity;
-    String sender_id, receiver_id;
+    String sender_id, receiver_id,req_receiver_id,id;
     Sessionmanager sessionmanager;
     String Profilename;
 
@@ -52,8 +56,6 @@ public class FollowerProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_follower_profile);
-
-
         activity = this;
         sessionmanager = new Sessionmanager(this);
         nearbyfriendData = (NearbyfriendDatum) getIntent().getSerializableExtra("profile");
@@ -61,23 +63,33 @@ public class FollowerProfile extends AppCompatActivity {
         listener();
 
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
+//        receiver_id = nearbyfriendData.getUsers().getId();
+        receiver_id = sessionmanager.getValue(Sessionmanager.nearbyId);
+        req_receiver_id = sessionmanager.getValue(Sessionmanager.req_receiverId);
+
         adapter = new Followerpro_Adapter(activity);
         follower_listview.setAdapter(adapter);
 
+        if(receiver_id.equals(req_receiver_id)){
+            lfollower_addfrnd.setBackgroundColor(Color.GRAY);
+            lfollower_addfrnd.setEnabled(true);
+        }
+        else {
+            lfollower_addfrnd.setBackgroundColor(getResources().getColor(R.color.greenbox));
+            lfollower_addfrnd.setEnabled(true);
+        }
 
         if(nearbyfriendData!=null)
         {
             tprofile_name.setText(nearbyfriendData.getUsers().getName());
             Glide.with(activity).load(nearbyfriendData.getUsers().getProfilePic()).placeholder(R.drawable.dummy).into(followerprofile);
         }
-
-
     }
 
 //        follower_listview.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent i =new Intent(FollowerProfile.this,FriendList.class);
+//                Intent i =new Intent(FollowerProfile.this,FriendListPojo.class);
 //                startActivity(i);
 //            }
 //        });
@@ -92,7 +104,7 @@ public class FollowerProfile extends AppCompatActivity {
         tprofile_name=(TextView)findViewById(R.id.tprofile_name);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
-        title.setEnabled(false);
+        title.setVisibility(View.INVISIBLE);
 
     }
 
@@ -116,8 +128,14 @@ public class FollowerProfile extends AppCompatActivity {
         lfollower_addfrnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                receiver_id = nearbyfriendData.getUsers().getId();
-                sendrequest(sender_id, receiver_id);
+                if(Helper.isConnectingToInternet(activity)){
+                    sendrequest(sender_id, receiver_id);
+                }
+                else {
+                    Helper.showToastMessage(activity,"No Internet Connection");
+                }
+                id = sessionmanager.getValue(Sessionmanager.req_friendId);
+//                cancelrequest(id,sender_id);
                 Log.e("------Sender_Id----- ",sender_id);
                 Log.e("------Receiver_Id------",receiver_id);
             }
@@ -131,8 +149,10 @@ public class FollowerProfile extends AppCompatActivity {
                 if (response.body().getStatus().equals("Success")) {
                     lfollower_addfrnd.setBackgroundColor(Color.GRAY);
                     lfollower_addfrnd.setEnabled(false);
-                } else {
+                    sessionmanager.send_request((response.body().getData()));
                     Toast.makeText(FollowerProfile.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity, "Please Try Again.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -141,6 +161,27 @@ public class FollowerProfile extends AppCompatActivity {
             }
         });
     }
+
+//    public void cancelrequest(String id,String sender_id)
+//    {
+//        Call<CancelFriendRequest> cancelFriendRequestCall = apiInterface.cancelrequestpojo(id,sender_id);
+//        cancelFriendRequestCall.enqueue(new Callback<CancelFriendRequest>() {
+//            @Override
+//            public void onResponse(Call<CancelFriendRequest> call, Response<CancelFriendRequest> response) {
+//                if (response.body().getStatus().equals("Success")) {
+//                    lfollower_addfrnd.setBackgroundColor(getResources().getColor(R.color.greenbox));
+//                    lfollower_addfrnd.setEnabled(true);
+//                    Toast.makeText(FollowerProfile.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(activity, "Please Try Again.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<CancelFriendRequest> call, Throwable t) {
+//            }
+//        });
+//    }
 
     @Override
     public void onBackPressed() {

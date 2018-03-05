@@ -53,7 +53,7 @@ public class PlayListview extends AppCompatActivity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(PlayListview.this,ContactsForChatActivityNew.class);
+                Intent i =new Intent(PlayListview.this,ChatModule.class);
                 startActivity(i);
                 finish();
             }

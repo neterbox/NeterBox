@@ -55,7 +55,4 @@
             android:layout_gravity="center"
             android:src="@drawable/friendlistarrow" />
     </LinearLayout>
-
-
-
 </LinearLayout>

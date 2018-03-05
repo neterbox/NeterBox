@@ -26,6 +26,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tprofile_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -37,6 +38,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tcompany_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
@@ -96,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:text="556"
+                        tools:text="556"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 
@@ -125,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:text="56"
+                        tools:text="56"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 
@@ -154,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:text="50"
+                        tools:text="50"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 
@@ -184,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:text="100"
+                        tools:text="100"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 

@@ -42,7 +42,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.bumptech.glide.Glide;
+import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 import com.neterbox.jsonpojo.register.RegistrationDatum;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
@@ -76,7 +79,7 @@ public class HomePage extends Activity {
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
 
-   String Loginname;
+   String Loginname,index,user_id;
 
     public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
@@ -198,7 +201,7 @@ public class HomePage extends Activity {
         ichat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomePage.this, ContactsForChatActivityNew.class);
+                Intent i = new Intent(HomePage.this, ChatModule.class);
                 startActivity(i);
                 finish();
             }
@@ -345,7 +348,13 @@ public class HomePage extends Activity {
 //                    Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
                     profile_image.setImageBitmap(bitmap);
                     File fileGallery=new File(path);
-                    Uploadpic(new Sessionmanager(context).getValue(Sessionmanager.Id),fileGallery);
+
+                    if(Helper.isConnectingToInternet(context)){
+                        Uploadpic(new Sessionmanager(context).getValue(Sessionmanager.Id),fileGallery);
+                    }
+                    else {
+                        Helper.showToastMessage(context,"No Internet Connection");
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -433,5 +442,31 @@ public class HomePage extends Activity {
                 }
             });
         }
+    }
+
+    public void getprofile(String index,String user_id)
+    {
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        Call<GetProfile> getProfileCall = apiInterface.getprofilepojo(index, user_id);
+        getProfileCall.enqueue(new Callback<GetProfile>() {
+            @Override
+            public void onResponse(Call<GetProfile> call, Response<GetProfile> response)
+            {
+                dialog.dismiss();
+                if(response.body().getStatus().equalsIgnoreCase("Success")){
+                    sessionmanager.createSession_userprofile((response.body().getData()));
+
+                }
+            }
+            @Override
+            public void onFailure(Call<GetProfile> call, Throwable t) {
+                dialog.dismiss();
+            }
+        });
+
     }
 }

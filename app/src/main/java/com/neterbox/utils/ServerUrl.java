@@ -13,12 +13,22 @@ public class ServerUrl {
     public static final String UPLOADPIC = "users/profileimage";
     public static final String COUNTRY =  "circles/country_list";
     public static final String STATE =  "circles/state_list";
+    public static final String CITY =  "circles/city_list";
     public static final String NERBYFRIEND = "users/nearby";
-<<<<<<< HEAD
     public static final String SENDREQUEST = "friends/request";
-=======
+    public static final String FRIENDREQUESTLIST = "friends/requestlists";
+    public static final String FRIENDLIST = "friends/lists";
+
     public static final String CIRCLELIST = "circles/lists";
     public static final String ACCEPTFRIENDREQUEST = "friends/accept";
     public static final String DECLINEFRIENDREQUEST = "friends/decline";
->>>>>>> e0929e95de5295119080c9ca39e12fe9a7494ad3
+    public static final String CANCELFRIENDREQUEST = "friends/cancelrequest";
+    public static final String GETPROFILE = "users/getprofile";
+    public static final String CIRCLEPOSTLIST = "posts/lists";
+        public static final String LIKE = "posts/addlike";
+        public static final String UNLIKE = "posts/unlike";
+    public static final String CIRCLEPOSTLISTADD = "posts/add";
+    public static final String CIRCLEPOSTLISTDELET = "posts/delete";
+    public static final String ADDCHAT = "users/chatadd";
+
 }

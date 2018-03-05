@@ -27,8 +27,6 @@ public class Circleprofilepic extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 
     @Override

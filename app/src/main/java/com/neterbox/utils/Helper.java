@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
 /**
  * Created by DeLL on 18-01-2018.
@@ -32,5 +33,14 @@ public class Helper {
         dialog.show();
 
         return dialog;
+    }
+    /**
+     * @param message
+     * @return
+     * TODO for Display Toast Message
+     */
+    public static void showToastMessage(Context context, String message)
+    {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

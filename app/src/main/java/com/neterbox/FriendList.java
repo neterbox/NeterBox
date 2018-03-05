@@ -1,60 +1,68 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.neterbox.customadapter.Friendpro_Adapter;
 import com.neterbox.customadapter.Search_Friend_Adapter;
+import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.jsonpojo.friend_list.FriendListPojo;
+import com.neterbox.retrofit.APIClient;
+import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Helper;
+import com.neterbox.utils.Sessionmanager;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FriendList extends Activity {
     ListView listview;
+
+    List<FriendListDatum> friendListData = new ArrayList<>();
     Activity activity;
+    String login_id;
     ImageView ileft,iright;
     TextView title;
-    String[] itemname ={
-            "Charmis",
-            "Camera",
-            "Cold War"
-    };
-
-    Integer[] imgid={
-            R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
-
-    };
-
+    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+    Sessionmanager sessionmanager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
-
-        activity=this;
-
+        activity = this;
+        friendListData = new ArrayList<>();
         idMappings();
         listener();
-
-        Search_Friend_Adapter adapter=new Search_Friend_Adapter(this, itemname, imgid);
-        listview.setAdapter(adapter);
-
+        sessionmanager = new Sessionmanager(this);
+        login_id = sessionmanager.getValue(Sessionmanager.Id);
+        if(Helper.isConnectingToInternet(activity)){
+            FriendList(login_id);
+        }
+        else {
+            Helper.showToastMessage(activity,"No Internet Connection");
+        }
 
     }
 
     private void listener() {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
                 Intent it =new Intent(FriendList.this,FreindProfile.class);
+                it.putExtra("friendlist",(Serializable) friendListData.get(i));
                 startActivity(it);
                 finish();
             }
@@ -86,5 +94,36 @@ public class FriendList extends Activity {
         ileft.setImageResource(R.drawable.home);
         iright.setVisibility(View.INVISIBLE);
         title.setText("Friends");
+    }
+
+    public void FriendList(String login_id)
+    {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+        final Call<FriendListPojo> friendListPojoCall = apiInterface.friendlistpojo(login_id);
+        friendListPojoCall.enqueue(new Callback<FriendListPojo>() {
+            @Override
+            public void onResponse(Call<FriendListPojo> call, Response<FriendListPojo> response) {
+                if (response.body().getStatus().equals("Success")) {
+                    dialog.dismiss();
+                    friendListData = response.body().getData();
+                    Search_Friend_Adapter adapter = new Search_Friend_Adapter(activity, friendListData);
+                    listview.setAdapter(adapter);
+//                    Intent i = new Intent(FriendRequestList.this, FriendListPojo.class);
+//                    // i.putExtra("login_name",response.body().getData().getUser().getName());
+//                    startActivity(i);
+//                    finish();
+                } else {
+                    dialog.dismiss();
+                    Toast.makeText(FriendList.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<FriendListPojo> call, Throwable t) {
+                dialog.dismiss();
+            }
+        });
     }
 }

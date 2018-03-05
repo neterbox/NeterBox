@@ -113,6 +113,7 @@
                 android:layout_gravity="center"
                 android:textSize="@dimen/_12sdp"
                 android:inputType="datetime"
+                android:textColor="#000"
                 android:id="@+id/edit_tbirthday"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_marginLeft="@dimen/_5sdp"
@@ -207,19 +208,16 @@
 
             <EditText
                 android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:hint="Gender"
                 android:textSize="@dimen/_12sdp"
+                android:inputType="text"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:id="@+id/edit_egender"
                 android:background="@android:color/transparent"
                 android:textColorHint="#a6a1a6"/>
-            <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_10sdp"
-                android:layout_gravity="center"
-                android:src="@drawable/edownarrow"/>
+
         </LinearLayout>
         <View
             android:layout_width="match_parent"

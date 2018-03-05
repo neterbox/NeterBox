@@ -2,16 +2,16 @@ package com.neterbox.jsonpojo.Decline_friend_request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.neterbox.jsonpojo.accept_friend_request.AcceptFriend;
+import com.neterbox.jsonpojo.accept_friend_request.AcceptFriendRequestFriend;
 
 /**
  * Created by sejal on 1/31/2018.
  */
 
 public class DeclineFrndData {
-    @SerializedName("AcceptFriend")
+    @SerializedName("AcceptFriendRequestFriend")
     @Expose
-    private AcceptFriend friend;
+    private AcceptFriendRequestFriend friend;
     @SerializedName("Sender")
     @Expose
     private DeclineSender sender;
@@ -19,11 +19,11 @@ public class DeclineFrndData {
     @Expose
     private DeclineReceiver receiver;
 
-    public AcceptFriend getFriend() {
+    public AcceptFriendRequestFriend getFriend() {
         return friend;
     }
 
-    public void setFriend(AcceptFriend friend) {
+    public void setFriend(AcceptFriendRequestFriend friend) {
         this.friend = friend;
     }
 

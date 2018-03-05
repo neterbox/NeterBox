@@ -11,8 +11,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -22,22 +29,24 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Userpro_Adapter extends BaseAdapter {
     Activity activity;
     private ArrayList data;
+    List<GetProfileDatum> getProfileDatumList = new ArrayList<>();
     private LayoutInflater inflater ;
     public Resources res;
 
 
-    public Userpro_Adapter(Activity a) {
+    public Userpro_Adapter(Activity a,List<GetProfileDatum> getProfileDatumList) {
         this.activity = a;
+        this.getProfileDatumList=getProfileDatumList;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        return 6;
+        return getProfileDatumList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return i;
+        return getProfileDatumList.get(i);
     }
 
     @Override
@@ -78,6 +87,13 @@ public class Userpro_Adapter extends BaseAdapter {
         }
         else
             holder=(ViewHolder)v.getTag();
+        if(!(getProfileDatumList.get(i).getUser().getName().equals("")))
+        {
+            holder.tlistview_name.setText(getProfileDatumList.get(i).getUser().getName());
+        }
+        if(!(getProfileDatumList.get(i).getUser().getProfilePic().equals(""))){
+            Glide.with(activity).load(getProfileDatumList.get(i).getUser().getProfilePic()).placeholder(R.drawable.dummy).into(holder.listview_profile);
+        }
             return v;
         }
     }

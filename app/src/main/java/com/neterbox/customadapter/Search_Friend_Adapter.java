@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.retrofit.APIClient;
+import com.neterbox.retrofit.APIInterface;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -20,31 +24,28 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class Search_Friend_Adapter extends BaseAdapter{
+
     Activity activity;
-    private final String[] itemname;
-    private final Integer[] imgid;
     private LayoutInflater inflater;
     public Resources res;
+    String id;
+    List<FriendListDatum> friendListData= new ArrayList<>();
+    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
-    public Search_Friend_Adapter(Activity a, String[] itemname, Integer[] imgid) {
-
-    // TODO Auto-generated constructor stub
-
+    public Search_Friend_Adapter(Activity a, List<FriendListDatum> friendListData) {
         this.activity = a;
-        this.itemname = itemname;
-        this.imgid = imgid;
-
+        this.friendListData = friendListData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
-}
+    }
 
     @Override
     public int getCount() {
-        return (itemname !=null ? itemname.length :0);
+        return friendListData.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return itemname[i];
+        return friendListData.get(i);
     }
 
     @Override
@@ -68,8 +69,12 @@ public class Search_Friend_Adapter extends BaseAdapter{
             viewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        viewHolder.titem3.setText(itemname[i]);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.ifriendprofile);
+        if (!(friendListData.get(i).getReceiver().getProfilePic().equals(""))) {
+            Glide.with(activity).load(friendListData.get(i).getReceiver().getProfilePic()).into(viewHolder.ifriendprofile);
+        }
+        if (!(friendListData.get(i).getReceiver().getName().equals(""))) {
+            viewHolder.titem3.setText(friendListData.get(i).getReceiver().getName());
+        }
         return convertView;
     }
 

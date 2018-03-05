@@ -56,9 +56,9 @@ public class NearbyFriendlist extends Activity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                 Intent it = new Intent(NearbyFriendlist.this, FollowerProfile.class);
-                it.putExtra("profile",(Serializable) nearbyList.get(i));
-                //it.putExtra("profile",(Serializable) response.body().getData().getReceiver());
+                Intent it = new Intent(NearbyFriendlist.this, FollowerProfile.class);
+                it.putExtra("profile", (Serializable)nearbyList.get(i));
+//                it.putExtra("profile",(Serializable) response.body().getData().getReceiver());
                 startActivity(it);
                 finish();
             }

@@ -1,6 +1,7 @@
 package com.neterbox.customadapter.ChatAdapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,69 +25,94 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ConntactForGroupChatAdapter extends BaseAdapter {
 
-    Activity activity;
+    Context context;
     private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
-    String[] itemname;
-    Integer[] imgid;
 
-    public ConntactForGroupChatAdapter(Activity a,String[] itemname, Integer[] imgid) {
-        this.activity = a;
-        this.itemname = itemname;
-        this.imgid = imgid;
-        inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+
+    public ConntactForGroupChatAdapter(Context a) {
+        this.context = a;
     }
+
 
     @Override
     public int getCount() {
-        return (itemname != null ? itemname.length : 0);
+        return 6;
     }
 
     @Override
     public Object getItem(int i) {
-        return itemname[i];
+        return i;
     }
 
     @Override
     public long getItemId(int i) {
-        return i;}
+        return i;
+    }
 
-    public class ViewHolder {
-
-        public TextView tgroupitem,tonechatitem,tonechatitem2;
-        public ImageView igroupback;
-        public CircleImageView icontactsforgroupchat,icontactsforone;
-        public LinearLayout lchatforgroup,lchatforone;
+    public static class ViewHolder {
+        public TextView tgroupitem, tonechatitem, tonechatitem2;
+        public CircleImageView icontactsforone;
+        public LinearLayout lchatforone;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-
+    public View getView(int position, View view, ViewGroup parent) {
         View v = view;
-        ConntactForGroupChatAdapter.ViewHolder holder;
+        OneToOneChatAdapter.ViewHolder holder;
+
         if (view == null) {
-            v = inflater.inflate(R.layout.fragment_group_chat, null);
-            holder = new ConntactForGroupChatAdapter.ViewHolder();
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_group_chat, parent, false);
+            holder = new OneToOneChatAdapter.ViewHolder();
             holder.tgroupitem = (TextView) v.findViewById(R.id.tgroupitem);
-            holder.igroupback = (ImageView) v.findViewById(R.id.igroupback);
-            holder.icontactsforgroupchat = (CircleImageView) v.findViewById(R.id.icontactsforgroupchat);
-            holder.lchatforgroup = (LinearLayout) v.findViewById(R.id.lchatcorgroup);
             holder.tonechatitem = (TextView) v.findViewById(R.id.tonechatitem);
             holder.tonechatitem2 = (TextView) v.findViewById(R.id.tonechatitem2);
             holder.icontactsforone = (CircleImageView) v.findViewById(R.id.icontactsforone);
             holder.lchatforone = (LinearLayout) v.findViewById(R.id.lchatforone);
-            view = inflater.inflate(R.layout.fragment_group_chat, viewGroup, false);
-            view.setTag(holder);
             v.setTag(holder);
-        } else {
-            holder = (ConntactForGroupChatAdapter.ViewHolder) v.getTag();
+        } else
+            holder = (OneToOneChatAdapter.ViewHolder) v.getTag();
 
-        }
-        holder.tgroupitem.setText(itemname[i]);
-        Glide.with(activity).load(imgid[i]).into(holder.icontactsforone);
         return v;
-
     }
 
 }
+//    public class ViewHolder {
+//
+//        public TextView tgroupitem,tonechatitem,tonechatitem2;
+//        public ImageView igroupback;
+//        public CircleImageView icontactsforgroupchat,icontactsforone;
+//        public LinearLayout lchatforgroup,lchatforone;
+//    }
+//
+//    @Override
+//    public View getView(int i, View view, ViewGroup viewGroup) {
+//
+//        View v = view;
+//        ConntactForGroupChatAdapter.ViewHolder holder;
+//        if (view == null) {
+//            v = inflater.inflate(R.layout.fragment_group_chat, null);
+//            holder = new ConntactForGroupChatAdapter.ViewHolder();
+//            holder.tgroupitem = (TextView) v.findViewById(R.id.tgroupitem);
+//            holder.igroupback = (ImageView) v.findViewById(R.id.igroupback);
+//            holder.icontactsforgroupchat = (CircleImageView) v.findViewById(R.id.icontactsforgroupchat);
+//            holder.lchatforgroup = (LinearLayout) v.findViewById(R.id.lchatcorgroup);
+//            holder.tonechatitem = (TextView) v.findViewById(R.id.tonechatitem);
+//            holder.tonechatitem2 = (TextView) v.findViewById(R.id.tonechatitem2);
+//            holder.icontactsforone = (CircleImageView) v.findViewById(R.id.icontactsforone);
+//            holder.lchatforone = (LinearLayout) v.findViewById(R.id.lchatforone);
+//            view = inflater.inflate(R.layout.fragment_group_chat, viewGroup, false);
+//            view.setTag(holder);
+//            v.setTag(holder);
+//        } else {
+//            holder = (ConntactForGroupChatAdapter.ViewHolder) v.getTag();
+//
+//        }
+//        holder.tgroupitem.setText(itemname[i]);
+//        Glide.with(activity).load(imgid[i]).into(holder.icontactsforone);
+//        return v;
+//
+//    }
+
+

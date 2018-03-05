@@ -18,6 +18,7 @@ import com.neterbox.retrofit.APIInterface;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.utils.Constants;
+import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 
 import java.io.Serializable;
@@ -81,14 +82,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 }else if (register_epassword.getText().toString().length()<8) {
                     register_epassword.setError("Enter Minimum 8 Digit");
                 } else {
-                    RegistrationMethod(name.getText().toString(), username.getText().toString(),
-                            register_epassword.getText().toString(),
-                            tbirthday.getText().toString(), register_eemail.getText().toString()
-                             );
+                    if (Helper.isConnectingToInternet(context)) {
+                        RegistrationMethod(name.getText().toString(), username.getText().toString(),
+                                register_epassword.getText().toString(),
+                                tbirthday.getText().toString(), register_eemail.getText().toString()
+                        );
+                    } else {
+                        Helper.showToastMessage(context, "No Internet Connection");
+                    }
                 }
-
             }
-
         });
         pwdeye.setOnClickListener(new View.OnClickListener() {
             @Override
