@@ -1,5 +1,6 @@
 package com.neterbox;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
@@ -12,11 +13,14 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import android.location.Criteria;
 import android.location.Location;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -71,15 +75,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomePage extends Activity {
+public class HomePage extends Activity implements LocationListener {
 
     TextView taddfriend, tlogout,tprofilename;
     LinearLayout lph;
     RelativeLayout relative_following, relative_follower, relative_frnd, relative_settings;
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
+<<<<<<< HEAD
 
    String Loginname,index,user_id;
+=======
+    Double latitude,longitude;
+   String Loginname;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
     public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
@@ -405,14 +414,13 @@ public class HomePage extends Activity {
         }
         return "";
     }
-
-    public void Uploadpic(String Id, File fileCamera){
+// TO DO UPDATE PROFILE API
+    public void Uploadpic(String Id, File fileCamera) {
         final ProgressDialog progressDialog = Helper.showProgressDialog(context);
 
         RequestBody loginIdReqBody = RequestBody.create(MediaType.parse("text/plain"), Id);
-        Log.e("login_id",""+Id);
-        if (fileCamera!=null)
-        {
+        Log.e("login_id", "" + Id);
+        if (fileCamera != null) {
             final RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), fileCamera);
             MultipartBody.Part userProfile = MultipartBody.Part.createFormData("profile_pic", fileCamera.getName(), requestFile);
 
@@ -421,7 +429,7 @@ public class HomePage extends Activity {
                 @Override
                 public void onResponse(Call<Uploadpic> uploadImageCall, Response<Uploadpic> response) {
                     if (response.body().getStatus().equals("Success")) {
-                        new Sessionmanager(HomePage.this).putSessionValue(Sessionmanager.profile,response.body().getData().getUser().getProfilePic());
+                        new Sessionmanager(HomePage.this).putSessionValue(Sessionmanager.profile, response.body().getData().getUser().getProfilePic());
 
                         progressDialog.dismiss();
 
@@ -444,6 +452,7 @@ public class HomePage extends Activity {
         }
     }
 
+<<<<<<< HEAD
     public void getprofile(String index,String user_id)
     {
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -467,6 +476,51 @@ public class HomePage extends Activity {
                 dialog.dismiss();
             }
         });
+=======
+    //TO DO FETCH LOCATION API
+    public void fetchlocation()
+    {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+
+        String mprovider = locationManager.getBestProvider(criteria, false);
+
+        if (mprovider != null && !mprovider.equals("")) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            Location location = locationManager.getLastKnownLocation(mprovider);
+            locationManager.requestLocationUpdates(mprovider, 15000, 1, this);
+
+            if (location != null)
+                onLocationChanged(location);
+            else
+                Toast.makeText(HomePage.this, "No Location Provider Found Check Your Code", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        latitude=location.getLatitude();
+        longitude=location.getLongitude();
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
     }
 }

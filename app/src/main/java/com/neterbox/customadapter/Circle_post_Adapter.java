@@ -16,8 +16,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.neterbox.*;
 import com.neterbox.R;
+<<<<<<< HEAD
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 import com.neterbox.jsonpojo.circlepostlist.CirclePostListPojo;
+=======
+import com.neterbox.jsonpojo.FriendRequestList.FriendRequestListDatum;
+import com.neterbox.jsonpojo.circle.CircleListDatum;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,22 +38,38 @@ public class Circle_post_Adapter extends BaseAdapter {
     Activity activity;
     private LayoutInflater inflater;
     public Resources res;
+<<<<<<< HEAD
     List<CirclePostListPojo> circlePostListPojos=new ArrayList<>();
 
     public Circle_post_Adapter(Activity a,List<CirclePostListPojo> circlePostListPojos) {
         this.activity = a;
         this.circlePostListPojos=circlePostListPojos;
+=======
+    List<CircleListDatum> circleListData=new ArrayList<>();
+
+    public Circle_post_Adapter(Activity a,List<CircleListDatum> circleListData) {
+        this.activity = a;
+        this.circleListData=circleListData;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
+<<<<<<< HEAD
         return circlePostListPojos.size();
+=======
+        return circleListData.size();
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     }
 
     @Override
     public Object getItem(int i) {
+<<<<<<< HEAD
         return circlePostListPojos.get(i);
+=======
+        return circleListData.get(i);
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     }
 
     @Override
@@ -59,6 +80,7 @@ public class Circle_post_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+<<<<<<< HEAD
         final MyViewHolder viewHolder;
 
         if (view == null) {
@@ -69,6 +91,21 @@ public class Circle_post_Adapter extends BaseAdapter {
             viewHolder = (MyViewHolder) view.getTag();
         }
         return view;
+=======
+
+
+        View convertView = null;
+        Circle_post_Adapter.MyViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.circlepostitem, viewGroup, false);
+            viewHolder = new Circle_post_Adapter.MyViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (Circle_post_Adapter.MyViewHolder) convertView.getTag();
+        }
+
+        return convertView;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     }
 
     private class MyViewHolder {

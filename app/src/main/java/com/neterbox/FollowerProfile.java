@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -104,8 +105,12 @@ public class FollowerProfile extends AppCompatActivity {
         tprofile_name=(TextView)findViewById(R.id.tprofile_name);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
+<<<<<<< HEAD
         title.setVisibility(View.INVISIBLE);
 
+=======
+       title.setVisibility(View.INVISIBLE);
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     }
 
     public void listener() {

@@ -7,7 +7,15 @@
     android:orientation="vertical"
     tools:context="com.neterbox.FollowerProfile">
     <include layout="@layout/custom_action_bar"/>
-    <FrameLayout
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_280sdp"
         android:background="#fff"
@@ -251,22 +259,23 @@
 
 
     </FrameLayout>
-    <LinearLayout
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_10sdp"
         android:background="#fff">
     </LinearLayout>
-    <View
+            <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:background="#dadada"
         android:layout_marginTop="@dimen/_2sdp"></View>
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/follower_listview"
-        android:background="#fff"
-        android:layout_weight="1">
-    </ListView>
-
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/follower_listview"
+                android:background="#fff"
+                android:layout_weight="1">
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

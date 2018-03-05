@@ -21,13 +21,14 @@
         android:gravity="center"
         android:layout_height="@dimen/_15sdp"
         android:id="@+id/iplaylist"
-        android:src="@drawable/playlistsearch" />
+        android:src="@drawable/search" />
     <EditText
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
         android:hint="Search Circle"
         android:gravity="center"
         android:id="@+id/eplaylist"
+        android:textColorHint="#4c4c4c"
         android:background="@android:color/transparent"
         android:textSize="@dimen/_10sdp"/>
 

@@ -16,6 +16,7 @@ public class ServerUrl {
     public static final String CITY =  "circles/city_list";
     public static final String NERBYFRIEND = "users/nearby";
     public static final String SENDREQUEST = "friends/request";
+<<<<<<< HEAD
     public static final String FRIENDREQUESTLIST = "friends/requestlists";
     public static final String FRIENDLIST = "friends/lists";
 
@@ -30,5 +31,14 @@ public class ServerUrl {
     public static final String CIRCLEPOSTLISTADD = "posts/add";
     public static final String CIRCLEPOSTLISTDELET = "posts/delete";
     public static final String ADDCHAT = "users/chatadd";
+=======
+    public static final String CIRCLELIST = "circles/lists";
+    public static final String ACCEPTFRIENDREQUEST = "friends/accept";
+    public static final String DECLINEFRIENDREQUEST = "friends/decline";
+    public static final String FRIENDREQUESTLIST = "friends/requestlists/loginuserid";
+    public static final String CIRCLEPOSTLIST = "posts/lists";
+    public static final String CIRCLEPOSTLISTADD = "posts/add";
+    public static final String CIRCLEPOSTLISTDELET = "posts/delete";
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
 }

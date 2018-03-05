@@ -93,7 +93,7 @@ public class NearbyfriendAdapter extends BaseAdapter{
         return convertView;
     }
 
-    private class MyViewHolder
+    static class MyViewHolder
     {
         CircleImageView ifriendprofile;
         TextView titem3,textView3;

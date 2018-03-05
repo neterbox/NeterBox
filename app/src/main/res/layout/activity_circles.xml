@@ -18,6 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_40sdp">
         <Spinner
+            android:text="Select Country"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:id="@+id/spinner1">
@@ -65,101 +66,22 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp">
         <Spinner
+            android:autofillHints="Select State"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:id="@+id/spinner2">
         </Spinner>
     </LinearLayout>
-    <!--<LinearLayout-->
-        <!--android:id="@+id/lselectstate"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/_40sdp"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/simplerectangle"-->
-            <!--android:gravity="center">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tselectstate"-->
-                <!--android:layout_width="411dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="#ffffff"-->
-                <!--android:gravity="center"-->
-                <!--android:text="  SELECT STATE"-->
-                <!--android:textColor="#000000"-->
-                <!--android:textSize="@dimen/_12sdp" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="@dimen/_40sdp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="#4FC1E9"-->
-            <!--android:gravity="center">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/istatedropdowan"-->
-                <!--android:layout_width="@dimen/_15sdp"-->
-                <!--android:layout_height="@dimen/_15sdp"-->
-                <!--android:src="@drawable/dropdownarrow" />-->
-
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_marginTop="@dimen/_1sdp"
         android:background="#B0B5BB"></View>
-    <!--<LinearLayout-->
-        <!--android:id="@+id/lselectcity"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/_40sdp"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/simplerectangle"-->
-            <!--android:gravity="center">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tselectcity"-->
-                <!--android:layout_width="411dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="#ffffff"-->
-                <!--android:gravity="center"-->
-                <!--android:text="  SELECT CITIES(Optional)"-->
-                <!--android:textColor="#000000"-->
-                <!--android:textSize="@dimen/_12sdp" />-->
-
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="@dimen/_40sdp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="#4FC1E9"-->
-            <!--android:gravity="center">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/icitydropdowan"-->
-                <!--android:layout_width="@dimen/_15sdp"-->
-                <!--android:layout_height="@dimen/_15sdp"-->
-                <!--android:src="@drawable/dropdownarrow" />-->
-
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp">
         <Spinner
+            android:autofillHints="Select City"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:id="@+id/spinner3">
@@ -189,46 +111,6 @@
         </GridView>
 
     </LinearLayout>
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/strip"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:background="#0095ff">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/ichat"-->
-                <!--android:layout_width="@dimen/_20sdp"-->
-                <!--android:layout_height="@dimen/_20sdp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="@dimen/_10sdp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:src="@drawable/chat" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/icircle"-->
-                <!--android:layout_width="@dimen/_20sdp"-->
-                <!--android:layout_height="@dimen/_20sdp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="@dimen/_10sdp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:src="@drawable/circlewhitelineatbottomforselectedstate" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/iplay"-->
-                <!--android:layout_width="@dimen/_20sdp"-->
-                <!--android:layout_height="@dimen/_20sdp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="@dimen/_10sdp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:src="@drawable/subscribe" />-->
-
-        <!--</LinearLayout>-->
     <LinearLayout
         android:id="@+id/groupstrip"
         android:layout_width="match_parent"
@@ -269,9 +151,6 @@
                 android:layout_height="@dimen/_2sdp"
                 android:background="#ffffff"
                 android:layout_gravity="center"/>
-
-
-
 
         </LinearLayout>
 

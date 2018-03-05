@@ -7,30 +7,32 @@
     android:orientation="vertical"
     tools:context="com.neterbox.NearbyFriendlist">
     <include layout="@layout/custom_action_bar"/>
+
     <LinearLayout
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="33dp"
         android:layout_margin="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/searchbox"
         android:gravity="center"
-        android:background="@drawable/searchbox">
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/isearch"
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
-            android:src="@drawable/search"
             android:layout_gravity="center"
-            />
+            android:src="@drawable/search" />
+
         <EditText
             android:id="@+id/tsearch_nearfriend"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:hint="  Search Friends"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="#000000"
             android:gravity="center"
-            android:layout_height="match_parent" />
+            android:hint="  Search Friends"
+            android:textColorHint="#4c4c4c"
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipelayout"

@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.neterbox.FreindProfile">
     <include layout="@layout/custom_action_bar"/>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_280sdp"
@@ -250,17 +258,17 @@
         android:background="#fff">
     </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#dadada"
+                android:layout_marginTop="@dimen/_2sdp"></View>
     <ListView
         android:id="@+id/frnd_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#fff"></ListView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="#dadada"
-        android:layout_marginTop="@dimen/_2sdp"></View>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

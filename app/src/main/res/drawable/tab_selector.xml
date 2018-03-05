@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/header_color" android:state_selected="true"/>
     <item android:drawable="@color/coloorAccent"/>
+<<<<<<< HEAD
+=======
+</selector>-->
+
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/header_color" android:state_selected="true"/>
+    <item android:drawable="@color/coloorAccent"/>
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 </selector>

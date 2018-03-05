@@ -2,7 +2,6 @@ package com.neterbox;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,24 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.neterbox.customadapter.NearbyfriendAdapter;
-import com.neterbox.customadapter.Search_Friend_Adapter;
-import com.neterbox.jsonpojo.near_by_friend.Nearbyfriend;
 import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
-import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
-import com.neterbox.retrofit.APIClient;
-import com.neterbox.retrofit.APIInterface;
-import com.neterbox.utils.Sessionmanager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class NearbyFriendlist extends Activity {
     ListView listview;
@@ -40,14 +28,12 @@ public class NearbyFriendlist extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nearby_friend);
+        setContentView(R.layout.activity_nearby_friend_list);
         activity = this;
 
         nearbyList = (List<NearbyfriendDatum>) getIntent().getSerializableExtra("nearby_data");
         idMappings();
         listener();
-
-
         NearbyfriendAdapter adapter = new NearbyfriendAdapter(this, nearbyList);
         listview.setAdapter(adapter);
     }

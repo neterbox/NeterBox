@@ -2,7 +2,10 @@ package com.neterbox;
 
 
 import android.Manifest;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -46,8 +49,12 @@ import static junit.runner.Version.id;
 
 
 public class SearchGroupFriend extends AppCompatActivity implements LocationListener{
+<<<<<<< HEAD
 
     LinearLayout lnearby,laddtofollower,lrequestfrndlist;
+=======
+LinearLayout lnearby,laddtofollower,lfriendrequestlist;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     ImageView ileft,iright,inearbyback,inearby;
     TextView title,tnearby;
     Activity activity;
@@ -60,27 +67,41 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
     Context context;
     Double latitude,longitude;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     ArrayList<NearbyfriendDatum> nearbyfriendData = new ArrayList<>();
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_group_friend);
+<<<<<<< HEAD
         sessionmanager=new Sessionmanager(this);
         context = this;
 
+=======
+
+        context = this;
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         idmapping();
         //nearbyfriend(id,latitude,longitude);
         listner();
 
         fetchlocation();
         Log.e("**-----ID-----**:",""+Sessionmanager.Id);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     }
     public void idmapping() {
         laddtofollower = (LinearLayout) findViewById(R.id.laddtofollower);
         lrequestfrndlist = (LinearLayout) findViewById(R.id.lrequestfrndlist);
         lnearby = (LinearLayout) findViewById(R.id.lnearby);
+        lfriendrequestlist = (LinearLayout) findViewById(R.id.lfriendrequestlist);
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
@@ -96,7 +117,10 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
                 nearbyfriend(new Sessionmanager(context).getValue(Sessionmanager.Id),latitude,longitude);
             }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         laddtofollower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,8 +129,12 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
                 finish();
             }
         });
+<<<<<<< HEAD
 
         lrequestfrndlist.setOnClickListener(new View.OnClickListener() {
+=======
+        lfriendrequestlist.setOnClickListener(new View.OnClickListener() {
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(SearchGroupFriend.this,FriendRequestList.class);
@@ -114,7 +142,10 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
                 finish();
             }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         ileft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,7 +181,10 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
             }
         });
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     public void fetchlocation()
     {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -179,7 +213,10 @@ public class SearchGroupFriend extends AppCompatActivity implements LocationList
         startActivity(i);
         finish();
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     @Override
     public void onLocationChanged(Location location) {
         latitude=location.getLatitude();

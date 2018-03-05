@@ -54,6 +54,7 @@ public class Followerpro_Adapter extends BaseAdapter {
         public ImageView ilistview_pic,ilistview_likes;
         public CircleImageView listview_profile;
         public LinearLayout llistview_comment, llistview_likes;
+
     }
 
     @Override
