@@ -32,8 +32,8 @@ public class CircleImageview extends AppCompatActivity {
         icircleprofile=(CircleImageView)findViewById(R.id.icircleprofile);
         llistview_comment = (LinearLayout)findViewById(R.id.llistview_comment);
         llistview_likes = (LinearLayout)findViewById(R.id.llistview_likes);
-       llistview_following = (LinearLayout)findViewById(R.id.llistview_following);
-       llistview_channel = (LinearLayout)findViewById(R.id.llistview_channel);
+        llistview_following = (LinearLayout)findViewById(R.id.llistview_following);
+        llistview_channel = (LinearLayout)findViewById(R.id.llistview_channel);
 
         adapter=new Circle_imageAdapter(circleview);
         circleimageview.setAdapter( adapter );
@@ -67,7 +67,6 @@ public class CircleImageview extends AppCompatActivity {
                 Intent i = new Intent(CircleImageview.this,Playvideo_page.class);
             }
         });
-
     }
 
     @Override

@@ -87,8 +87,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/_10sdp"
-                    android:src="@drawable/changepassword" />
-
+                    android:src="@drawable/edditprofile" />
                 <TextView
                     android:id="@+id/tedit_profile"
                     android:layout_width="match_parent"
@@ -141,7 +140,7 @@
                     android:gravity="left|center"
                     android:paddingLeft="@dimen/_50sdp"
                     android:text=" Friend Request"
-                    android:textColor="#000000"
+                    android:textColor="#525252"
                     android:textSize="@dimen/_15sdp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"

@@ -163,16 +163,19 @@ public class ContactsForChatActivityNew extends AppCompatActivity implements Vie
 
     @Override
     public void onTabChanged(String s) {
-          String tabs = null; {
+        String tabs = null;
+        {
             TabActivity tHost = null;
-            if (tabs.equals("first")) { tHost.getTabWidget().getChildAt(0) .setBackgroundResource(R.drawable.tab_selector);
-            tHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.WHITE);
-            tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
+            if (tabs.equals("first")) {
+                tHost.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_selector);
+                tHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.BLUE);
+                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.BLUE);
+            } else if (tabs.equals("second")) {
+                tHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_selector);
+
+                tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.WHITE);
+                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
             }
-            else if (tabs.equals("second"))
-            {
-                tHost.getTabWidget().getChildAt(1) .setBackgroundResource(R.drawable.tab_selector);
-            } tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.WHITE); tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
         }
     }
 

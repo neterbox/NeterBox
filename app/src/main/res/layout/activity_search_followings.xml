@@ -29,7 +29,7 @@
             android:background="@android:color/transparent"
             android:hint="  Search Followings"
             android:textSize="@dimen/_12sdp"
-            android:textColor="#000000"
+            android:textColorHint="#4c4c4c"
             android:gravity="center"
             android:layout_height="match_parent" />
     </LinearLayout>

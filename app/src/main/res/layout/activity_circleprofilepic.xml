@@ -46,9 +46,10 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:padding="@dimen/_5sdp">
                 <ImageView
+                    android:paddingTop="@dimen/_2sdp"
                     android:id="@+id/ilikecirclepic"
                     android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/heart"
                     android:layout_marginLeft="@dimen/_5sdp"/>
 
