@@ -94,7 +94,7 @@ public class ChatBox extends AppCompatActivity {
     public static final int CAMERA_REQUEST = 1;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 12;
     static final int VIDEO_CAPTURE = 1;
-
+    
     // TODO : CONTACT IMPLEMENTATION
 
     private static final int REQUEST_CODE_PICK_CONTACTS = 1;
