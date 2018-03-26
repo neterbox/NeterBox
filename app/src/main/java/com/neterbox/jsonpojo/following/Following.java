@@ -1,19 +1,17 @@
-package com.neterbox.jsonpojo.CirclePostadd;
+package com.neterbox.jsonpojo.following;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
- * Created by sejal on 2/3/2018.
+ * Created by DeLL on 20-03-2018.
  */
 
-public class CirclePostAddP implements Serializable {
+public class Following {
 
     @SerializedName("data")
     @Expose
-    private Object data;
+    private FollowingDatum data;
     @SerializedName("status")
     @Expose
     private String status;
@@ -24,11 +22,11 @@ public class CirclePostAddP implements Serializable {
     @Expose
     private String response;
 
-    public Object getData() {
+    public FollowingDatum getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(FollowingDatum data) {
         this.data = data;
     }
 
@@ -55,4 +53,5 @@ public class CirclePostAddP implements Serializable {
     public void setResponse(String response) {
         this.response = response;
     }
+
 }

@@ -117,6 +117,7 @@ public class LoginPage extends AppCompatActivity {
                 if (response.body().getStatus().equalsIgnoreCase("Success"))
                 {
                     sessionmanager.createSession_userLogin((response.body().getData()));
+                    Log.e("UserName ",sessionmanager.getValue(sessionmanager.Name));
                     Sessionmanager.setPreferenceBoolean(LoginPage.this, Constants.IS_LOGIN,true);
                     Intent i = new Intent(LoginPage.this, HomePage.class);
                    // i.putExtra("login_name",response.body().getData().getUser().getName());

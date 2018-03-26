@@ -18,7 +18,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupChatBox extends AppCompatActivity {
 
-    ImageView ileft,iright,chatattach,ichatyellow, icircle_video, ilocation,icontact;
+    ImageView ileft,iright,chatattach,ichatyellow, icircle_video, ilocation,icontact,chatsend;
     TextView title;
     CircleImageView image;
     Context context;
@@ -82,6 +82,7 @@ public class GroupChatBox extends AppCompatActivity {
         icontact=(ImageView) findViewById(R.id.icontact);
         ilocation=(ImageView) findViewById(R.id.ilocation);
         chatattach=(ImageView) findViewById(R.id.chatattach);
+        chatsend=(ImageView) findViewById(R.id.chatsend);
         lpost_upload_option=(LinearLayout) findViewById(R.id.lpost_upload_option);
     }
     public void Listener()

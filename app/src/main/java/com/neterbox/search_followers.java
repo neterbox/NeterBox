@@ -14,6 +14,10 @@ import android.widget.TextView;
 
 import com.neterbox.customadapter.Followers_Adapter;
 import com.neterbox.customadapter.Search_Following_Adapter;
+import com.neterbox.jsonpojo.following.FollowingDatum;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class search_followers extends AppCompatActivity {
 
@@ -22,29 +26,18 @@ public class search_followers extends AppCompatActivity {
     LinearLayout lfollowerlist;
     ImageView ileft,iright;
     TextView title;
-
-    String[] itemname ={
-            "Charmis",
-            "Camera",
-            "Cold War"
-    };
-
-    Integer[] imgid={
-            R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
-
-    };
+    List<FollowingDatum> followingDatumList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_followers);
 
         activity=this;
+        followingDatumList = new ArrayList<>();
         idMappings();
         listener();
 
-        Followers_Adapter adapter=new Followers_Adapter(this, itemname, imgid);
+        Followers_Adapter adapter=new Followers_Adapter(activity,followingDatumList);
         list1.setAdapter(adapter);
 
 

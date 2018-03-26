@@ -31,7 +31,24 @@ allprojects {
            }
      }
 }
-def qbSdkVersion = '3.7.0'
+
+ext{
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.0"
+
+    minSdkVersion = 14
+    targetSdkVersion = 26
+
+    designVersion = '26.0.0'
+    robotoTextViewVersion = '4.0.0'
+
+
+    // QuickBlox SDK version
+    qbSdkVersion = '3.4'
+
+    stickyListHeaders = '2.7.0'
+
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public class CirclePostListPojo implements Serializable{
+
     @SerializedName("message")
     @Expose
     private String message;
@@ -25,7 +26,7 @@ public class CirclePostListPojo implements Serializable{
     private Integer totalPost;
     @SerializedName("data")
     @Expose
-    private List<Object> data = null;
+    private List<CirclePostListDatum> data = null;
 
     public String getMessage() {
         return message;
@@ -59,11 +60,11 @@ public class CirclePostListPojo implements Serializable{
         this.totalPost = totalPost;
     }
 
-    public List<Object> getData() {
+    public List<CirclePostListDatum> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<CirclePostListDatum> data) {
         this.data = data;
     }
 

@@ -21,43 +21,19 @@ android {
         }
     }
 }
-dependencies { compile 'com.astuetz:pagerslidingtabstrip:1.0.1' }
+dependencies {
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile project(':sample-core')
+}
 
 dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support:support-v4:26.+'
-}
-dependencies {
     compile 'com.android.support:support-v4:26.+'
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'
 }
 dependencies {
-    compile 'com.android.support:support-v4:26.+'
-}
-dependencies {
-    compile 'com.android.support:support-v4:26.+'
-}
-dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support:support-v4:26.+'
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'
@@ -82,12 +58,11 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile "se.emilsjolander:stickylistheaders:${rootProject.stickyListHeaders}"
+//    TODO : Quickblox gradle
 
-    compile "com.quickblox:quickblox-android-sdk-core:2.5.1@aar"
-    compile("com.quickblox:quickblox-android-sdk-chat:2.5.1@aar")
-            {
-                transitive=true
-            }
+    compile "com.quickblox:quickblox-android-sdk-messages:$rootProject.qbSdkVersion"
+    compile "com.quickblox:quickblox-android-sdk-content:$rootProject.qbSdkVersion"
+    compile "com.quickblox:quickblox-android-sdk-chat:$rootProject.qbSdkVersion"
 
-    compile("com.quickblox:quickblox-android-sdk-chat:2.6.1")
 }

@@ -11,7 +11,7 @@ public class AddChatDatum
 {
     @SerializedName("TblDailog")
     @Expose
-    private AdddChatTbldialog tblDailog;
+    private AddChatTbldialog tblDailog;
     @SerializedName("Sender")
     @Expose
     private AddChatSender sender;
@@ -19,11 +19,11 @@ public class AddChatDatum
     @Expose
     private AddChatReceiver receiver;
 
-    public AdddChatTbldialog getTblDailog() {
+    public AddChatTbldialog getTblDailog() {
         return tblDailog;
     }
 
-    public void setTblDailog(AdddChatTbldialog tblDailog) {
+    public void setTblDailog(AddChatTbldialog tblDailog) {
         this.tblDailog = tblDailog;
     }
 

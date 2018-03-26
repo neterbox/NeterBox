@@ -8,28 +8,7 @@
     tools:context="com.neterbox.SearchGroupFriend"
     android:background="@drawable/settingbg">
     <include layout="@layout/custom_action_bar"/>
-<<<<<<< HEAD
-=======
-    <!--<LinearLayout-->
-        <!--android:layout_marginTop="@dimen/_10sdp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/_30sdp"-->
-        <!--android:layout_margin="@dimen/_10sdp"-->
-        <!--android:gravity="center"-->
-        <!--android:background="@drawable/whitesearchbox">-->
-        <!--<EditText-->
-            <!--android:id="@+id/tsearchfriend"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:hint="  Search Group"-->
-            <!--android:textSize="@dimen/_12sdp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_height="match_parent" />-->
-    <!--</LinearLayout>-->
 
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -147,11 +126,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-<<<<<<< HEAD
         android:id="@+id/lrequestfrndlist"
-=======
-        android:id="@+id/lfriendrequestlist"
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/settingbox">
 
@@ -166,7 +141,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-<<<<<<< HEAD
                 <ImageView
                     android:id="@+id/irequestfrndlist"
                     android:layout_width="@dimen/_30sdp"
@@ -179,28 +153,16 @@
                     android:id="@+id/trequestfrndlist"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_toLeftOf="@+id/irequestfrndlistback"
                     android:layout_toRightOf="@+id/irequestfrndlist"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
                     android:text=" Friend Request List"
                     android:textColor="#525252"
                     android:textSize="@dimen/_15sdp" />
-                <ImageView
-                    android:id="@+id/irequestfrndlistback"
-=======
-                <TextView
-                    android:id="@+id/tfriendrequestlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:text="              Friend Request List"
-                    android:textColor="#525252"
-                    android:textSize="@dimen/_15sdp" />
+
+
                 <ImageView
                     android:id="@+id/ifriendrequestlistback"
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentRight="true"
@@ -209,11 +171,6 @@
                     android:src="@drawable/settingback" />
             </RelativeLayout>
         </LinearLayout>
-<<<<<<< HEAD
 </LinearLayout>
+ </LinearLayout>
 
-    </LinearLayout>
-=======
-    </LinearLayout>
-</LinearLayout>
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d

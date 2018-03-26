@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.following.FollowingDatum;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -23,27 +25,25 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Followers_Adapter extends BaseAdapter {
     Activity activity;
-    String[] itemname;
-    Integer[] imgid;
     private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
+    List<FollowingDatum> followingDatumList;
 
-    public Followers_Adapter(Activity a,String[] itemname, Integer[] imgid){
+    public Followers_Adapter(Activity a,List<FollowingDatum> followingDatumList){
         this.activity=a;
-        this.itemname = itemname;
-        this.imgid = imgid;
+       this.followingDatumList = followingDatumList;
         inflater=(LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return (itemname != null ? itemname.length : 0);
+        return followingDatumList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return itemname[i];
+        return followingDatumList.get(i);
     }
 
     @Override
@@ -64,10 +64,9 @@ public class Followers_Adapter extends BaseAdapter {
             viewHolder = (MyViewHolder) view.getTag();
         }
 
-        viewHolder.titem1.setText(itemname[i]);
-        viewHolder.textView1.setText(itemname[i]);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.ifollowersprofile);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.followersback);
+        viewHolder.titem1.setText(followingDatumList.get(i).getFollowerDetail().getName());
+        viewHolder.textView1.setText(followingDatumList.get(i).getFollowerDetail().getTitle());
+        Glide.with(activity).load(followingDatumList.get(i).getFollowerDetail().getProfilePic()).into(viewHolder.ifollowersprofile);
         return view;
     }
 

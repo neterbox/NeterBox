@@ -1,6 +1,5 @@
 package com.neterbox;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
@@ -9,30 +8,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
-import android.location.Criteria;
-import android.location.Location;
-
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,32 +26,30 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
 
 import com.bumptech.glide.Glide;
-import com.neterbox.jsonpojo.Login.Login;
-import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.google.gson.Gson;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
-import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
-import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
-import com.neterbox.jsonpojo.register.RegistrationDatum;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
+import com.neterbox.qb.ChatHelper;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Constants;
 import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
+import com.quickblox.auth.session.QBSettings;
+import com.quickblox.chat.QBChatService;
+import com.quickblox.core.QBEntityCallback;
+import com.quickblox.core.ServiceZone;
+import com.quickblox.core.exception.QBResponseException;
+import com.quickblox.messages.services.SubscribeService;
+import com.quickblox.users.QBUsers;
+import com.quickblox.users.model.QBUser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -75,20 +59,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomePage extends Activity implements LocationListener {
+public class HomePage extends Activity {
 
     TextView taddfriend, tlogout,tprofilename;
     LinearLayout lph;
     RelativeLayout relative_following, relative_follower, relative_frnd, relative_settings;
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
-<<<<<<< HEAD
 
-   String Loginname,index,user_id;
-=======
-    Double latitude,longitude;
-   String Loginname;
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
+    String Loginname,index,user_id;
 
     public static final int GALLARY_REQUEST=2;
     public static final int CAMERA_REQUEST=1;
@@ -97,6 +76,7 @@ public class HomePage extends Activity implements LocationListener {
 
     Context context;
     Sessionmanager sessionmanager;
+    SharedPreferences sharedPreferences;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     @Override
@@ -106,6 +86,8 @@ public class HomePage extends Activity implements LocationListener {
 
         context = this;
         sessionmanager = new Sessionmanager(this);
+        sharedPreferences = context.getSharedPreferences(Constants.mypreference, Context.MODE_PRIVATE);
+        initquickblox();
         this.Loginname =Loginname;
 
         taddfriend = (TextView) findViewById(R.id.taddfriend);
@@ -126,14 +108,14 @@ public class HomePage extends Activity implements LocationListener {
         iplay = (ImageView) findViewById(R.id.iplay);
 
 
-       profile_image.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Intent i = new Intent(HomePage.this, EditProfile.class);
-                                                startActivity(i);
-                                                finish();
-                                            }
-       });
+        profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomePage.this, EditProfile.class);
+                startActivity(i);
+                finish();
+            }
+        });
         // set dummy profile if profile pic is not selected
         if(  new Sessionmanager(context).getValue(Sessionmanager.profile) != null)
         {
@@ -170,7 +152,7 @@ public class HomePage extends Activity implements LocationListener {
                 finish();
             }
         });
-       relative_following.setOnClickListener(new View.OnClickListener() {
+        relative_following.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, SearchFollowings.class);
@@ -258,7 +240,7 @@ public class HomePage extends Activity implements LocationListener {
     @Override
     public void onBackPressed() {
         System.exit(0);
-       }
+    }
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -414,13 +396,14 @@ public class HomePage extends Activity implements LocationListener {
         }
         return "";
     }
-// TO DO UPDATE PROFILE API
-    public void Uploadpic(String Id, File fileCamera) {
+
+    public void Uploadpic(String Id, File fileCamera){
         final ProgressDialog progressDialog = Helper.showProgressDialog(context);
 
         RequestBody loginIdReqBody = RequestBody.create(MediaType.parse("text/plain"), Id);
-        Log.e("login_id", "" + Id);
-        if (fileCamera != null) {
+        Log.e("login_id",""+Id);
+        if (fileCamera!=null)
+        {
             final RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), fileCamera);
             MultipartBody.Part userProfile = MultipartBody.Part.createFormData("profile_pic", fileCamera.getName(), requestFile);
 
@@ -429,7 +412,7 @@ public class HomePage extends Activity implements LocationListener {
                 @Override
                 public void onResponse(Call<Uploadpic> uploadImageCall, Response<Uploadpic> response) {
                     if (response.body().getStatus().equals("Success")) {
-                        new Sessionmanager(HomePage.this).putSessionValue(Sessionmanager.profile, response.body().getData().getUser().getProfilePic());
+                        new Sessionmanager(HomePage.this).putSessionValue(Sessionmanager.profile,response.body().getData().getUser().getProfilePic());
 
                         progressDialog.dismiss();
 
@@ -452,7 +435,6 @@ public class HomePage extends Activity implements LocationListener {
         }
     }
 
-<<<<<<< HEAD
     public void getprofile(String index,String user_id)
     {
         final ProgressDialog dialog = new ProgressDialog(context);
@@ -476,51 +458,133 @@ public class HomePage extends Activity implements LocationListener {
                 dialog.dismiss();
             }
         });
-=======
-    //TO DO FETCH LOCATION API
-    public void fetchlocation()
+
+    }
+
+    public void initquickblox()
     {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
+        QBSettings.getInstance().init(getApplicationContext(), getString(R.string.application_id), getString(R.string.authorization_key), getString(R.string.authorization_secret));
+        QBSettings.getInstance().setAccountKey(getString(R.string.account_key));
+        QBSettings.getInstance().setEndpoints("https://api.quickblox.com", "chat.quickblox.com", ServiceZone.DEVELOPMENT);
+        QBSettings.getInstance().setZone(ServiceZone.DEVELOPMENT);
+        final QBChatService chatService = QBChatService.getInstance();
 
-        String mprovider = locationManager.getBestProvider(criteria, false);
+        QBChatService.setDebugEnabled(true); // enable chat logging
+        QBChatService.setDefaultPacketReplyTimeout(30000);
+        QBChatService.setDefaultConnectionTimeout(30000);
 
-        if (mprovider != null && !mprovider.equals("")) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
+        QBChatService.ConfigurationBuilder chatServiceConfigurationBuilder = new QBChatService.ConfigurationBuilder();
+        chatServiceConfigurationBuilder.setSocketTimeout(60);
+        chatServiceConfigurationBuilder.setKeepAlive(true);
+        chatServiceConfigurationBuilder.setUseTls(true);
+        QBChatService.setConfigurationBuilder(chatServiceConfigurationBuilder);
+
+        final QBUser user = new QBUser(sessionmanager.getValue(sessionmanager.Name),sessionmanager.getValue(sessionmanager.Password),sessionmanager.getValue(sessionmanager.Email));
+        Log.e("QB USER ",sessionmanager.getValue(sessionmanager.Name));
+
+         /*TODO For QBUser SignUp*/
+        QBUsers.signUp(user).performAsync(new QBEntityCallback<QBUser>() {
+            @Override
+            public void onSuccess(final QBUser user, Bundle args) {
+                // success
+                sharedPreferences.edit().putString(sessionmanager.Quickbox_Id, String.valueOf(user.getId())).apply();
+                Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
+                Log.e("QB USER ",sessionmanager.Name);
+                Log.e("QBID", ":" +user.getId());
+
+                user.setPassword(sessionmanager.getValue(sessionmanager.Password));
+                user.setLogin(sessionmanager.getValue(sessionmanager.Email));
+                user.setFullName(sessionmanager.getValue(sessionmanager.Name));
+
+                chatService.login(user, new QBEntityCallback() {
+                    @Override
+                    public void onSuccess(Object o, Bundle bundle) {
+                        Log.e("obje", ":" + new Gson().toJson(o));
+//                        ProgressDialogFragment.hide(getSupportFragmentManager);
+                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(QBResponseException e) {
+                        Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                ChatHelper.getInstance().login(user, new QBEntityCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void result, Bundle bundle) {
+                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+
+                        user.setPassword(sessionmanager.getValue(sessionmanager.Password));
+                        user.setLogin(sessionmanager.getValue(sessionmanager.Email));
+                        user.setFullName(sessionmanager.getValue(sessionmanager.Name));
+                    }
+
+                    @Override
+                    public void onError(QBResponseException e) {
+                        e.printStackTrace();
+                        Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                SubscribeService.subscribeToPushes(context, true);
             }
-            Location location = locationManager.getLastKnownLocation(mprovider);
-            locationManager.requestLocationUpdates(mprovider, 15000, 1, this);
 
-            if (location != null)
-                onLocationChanged(location);
-            else
-                Toast.makeText(HomePage.this, "No Location Provider Found Check Your Code", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onError(QBResponseException error) {
 
+                // error
+                /*TODO For QBUser SignIn (if error is occur it will signin)*/
+                // Login
+                QBUsers.signIn(user).performAsync(new QBEntityCallback<QBUser>() {
+                    @Override
+                    public void onSuccess(final QBUser user, Bundle args) {
+                        // success
+                        sharedPreferences.edit().putString(sessionmanager.Quickbox_Id, String.valueOf(user.getId())).apply();
+                        Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
+                        Log.e("QB USER ",sessionmanager.Name);
+                        Log.e("QBID", ":" +user.getId());
+
+                        user.setPassword(sessionmanager.getValue(sessionmanager.Password));
+                        user.setLogin(sessionmanager.getValue(sessionmanager.Email));
+                        user.setFullName(sessionmanager.getValue(sessionmanager.Name));
+
+                        chatService.login(user, new QBEntityCallback() {
+                            @Override
+                            public void onSuccess(Object o, Bundle bundle) {
+                                Log.e("obje", ":" + new Gson().toJson(o));
+                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(QBResponseException e) {
+                                Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        ChatHelper.getInstance().login(user, new QBEntityCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void result, Bundle bundle) {
+                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                                user.setPassword(sessionmanager.getValue(sessionmanager.Password));
+                                user.setLogin(sessionmanager.getValue(sessionmanager.Email));
+                                user.setFullName(sessionmanager.getValue(sessionmanager.Name));
+                            }
+
+                            @Override
+                            public void onError(QBResponseException e) {
+                                e.printStackTrace();
+                                Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError(QBResponseException error) {
+                        // error
+                    }
+                });
+            }
+        });
     }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-        latitude=location.getLatitude();
-        longitude=location.getLongitude();
     }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
-
-    }
-}

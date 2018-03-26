@@ -15,13 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.neterbox.FreindProfile;
 import com.neterbox.R;
 import com.neterbox.customadapter.PagerAdapter;
+import com.neterbox.jsonpojo.AddChat.AddChat;
+import com.neterbox.jsonpojo.chatlist.ChatList;
+import com.neterbox.retrofit.APIClient;
+import com.neterbox.retrofit.APIInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainChat extends Fragment implements View.OnClickListener,TabHost.OnTabChangeListener{
 
@@ -29,6 +39,7 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
     private Toolbar toolbar;
     private ViewPager viewPager;
     ListView groupchat, onechat;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,13 +73,13 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
             TabActivity tHost = null;
             if (tabs.equals("first")) {
                 tHost.getTabWidget().getChildAt(0) .setBackgroundResource(R.drawable.tab_selector);
-                tHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.WHITE);
-                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
+                tHost.getTabWidget().getChildAt(1).setBackgroundColor(Color.BLUE);
+                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.BLUE);
             }
             else if (tabs.equals("second")) {
                 tHost.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_selector);
-                tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.BLUE);
-                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.BLUE);
+                tHost.getTabWidget().getChildAt(0).setBackgroundColor(Color.WHITE);
+                tHost.getTabWidget().getChildAt(2).setBackgroundColor(Color.WHITE);
             }
         }
     }
@@ -106,4 +117,5 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
             return mFragmentTitleList.get(position);
         }
     }
+
 }

@@ -18,24 +18,11 @@
             android:src="@drawable/charmis"
             app:civ_border_color="#000000" />
 
-<<<<<<< HEAD
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_height="match_parent">
-=======
-        <EditText
-            android:id="@+id/tsearchfollowers"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:hint="  Search Group"
-            android:textColorHint="#4c4c4c"
-            android:textSize="@dimen/_12sdp" />
-    </LinearLayout>
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
             <TextView
                 android:id="@+id/tonechatitem"

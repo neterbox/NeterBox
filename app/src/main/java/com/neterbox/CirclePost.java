@@ -1,9 +1,8 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -16,28 +15,25 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.bumptech.glide.Glide;
-import com.neterbox.customadapter.Circle_Adapter;
+import com.google.gson.Gson;
 import com.neterbox.customadapter.Circle_post_Adapter;
-=======
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
-import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddP;
-import com.neterbox.jsonpojo.circle.CircleListDatum;
-import com.neterbox.jsonpojo.circlepostdelete.CirclePostDeleteP;
+import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddPojo;
+import com.neterbox.jsonpojo.circlepostlist.CirclePostListDatum;
 import com.neterbox.jsonpojo.circlepostlist.CirclePostListPojo;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
@@ -52,30 +48,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.neterbox.HomePage.CAMERA_REQUEST;
-import static com.neterbox.HomePage.GALLARY_REQUEST;
-import static com.neterbox.HomePage.MY_PERMISSIONS_REQUEST_CAMERA;
-import static com.neterbox.HomePage.MY_PERMISSIONS_REQUEST_GALLARY;
 import static com.neterbox.utils.Sessionmanager.index;
-import static com.neterbox.utils.Sessionmanager.user_id;
 
-<<<<<<< HEAD
-public class CirclePost extends AppCompatActivity implements LocationListener {
+public class CirclePost extends Activity implements LocationListener {
 
     private List<CirclePost> circlePostList;
     ListView li_circle_post;
     LinearLayout lcirclestrip, lfrndprofile, lpost_upload_option;
     TextView title;
-    ImageView ichatgreen, iright, ichatyellow, icircle_video, iimage_upload, ileft,image;
-    List<CirclePostListPojo> circlePostListPojos = new ArrayList<>();
+    ImageView ichatgreen, iright, ichatyellow, icircle_video, iimage_upload, ileft, image;
+    List<CirclePostListDatum> circlePostListPojos = new ArrayList<>();
     Activity activity;
-    String Loginname;
+    String Loginname, circle_id, state_id, countries_id, index = "1", post_files,user_id,comments;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     Sessionmanager sessionmanager;
     public static final int GALLARY_REQUEST = 2;
@@ -83,19 +74,6 @@ public class CirclePost extends AppCompatActivity implements LocationListener {
     public static final int MY_PERMISSIONS_REQUEST_GALLARY = 11;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 12;
     static final int VIDEO_CAPTURE = 1;
-=======
-public class CirclePost extends AppCompatActivity  implements LocationListener {
-
-    private List<CirclePost> circlePostList;
-    ListView li_circle_post;
-    LinearLayout lcirclestrip,lfrndprofile,lpost_upload_option;
-    TextView title;
-    ImageView ichatgreen, iright, ichatyellow, icircle_video, iimage_upload;
-    List<CircleListDatum> circleListData = new ArrayList<>();
-    Activity activity;
-    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-    Sessionmanager sessionmanager;
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     private LayoutInflater inflater;
 
 
@@ -104,118 +82,31 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle_post);
         activity = this;
-<<<<<<< HEAD
-        circlePostListPojos=new ArrayList<>();
         circlePostList = new ArrayList<>();
         idMappings();
         Listner();
-=======
-        circlePostList = new ArrayList<>();
-        idMappings();
-        iright.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    lpost_upload_option.setVisibility(View.VISIBLE);
-                }
-
-        });
-
-
-
-//        listener();
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         sessionmanager = new Sessionmanager(this);
-        String countries_id = null;
-        String circle_id = null;
-        String state_id = null;
+        circle_id = sessionmanager.getValue(Sessionmanager.CircleId);
+        countries_id = getIntent().getStringExtra("Country id");
+        state_id = getIntent().getStringExtra("State id");
+        user_id = sessionmanager.getValue(Sessionmanager.Id);
         CirclePostPage(index, circle_id, countries_id, state_id);
 
         String comments = null;
         MultipartBody.Part post_files = null;
-<<<<<<< HEAD
         String id = null;
 
         Loginname = sessionmanager.getValue(Sessionmanager.CircleName);
-        if(!(title.getText().toString().equals(""))) {
+        if (!(title.getText().toString().equals(""))) {
             title.setText(Loginname);
         }
-        if(  new Sessionmanager(activity).getValue(Sessionmanager.Files) != null)
-        {
+        if (new Sessionmanager(activity).getValue(Sessionmanager.Files) != null) {
             Glide.with(activity).load(new Sessionmanager(activity).getValue(Sessionmanager.Files)).placeholder(R.drawable.dummy).into(image);
 
         }
     }
 
     private void checkStoragePermission() {
-=======
-  //      CirclePostAdd(user_id, circle_id, countries_id, state_id, comments, post_files);
-
-        String id = null;
-    //    CirclePostDelete(id);
-     //  chatgreen =(ImageView)findViewById( R.id.chatgreen );
-        ichatgreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(CirclePost.this, Circle_chat.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-
-        li_circle_post.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-                        showPictureDialog();
-
-                    } else {
-                        //Request Location Permission
-                        checkCameraPermission();
-                        checkStoragePermission();
-                    }
-                } else {
-                    showPictureDialog();
-                }
-
-            }
-
-        });
-    }
-
-
-    private void showPictureDialog() {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-        pictureDialog.setTitle("Select Action");
-        String[] pictureDialogItems = {
-                "Select photo from gallery",
-                "Capture photo from camera"};
-        pictureDialog.setItems(pictureDialogItems,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                choosePhotoFromGallary();
-                                break;
-                            case 1:
-                                takePhotoFromCamera();
-                                break;
-                        }
-                    }
-                });
-        pictureDialog.show();
-    }
-    private void checkStoragePermission() {
-
-
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -249,11 +140,7 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
                     android.Manifest.permission.CAMERA)
                     ) {
                 ActivityCompat.requestPermissions((Activity) activity,
-<<<<<<< HEAD
                         new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-=======
-                        new String[]{android.Manifest.permission.CAMERA},MY_PERMISSIONS_REQUEST_CAMERA);
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 
             } else {
                 // No explanation needed, we can request the permission.
@@ -263,18 +150,14 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         }
     }
 
-<<<<<<< HEAD
     private void dispatchTakeVideoIntent() {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
         startActivityForResult(intent, VIDEO_CAPTURE);
-        }
+    }
 
-=======
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     public void choosePhotoFromGallary() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         startActivityForResult(galleryIntent, GALLARY_REQUEST);
     }
 
@@ -282,14 +165,7 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA_REQUEST);
     }
-<<<<<<< HEAD
 
-    public void idMappings() {
-        ichatgreen = (ImageView) findViewById(R.id.ichatgreen);
-        ichatyellow = (ImageView) findViewById(R.id.ichatyellow);
-        icircle_video = (ImageView) findViewById(R.id.icircle_video);
-        image = (ImageView) findViewById(R.id.image);
-=======
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -298,42 +174,41 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         if (resultCode == this.RESULT_CANCELED) {
             return;
         }
-        ImageView profile_image = null;
         if (requestCode == GALLARY_REQUEST) {
+            Toast.makeText(activity, "gallary request", Toast.LENGTH_LONG).show();
             if (data != null) {
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    String path = saveImage(bitmap);
-
-//                    Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
-                    profile_image.setImageBitmap(bitmap);
-                    File fileGallery=new File(path);
-                    Uploadpic(new Sessionmanager(activity).getValue(Sessionmanager.Id),fileGallery);
+                    post_files = saveImage(bitmap);
+                    if (bitmap != null) {
+                        popup(bitmap);
+                    }
+//                    if (Helper.isConnectingToInternet(activity)) {
+//                        popup(bitmap);
+//                    } else {
+//                        Helper.showToastMessage(activity, "No Internet Connection");
+//                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(activity, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
-        }else if (requestCode == CAMERA_REQUEST) {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            profile_image.setImageBitmap(thumbnail);
-            String imagePath=saveImage(thumbnail);
-            if (Helper.isConnectingToInternet(activity)) {
-                File fileCamera=new File(imagePath);
-
-                Uploadpic(new Sessionmanager(activity).getValue(Sessionmanager.Id),fileCamera);
-            }
-            else
-            {
-                Toast.makeText(activity, "", Toast.LENGTH_SHORT).show();
-            }
-
+//        } else if (requestCode == CAMERA_REQUEST) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+////            icircle_post_pic.setImageBitmap(thumbnail);
+//            String imagePath = saveImage(thumbnail);
+//            if (Helper.isConnectingToInternet(activity)) {
+//                File fileCamera = new File(imagePath);
+//
+////                Uploadpic(new Sessionmanager(activity).getValue(Sessionmanager.Id),fileCamera);
+//            } else {
+//                Toast.makeText(activity, "", Toast.LENGTH_SHORT).show();
+//            }
+//
+//        }
         }
-    }
-
-    private void Uploadpic(String value, File fileCamera) {
     }
 
     private String saveImage(Bitmap thumbnail) {
@@ -345,6 +220,7 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         if (!wallpaperDirectory.exists()) {
             wallpaperDirectory.mkdirs();
         }
+
         try {
             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             File f = new File(path, "DemoPicture.jpg");
@@ -363,16 +239,15 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         return "";
     }
 
-    private void idMappings() {
+    public void idMappings() {
         ichatgreen = (ImageView) findViewById(R.id.ichatgreen);
         ichatyellow = (ImageView) findViewById(R.id.ichatyellow);
         icircle_video = (ImageView) findViewById(R.id.icircle_video);
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
+        image = (ImageView) findViewById(R.id.image);
         iimage_upload = (ImageView) findViewById(R.id.iimage_upload);
         li_circle_post = (ListView) findViewById(R.id.li_circle_post);
         lcirclestrip = (LinearLayout) findViewById(R.id.lcirclestrip);
         iright = (ImageView) findViewById(R.id.iright);
-<<<<<<< HEAD
         ileft = (ImageView) findViewById(R.id.ileft);
         title = (TextView) findViewById(R.id.title);
         lpost_upload_option = (LinearLayout) findViewById(R.id.lpost_upload_option);
@@ -424,34 +299,23 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
                 video();
             }
         });
+        li_circle_post.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
 
     /* TODO CIrcle PostList  API */
-=======
-        title = (TextView) findViewById(R.id.title);
-        lpost_upload_option = (LinearLayout) findViewById(R.id.lpost_upload_option);
-        lpost_upload_option.setVisibility(View.GONE);
-
-
-        iright.setImageResource(R.drawable.pencile);
-        title.setText("Travel");
-    }
-
-
-     /* TODO CIrcle PostList  API */
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
     public void CirclePostPage(final String index, String circle_id, String countries_id, String state_id) {
         final ProgressDialog dialog = new ProgressDialog(activity);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setMessage("Please Wait...");
         dialog.show();
 
-<<<<<<< HEAD
         final Call<CirclePostListPojo> circlePostCall = apiInterface.circlepostlistpojocall(index, circle_id, countries_id, state_id);
-=======
-        final Call<CirclePostListPojo> circlePostCall = apiInterface.circlepostlistpojocall(index, circle_id ,countries_id ,state_id);
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         circlePostCall.enqueue(new Callback<CirclePostListPojo>() {
             @Override
             public void onResponse(Call<CirclePostListPojo> call, Response<CirclePostListPojo> response) {
@@ -459,19 +323,15 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
                 if (response.body().getStatus().equals("Success")) {
                     sessionmanager.createSession_circlepostlistdata(response.body());
                     Toast.makeText(CirclePost.this, "Successfully", Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-                    Circle_post_Adapter adapter = new Circle_post_Adapter(activity,circlePostListPojos);
+                    circlePostListPojos = new ArrayList<CirclePostListDatum>();
+                    circlePostListPojos = response.body().getData();
+                    Circle_post_Adapter adapter = new Circle_post_Adapter(activity, circlePostListPojos);
                     li_circle_post.setAdapter(adapter);
-=======
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
                 } else {
                     Toast.makeText(CirclePost.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
             @Override
             public void onFailure(Call<CirclePostListPojo> call, Throwable t) {
                 dialog.dismiss();
@@ -479,39 +339,49 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
         });
     }
 
-//
-//    /*  TODO CIrcle PostADD  API */
-//
-//    public void CirclePostAdd(final String user_id , String circle_id, String countries_id, String state_id, String comments, MultipartBody.Part post_files){
-//        final ProgressDialog dialog = new ProgressDialog(activity);
-//        dialog.setCanceledOnTouchOutside(false);
-//        dialog.setMessage("Please Wait...");
-//        dialog.show();
-//
-//        final Call<CirclePostAddP> circlePostAddPCall = apiInterface.circlepostaddpojocall(user_id , circle_id, countries_id, state_id, comments, post_files);
-//        circlePostAddPCall.enqueue(new Callback<CirclePostAddP>() {
-//            @Override
-//            public void onResponse(Call<CirclePostAddP> call, Response<CirclePostAddP> response) {
-//                dialog.dismiss();
-//               if (response.body().getStatus().equals("Success")) {
-//                    sessionmanager.createSession_circlepostadddata(response.body());
-//                    Sessionmanager.setPreferenceBoolean(CirclePost.this, Constants.IS_LOGIN, true);
-//                   // Intent i = new Intent(CirclePost.this, CirclePost.class);
-//                   // startActivity(i);
-//                    finish();
-//                } else {
-//                    Toast.makeText(CirclePost.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
-//
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<CirclePostAddP> call, Throwable t) {
-//               dialog.dismiss();
-//              }
-//        });
-//
-//    }
-//
+
+    /*  TODO CIrcle PostADD  API */
+
+    public void CirclePostAdd(String user_id, String circle_id, String countries_id, String state_id,String comments,File post_files) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        RequestBody loginid = RequestBody.create(MediaType.parse("text/plain"), user_id);
+        RequestBody circleid = RequestBody.create(MediaType.parse("text/plain"), circle_id);
+        RequestBody countriesid = RequestBody.create(MediaType.parse("text/plain"), countries_id);
+        RequestBody stateid = RequestBody.create(MediaType.parse("text/plain"), state_id);
+        RequestBody comment = RequestBody.create(MediaType.parse("text/plain"), comments);
+
+        if (post_files!=null) {
+            final RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), post_files);
+            MultipartBody.Part userProfile = MultipartBody.Part.createFormData("profile_pic", post_files.getName(), requestFile);
+
+
+            final Call<CirclePostAddPojo> circlePostAddPCall = apiInterface.circlepostaddpojocall(loginid, circleid, countriesid, stateid, comment, userProfile);
+            circlePostAddPCall.enqueue(new Callback<CirclePostAddPojo>() {
+                @Override
+                public void onResponse(Call<CirclePostAddPojo> call, Response<CirclePostAddPojo> response) {
+                    dialog.dismiss();
+                    Log.e("Circlradd",new Gson().toJson(response));
+                    if (response.body().getStatus().equals("Success")) {
+                        sessionmanager.createSession_circlepostadddata(response.body());
+                        Toast.makeText(activity, "Successfully added", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(CirclePost.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CirclePostAddPojo> call, Throwable t) {
+                    dialog.dismiss();
+                }
+            });
+        }
+    }
+
 //    /*TODO CIrcle PostDELETE  API*/
 //
 //    public void CirclePostDelete(final String id) {
@@ -575,16 +445,16 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
     public void onProviderDisabled(String s) {
 
     }
-<<<<<<< HEAD
 
     public void camera() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                checkCameraPermission();
-            } else {
                 takePhotoFromCamera();
+            } else {
+                checkCameraPermission();
+
             }
         }
     }
@@ -594,27 +464,59 @@ public class CirclePost extends AppCompatActivity  implements LocationListener {
             if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                checkStoragePermission();
-            } else {
                 choosePhotoFromGallary();
+            } else {
+                checkCameraPermission();
+                checkStoragePermission();
             }
         }
     }
+
     public void video() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                checkCameraPermission();
-            } else {
                 dispatchTakeVideoIntent();
+            } else {
+                checkCameraPermission();
+
             }
         }
     }
 
+    public void popup(Bitmap bitmap){
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.circlepostcaption);
+
+        final ImageView icircle_post_pic = (ImageView)dialog.findViewById(R.id.icircle_post_pic);
+        ImageView button_chat_send = (ImageView) dialog.findViewById(R.id.button_caption_send);
+        final EditText edit_caption = (EditText) dialog.findViewById(R.id.edit_caption);
+
+        icircle_post_pic.setImageBitmap(bitmap);
+        final File fileGallery=new File(post_files);
+        dialog.show();
+
+        button_chat_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(icircle_post_pic!=null ){
+                    CirclePostAdd(sessionmanager.getValue(Sessionmanager.Id),
+                            sessionmanager.getValue(Sessionmanager.CircleId),
+                            getIntent().getStringExtra("Country id"),
+                            getIntent().getStringExtra("State id"),
+                            edit_caption.getText().toString(),
+                            fileGallery);
+                    dialog.dismiss();
+                }
+                else {
+                    Toast.makeText(activity, "Try Again", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        dialog.show();
     }
 
-=======
 }
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
-

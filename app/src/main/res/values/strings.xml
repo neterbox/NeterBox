@@ -45,5 +45,21 @@
     <string name="str_tv_location">Current Location</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- TODO:  Quickblox Id -->
+    <string name="application_id">69202</string>
+    <string name="authorization_key">YZwX4uNxuwWBQQ3</string>
+    <string name="authorization_secret">cu2hz7tjArRJkr4</string>
+    <string name="account_key">_mNV3GnEUV4fdTygBLya</string>
+    <string name="title_activity_chat_info">ChatInfoActivity</string>
+    <string name="chat_wait_for_attachments_to_upload">Wait for all attachments to upload</string>
+    <string name="chat_info_add_people_error">Add people errors</string>
+    <string name="chat_load_users_error">Load chat users errors</string>
+    <string name="connection_error">Chat connection has been dropped</string>
+    <string name="dialogs_deletion_error">Dialog deletion errors</string>
+    <string name="chat_unsupported_type">Unsupported dialog type</string>
+
+
 </resources>
 

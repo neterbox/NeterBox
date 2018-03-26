@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     package="com.neterbox">
 
     <!-- map permission access -->
@@ -13,6 +12,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- Google map liberary: -->
     <uses-library
@@ -95,24 +95,14 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PlayGridview"
-<<<<<<< HEAD
-=======
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".One_To_OneChat"
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
             android:name=".Circle_chat"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Circle_comment"
             android:screenOrientation="portrait"
@@ -132,15 +122,6 @@
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
         <activity
-<<<<<<< HEAD
-=======
-            android:name=".Group_chat"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
             android:name=".Create_group"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
@@ -150,106 +131,78 @@
             android:name=".FriendList"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SearchFollowings"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".search_followers"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Settings"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ChannelSettings"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".FriendSetting"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SearchGroupFriend"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Circleprofilepic"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".FetchLocation"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".NearbyFriendlist"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-<<<<<<< HEAD
             android:windowSoftInputMode="stateHidden" />
-=======
-            tools:ignore="WrongManifestParent" />
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
         <activity
             android:name=".FriendRequestList"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-<<<<<<< HEAD
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".CirclePost"
-=======
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
         <activity
-            android:name=".FriendRequestList"
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-<<<<<<< HEAD
             android:name=".ChatModule"
-=======
-            android:name=".CirclePost"
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-<<<<<<< HEAD
             android:name=".ChatBox"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".GroupChatBox"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" ></activity>
-=======
-            android:name=".NearbyFriendlist"
+        <activity
+            android:name=".GroupChatBox"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
+        <activity android:name=".AttachmentImageActivity" />
     </application>
 
 </manifest>

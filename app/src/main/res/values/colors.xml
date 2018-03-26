@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#99666666</color>
+    <color name="gray">#99c9c8c8</color>
     <color name="header_color">#049BE6</color>
     <color name="coloorAccent">#ffffff</color>
     <color name="greenbox">#47B747</color>
-</resources>
+    <color name="black_opacity">#80000000</color>
+    <color name="light_gray">#e0e0e0</color>
+    </resources>

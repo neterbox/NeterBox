@@ -16,29 +16,21 @@ public class ServerUrl {
     public static final String CITY =  "circles/city_list";
     public static final String NERBYFRIEND = "users/nearby";
     public static final String SENDREQUEST = "friends/request";
-<<<<<<< HEAD
     public static final String FRIENDREQUESTLIST = "friends/requestlists";
     public static final String FRIENDLIST = "friends/lists";
-
-    public static final String CIRCLELIST = "circles/lists";
-    public static final String ACCEPTFRIENDREQUEST = "friends/accept";
-    public static final String DECLINEFRIENDREQUEST = "friends/decline";
     public static final String CANCELFRIENDREQUEST = "friends/cancelrequest";
     public static final String GETPROFILE = "users/getprofile";
-    public static final String CIRCLEPOSTLIST = "posts/lists";
-        public static final String LIKE = "posts/addlike";
-        public static final String UNLIKE = "posts/unlike";
-    public static final String CIRCLEPOSTLISTADD = "posts/add";
-    public static final String CIRCLEPOSTLISTDELET = "posts/delete";
+    public static final String LIKE = "posts/addlike";
+    public static final String UNLIKE = "posts/unlike";
     public static final String ADDCHAT = "users/chatadd";
-=======
     public static final String CIRCLELIST = "circles/lists";
+    public static final String CHATLIST = "users/chat_history";
     public static final String ACCEPTFRIENDREQUEST = "friends/accept";
     public static final String DECLINEFRIENDREQUEST = "friends/decline";
-    public static final String FRIENDREQUESTLIST = "friends/requestlists/loginuserid";
     public static final String CIRCLEPOSTLIST = "posts/lists";
     public static final String CIRCLEPOSTLISTADD = "posts/add";
     public static final String CIRCLEPOSTLISTDELET = "posts/delete";
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
+    public static final String FOLLOWING = "Following/add";
+    public static final String COMMENTS = "comments/add";
 
 }

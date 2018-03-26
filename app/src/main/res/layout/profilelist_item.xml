@@ -166,8 +166,5 @@
                 android:src="@drawable/heart" />
         </LinearLayout>
     </LinearLayout>
-<<<<<<< HEAD
-=======
 
->>>>>>> 7a229364e04a7f07edcebd5859c752759a0f714d
 </LinearLayout>

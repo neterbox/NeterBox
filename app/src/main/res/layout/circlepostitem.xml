@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -117,26 +118,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_30sdp"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_10sdp">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_85sdp"
             android:layout_height="match_parent"
             android:id="@+id/lcircle_post_comment"
             android:background="@drawable/profilecomment">
             <TextView
-                android:layout_width="@dimen/_55sdp"
+                android:layout_width="@dimen/_50sdp"
                 android:layout_height="wrap_content"
                 android:text="Comments"
                 android:id="@+id/tcircle_post_comment"
-                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_7sdp"
                 android:layout_gravity="center"
                 android:textSize="@dimen/_10sdp"/>
             <TextView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="wrap_content"
-                android:text="(12)"
+                tools:text="(12)"
                 android:id="@+id/tcircle_post_commentno"
                 android:textSize="@dimen/_10sdp"
                 android:layout_gravity="center"
@@ -144,24 +145,33 @@
                 />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_75sdp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/lcircle_post_likes"
             android:layout_marginLeft="@dimen/_5sdp"
             android:background="@drawable/profilecomment">
             <TextView
-                android:layout_width="@dimen/_50sdp"
+                android:layout_width="@dimen/_25sdp"
                 android:layout_height="wrap_content"
-                android:text="36 Likes"
-                android:id="@+id/tcircle_post_likes"
-                android:gravity="center"
+                tools:text="12"
+                android:id="@+id/tcircle_post_likesno"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center"
                 android:textSize="@dimen/_10sdp"/>
-
+            <TextView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="wrap_content"
+                android:text="likes"
+                android:id="@+id/tcircle_post_like"
+                android:textSize="@dimen/_10sdp"
+                android:layout_gravity="center"
+                />
             <ImageView
                 android:layout_width="@dimen/_15sdp"
                 android:id="@+id/icircle_post_likes"
                 android:layout_height="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_4sdp"
                 android:src="@drawable/heart" />
 
         </LinearLayout>
@@ -189,7 +199,7 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:background="@drawable/profilecomment">
             <TextView
-                android:layout_width="@dimen/_50sdp"
+                android:layout_width="@dimen/_40sdp"
                 android:layout_height="wrap_content"
                 android:text="Channel"
                 android:id="@+id/tcircle_post_channel"
@@ -197,7 +207,7 @@
                 android:textSize="@dimen/_10sdp"/>
 
             <ImageView
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="@dimen/_10sdp"
                 android:id="@+id/icircle_post_share"
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/shareoption" />

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.neterbox.customadapter.Search_Friend_Adapter;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
 import com.neterbox.jsonpojo.friend_list.FriendListPojo;
@@ -109,8 +111,16 @@ public class FriendList extends Activity {
                 if (response.body().getStatus().equals("Success")) {
                     dialog.dismiss();
                     friendListData = response.body().getData();
+                    Log.e("friendlist_data",new Gson().toJson(friendListData));
                     Search_Friend_Adapter adapter = new Search_Friend_Adapter(activity, friendListData);
                     listview.setAdapter(adapter);
+                    for (int i=0;i<friendListData.size();i++)
+                    {
+                        Log.e("QBID",friendListData.get(i).getReceiver().getQuickbloxId());
+
+                        sessionmanager.createSession_frienddata(friendListData.get(i));
+                    }
+
 //                    Intent i = new Intent(FriendRequestList.this, FriendListPojo.class);
 //                    // i.putExtra("login_name",response.body().getData().getUser().getName());
 //                    startActivity(i);
