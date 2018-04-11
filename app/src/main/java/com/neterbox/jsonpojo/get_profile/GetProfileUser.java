@@ -3,11 +3,14 @@ package com.neterbox.jsonpojo.get_profile;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by DeLL on 14-02-2018.
  */
 
 public class GetProfileUser {
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -65,6 +68,24 @@ public class GetProfileUser {
     @SerializedName("modified")
     @Expose
     private String modified;
+    @SerializedName("FriendCount")
+    @Expose
+    private Integer friendCount;
+    @SerializedName("FollowerCount")
+    @Expose
+    private Integer followerCount;
+    @SerializedName("FollowingCount")
+    @Expose
+    private Integer followingCount;
+    @SerializedName("Posetdetail")
+    @Expose
+    private List<GetProfilePostdetail> posetdetail = null;
+    @SerializedName("PostLike")
+    @Expose
+    private List<GetProfilePostLike> postLike = null;
+    @SerializedName("Comment")
+    @Expose
+    private List<GetProfileComment> comment = null;
 
     public String getId() {
         return id;
@@ -218,5 +239,51 @@ public class GetProfileUser {
         this.modified = modified;
     }
 
+    public Integer getFriendCount() {
+        return friendCount;
+    }
 
+    public void setFriendCount(Integer friendCount) {
+        this.friendCount = friendCount;
+    }
+
+    public Integer getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(Integer followerCount) {
+        this.followerCount = followerCount;
+    }
+
+    public Integer getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(Integer followingCount) {
+        this.followingCount = followingCount;
+    }
+
+    public List<GetProfilePostdetail> getPosetdetail() {
+        return posetdetail;
+    }
+
+    public void setPosetdetail(List<GetProfilePostdetail> posetdetail) {
+        this.posetdetail = posetdetail;
+    }
+
+    public List<GetProfilePostLike> getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(List<GetProfilePostLike> postLike) {
+        this.postLike = postLike;
+    }
+
+    public List<GetProfileComment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<GetProfileComment> comment) {
+        this.comment = comment;
+    }
 }

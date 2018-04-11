@@ -1,40 +1,38 @@
 package com.neterbox;
 
 import android.app.Activity;
-import android.content.ContentUris;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.customadapter.AttachmentPreviewAdapter;
-import com.neterbox.jsonpojo.friend_list.FriendListDatum;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.qb.PaginationHistoryListener;
 import com.neterbox.qb.QbChatDialogMessageListenerImp;
@@ -42,37 +40,34 @@ import com.neterbox.qb.QbDialogHolder;
 import com.neterbox.qb.VerboseQbChatConnectionListener;
 import com.neterbox.qb.adapter.ChatAdapter;
 import com.neterbox.qb.widget.AttachmentPreviewAdapterView;
+import com.neterbox.utils.Constants;
 import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
+import com.neterbox.utils.Validators;
 import com.quickblox.auth.session.QBSettings;
 import com.quickblox.chat.QBChatService;
-import com.quickblox.chat.QBRoster;
-import com.quickblox.chat.listeners.QBRosterListener;
-import com.quickblox.chat.listeners.QBSubscriptionListener;
 import com.quickblox.chat.model.QBAttachment;
 import com.quickblox.chat.model.QBChatDialog;
 import com.quickblox.chat.model.QBChatMessage;
-import com.quickblox.chat.model.QBDialogType;
-import com.quickblox.chat.model.QBPresence;
-import com.quickblox.chat.model.QBRosterEntry;
-import com.quickblox.content.QBContent;
-import com.quickblox.content.model.QBFile;
 import com.quickblox.core.QBEntityCallback;
+import com.quickblox.core.QBProgressCallback;
 import com.quickblox.core.ServiceZone;
 import com.quickblox.core.exception.QBResponseException;
 import com.quickblox.sample.core.ui.dialog.ProgressDialogFragment;
 import com.quickblox.sample.core.utils.Toaster;
 import com.quickblox.sample.core.utils.imagepick.ImagePickHelper;
 import com.quickblox.users.model.QBUser;
+import com.sandrios.sandriosCamera.internal.SandriosCamera;
+import com.sandrios.sandriosCamera.internal.configuration.CameraConfiguration;
+import com.yalantis.ucrop.util.FileUtils;
+
 
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.SmackException;
-import org.jivesoftware.smack.XMPPException;
 
-import java.io.IOException;
-import java.io.InputStream;
+
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -81,20 +76,26 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class ChatBox extends AppCompatActivity {
 
-    ImageView ileft, iright, button_chat_attachment, ichatyellow, icircle_video, ilocation, icontact, button_chat_send;
+    ImageView ileft, button_chat_attachment, ichatyellow, icircle_video, ilocation, icontact, button_chat_send;
     TextView title;
-    //    style="@style/MessageContentContainerStyle"
     Sessionmanager sessionmanager;
     CircleImageView image;
-    LinearLayout lpost_upload_option;
+    RelativeLayout lpost_upload_option;
     String friendname;
     String friendprofile;
+    Button blocation_share;
+    String group_name, group_pic;
 
     Context context;
-    public static final int CAMERA_REQUEST = 1;
-    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 12;
-    static final int VIDEO_CAPTURE = 1;
-    
+    LinearLayout layout_chat_send_container, ll_chat;
+    int sdk = Build.VERSION.SDK_INT;
+
+    private String image_path = "", cv_path = "", pasteText;
+    public static final int GALLARY_REQUEST = 2;
+    public static final int CAMERA_REQUEST = 2;
+    public static final int VIDEO_REQUEST = 3;
+
+    File myFile;
     // TODO : CONTACT IMPLEMENTATION
 
     private static final int REQUEST_CODE_PICK_CONTACTS = 1;
@@ -151,11 +152,15 @@ public class ChatBox extends AppCompatActivity {
         title.setText(friendname);
         Glide.with(context).load(friendprofile).placeholder(R.drawable.dummy).into(image);
 
+        Helper.checkStoragePermission(context);
+        Helper.requestAudioPermissions(context);
+        Helper.checkCameraPermission(context);
+
         // TODO : LOCATION IMPLEMENTATION
 
-        if (!hasGps()) {
-            Log.d(TAG, "This hardware doesn't have GPS.");
-        }
+//        if (!hasGps()) {
+//            Log.d(TAG, "This hardware doesn't have GPS.");
+//        }
 
 
         // TODO : Chat implementation
@@ -185,40 +190,10 @@ public class ChatBox extends AppCompatActivity {
         }
     }
 
-    private void checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED
-                ) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                    android.Manifest.permission.CAMERA)
-                    ) {
-                ActivityCompat.requestPermissions((Activity) context,
-                        new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions((Activity) context,
-                        new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
-            }
-        }
-    }
-
-    private void dispatchTakeVideoIntent() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_VIDEO_CAPTURE);
-        startActivityForResult(intent, VIDEO_CAPTURE);
-    }
-
-
-    private void takePhotoFromCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, CAMERA_REQUEST);
-    }
 
     public void idMapping() {
         ileft = (ImageView) findViewById(R.id.ileft);
-        iright = (ImageView) findViewById(R.id.iright);
+//        iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
         ichatyellow = (ImageView) findViewById(R.id.ichatyellow);
         icircle_video = (ImageView) findViewById(R.id.icircle_video);
@@ -226,14 +201,25 @@ public class ChatBox extends AppCompatActivity {
         ilocation = (ImageView) findViewById(R.id.ilocation);
         button_chat_attachment = (ImageView) findViewById(R.id.button_chat_attachment);
         button_chat_send = (ImageView) findViewById(R.id.button_chat_send);
-        lpost_upload_option = (LinearLayout) findViewById(R.id.lpost_upload_option);
+        lpost_upload_option = (RelativeLayout) findViewById(R.id.lpost_upload_option);
+        layout_chat_send_container = (LinearLayout) findViewById(R.id.layout_chat_send_container);
         messagesListView = (StickyListHeadersListView) findViewById(R.id.list_chat_messages);
         messageEditText = (EditText) findViewById(R.id.edit_chat_message);
+        blocation_share = (Button) findViewById(R.id.blocation_share);
         progressBar = (ProgressBar) findViewById(R.id.progress_chat);
         attachmentPreviewContainerLayout = (LinearLayout) findViewById(R.id.layout_attachment_preview_container);
         image = (CircleImageView) findViewById(R.id.image);
         ileft.setImageResource(R.drawable.back);
-        iright.setVisibility(View.INVISIBLE);
+//        iright.setVisibility(View.GONE);
+    }
+
+    //TODO For Check Validations
+    private boolean validationChecked() {
+        if (Validators.isEmpty(messageEditText.getText().toString())) {
+            Helper.showToastMessage(context, getString(R.string.empty_message));
+            return false;
+        }
+        return true;
     }
 
     public void Listener() {
@@ -246,43 +232,48 @@ public class ChatBox extends AppCompatActivity {
             }
         });
 
-        button_chat_attachment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                lpost_upload_option.setVisibility(View.VISIBLE);
-            }
-        });
-
-        ichatyellow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Camera", Toast.LENGTH_SHORT).show();
-                camera();
-            }
-        });
-        icircle_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                video();
-            }
-        });
-
-        icontact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         ilocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(ChatBox.this, Activiy_Map.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
+        messageEditText.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                // TODO Auto-generated method stub
+                if (sdk < Build.VERSION_CODES.HONEYCOMB) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    pasteText = clipboard.getText().toString();
+                    messageEditText.setText(pasteText);
+
+                } else {
+
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    if (clipboard.hasPrimaryClip() == true) {
+                        ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                        pasteText = item.getText().toString();
+                        messageEditText.setText(pasteText);
+
+                    } else {
+
+//                        Toast.makeText(getApplicationContext(), "Nothing to Paste", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+                return false;
             }
         });
 
         button_chat_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 onSendChatClick(messageEditText.getText().toString().trim());
             }
         });
@@ -293,8 +284,95 @@ public class ChatBox extends AppCompatActivity {
                 onClickSelectContact(v);
             }
         });
+
+        ilocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ChatBox.this, Activiy_Map.class);
+                startActivity(i);
+            }
+        });
+
+
+        button_chat_attachment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    layout_chat_send_container.setVisibility(View.GONE);
+                    lpost_upload_option.setVisibility(View.VISIBLE);
+                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
+                    } else {
+                        /*TODO For Storage & Camera Permission*/
+                        Helper.checkStoragePermission(context);
+                        Helper.checkCameraPermission(context);
+                    }
+                } else {
+
+                    showPictureDialog();
+
+                }
+            }
+        });
+
+        ichatyellow.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        layout_chat_send_container.setVisibility(View.VISIBLE);
+                        lpost_upload_option.setVisibility(View.GONE);
+
+                        showPictureDialog();
+
+
+                    } else {
+                        //Request Location Permission
+                        Helper.checkStoragePermission(context);
+                        Helper.checkCameraPermission(context);
+
+                    }
+                } else {
+                    showPictureDialog();
+                }
+            }
+        });
+
+        icircle_video.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        layout_chat_send_container.setVisibility(View.VISIBLE);
+                        lpost_upload_option.setVisibility(View.GONE);
+
+
+                        takeVideo();
+
+                    } else {
+                        //Request Location Permission
+                        Helper.checkStoragePermission(context);
+                        Helper.requestAudioPermissions(context);
+                        Helper.checkCameraPermission(context);
+                    }
+                } else {
+                    takeVideo();
+                }
+            }
+        });
     }
-/*
+
+
+    /*
     @Override
     public void onBackPressed() {
         Intent i=new Intent(context,ChatModule.class);
@@ -302,29 +380,6 @@ public class ChatBox extends AppCompatActivity {
         finish();
     }*/
 
-    public void camera() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                checkCameraPermission();
-            } else {
-                takePhotoFromCamera();
-            }
-        }
-    }
-
-    public void video() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                checkCameraPermission();
-            } else {
-                dispatchTakeVideoIntent();
-            }
-        }
-    }
 
     // TODO : Chat Implementation
 
@@ -347,6 +402,11 @@ public class ChatBox extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ChatHelper.getInstance().addConnectionListener(chatConnectionListener);
+
+        if (!Constants.shareLoc.equalsIgnoreCase("")) {
+            onSendChatClick(Constants.shareLoc);
+            Constants.shareLoc = "";
+        }
     }
 
     @Override
@@ -476,6 +536,7 @@ public class ChatBox extends AppCompatActivity {
         }
     }
 
+
     public void onAttachmentsClick(View view) {
         new ImagePickHelper().pickAnImage(this, REQUEST_CODE_ATTACHMENT);
     }
@@ -528,9 +589,6 @@ public class ChatBox extends AppCompatActivity {
         } else {
             chatMessage.setBody(text);
             chatMessage.setSaveToHistory(true);
-//            chatMessage.setSenderId(44997612);
-//            chatMessage.setRecipientId(44813576);
-//            chatMessage.setDialogId("5aa67dd326f939a709a78a40");
         }
         chatMessage.setProperty(PROPERTY_SAVE_TO_HISTORY, "1");
         chatMessage.setDateSent(System.currentTimeMillis() / 1000);
@@ -685,6 +743,7 @@ public class ChatBox extends AppCompatActivity {
             }
         });
     }
+
     private void scrollMessageListDown() {
         messagesListView.setSelection(messagesListView.getCount() - 1);
     }
@@ -763,73 +822,143 @@ public class ChatBox extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_PICK_CONTACTS && resultCode == RESULT_OK) {
             Log.d(TAG, "Response: " + data.toString());
             uriContact = data.getData();
+        } else if (resultCode == this.RESULT_CANCELED) {
+            return;
+        }
+        //Todo select Images /
+        else if (requestCode == GALLARY_REQUEST) {
+            if (data != null) {
+                Uri selectedImage = data.getData();
+                image_path = FileUtils.getPath(context, selectedImage);
 
-//            retrieveContactName();
-//            retrieveContactNumber();
+                File f = new File(image_path);
+                ChatHelper.getInstance().loadFileAsAttachment(f, new QBEntityCallback<QBAttachment>() {
+                    @Override
+                    public void onSuccess(QBAttachment result, Bundle params) {
+                        sendChatMessage(null, result);
+                    }
+
+                    @Override
+                    public void onError(QBResponseException e) {
+                        Log.e("error", e.getMessage());
+                    }
+                }, new QBProgressCallback() {
+                    @Override
+                    public void onProgressUpdate(final int progress) {
+
+                    }
+                });
+            }
+        }
+        //Todo Capture Images /
+        else if (requestCode == CAMERA_REQUEST) {
+//            hidden_panel.setVisibility(View.GONE);
+            String filePath = data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
+            myFile = new File(filePath);
+
+            ChatHelper.getInstance().loadFileAsAttachment(myFile, new QBEntityCallback<QBAttachment>() {
+                @Override
+                public void onSuccess(QBAttachment result, Bundle params) {
+                    sendChatMessage(null, result);
+                }
+
+                @Override
+                public void onError(QBResponseException e) {
+                    Log.e("error", e.getMessage());
+                }
+            }, new QBProgressCallback() {
+                @Override
+                public void onProgressUpdate(final int progress) {
+
+                }
+            });
+        }
+        //TODO Capture Video
+        else if (requestCode == VIDEO_REQUEST) {
+            // Log.e("File", "" + data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH));
+            //   Toast.makeText(context, filePath, Toast.LENGTH_SHORT).show();
+
+            String filePath = data.getStringExtra(CameraConfiguration.Arguments.FILE_PATH);
+            myFile = new File(filePath);
+            ChatHelper.getInstance().loadFileAsAttachmentVideo(myFile, new QBEntityCallback<QBAttachment>() {
+                @Override
+                public void onSuccess(QBAttachment result, Bundle params) {
+                    sendChatMessage(null, result);
+                }
+
+                @Override
+                public void onError(QBResponseException e) {
+                    Log.e("error", e.getMessage());
+                }
+            }, new QBProgressCallback() {
+                @Override
+                public void onProgressUpdate(final int progress) {
+
+                }
+            });
 
         }
+//                if (requestCode == PLACE_PICKER_REQUEST) {
+//                    if (resultCode == RESULT_OK) {
+//                        Place place = PlacePicker.getPlace(data, context);
+//                        String toastMsg = String.format("Place: %s", place.getName());
+//                        Toast.makeText(context, toastMsg, Toast.LENGTH_LONG).show();
+//                        title.setText((CharSequence) data);
+//                    }
+//
+//                }
     }
 
-    private void retrieveContactNumber() {
 
-        String contactNumber = null;
+//    private boolean hasGps() {
+//        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+//    }
 
-        // getting contacts ID
-        Cursor cursorID = getContentResolver().query(uriContact,
-                new String[]{ContactsContract.Contacts._ID},
-                null, null, null);
+    private void showPictureDialog() {
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle("Select Action");
 
-        if (cursorID.moveToFirst()) {
-
-            contactID = cursorID.getString(cursorID.getColumnIndex(ContactsContract.Contacts._ID));
-        }
-
-        cursorID.close();
-
-        Log.d(TAG, "Contact ID: " + contactID);
-
-        // Using the contact ID now we will get contact phone number
-        Cursor cursorPhone = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
-
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE + " = " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
-
-                new String[]{contactID},
-                null);
-
-        if (cursorPhone.moveToFirst()) {
-            contactNumber = cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-        }
-
-        cursorPhone.close();
-
-        Log.d(TAG, "Contact Phone Number: " + contactNumber);
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera"};
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                choosePhotoFromGallary();
+                                break;
+                            case 1:
+                                takePhotoFromCamera();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
     }
 
-    private void retrieveContactName() {
-
-        String contactName = null;
-
-        // querying contact data store
-        Cursor cursor = getContentResolver().query(uriContact, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-
-            // DISPLAY_NAME = The display name for the contact.
-            // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
-
-            contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-        }
-
-        cursor.close();
-
-        Log.d(TAG, "Contact Name: " + contactName);
-
-    }
-    private boolean hasGps() {
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+    public void choosePhotoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Toast.makeText(context, "choose photo from gallary", Toast.LENGTH_SHORT).show();
+        startActivityForResult(galleryIntent, GALLARY_REQUEST);
     }
 
+    private void takePhotoFromCamera() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA_REQUEST);
+
+        Toast.makeText(context, "takePhotoFromCamera", Toast.LENGTH_SHORT).show();
+    }
+
+    private void takeVideo() {
+        new SandriosCamera(ChatBox.this, VIDEO_REQUEST)
+                .setShowPicker(true)
+                .setShowPickerType(CameraConfiguration.VIDEO)
+                .setVideoFileSize(80)
+                .setMediaAction(CameraConfiguration.MEDIA_ACTION_BOTH)
+                .enableImageCropping(true)
+                .launchCamera();
+    }
 }

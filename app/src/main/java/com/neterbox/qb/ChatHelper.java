@@ -457,7 +457,6 @@ public class ChatHelper {
             e.printStackTrace();
         }
 
-
     }
 
 
@@ -505,7 +504,5 @@ public class ChatHelper {
             e.printStackTrace();
         }
 
-
-    }
-
+   }
 }

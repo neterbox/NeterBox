@@ -68,6 +68,8 @@ public class FriendListReceiver implements Serializable {
     @Expose
     private String modified;
 
+    private boolean isSelected;
+
     public String getId() {
         return id;
     }
@@ -216,8 +218,12 @@ public class FriendListReceiver implements Serializable {
         return modified;
     }
 
-    public void setModified(String modified) {
-        this.modified = modified;
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
 }

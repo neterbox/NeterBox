@@ -1,11 +1,14 @@
 package com.neterbox.retrofit;
 
 import com.neterbox.jsonpojo.AddChat.AddChat;
+import com.neterbox.jsonpojo.ChangePassword.ChangePassword;
 import com.neterbox.jsonpojo.CirclePostadd.CirclePostAddPojo;
 import com.neterbox.jsonpojo.Decline_friend_request.DeclineFriendRequest;
+import com.neterbox.jsonpojo.Forgot_Password.ForgotPassword;
 import com.neterbox.jsonpojo.chatlist.ChatList;
 import com.neterbox.jsonpojo.comment.Comment;
-import com.neterbox.jsonpojo.following.Following;
+import com.neterbox.jsonpojo.followerlist.Followerlist;
+import com.neterbox.jsonpojo.followingadd.Following;
 import com.neterbox.jsonpojo.friend_requestlist.FrndReqListModel;
 import com.neterbox.jsonpojo.Login.Login;
 import com.neterbox.jsonpojo.accept_friend_request.AcceptFriendRequest;
@@ -24,6 +27,7 @@ import com.neterbox.jsonpojo.register.RegistrationPojo;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
 import com.neterbox.jsonpojo.state.State;
 import com.neterbox.jsonpojo.unlike.Unlike;
+import com.neterbox.jsonpojo.updateqb.UpdateQB;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.utils.ServerUrl;
 
@@ -166,7 +170,7 @@ public interface APIInterface {
     @POST(ServerUrl.CIRCLEPOSTLISTADD)
     Call<CirclePostAddPojo> circlepostaddpojocall(@Part("user_id") RequestBody user_id,
                                                   @Part("circle_id") RequestBody circle_id,
-                                                  @Part("counties_id") RequestBody countries_id,
+                                                  @Part("countries_id") RequestBody countries_id,
                                                   @Part("state_id") RequestBody state_id,
                                                   @Part("comments") RequestBody comments,
                                                   @Part MultipartBody.Part post_files);
@@ -205,6 +209,27 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST(ServerUrl.FOLLOWING)
     Call<Following> followingpojo(@Field("follower_id") String follower_id,
-                                  @Field("following_id") String following_id);
+                        @Field("following_id") String following_id);
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.UPDATEQBID)
+    Call<UpdateQB> updateqbidpojo(@Field("sender_id") String sender_id,
+                                 @Field("sender_qb_id") String sender_qb_id);
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.FOLLOWERLIST)
+    Call<Followerlist> followerlistpojo(@Field("follower_id") String follower_id);
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.CHANGEPASSWORD)
+    Call<ChangePassword> callApi_ChangePassword(@Field("id") String id, @Field("password") String password);
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @POST(ServerUrl.FORGOTPASSWORD)
+    Call<ForgotPassword> forgotPojoCall(@Field("email") String email);
 
 }

@@ -6,15 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
-import com.neterbox.jsonpojo.following.FollowingDatum;
+import com.neterbox.jsonpojo.followerlist.Followerlist;
+import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
+import com.neterbox.jsonpojo.followingadd.FollowingDatum;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,25 +24,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Followers_Adapter extends BaseAdapter {
     Activity activity;
-    private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
-    List<FollowingDatum> followingDatumList;
+    List<FollowerlistDatum> followerlistData;
 
-    public Followers_Adapter(Activity a,List<FollowingDatum> followingDatumList){
-        this.activity=a;
-       this.followingDatumList = followingDatumList;
-        inflater=(LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+    public Followers_Adapter(Activity activity, List<FollowerlistDatum> followerlistData) {
+
+        this.activity=activity;
+        this.followerlistData=followerlistData;
+        inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+
+    }
+
+
+    @Override
+    public int getCount()
+    {
+        return followerlistData.size();
     }
 
     @Override
-    public int getCount() {
-        return followingDatumList.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return followingDatumList.get(i);
+    public Object getItem(int i)
+    {
+        return followerlistData.get(i);
     }
 
     @Override
@@ -52,37 +55,36 @@ public class Followers_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-
+    public View getView(int i, View convertView, ViewGroup viewGroup) {
         final MyViewHolder viewHolder;
 
-        if (view == null) {
-            view = inflater.inflate(R.layout.followerslistitem, viewGroup, false);
-            viewHolder = new MyViewHolder(view);
-            view.setTag(viewHolder);
-        } else {
-            viewHolder = (MyViewHolder) view.getTag();
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.friendlistitem,viewGroup, false);
+            viewHolder = new MyViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        else
+        {
+            viewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        viewHolder.titem1.setText(followingDatumList.get(i).getFollowerDetail().getName());
-        viewHolder.textView1.setText(followingDatumList.get(i).getFollowerDetail().getTitle());
-        Glide.with(activity).load(followingDatumList.get(i).getFollowerDetail().getProfilePic()).into(viewHolder.ifollowersprofile);
-        return view;
+            viewHolder.titem3.setText(followerlistData.get(i).getFollowingDetail().getName());
+            viewHolder.textView3.setText(followerlistData.get(i).getFollowingDetail().getCompany());
+            Glide.with(activity).load(followerlistData.get(i).getFollowingDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifriendprofile);
+        return convertView;
     }
 
-    class MyViewHolder {
-        public TextView titem1, textView1;
-        public CircleImageView ifollowersprofile;
-        public LinearLayout lsearchfollowersprofile;
-        public ImageView followersback;
+    static class MyViewHolder
+    {
+        CircleImageView ifriendprofile;
+        TextView titem3,textView3;
 
-        public MyViewHolder(View item) {
-            titem1 = (TextView) item.findViewById(R.id.titem1);
-            textView1 = (TextView) item.findViewById(R.id.textView1);
-            ifollowersprofile = (CircleImageView) item.findViewById(R.id.ifollowersprofile);
-            lsearchfollowersprofile = (LinearLayout) item.findViewById(R.id.lsearchfollowersprofile);
-            followersback = (ImageView) item.findViewById(R.id.followersback);
-
+        public MyViewHolder(View item)
+        {
+            titem3 = (TextView)item.findViewById(R.id.titem3);
+            textView3 = (TextView)item.findViewById(R.id.textView3);
+            ifriendprofile = (CircleImageView) item.findViewById(R.id.ifriendprofile);
         }
     }
     }

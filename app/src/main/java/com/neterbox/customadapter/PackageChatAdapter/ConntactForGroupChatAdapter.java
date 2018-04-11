@@ -76,8 +76,13 @@ public class ConntactForGroupChatAdapter extends BaseAdapter {
         } else
             holder = (ViewHolder) v.getTag();
 
-        holder.tonechatitem.setText(chatListDatum.get(i).getReceiver().getName());
-        Glide.with(context).load(chatListDatum.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
+        if(holder.tonechatitem != null)
+        {
+            holder.tonechatitem.setText(chatListDatum.get(i).getReceiver().getName());
+        }
+      if(holder.icontactsforone != null){
+          Glide.with(context).load(chatListDatum.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
+      }
         return v;
     }
 }

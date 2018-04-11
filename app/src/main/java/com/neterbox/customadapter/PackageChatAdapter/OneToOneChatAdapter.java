@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.neterbox.R;
 import com.neterbox.customadapter.Circle_Adapter;
 import com.neterbox.jsonpojo.chatlist.ChatList;
@@ -38,6 +39,7 @@ public class OneToOneChatAdapter extends BaseAdapter{
     public OneToOneChatAdapter(Context a, List<ChatListDatum> chatListDatum) {
         this.chatListDatum = chatListDatum;
         this.context = a;
+        Log.e("CHATLIST DATA",new Gson().toJson(chatListDatum));
     }
 
 
@@ -79,8 +81,12 @@ public class OneToOneChatAdapter extends BaseAdapter{
         } else
             holder = (ConntactForGroupChatAdapter.ViewHolder) v.getTag();
 
-        holder.tonechatitem.setText(chatListDatum.get(i).getReceiver().getName());
-        Glide.with(context).load(chatListDatum.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
+        if(holder.tonechatitem != null){
+            holder.tonechatitem.setText(chatListDatum.get(i).getReceiver().getName());
+        }
+        if(holder.icontactsforone != null){
+            Glide.with(context).load(chatListDatum.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
+        }
         return v;
     }
 }

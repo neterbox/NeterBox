@@ -1,48 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:id="@+id/root"
+    style="@style/ListItem"
+    android:paddingLeft="@dimen/list_item_side_margin"
+    android:paddingRight="@dimen/list_item_side_margin">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/lchatforone"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:paddingLeft="@dimen/_12sdp"-->
+        <!--android:layout_height="wrap_content">-->
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tonechatitem"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Room1"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:padding="2dp"-->
+                <!--android:textSize="@dimen/_12sdp"-->
+                <!--android:textColor="#000000" />-->
+        <!--</LinearLayout>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ionechatback"-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:paddingRight="@dimen/_10sdp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/friendlistarrow" />-->
+    <!--</LinearLayout>-->
+<!--</LinearLayout>-->
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:id="@+id/lchatforone"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/_12sdp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/icontactsforone"
-            android:padding="@dimen/_5sdp"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:src="@drawable/charmis"
-            app:civ_border_color="#000000" />
+        android:id="@+id/dialogImageView"
+        android:padding="@dimen/_5sdp"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:src="@drawable/charmis"
+        app:civ_border_color="#000000" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+            style="@style/WeightWidth"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tonechatitem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room1"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="2dp"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="#000000" />
+                android:id="@+id/text_dialog_name"
+                style="@style/DialogNameStyle"
+                tools:text="Room name"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/text_dialog_last_message"
+                style="@style/DialogLastMessageStyle"
+                tools:text="Long last message to see how margin on the right side works" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ionechatback"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:paddingRight="@dimen/_10sdp"
-            android:layout_gravity="center"
-            android:src="@drawable/friendlistarrow" />
+        <TextView
+            android:id="@+id/text_dialog_unread_count"
+            style="@style/DialogUnreadCounterStyle"
+            android:visibility="visible"
+            tools:text="4" />
+
+
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/header_color" />
+</LinearLayout>
+
 </LinearLayout>

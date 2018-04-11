@@ -1,4 +1,4 @@
-package com.neterbox.jsonpojo.following;
+package com.neterbox.jsonpojo.followingadd;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

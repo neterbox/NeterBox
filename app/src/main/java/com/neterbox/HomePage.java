@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.updateqb.UpdateQB;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.retrofit.APIClient;
@@ -88,6 +89,7 @@ public class HomePage extends Activity {
         sessionmanager = new Sessionmanager(this);
         sharedPreferences = context.getSharedPreferences(Constants.mypreference, Context.MODE_PRIVATE);
         initquickblox();
+        updateqbid(sessionmanager.getValue(Sessionmanager.Id),sessionmanager.getValue(Sessionmanager.Quickbox_Id));
         this.Loginname =Loginname;
 
         taddfriend = (TextView) findViewById(R.id.taddfriend);
@@ -415,7 +417,6 @@ public class HomePage extends Activity {
                         new Sessionmanager(HomePage.this).putSessionValue(Sessionmanager.profile,response.body().getData().getUser().getProfilePic());
 
                         progressDialog.dismiss();
-
                         Glide.with(context).load(response.body().getData().getUser().getProfilePic()).into(profile_image);
                     } else {
                         progressDialog.dismiss();
@@ -435,7 +436,7 @@ public class HomePage extends Activity {
         }
     }
 
-    public void getprofile(String index,String user_id)
+   /* public void getprofile(String index,String user_id)
     {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setCanceledOnTouchOutside(false);
@@ -459,7 +460,7 @@ public class HomePage extends Activity {
             }
         });
 
-    }
+    }*/
 
     public void initquickblox()
     {
@@ -488,7 +489,7 @@ public class HomePage extends Activity {
             public void onSuccess(final QBUser user, Bundle args) {
                 // success
                 sharedPreferences.edit().putString(sessionmanager.Quickbox_Id, String.valueOf(user.getId())).apply();
-                Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
                 Log.e("QB USER ",sessionmanager.Name);
                 Log.e("QBID", ":" +user.getId());
 
@@ -501,12 +502,12 @@ public class HomePage extends Activity {
                     public void onSuccess(Object o, Bundle bundle) {
                         Log.e("obje", ":" + new Gson().toJson(o));
 //                        ProgressDialogFragment.hide(getSupportFragmentManager);
-                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(QBResponseException e) {
-                        Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -514,7 +515,7 @@ public class HomePage extends Activity {
                 ChatHelper.getInstance().login(user, new QBEntityCallback<Void>() {
                     @Override
                     public void onSuccess(Void result, Bundle bundle) {
-                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
 
                         user.setPassword(sessionmanager.getValue(sessionmanager.Password));
                         user.setLogin(sessionmanager.getValue(sessionmanager.Email));
@@ -524,7 +525,7 @@ public class HomePage extends Activity {
                     @Override
                     public void onError(QBResponseException e) {
                         e.printStackTrace();
-                        Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
                     }
                 });
                 SubscribeService.subscribeToPushes(context, true);
@@ -541,9 +542,9 @@ public class HomePage extends Activity {
                     public void onSuccess(final QBUser user, Bundle args) {
                         // success
                         sharedPreferences.edit().putString(sessionmanager.Quickbox_Id, String.valueOf(user.getId())).apply();
-                        Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
-                        Log.e("QB USER ",sessionmanager.Name);
-                        Log.e("QBID", ":" +user.getId());
+//                        Toast.makeText(HomePage.this, "Welcome Quuickblox", Toast.LENGTH_SHORT).show();
+//                        Log.e("QB USER ",sessionmanager.Name);
+//                        Log.e("QBID", ":" +user.getId());
 
                         user.setPassword(sessionmanager.getValue(sessionmanager.Password));
                         user.setLogin(sessionmanager.getValue(sessionmanager.Email));
@@ -552,20 +553,20 @@ public class HomePage extends Activity {
                         chatService.login(user, new QBEntityCallback() {
                             @Override
                             public void onSuccess(Object o, Bundle bundle) {
-                                Log.e("obje", ":" + new Gson().toJson(o));
-                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                                Log.e("obje", ":" + new Gson().toJson(o));
+//                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onError(QBResponseException e) {
-                                Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(HomePage.this, "Error login Progress dialog fragment", Toast.LENGTH_SHORT).show();
                             }
                         });
 
                         ChatHelper.getInstance().login(user, new QBEntityCallback<Void>() {
                             @Override
                             public void onSuccess(Void result, Bundle bundle) {
-                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(HomePage.this, "Progress dialog fragment", Toast.LENGTH_SHORT).show();
                                 user.setPassword(sessionmanager.getValue(sessionmanager.Password));
                                 user.setLogin(sessionmanager.getValue(sessionmanager.Email));
                                 user.setFullName(sessionmanager.getValue(sessionmanager.Name));
@@ -574,7 +575,7 @@ public class HomePage extends Activity {
                             @Override
                             public void onError(QBResponseException e) {
                                 e.printStackTrace();
-                                Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
+  //                              Toast.makeText(HomePage.this, "Error instance Progress dialog fragment", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -587,4 +588,25 @@ public class HomePage extends Activity {
             }
         });
     }
-    }
+    public void updateqbid(String sender_id ,String sender_qb_id){
+
+    Call<UpdateQB> updateQBCall = apiInterface.updateqbidpojo(sender_id, sender_qb_id);
+        updateQBCall.enqueue(new Callback<UpdateQB>() {
+        @Override
+        public void onResponse(Call<UpdateQB> call, Response<UpdateQB> response)
+        {
+            if (response.body().getStatus().equalsIgnoreCase("Success"))
+            {
+                sessionmanager.createSession_updateqb((response.body().getData()));
+            }
+            else
+            {
+                Toast.makeText(HomePage.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        @Override
+        public void onFailure(Call<UpdateQB> call, Throwable t) {
+        }
+    });
+}
+}

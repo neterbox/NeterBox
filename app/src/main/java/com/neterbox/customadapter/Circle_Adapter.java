@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 import com.neterbox.utils.Sessionmanager;
+import com.quickblox.chat.model.QBAttachment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Circle_Adapter extends BaseAdapter {
     Activity activity;
     private LayoutInflater inflater;
-
     List<CircleListDatum> circleList;
     public Circle_Adapter(Activity a,List<CircleListDatum> circleList) {
         this.activity = a;

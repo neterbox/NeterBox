@@ -30,7 +30,12 @@ public class ServerUrl {
     public static final String CIRCLEPOSTLIST = "posts/lists";
     public static final String CIRCLEPOSTLISTADD = "posts/add";
     public static final String CIRCLEPOSTLISTDELET = "posts/delete";
-    public static final String FOLLOWING = "Following/add";
+    public static final String FOLLOWING = "Followers/add";
     public static final String COMMENTS = "comments/add";
+    public static final String UPDATEQBID = "users/updateqbid";
+    public static final String FOLLOWERLIST = "Followers/lists";
+    public static final String CHANGEPASSWORD = "users/changepassword";
+    public static final String FORGOTPASSWORD = "users/forgotpassword";
+
 
 }

@@ -1,13 +1,9 @@
-package com.neterbox.jsonpojo.following;
+package com.neterbox.jsonpojo.ChangePassword;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by DeLL on 20-03-2018.
- */
-
-public class FollowerDetails {
+public class Changepassword_user {
 
     @SerializedName("id")
     @Expose
@@ -218,5 +214,4 @@ public class FollowerDetails {
     public void setModified(String modified) {
         this.modified = modified;
     }
-
 }

@@ -27,7 +27,6 @@
         android:layout_width="@dimen/_150sdp"
         android:layout_height="match_parent"
         android:text="Alexander"
-        android:layout_marginLeft="@dimen/_15sdp"
         android:gravity="center"
         android:textColor="#ffffff"
         android:textStyle="bold"
@@ -37,7 +36,7 @@
         android:singleLine="true"/>
 
     <ImageView
-        android:id="@+id/iright"
+        android:id="@+id/ivActionImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_20sdp"
         android:layout_gravity="center|right"

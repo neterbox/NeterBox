@@ -59,7 +59,20 @@
     <string name="connection_error">Chat connection has been dropped</string>
     <string name="dialogs_deletion_error">Dialog deletion errors</string>
     <string name="chat_unsupported_type">Unsupported dialog type</string>
+    <string name="chat_attachment">Attachment</string>
+    <string name="google_map_api_key">AIzaSyDaWXCalPdnmISnv_EspDqslPH9morjDJc</string>
 
+    <string name="create_chat">Creating chat…</string>
+
+    <string name="select_users_choose_users">Please, choose at least one participant</string>
+    <string name="empty_message">Please Enter Message</string>
+    <string name="placeholder_username_you">%s (you)</string>
+
+    <string name="email">Email</string>
+    <string name="no_internet">Please check internet connection.</string>
+    <string name="empty_newpwd">Please Enter New Password</string>
+    <string name="empty_oldpwd">Please Enter Old Password</string>
+    <string name="valid_password">Please Enter Valid Password</string>
 
 </resources>
 

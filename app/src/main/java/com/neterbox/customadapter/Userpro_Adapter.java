@@ -16,6 +16,10 @@ import com.bumptech.glide.Glide;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
 import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
+import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
+import com.neterbox.retrofit.APIClient;
+import com.neterbox.retrofit.APIInterface;
+import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +33,27 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Userpro_Adapter extends BaseAdapter {
     Activity activity;
     private ArrayList data;
-    List<GetProfileDatum> getProfileDatumList = new ArrayList<>();
-    private LayoutInflater inflater ;
+    List<GetProfilePostdetail> getProfilePostdetails = new ArrayList<>();
+    private LayoutInflater inflater;
     public Resources res;
+    Sessionmanager sessionmanager;
+//    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
-
-    public Userpro_Adapter(Activity a,List<GetProfileDatum> getProfileDatumList) {
+    public Userpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
         this.activity = a;
-        this.getProfileDatumList=getProfileDatumList;
+        this.getProfilePostdetails = getProfilePostdetails;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+        sessionmanager = new Sessionmanager(activity);
     }
+
     @Override
     public int getCount() {
-        return getProfileDatumList.size();
+        return getProfilePostdetails.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return getProfileDatumList.get(i);
+        return getProfilePostdetails.get(i);
     }
 
     @Override
@@ -57,7 +64,7 @@ public class Userpro_Adapter extends BaseAdapter {
     public static class ViewHolder {
 
         public TextView tlistview_name, tlistview_seen, tlistview_time, tlistview_cap, tlistview_comment, tlistview_likes, tlistview_commentno;
-        public ImageView ilistview_pic,ilistview_likes;
+        public ImageView ilistview_pic, ilistview_likes;
         public CircleImageView listview_profile;
         public LinearLayout llistview_comment, llistview_likes;
     }
@@ -84,15 +91,21 @@ public class Userpro_Adapter extends BaseAdapter {
             holder.llistview_likes = (LinearLayout) v.findViewById(R.id.llistview_likes);
             holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
             v.setTag(holder);
-        }
-        else
-            holder=(ViewHolder)v.getTag();
-        if(!(getProfileDatumList.get(i).getUser().getName().equals("")))
-        {
-            holder.tlistview_name.setText(getProfileDatumList.get(i).getUser().getName());
-        }
-        if(!(getProfileDatumList.get(i).getUser().getProfilePic().equals(""))){
-            Glide.with(activity).load(getProfileDatumList.get(i).getUser().getProfilePic()).placeholder(R.drawable.dummy).into(holder.listview_profile);
+
+            String datetime = getProfilePostdetails.get(i).getPostFile().get(0).getCreated();
+            String[] separated = datetime.split(" ");
+            String date = separated[0];
+            String time = separated[1];
+
+            holder.tlistview_time.setText(time);
+        } else
+            holder = (ViewHolder) v.getTag();
+        if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
+
+            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
+            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+            holder.tlistview_comment.setText(getProfilePostdetails.get(i).getPost().getComments());
+            Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles());
         }
             return v;
         }

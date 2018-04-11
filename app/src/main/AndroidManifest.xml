@@ -15,14 +15,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- Google map liberary: -->
-    <uses-library
-        android:name="com.google.android.maps"
-        tools:ignore="WrongManifestParent" />
+    <!--<uses-library-->
+        <!--android:name="com.google.android.maps"-->
+        <!--tools:ignore="WrongManifestParent" />-->
 
-    <!-- -google map key: -->
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBt43eiX1p44QIaVMC9uqVpZJMh5gtM8Gw" />
 
     <application
         android:allowBackup="true"
@@ -198,11 +194,37 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".GroupChatBox"
+            android:name=".Activiy_Map"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".AttachmentImageActivity" />
-    </application>
+        <activity
+            android:name=".AttachmentImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".MyVideoView"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".Change_password"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Forgot_password"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- google map key: -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDGWcCxK_S1LHZmhhjYdgp2oRV6PMYkl6A" />
+    </application>
 </manifest>

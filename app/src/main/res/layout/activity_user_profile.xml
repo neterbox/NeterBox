@@ -29,7 +29,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_weight="1"
                 android:background="@drawable/profilebg"
                 android:orientation="vertical">
@@ -86,13 +86,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="@dimen/_2sdp">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/luser_likes"
+                    android:id="@+id/luser_following"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -101,53 +101,23 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tuser_likesno"
+                        android:id="@+id/tuser_followingno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        tools:text="556"
                         android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="556" />
 
                     <TextView
-                        android:id="@+id/tuser_likes"
+                        android:id="@+id/tuser_following"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:gravity="center"
-                        android:text="LIKES"
-                        android:textColor="#a1a1a1"
-                        android:textSize="@dimen/_10sdp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/luser_subscribes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tuser_subscribesno"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_50sdp"
-                        android:gravity="center"
-                        tools:text="56"
-                        android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/tuser_subscribes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="SUBSCRIBERS"
+                        android:text="FOLLOWING"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -167,9 +137,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        tools:text="50"
                         android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="50" />
 
                     <TextView
                         android:id="@+id/tuser_followers"
@@ -183,7 +153,37 @@
 
 
                 <LinearLayout
-                    android:id="@+id/luser_postlikes"
+                    android:id="@+id/luser_totalfriend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tuser_friendcount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="56" />
+
+                    <TextView
+                        android:id="@+id/tuser_Friend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="TOTAL FRIEND"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/luser_totalpost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -193,23 +193,23 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tuser_postlikesno"
+                        android:id="@+id/tuser_totalpostno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        tools:text="100"
                         android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="@dimen/_10sdp"
+                        tools:text="100" />
 
                     <TextView
-                        android:id="@+id/tuser_postlikes"
+                        android:id="@+id/tuser_totalpost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:gravity="center"
-                        android:text="POST LIKES"
+                        android:text="TOTAL POST"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -220,7 +220,7 @@
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iuser_profile"
             android:layout_width="@dimen/_90sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
             android:src="@drawable/img1"
             app:civ_border_color="#fff"

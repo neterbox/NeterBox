@@ -16,7 +16,6 @@
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/ifollowersprofile"
-
             android:padding="@dimen/_5sdp"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
@@ -35,7 +34,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Medium Text for check"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:padding="2dp"

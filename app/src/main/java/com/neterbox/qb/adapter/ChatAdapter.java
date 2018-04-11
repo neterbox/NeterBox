@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
@@ -14,7 +12,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -34,6 +31,7 @@ import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 
 
+import com.neterbox.MyVideoView;
 import com.neterbox.R;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.qb.PaginationHistoryListener;
@@ -47,8 +45,6 @@ import com.quickblox.chat.model.QBAttachment;
 import com.quickblox.chat.model.QBChatDialog;
 import com.quickblox.chat.model.QBChatMessage;
 import com.quickblox.chat.model.QBDialogType;
-import com.quickblox.content.QBContent;
-import com.quickblox.core.exception.QBResponseException;
 import com.quickblox.core.helper.CollectionsUtil;
 import com.quickblox.sample.core.ui.adapter.BaseListAdapter;
 import com.quickblox.users.model.QBUser;
@@ -77,7 +73,7 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
     MediaPlayer mp = new MediaPlayer();
 
-    String CopyText,video_url;
+    String CopyText, video_url;
     int sdk = Build.VERSION.SDK_INT;
     Uri video;
 
@@ -92,8 +88,7 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
         sessionmanager = new Sessionmanager(context);
     }
 
-    public void setOnItemInfoExpandedListener(OnItemInfoExpandedListener onItemInfoExpandedListener)
-    {
+    public void setOnItemInfoExpandedListener(OnItemInfoExpandedListener onItemInfoExpandedListener) {
         this.onItemInfoExpandedListener = onItemInfoExpandedListener;
     }
 
@@ -122,7 +117,7 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
             holder.videoView = (ImageView) convertView.findViewById(R.id.videoView);
             holder.llVideo = (LinearLayout) convertView.findViewById(R.id.llVideo);
             holder.llDocument = (LinearLayout) convertView.findViewById(R.id.llDocument);
-            holder.documentView = (ImageView)convertView.findViewById(R.id.documentView);
+            holder.documentView = (ImageView) convertView.findViewById(R.id.documentView);
             holder.tv_doctext = (TextView) convertView.findViewById(R.id.tv_doctext);
 
             convertView.setTag(holder);
@@ -142,8 +137,8 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
             @Override
             public boolean onLongClick(View view) {
                 CopyText = holder.messageBodyTextView.getText().toString();
-                if(CopyText.length() != 0){
-                    if(sdk < Build.VERSION_CODES.HONEYCOMB) {
+                if (CopyText.length() != 0) {
+                    if (sdk < Build.VERSION_CODES.HONEYCOMB) {
 
                         android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                         clipboard.setText(CopyText);
@@ -151,10 +146,11 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
                     } else {
                         android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-                        android.content.ClipData clip = android.content.ClipData.newPlainText("Clip",CopyText);
+                        android.content.ClipData clip = android.content.ClipData.newPlainText("Clip", CopyText);
                         Toast.makeText(context, "Text Copied to Clipboard", Toast.LENGTH_SHORT).show();
                         clipboard.setPrimaryClip(clip);
-                    }}else{
+                    }
+                } else {
                     Toast.makeText(context, "Nothing to Copy", Toast.LENGTH_SHORT).show();
                 }
                 return false;
@@ -338,13 +334,12 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
                 /*TODO For Compared Type is Video Or Not*/
                 else if (attachment.getType().equals(Constants.VIDEO)) {
-                    holder.llContact.setVisibility(View.GONE);
                     holder.messageBodyTextView.setVisibility(View.GONE);
                     holder.attachmentImageView.setVisibility(View.GONE);
                     holder.attachmentProgressBar.setVisibility(View.VISIBLE);
 
                     holder.llVideo.setVisibility(View.VISIBLE);
-
+                    holder.llContact.setVisibility(View.GONE);
                     holder.llDocument.setVisibility(View.GONE);
                     holder.documentView.setVisibility(View.GONE);
                     holder.tv_doctext.setVisibility(View.GONE);
@@ -378,163 +373,32 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
                     video = Uri.parse(attachment.getUrl());
 
-                    if (!attachment.getUrl().startsWith("http://") && !attachment.getUrl().startsWith("https://")) {
-                        video = Uri.parse("http://" + attachment.getUrl());
-                    }
+//                    if (!attachment.getUrl().startsWith("http://") && !attachment.getUrl().startsWith("https://")) {
+//                        video = Uri.parse("http://" + attachment.getUrl());
+//                    }
                     video_url = String.valueOf(video);
-//                    holder.llVideo.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            try
-//                            {
-////                                Intent intent = new Intent(Intent.ACTION_VIEW);
-////                                intent.setDataAndType(video, "video/mp4/3gp");
-////                                context.startActivity(intent);
-//                                // Start NewActivity.class
-//                                Intent myIntent = new Intent(context, VideoViewActivity.class);
-//                                myIntent.putExtra("video",video_url);
-//                                context.startActivity(myIntent);
-//                            }
-//                            catch(Exception e)
-//                            {
-//                                Toast.makeText(context, "No Video Player Found.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
 
-                }
-
-                else if(attachment.getType().equals(Constants.DOCUMENT))
-                {
-                    holder.llContact.setVisibility(View.GONE);
-                    holder.messageBodyTextView.setVisibility(View.GONE);
-                    holder.attachmentImageView.setVisibility(View.GONE);
-                    holder.attachmentProgressBar.setVisibility(View.VISIBLE);
-                    holder.llVideo.setVisibility(View.GONE);
-
-                    holder.llDocument.setVisibility(View.VISIBLE);
-                    holder.documentView.setVisibility(View.VISIBLE);
-                    holder.tv_doctext.setVisibility(View.VISIBLE);
-
-                    holder.attachmentProgressBar.setVisibility(View.GONE);
-
-//                    holder.tv_doctext.setText(attachment.getName());
-//
-//                    if (attachment.getName().contains(".doc") || attachment.getName().contains(".docx"))
-//                    {
-//                        holder.documentView.setImageResource(R.drawable.doc);
-//                    }
-//                    else if (attachment.getName().contains(".pdf"))
-//                    {
-//                        holder.documentView.setImageResource(R.drawable.pdf);
-//                    }
-//                    else if (attachment.getName().contains(".xls") || attachment.getName().contains(".xlsx"))
-//                    {
-//                        holder.documentView.setImageResource(R.drawable.excel);
-//                    }
-//                    else
-//                    {
-//
-//                    }
-
-                    /*Glide.with(context)
-                            .load(R.drawable.attachment)
-                            .listener(new RequestListener<Integer, GlideDrawable>() {
-                                @Override
-                                public boolean onException(Exception e, Integer model, Target<GlideDrawable> target, boolean isFirstResource) {
-                                    e.printStackTrace();
-                                    holder.documentView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                                    holder.attachmentProgressBar.setVisibility(View.GONE);
-                                    return false;
-                                }
-
-                                @Override
-                                public boolean onResourceReady(GlideDrawable resource, Integer model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                                    holder.documentView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                                    holder.attachmentProgressBar.setVisibility(View.GONE);
-                                    return false;
-                                }
-                            })
-                            .override(80, 80)
-                            .dontTransform()
-                            .error(R.drawable.ic_error)
-                            .into(holder.attachmentImageView);*/
-
-                    holder.llDocument.setOnClickListener(new View.OnClickListener() {
+                    holder.llVideo.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
-                            if (attachment.getName().contains(".doc") || attachment.getName().contains(".docx")) {
-                                //TODO doc file
-
-                                Intent intent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(attachment.getUrl()));
-                                intent.setType("application/msword");
-                                PackageManager pm = context.getPackageManager();
-                                List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-                                if (activities.size() > 0) {
-                                    context.startActivity(intent);
-                                } else {
-                                    // Do something else here. Maybe pop up a Dialog or Toast
-                                    Toast.makeText(context, "No Document Viewer found", Toast.LENGTH_SHORT).show();
-                                }
-
-                               /*  Intent intent = new Intent(Intent.ACTION_VIEW);
-                                 intent.setDataAndType(Uri.parse("http://docs.google.com/viewer?url="+attachment.getUrl()),"application/msword");
-                                 context.startActivity(intent);*/
-
-                            }
-                            else if(attachment.getName().contains(".pdf")) {
-                                //TODO PDF file
-
-                                Intent intent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(attachment.getUrl()));
-                                intent.setType("application/pdf");
-                                PackageManager pm = context.getPackageManager();
-                                List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-                                if (activities.size() > 0) {
-                                    context.startActivity(intent);
-                                } else {
-                                    // Do something else here. Maybe pop up a Dialog or Toast
-                                    Toast.makeText(context, "No PDF Viewer found", Toast.LENGTH_SHORT).show();
-                                }
-
-                                 /*Intent intent = new Intent(Intent.ACTION_VIEW);
-                                 intent.setDataAndType(Uri.parse(attachment.getUrl()),"application/pdf");
-                                 context.startActivity(intent);*/
-//                                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(attachment.getUrl())));
-                            }
-                            else if(attachment.getName().contains(".xls") || attachment.getName().contains(".xlsx")) {
-                                //TODO Excel file
-
-                                 /*Intent intent = new Intent(Intent.ACTION_VIEW);
-                                 intent.setDataAndType(Uri.parse(attachment.getUrl()),"application/vnd.ms-excel");
-                                 context.startActivity(intent);*/
-
-                                Intent intent = new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(attachment.getUrl()));
-                                intent.setType("application/vnd.ms-excel");
-                                PackageManager pm = context.getPackageManager();
-                                List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-                                if (activities.size() > 0) {
-                                    context.startActivity(intent);
-                                } else {
-                                    // Do something else here. Maybe pop up a Dialog or Toast
-                                    Toast.makeText(context, "No Excel Viewer found", Toast.LENGTH_SHORT).show();
-                                }
+                            try {
+                                Intent myIntent = new Intent(context, MyVideoView.class);
+                                myIntent.setDataAndType(video, "video/mp4/3gp");
+                                myIntent.putExtra("video", video_url);
+                                context.startActivity(myIntent);
+                            } catch (Exception e) {
+                                Toast.makeText(context, "No Video Player Found.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
 
-        }
-        else {
+        } else {
             holder.messageBodyTextView.setText(chatMessage.getBody());
             holder.messageBodyTextView.setVisibility(View.VISIBLE);
             holder.attachmentImageView.setVisibility(View.GONE);
@@ -553,12 +417,10 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
             mp.prepare();
             mp.start();
 
-
         } catch (Exception e) {
             Log.d(TAG, "SecurityException: " + e.getMessage());
         }
     }
-
     protected void stopPlaying() {
         // If media player is not null then try to stop it
         if (mp != null) {
@@ -709,21 +571,22 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
     private static class ViewHolder {
         public TextView messageBodyTextView;
-        public TextView messageAuthorTextView,tv_doctext;
+        public TextView messageAuthorTextView, tv_doctext;
         public TextView messageInfoTextView;
         public LinearLayout messageContainerLayout;
         public RelativeLayout messageBodyContainerLayout;
         public MaskedImageView attachmentImageView;
-        public CircleImageView receiver_image,sender_image;
+        public CircleImageView receiver_image, sender_image;
         public ProgressBar attachmentProgressBar;
-        public TextView dateTextView;;
+        public TextView dateTextView;
+        ;
 
         public SeekBar seek_bar;
         public ImageView ivContact;
         public LinearLayout llContact;
 
-        ImageView videoView,documentView;
-        LinearLayout llVideo,llDocument;
+        ImageView videoView, documentView;
+        LinearLayout llVideo, llDocument;
 
     }
 

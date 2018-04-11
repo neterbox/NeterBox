@@ -33,6 +33,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.neterbox.R.id.pager_header;
+import static com.neterbox.utils.Sessionmanager.index;
+
 public class MainChat extends Fragment implements View.OnClickListener,TabHost.OnTabChangeListener{
 
     Context context;
@@ -47,7 +50,7 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
         // Inflate the layout for this fragment
         context = getContext();
         View view = inflater.inflate(R.layout.fragment_main_chat, container, false);
-        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.pager_header);
+        TabLayout tabLayout = (TabLayout)view.findViewById(pager_header);
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
 
@@ -67,6 +70,7 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
         adapter.addFragment(new GroupChatFragment(), "Group");
         viewPager.setAdapter(adapter);
     }
+
     @Override
     public void onTabChanged(String s) {
         String tabs = null; {
@@ -83,11 +87,27 @@ public class MainChat extends Fragment implements View.OnClickListener,TabHost.O
             }
         }
     }
+
     @Override
     public void onClick(View v) {
 
     }
 
+
+//    @Override
+//    public void onClick(View v) {
+//        String tabs = null;
+//        if(tabs.equals("first")) {
+//            new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            };
+//        }
+//    }
+
+ //   pager_header
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

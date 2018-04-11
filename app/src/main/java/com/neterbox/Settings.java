@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Settings extends AppCompatActivity {
     ImageView ileft,iright;
     TextView title;
     LinearLayout ledit_profile;
+    RelativeLayout rchangepassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class Settings extends AppCompatActivity {
         ledit_profile=(LinearLayout)findViewById(R.id.ledit_profile);
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
+        rchangepassword=(RelativeLayout) findViewById(R.id.rchangepassword);
         title=(TextView)findViewById(R.id.title);
         ileft.setImageResource(R.drawable.back);
         iright.setVisibility(View.INVISIBLE);
@@ -33,11 +36,18 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         });
-
         ledit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             Intent i =new Intent(Settings.this,EditProfile.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        rchangepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(Settings.this,Change_password.class);
                 startActivity(i);
                 finish();
             }

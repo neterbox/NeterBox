@@ -99,7 +99,15 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
-
+        login_tforgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "forgot password", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(LoginPage.this,Forgot_password.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     public void LoginPage(String email, String password) {

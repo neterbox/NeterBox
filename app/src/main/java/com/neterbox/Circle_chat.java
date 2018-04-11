@@ -17,7 +17,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Circle_chat extends AppCompatActivity {
 
-    ImageView ileft,iright;
+    ImageView ileft,ivActionImage;
     TextView title;
     Activity activity;
     String Loginname;
@@ -53,11 +53,11 @@ public class Circle_chat extends AppCompatActivity {
     public void idMappings()
     {
         ileft=(ImageView)findViewById(R.id.ileft);
-        iright=(ImageView)findViewById(R.id.iright);
+        ivActionImage=(ImageView)findViewById(R.id.ivActionImage);
         title=(TextView) findViewById(R.id.title);
         image=(CircleImageView) findViewById(R.id.image);
         ileft.setImageResource(R.drawable.back);
-        iright.setImageResource(R.drawable.pencile);
+        ivActionImage.setImageResource(R.drawable.pencile);
     }
 
     public void Listner()

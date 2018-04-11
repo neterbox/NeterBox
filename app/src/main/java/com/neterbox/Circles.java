@@ -98,7 +98,6 @@ public class Circles extends Activity {
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
         ileft.setImageResource(R.drawable.home);
-        iright.setVisibility(View.INVISIBLE);
         title.setText("Channels");
 
         spinner1 = (Spinner) findViewById(R.id.spinner1);

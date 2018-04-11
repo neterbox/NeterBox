@@ -12,6 +12,8 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true //important
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,30 +23,32 @@ android {
         }
     }
 }
-dependencies {
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    compile project(':sample-core')
-}
 
-dependencies {
-    compile 'com.android.support:support-v4:26.+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
-dependencies {
-    compile 'com.android.support.constraint:constraint-layout:+'
-}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2',
             {
                 exclude group: 'com.android.support', module: 'support-annotations'
             })
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile project(':sample-core')
+    compile project(':sandriosCamera')
+    compile project(':cropper')
 
+
+
+    //noinspection GradleCompatible
+    compile 'com.android.support:support-v4:26.+'
+
+    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.android.support.constraint:constraint-layout:+'
+
+
+    //noinspection GradleCompatible
+
+    compile 'com.google.android.gms:play-services:11.0.4'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.+'
     compile 'de.hdodenhof:circleimageview:2.2.0'
@@ -57,6 +61,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.myinnos:AlphabetIndex-Fast-Scroll-RecyclerView:1.0.8'
     testCompile 'junit:junit:4.12'
     compile "se.emilsjolander:stickylistheaders:${rootProject.stickyListHeaders}"
 //    TODO : Quickblox gradle
@@ -64,5 +69,9 @@ dependencies {
     compile "com.quickblox:quickblox-android-sdk-messages:$rootProject.qbSdkVersion"
     compile "com.quickblox:quickblox-android-sdk-content:$rootProject.qbSdkVersion"
     compile "com.quickblox:quickblox-android-sdk-chat:$rootProject.qbSdkVersion"
+    compile 'com.android.support:multidex:1.0.0'
+    compile 'com.android.support.constraint:constraint-layout:+'
+    compile 'com.android.support.constraint:constraint-layout:+'
 
+    compile project(path: ':sandriosCamera')
 }

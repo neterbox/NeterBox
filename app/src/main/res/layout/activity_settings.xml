@@ -26,11 +26,12 @@
 
 
             <RelativeLayout
+                android:id="@+id/rchangepassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/ifriendrequist"
+                    android:id="@+id/ichangepass"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
@@ -42,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_toLeftOf="@+id/isback1"
-                    android:layout_toRightOf="@+id/ifriendrequist"
+                    android:layout_toRightOf="@+id/ichangepass"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
                     android:text=" Change Password"
@@ -132,19 +133,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/iprofilehistory"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:src="@drawable/friend_request" />
                 <TextView
                     android:id="@+id/tprofilehistory"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
+                    android:layout_toLeftOf="@+id/ihistory"
+                    android:layout_toRightOf="@+id/iprofilehistory"
                     android:background="@android:color/transparent"
-                    android:gravity="left|center"
-                    android:paddingLeft="@dimen/_50sdp"
+                    android:gravity="center_vertical"
                     android:text=" Friend Request"
                     android:textColor="#525252"
-                    android:textSize="@dimen/_15sdp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:id="@+id/ihistory"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/settingback" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

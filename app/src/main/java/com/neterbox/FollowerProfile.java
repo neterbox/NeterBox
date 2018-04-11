@@ -65,15 +65,17 @@ public class FollowerProfile extends AppCompatActivity {
 
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
 //        receiver_id = nearbyfriendData.getUsers().getId();
-        receiver_id = sessionmanager.getValue(Sessionmanager.nearbyId);
-        req_receiver_id = sessionmanager.getValue(Sessionmanager.req_receiverId);
+        receiver_id = sessionmanager.getValue(Sessionmanager.nearbyuserId);
+        req_receiver_id = sessionmanager.getValue(Sessionmanager.frndrecId);
+
 
         adapter = new Followerpro_Adapter(activity);
         follower_listview.setAdapter(adapter);
 
-        if(receiver_id.equals(req_receiver_id)){
+
+        if(receiver_id.equalsIgnoreCase(req_receiver_id)){
             lfollower_addfrnd.setBackgroundColor(Color.GRAY);
-            lfollower_addfrnd.setEnabled(true);
+            lfollower_addfrnd.setEnabled(false);
         }
         else {
             lfollower_addfrnd.setBackgroundColor(getResources().getColor(R.color.greenbox));

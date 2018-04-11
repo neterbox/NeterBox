@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.neterbox.GroupChatBox;
+import com.neterbox.ChatBox;
 import com.neterbox.R;
 import com.neterbox.customadapter.PackageChatAdapter.ConntactForGroupChatAdapter;
 import com.neterbox.jsonpojo.chatlist.ChatList;
@@ -50,7 +50,7 @@ public class GroupChatFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent it = new Intent(getContext(),GroupChatBox.class);
+                Intent it = new Intent(getContext(),ChatBox.class);
                 getContext().startActivity(it);
                 getActivity().finish();
 

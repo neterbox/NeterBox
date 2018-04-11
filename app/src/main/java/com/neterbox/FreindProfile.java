@@ -15,11 +15,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.neterbox.customadapter.Friend_RequestList_Adapter;
 import com.neterbox.customadapter.Friendpro_Adapter;
 import com.neterbox.jsonpojo.AddChat.AddChat;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
-import com.neterbox.jsonpojo.friend_requestlist.FrndReqListModel;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.qb.QbDialogHolder;
 import com.neterbox.retrofit.APIClient;
@@ -100,19 +98,13 @@ public class FreindProfile extends Activity {
         lfrnd_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               /* Intent i = new Intent(FreindProfile.this,ChatBox.class);
-//                i.putExtra("name",friendListdata.getReceiver().getName());
-//                i.putExtra("Profile",friendListdata.getReceiver().getProfilePic());
-//                startActivity(i);
-//                finish();*/
-//                i.putExtra("name",friendListdata.getReceiver().getName());
-//               i.putExtra("Profile",friendListdata.getReceiver().getProfilePic());
-
                 QBUser qbUser = new QBUser();
                 qbUser.setEmail(friendListdata.getReceiver().getEmail());
                 qbUser.setLogin(friendListdata.getReceiver().getName());
                 Log.e("Friend Name : ", friendListdata.getReceiver().getName());
-                qbUser.setId(Integer.parseInt(friendListdata.getReceiver().getQuickbloxId()));
+//                Log.e("Friend ID : ", String.valueOf(Integer.parseInt(friendListdata.getReceiver().getQuickbloxId())));
+                String qbid = friendListdata.getReceiver().getQuickbloxId().toString();
+                qbUser.setId(Integer.parseInt(qbid));
 
                 QBUser user = new QBUser();
                 user.setEmail(sessionmanager.getValue(sessionmanager.Email));
@@ -127,10 +119,8 @@ public class FreindProfile extends Activity {
                 if (isPrivateDialogExist((ArrayList<QBUser>) selectedUsers)) {
                     selectedUsers.remove(ChatHelper.getCurrentUser());
                     QBChatDialog existingPrivateDialog = QbDialogHolder.getInstance().getPrivateDialogWithUser(selectedUsers.get(0), null);
-
                     ChatBox.startForResult(activity, REQUEST_DIALOG_ID_FOR_UPDATE, existingPrivateDialog,friendListdata.getReceiver().getName(),friendListdata.getReceiver().getProfilePic());
                     (activity).finish();
-//           isProcessingResultInProgress = false;
                 }
                 else
                     {

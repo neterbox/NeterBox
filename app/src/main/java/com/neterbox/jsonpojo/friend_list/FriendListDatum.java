@@ -43,6 +43,4 @@ public class FriendListDatum implements Serializable{
     public void setReceiver(FriendListReceiver receiver) {
         this.receiver = receiver;
     }
-
-
 }

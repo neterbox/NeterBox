@@ -63,7 +63,7 @@ public class CirclePost extends Activity implements LocationListener {
     ListView li_circle_post;
     LinearLayout lcirclestrip, lfrndprofile, lpost_upload_option;
     TextView title;
-    ImageView ichatgreen, iright, ichatyellow, icircle_video, iimage_upload, ileft, image;
+    ImageView ichatgreen, ivActionImage, ichatyellow, icircle_video, iimage_upload, ileft, image;
     List<CirclePostListDatum> circlePostListPojos = new ArrayList<>();
     Activity activity;
     String Loginname, circle_id, state_id, countries_id, index = "1", post_files,user_id,comments;
@@ -247,12 +247,12 @@ public class CirclePost extends Activity implements LocationListener {
         iimage_upload = (ImageView) findViewById(R.id.iimage_upload);
         li_circle_post = (ListView) findViewById(R.id.li_circle_post);
         lcirclestrip = (LinearLayout) findViewById(R.id.lcirclestrip);
-        iright = (ImageView) findViewById(R.id.iright);
+        ivActionImage = (ImageView) findViewById(R.id.ivActionImage);
+        ivActionImage.setImageResource(R.drawable.pencile);
         ileft = (ImageView) findViewById(R.id.ileft);
         title = (TextView) findViewById(R.id.title);
         lpost_upload_option = (LinearLayout) findViewById(R.id.lpost_upload_option);
         lpost_upload_option.setVisibility(View.GONE);
-        iright.setImageResource(R.drawable.pencile);
     }
 
     public void Listner() {
@@ -264,7 +264,7 @@ public class CirclePost extends Activity implements LocationListener {
                 finish();
             }
         });
-        iright.setOnClickListener(new View.OnClickListener() {
+        ivActionImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 lpost_upload_option.setVisibility(View.VISIBLE);
@@ -321,8 +321,6 @@ public class CirclePost extends Activity implements LocationListener {
             public void onResponse(Call<CirclePostListPojo> call, Response<CirclePostListPojo> response) {
                 dialog.dismiss();
                 if (response.body().getStatus().equals("Success")) {
-                    sessionmanager.createSession_circlepostlistdata(response.body());
-                    Toast.makeText(CirclePost.this, "Successfully", Toast.LENGTH_SHORT).show();
                     circlePostListPojos = new ArrayList<CirclePostListDatum>();
                     circlePostListPojos = response.body().getData();
                     Circle_post_Adapter adapter = new Circle_post_Adapter(activity, circlePostListPojos);
@@ -365,7 +363,7 @@ public class CirclePost extends Activity implements LocationListener {
                 public void onResponse(Call<CirclePostAddPojo> call, Response<CirclePostAddPojo> response) {
                     dialog.dismiss();
                     Log.e("Circlradd",new Gson().toJson(response));
-                    if (response.body().getStatus().equals("Success")) {
+                    if (response.body().getStatus().equals("sucess")) {
                         sessionmanager.createSession_circlepostadddata(response.body());
                         Toast.makeText(activity, "Successfully added", Toast.LENGTH_SHORT).show();
                     } else {

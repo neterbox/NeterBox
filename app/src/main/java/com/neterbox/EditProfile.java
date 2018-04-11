@@ -5,17 +5,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.neterbox.jsonpojo.Login.Login;
+
 import com.neterbox.jsonpojo.Login.LoginDatum;
-import com.neterbox.jsonpojo.Login.Loginuser;
 import com.neterbox.jsonpojo.editprofile.Editpage;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
@@ -62,7 +59,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
         ileft.setImageResource(R.drawable.back);
-        iright.setVisibility(View.INVISIBLE);
+//        iright.setVisibility(View.INVISIBLE);
         title.setText("Edit Profile");
 
         edit_ename.setText(sessionmanager.getValue(Sessionmanager.Name));
