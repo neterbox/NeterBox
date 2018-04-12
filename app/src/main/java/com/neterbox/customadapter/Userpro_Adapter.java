@@ -1,5 +1,6 @@
 package com.neterbox.customadapter;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Userpro_Adapter extends BaseAdapter {
     Activity activity;
     private ArrayList data;
-    List<GetProfilePostdetail> getProfilePostdetails = new ArrayList<>();
+    List<GetProfilePostdetail> getProfilePostdetails;
     private LayoutInflater inflater;
     public Resources res;
     Sessionmanager sessionmanager;
@@ -41,8 +42,7 @@ public class Userpro_Adapter extends BaseAdapter {
 
     public Userpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
         this.activity = a;
-        this.getProfilePostdetails = getProfilePostdetails;
-        inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+        this.getProfilePostdetails = getProfileDatumList;
         sessionmanager = new Sessionmanager(activity);
     }
 
@@ -62,7 +62,6 @@ public class Userpro_Adapter extends BaseAdapter {
     }
 
     public static class ViewHolder {
-
         public TextView tlistview_name, tlistview_seen, tlistview_time, tlistview_cap, tlistview_comment, tlistview_likes, tlistview_commentno;
         public ImageView ilistview_pic, ilistview_likes;
         public CircleImageView listview_profile;
@@ -70,43 +69,43 @@ public class Userpro_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View v, ViewGroup viewGroup) {
 
-        View v = view;
         ViewHolder holder;
+        // inflate the layout for each list row
 
-        if (view == null) {
-            v = inflater.inflate(R.layout.profilelist_item, null);
-            holder = new ViewHolder();
-            holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
-            holder.tlistview_seen = (TextView) v.findViewById(R.id.tlistview_seen);
-            holder.tlistview_time = (TextView) v.findViewById(R.id.tlistview_time);
-            holder.tlistview_cap = (TextView) v.findViewById(R.id.tlistview_cap);
-            holder.tlistview_comment = (TextView) v.findViewById(R.id.tlistview_comment);
-            holder.tlistview_likes = (TextView) v.findViewById(R.id.tlistview_likes);
-            holder.tlistview_commentno = (TextView) v.findViewById(R.id.tlistview_commentno);
-            holder.ilistview_pic = (ImageView) v.findViewById(R.id.ilistview_pic);
-            holder.ilistview_likes = (ImageView) v.findViewById(R.id.ilistview_likes);
-            holder.llistview_comment = (LinearLayout) v.findViewById(R.id.llistview_comment);
-            holder.llistview_likes = (LinearLayout) v.findViewById(R.id.llistview_likes);
-            holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
-            v.setTag(holder);
+        v = LayoutInflater.from(activity).
+                inflate(R.layout.profilelist_item, viewGroup, false);
 
-            String datetime = getProfilePostdetails.get(i).getPostFile().get(0).getCreated();
-            String[] separated = datetime.split(" ");
-            String date = separated[0];
-            String time = separated[1];
+        holder = new ViewHolder();
+        holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
+        holder.tlistview_seen = (TextView) v.findViewById(R.id.tlistview_seen);
+        holder.tlistview_time = (TextView) v.findViewById(R.id.tlistview_time);
+        holder.tlistview_cap = (TextView) v.findViewById(R.id.tlistview_cap);
+        holder.tlistview_comment = (TextView) v.findViewById(R.id.tlistview_comment);
+        holder.tlistview_likes = (TextView) v.findViewById(R.id.tlistview_likes);
+        holder.tlistview_commentno = (TextView) v.findViewById(R.id.tlistview_commentno);
+        holder.ilistview_pic = (ImageView) v.findViewById(R.id.ilistview_pic);
+        holder.ilistview_likes = (ImageView) v.findViewById(R.id.ilistview_likes);
+        holder.llistview_comment = (LinearLayout) v.findViewById(R.id.llistview_comment);
+        holder.llistview_likes = (LinearLayout) v.findViewById(R.id.llistview_likes);
+        holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
+        v.setTag(holder);
 
-            holder.tlistview_time.setText(time);
-        } else
-            holder = (ViewHolder) v.getTag();
+        String datetime = getProfilePostdetails.get(i).getPostFile().get(0).getCreated();
+        String[] separated = datetime.split(" ");
+        String date = separated[0];
+        String time = separated[1];
+
+        holder.tlistview_time.setText(time);
+
+        holder = (ViewHolder) v.getTag();
         if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
-
             holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
             Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_comment.setText(getProfilePostdetails.get(i).getPost().getComments());
             Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles());
         }
-            return v;
-        }
+        return v;
     }
+}

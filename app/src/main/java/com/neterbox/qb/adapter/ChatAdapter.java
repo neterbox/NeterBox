@@ -587,7 +587,6 @@ public class ChatAdapter extends BaseListAdapter<QBChatMessage> implements Stick
 
         ImageView videoView, documentView;
         LinearLayout llVideo, llDocument;
-
     }
 
     public interface OnItemInfoExpandedListener {
