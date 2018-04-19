@@ -155,11 +155,8 @@ public class Circle_comment extends AppCompatActivity {
 //            Helper.hideSoftKeyboard(context);
 
             Helper.showToastMessage(activity, "Can't send a message, You are not connected to chat");
-
             finish();
-
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
