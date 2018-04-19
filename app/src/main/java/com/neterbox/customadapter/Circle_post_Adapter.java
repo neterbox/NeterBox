@@ -112,8 +112,11 @@ public class Circle_post_Adapter extends BaseAdapter {
 //            viewHolder.tcircle_post_commentno.setText(circlePostListData.get(i).getComment().get(i).getComments());
 //        }
 //        viewHolder.tcircle_post_time.setText(time);
-//        Glide.with(activity).load(circlePostListData.get(i).getPostFile().get(1).getFiles()).placeholder(R.drawable.dummy).into(viewHolder.icircle_post_pic);
+//        Glide.with(activity).load(circlePostListData.get(i).getPostFile().get(i).getFiles()).placeholder(R.drawable.dummy).into(viewHolder.icircle_post_pic);
         Glide.with(activity).load(circlePostListData.get(i).getUser().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.cvcircle_post_profile);
+
+//        Glide.with(activity).load(circlePostListData.get(i).getPostFile().get(i).getFiles()).into(viewHolder.icircle_post_pic);
+
         viewHolder.tcircle_post_channel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,14 +135,13 @@ public class Circle_post_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
             Intent it =new Intent(activity,Circle_comment.class);
-                it.putExtra("Likes",circlePostListData.get(i).getPostlike().get(i).getLikes());
+                it.putExtra("Likes",circlePostListData.get(1).getPostlike().get(1).getLikes());
                 activity.startActivity(it);
                 activity.finish();
             }
         });
         if(following_id.equalsIgnoreCase(list))
         {
-//            viewHolder.tfollowing.setBackgroundColor(Color.GRAY);
             viewHolder.tfollowing.setEnabled(false);
         }
         viewHolder.lfollowing.setOnClickListener(new View.OnClickListener() {

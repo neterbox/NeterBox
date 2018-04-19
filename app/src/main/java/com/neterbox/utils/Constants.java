@@ -1,5 +1,7 @@
 package com.neterbox.utils;
 
+import android.util.Patterns;
+
 import com.neterbox.R;
 import com.quickblox.sample.core.utils.ResourceUtils;
 
@@ -28,4 +30,40 @@ public class Constants {
     public static final String[] cvFileExtensions = new String[]{"pdf", "xlsx", "docx"};
 
     public static String shareLoc = "";
+
+
+    public static boolean isEmpty(String data)
+    {
+        // TODO Auto-generated method stub
+
+        if (data == null)
+        {
+
+            return true;
+        }
+
+        if (data.trim().equals(""))
+        {
+            return true;
+        }
+
+        return false;
+    }
+    /**
+     * Check Mail Is Valid Or Not
+     *
+     * @param email
+     * @return
+     */
+    public static boolean isValidEmail(String email)
+    {
+        // TODO Auto-generated method stub
+
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

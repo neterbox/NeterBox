@@ -69,6 +69,20 @@ public class Helper {
         return false;
     }
 
+    public static boolean isNetworkAvailable(Context context)
+    {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public static void showToast(Context context,String msg)
+    {
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+    }
+
+
     public static ProgressDialog showProgressDialog(Context context) {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setCanceledOnTouchOutside(false);

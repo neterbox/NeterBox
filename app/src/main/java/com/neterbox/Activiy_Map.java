@@ -93,7 +93,6 @@ public class Activiy_Map extends FragmentActivity {
         setContentView(R.layout.activity__map_view);
         blocation_share = (Button) findViewById(R.id.blocation_share);
 
-
         blocation_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 
 import android.media.Image;
@@ -9,11 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.neterbox.jsonpojo.comment.Comment;
 import com.neterbox.utils.Sessionmanager;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Circle_chat extends AppCompatActivity {
 
@@ -41,7 +47,6 @@ public class Circle_chat extends AppCompatActivity {
             Glide.with(activity).load(new Sessionmanager(activity).getValue(Sessionmanager.Files)).placeholder(R.drawable.dummy).into(image);
 
         }
-
     }
     @Override
     public void onBackPressed() {
@@ -71,4 +76,33 @@ public class Circle_chat extends AppCompatActivity {
             }
         });
     }
+
+   /* *//*  TODO : API CALLING COMMENT  *//*
+    public void callapi_comment(String user_id,String post_id,String comments) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        Call<Comment> commentcall = apiInterface.commentpojo(user_id, post_id, comments);
+        commentcall.enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(Call<Comment> commentCall, Response<Comment> response) {
+
+                if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                    dialog.dismiss();
+                    Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dialog.dismiss();
+                    Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Comment> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 }

@@ -13,17 +13,7 @@
         <include layout="@layout/image_custom_actionbar" />
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_query"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_below="@+id/header">
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/header_date_textview"
-            android:layout_gravity="center"
-            style="@style/ListDateHeaderStyle" />
-    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_chat"
         android:layout_width="match_parent"
@@ -199,7 +189,4 @@
             android:src="@drawable/chatsendchat" />
 
     </LinearLayout>
-
-
 </RelativeLayout>
-

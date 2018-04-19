@@ -67,6 +67,7 @@
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:background="@drawable/settingbox"
         android:orientation="horizontal">
 
@@ -112,7 +113,7 @@
             </RelativeLayout>
         </LinearLayout>
 </LinearLayout>
-        <LinearLayout
+       <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/_20sdp"
@@ -162,7 +163,7 @@
                     android:src="@drawable/settingback" />
             </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:layout_marginTop="@dimen/_10sdp"
@@ -217,13 +218,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llPrivacypolicy"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_70sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
         android:background="@drawable/settingbox">
 
 
@@ -271,6 +273,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llAboutus"
         android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal"
         android:layout_width="match_parent"

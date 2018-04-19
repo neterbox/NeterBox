@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 
+import android.location.LocationManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -80,6 +81,10 @@ public class HomePage extends Activity {
     SharedPreferences sharedPreferences;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
+    private GPSTracker mGPS;
+    public double latitude1;
+    public double longitude1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,24 +97,50 @@ public class HomePage extends Activity {
         updateqbid(sessionmanager.getValue(Sessionmanager.Id),sessionmanager.getValue(Sessionmanager.Quickbox_Id));
         this.Loginname =Loginname;
 
-        taddfriend = (TextView) findViewById(R.id.taddfriend);
-        tprofilename = (TextView) findViewById(R.id.tprofilename);
-        lph = (LinearLayout) findViewById(R.id.lph);
-        iback1 = (ImageView) findViewById(R.id.iback1);
-        iback2 = (ImageView) findViewById(R.id.iback2);
-        iback3 = (ImageView) findViewById(R.id.iback3);
-        iback4 = (ImageView) findViewById(R.id.iback4);
-        tlogout = (TextView) findViewById(R.id.tlogout);
-        relative_following = (RelativeLayout) findViewById(R.id.relative_following);
-        relative_follower = (RelativeLayout) findViewById(R.id.relative_follower);
-        relative_frnd = (RelativeLayout) findViewById(R.id.relative_frnd);
-        relative_settings = (RelativeLayout) findViewById(R.id.relative_settings);
-        profile_image = (CircleImageView) findViewById(R.id.profile_image);
-        ichat = (ImageView) findViewById(R.id.ichat);
-        icircle = (ImageView) findViewById(R.id.icircle);
-        iplay = (ImageView) findViewById(R.id.iplay);
+        statusCheck();
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(context,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mGPS = new GPSTracker(context);
+                if (mGPS.canGetLocation) {
+                    latitude1 = mGPS.getLatitude();
+                    longitude1 = mGPS.getLongitude();
+                    Constants.shareLoc = "http://maps.google.com/maps?saddr=" +latitude1+","+longitude1;
+
+                }
+            } else {
+                checkLocationPermission();
+            }
+        }
+
+        idMapping();
+        Listener();
 
 
+        profile_image.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                        showPictureDialog();
+
+                    } else {
+                        //Request Location Permission
+                        checkCameraPermission();
+                        checkStoragePermission();
+                    }
+                } else {
+                    showPictureDialog();
+                }
+            }
+        });
+    }
+
+    private void Listener() {
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,26 +248,87 @@ public class HomePage extends Activity {
         });
 
 
-        profile_image.setOnClickListener(new View.OnClickListener() {
+    }
 
-            @Override
-            public void onClick(View v) {
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-                        showPictureDialog();
+    private void idMapping() {
+        taddfriend = (TextView) findViewById(R.id.taddfriend);
+        tprofilename = (TextView) findViewById(R.id.tprofilename);
+        lph = (LinearLayout) findViewById(R.id.lph);
+        iback1 = (ImageView) findViewById(R.id.iback1);
+        iback2 = (ImageView) findViewById(R.id.iback2);
+        iback3 = (ImageView) findViewById(R.id.iback3);
+        iback4 = (ImageView) findViewById(R.id.iback4);
+        tlogout = (TextView) findViewById(R.id.tlogout);
+        relative_following = (RelativeLayout) findViewById(R.id.relative_following);
+        relative_follower = (RelativeLayout) findViewById(R.id.relative_follower);
+        relative_frnd = (RelativeLayout) findViewById(R.id.relative_frnd);
+        relative_settings = (RelativeLayout) findViewById(R.id.relative_settings);
+        profile_image = (CircleImageView) findViewById(R.id.profile_image);
+        ichat = (ImageView) findViewById(R.id.ichat);
+        icircle = (ImageView) findViewById(R.id.icircle);
+        iplay = (ImageView) findViewById(R.id.iplay);
 
-                    } else {
-                        //Request Location Permission
-                        checkCameraPermission();
-                        checkStoragePermission();
-                    }
-                } else {
-                    showPictureDialog();
-                }
+    }
+
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new android.support.v7.app.AlertDialog.Builder(context)
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions((Activity) context,
+                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        Constants.MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        Constants.MY_PERMISSIONS_REQUEST_LOCATION);
             }
-        });
+        }
+    }
+
+    public void statusCheck() {
+        final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+    }
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override

@@ -103,8 +103,8 @@ public class Userpro_Adapter extends BaseAdapter {
         if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
             holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
             Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(holder.listview_profile);
-            holder.tlistview_comment.setText(getProfilePostdetails.get(i).getPost().getComments());
-            Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles());
+            holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
+            Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
         }
         return v;
     }

@@ -73,6 +73,14 @@
     <string name="empty_newpwd">Please Enter New Password</string>
     <string name="empty_oldpwd">Please Enter Old Password</string>
     <string name="valid_password">Please Enter Valid Password</string>
+    <string name="network_not_available">Please check network connectivity</string>
+
+    <!--TODO  TEST ENVIRONMENT -->
+    <!--  <string name="Test_environment_publishable_key">pk_test_c636ec60daf310e5632971f721abbd1aa5443dfd</string>-->
+    <string name="Test_environment_Secret_Key">sk_test_e2e8d0432da558182bfa351d7c678e6231a4f446</string>
+    <!--TODO Production Keys-->
+    <string name="publishable_key">pk_52fd2de101cb81a4f7f20bb68758e8482c058e1a</string>
+    <string name="Secret_Key">sk_d8833a1c792f40113594fa074ec3167e21af43af</string>
 
 </resources>
 

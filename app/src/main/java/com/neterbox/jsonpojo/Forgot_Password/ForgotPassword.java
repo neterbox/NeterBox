@@ -14,6 +14,9 @@ public class ForgotPassword {
     @SerializedName("data")
     @Expose
     private ForgotPassword_Datum data;
+    @SerializedName("password")
+    @Expose
+    private String password;
     @SerializedName("code")
     @Expose
     private Integer code;
@@ -40,6 +43,14 @@ public class ForgotPassword {
 
     public void setData(ForgotPassword_Datum data) {
         this.data = data;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getCode() {

@@ -230,6 +230,6 @@ public interface APIInterface {
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @FormUrlEncoded
     @POST(ServerUrl.FORGOTPASSWORD)
-    Call<ForgotPassword> forgotPojoCall(@Field("email") String email);
+    Call<ForgotPassword> forgotPasswordCall(@Field("email") String email);
 
 }

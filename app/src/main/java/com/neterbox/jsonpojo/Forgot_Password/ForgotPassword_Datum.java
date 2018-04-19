@@ -18,5 +18,4 @@ public class ForgotPassword_Datum{
         this.user = user;
     }
 
-
 }

@@ -9,9 +9,20 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-    }
 
-    /**
+        /**
+         * HyperTrack SDKs are shipped in @aar format. Include the HyperTrack SDK's
+         * latest version as specified below. For detailed SDK changelog, refer to
+         * https://docs.hypertrack.com/sdks/android/changelog.html.
+         *
+         * transitive = true enables the SDK to include its internal dependencies automatically.
+         * Refer to https://docs.hypertrack.com/sdks/android/troubleshoot.html for more info.
+         */
+//        implementation('com.hypertrack:android:0.7.4@aar') {
+//            transitive = true;
+        }
+    }
+/**
      * HyperTrack SDKs are shipped as @aar formats. Include the HyperTrack SDK's
      * latest version as specified below. For detailed SDK changelog, Refer to
      * https://docs.hypertrack.com/sdks/android/changelog.html.
@@ -22,20 +33,15 @@ buildscript {
 //    implementation('com.hypertrack:android:0.6.24@aar') {
 //        transitive = true;
 //    }
-
-}
-
 allprojects {
     repositories
      {
        //  maven { url 'http://hypertrack-android-sdk.s3-website-us-west-2.amazonaws.com/' }
-
         jcenter()
         maven
            {
             url "https://jitpack.io"
            }
-
         maven
            {
                url "https://github.com/QuickBlox/quickblox-android-sdk-releases/raw/master/"
@@ -55,21 +61,16 @@ allprojects {
 ext{
     compileSdkVersion = 26
     buildToolsVersion = "26.0.0"
-
     minSdkVersion = 14
     targetSdkVersion = 26
-
     designVersion = '26.0.0'
     robotoTextViewVersion = '4.0.0'
-
-
     // QuickBlox SDK version
     qbSdkVersion = '3.4'
-
     stickyListHeaders = '2.7.0'
-
 }
-
-task clean(type: Delete) {
+/*
+task clean(type: Delete)
+{
     delete rootProject.buildDir
-}
+}*/

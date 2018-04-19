@@ -253,6 +253,7 @@ public class CirclePost extends Activity implements LocationListener {
         title = (TextView) findViewById(R.id.title);
         lpost_upload_option = (LinearLayout) findViewById(R.id.lpost_upload_option);
         lpost_upload_option.setVisibility(View.GONE);
+
     }
 
     public void Listner() {

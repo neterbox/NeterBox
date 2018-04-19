@@ -11,7 +11,7 @@ public class CommentDatum {
 
     @SerializedName("Comment")
     @Expose
-    private CommentsDetail comment;
+    private Comment comment;
     @SerializedName("User")
     @Expose
     private CommentsUser user;
@@ -19,11 +19,11 @@ public class CommentDatum {
     @Expose
     private CommentsPost post;
 
-    public CommentsDetail getComment() {
+    public Comment getComment() {
         return comment;
     }
 
-    public void setComment(CommentsDetail comment) {
+    public void setComment(Comment comment) {
         this.comment = comment;
     }
 
@@ -42,5 +42,4 @@ public class CommentDatum {
     public void setPost(CommentsPost post) {
         this.post = post;
     }
-
 }

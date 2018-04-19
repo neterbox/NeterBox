@@ -158,9 +158,6 @@ public class ChatBox extends AppCompatActivity {
 
         // TODO : LOCATION IMPLEMENTATION
 
-//        if (!hasGps()) {
-//            Log.d(TAG, "This hardware doesn't have GPS.");
-//        }
 
 
         // TODO : Chat implementation
@@ -281,7 +278,10 @@ public class ChatBox extends AppCompatActivity {
         icontact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickSelectContact(v);
+             //   onClickSelectContact(v);
+                Intent i = new Intent(ChatBox.this, share_contact.class);
+                startActivity(i);
+
             }
         });
 
@@ -292,7 +292,6 @@ public class ChatBox extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         button_chat_attachment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -885,7 +884,6 @@ public class ChatBox extends AppCompatActivity {
                 public void onSuccess(QBAttachment result, Bundle params) {
                     sendChatMessage(null, result);
                 }
-
                 @Override
                 public void onError(QBResponseException e) {
                     Log.e("error", e.getMessage());
@@ -917,7 +915,6 @@ public class ChatBox extends AppCompatActivity {
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Select Action");
-
         String[] pictureDialogItems = {
                 "Select photo from gallery",
                 "Capture photo from camera"};

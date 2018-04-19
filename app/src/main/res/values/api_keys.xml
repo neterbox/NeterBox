@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="GoogleMapsKey">AIzaSyDGWcCxK_S1LHZmhhjYdgp2oRV6PMYkl6A</string>
+    <string name="Test_environment_publishable_key">pk_test_c636ec60daf310e5632971f721abbd1aa5443dfd</string>
+    <string name="branch_test">pk_52fd2de101cb81a4f7f20bb68758e8482c058e1a</string>
+</resources>

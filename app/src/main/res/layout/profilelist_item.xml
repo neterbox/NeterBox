@@ -113,8 +113,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:layout_marginTop="@dimen/_3sdp"
-        />
-        <!--android:src="@drawable/profilpicture"-->
+        android:src="@drawable/profilpicture"/>
 
 </LinearLayout>
 

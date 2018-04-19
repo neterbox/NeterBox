@@ -218,5 +218,4 @@ public class CommentsUser {
     public void setModified(String modified) {
         this.modified = modified;
     }
-
 }

@@ -52,4 +52,5 @@ public class Comment {
     public void setResponse(String response) {
         this.response = response;
     }
+
 }

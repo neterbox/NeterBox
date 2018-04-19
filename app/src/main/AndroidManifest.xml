@@ -12,14 +12,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!-- Read Contacts from phone -->
+
+    <uses-permission android:name="android.permission.read_phone_state" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <!-- Google map liberary: -->
-    <!--<uses-library-->
-        <!--android:name="com.google.android.maps"-->
-        <!--tools:ignore="WrongManifestParent" />-->
-
-
+    <!-- <uses-library -->
+    <!-- android:name="com.google.android.maps" -->
+    <!-- tools:ignore="WrongManifestParent" /> -->
     <application
         android:allowBackup="true"
         android:icon="@drawable/splashlogo"
@@ -202,12 +206,12 @@
             android:name=".AttachmentImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MyVideoView"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Change_password"
             android:screenOrientation="portrait"
@@ -226,5 +230,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDGWcCxK_S1LHZmhhjYdgp2oRV6PMYkl6A" />
+
+        <activity android:name=".share_contact" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".Privacy_Policy"></activity>
     </application>
+
 </manifest>

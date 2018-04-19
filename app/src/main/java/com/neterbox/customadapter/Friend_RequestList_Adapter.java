@@ -71,12 +71,12 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
             viewHolder = (MyViewHolder) view.getTag();
         }
 
-        if(!(friendRequestListData.get(i).getSender().getName().equals("")))
+        if(!(friendRequestListData.get(i).getReceiver().getName().equals("")))
         {
-            viewHolder.friendrequestname.setText(friendRequestListData.get(i).getSender().getName());
+            viewHolder.friendrequestname.setText(friendRequestListData.get(i).getReceiver().getName());
         }
-        if(!(friendRequestListData.get(i).getSender().getProfilePic().equals(""))){
-            Glide.with(activity).load(friendRequestListData.get(i).getSender().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.civiewfrequest);
+        if(!(friendRequestListData.get(i).getReceiver().getProfilePic().equals(""))){
+            Glide.with(activity).load(friendRequestListData.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.civiewfrequest);
         }
         viewHolder.bfriend_request_accept.setOnClickListener(new View.OnClickListener() {
             @Override

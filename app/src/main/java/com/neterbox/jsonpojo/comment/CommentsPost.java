@@ -108,4 +108,5 @@ public class CommentsPost {
     public void setModified(String modified) {
         this.modified = modified;
     }
+
 }

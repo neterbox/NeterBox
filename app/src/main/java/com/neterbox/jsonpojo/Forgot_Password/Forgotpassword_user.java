@@ -214,4 +214,5 @@ public class Forgotpassword_user {
     public void setModified(String modified) {
         this.modified = modified;
     }
+
 }
