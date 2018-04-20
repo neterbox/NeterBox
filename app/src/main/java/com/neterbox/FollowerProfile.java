@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,9 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.neterbox.customadapter.Followerpro_Adapter;
 import com.neterbox.customadapter.Friendpro_Adapter;
+import com.neterbox.customadapter.Userpro_Adapter;
 import com.neterbox.jsonpojo.cancel_friend_request.CancelFriendRequest;
+import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
+import com.neterbox.jsonpojo.get_profile.GetProfileUser;
 import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequestReceiver;
@@ -36,6 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.neterbox.R.drawable.greenbox;
+import static com.neterbox.utils.Sessionmanager.index;
 
 public class FollowerProfile extends AppCompatActivity {
 
@@ -48,6 +55,11 @@ public class FollowerProfile extends AppCompatActivity {
     String sender_id, receiver_id,req_receiver_id,id;
     Sessionmanager sessionmanager;
     String Profilename;
+    String index = "1", user_id;
+
+    int  getprofile;
+    private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
+    private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
 
     CircleImageView followerprofile;
     NearbyfriendDatum nearbyfriendData = new NearbyfriendDatum();
@@ -62,16 +74,12 @@ public class FollowerProfile extends AppCompatActivity {
         nearbyfriendData = (NearbyfriendDatum) getIntent().getSerializableExtra("profile");
         idMappings();
         listener();
+        getprofile(index, user_id);
 
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
 //        receiver_id = nearbyfriendData.getUsers().getId();
         receiver_id = sessionmanager.getValue(Sessionmanager.nearbyuserId);
         req_receiver_id = sessionmanager.getValue(Sessionmanager.frndrecId);
-
-
-        adapter = new Followerpro_Adapter(activity);
-        follower_listview.setAdapter(adapter);
-
 
         if(receiver_id.equalsIgnoreCase(req_receiver_id)){
             lfollower_addfrnd.setBackgroundColor(Color.GRAY);
@@ -166,32 +174,50 @@ public class FollowerProfile extends AppCompatActivity {
         });
     }
 
-//    public void cancelrequest(String id,String sender_id)
-//    {
-//        Call<CancelFriendRequest> cancelFriendRequestCall = apiInterface.cancelrequestpojo(id,sender_id);
-//        cancelFriendRequestCall.enqueue(new Callback<CancelFriendRequest>() {
-//            @Override
-//            public void onResponse(Call<CancelFriendRequest> call, Response<CancelFriendRequest> response) {
-//                if (response.body().getStatus().equals("Success")) {
-//                    lfollower_addfrnd.setBackgroundColor(getResources().getColor(R.color.greenbox));
-//                    lfollower_addfrnd.setEnabled(true);
-//                    Toast.makeText(FollowerProfile.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(activity, "Please Try Again.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CancelFriendRequest> call, Throwable t) {
-//            }
-//        });
-//    }
-
     @Override
     public void onBackPressed() {
         Intent i=new Intent(FollowerProfile.this,HomePage.class);
         startActivity(i);
         finish();
 
+    }
+
+    /*TODO get profile API*/
+
+    public void getprofile(String index, String user_id) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        final Call<GetProfile> getProfileCall = apiInterface.getprofilepojo(index, user_id);
+        getProfileCall.enqueue(new Callback<GetProfile>() {
+            @Override
+            public void onResponse(Call<GetProfile> call, Response<GetProfile> response) {
+                dialog.dismiss();
+                if (response.body().getStatus().equals("Success")) {
+
+                    getprofile = response.body().getTotalPostcount();
+                    Log.e("TOTAL", new Gson().toJson(getprofile));
+                    GetProfilePostdetail.add(response.body().getData().getUser());
+                    Log.e("Get Profile data", new Gson().toJson(GetProfilePostdetail));
+
+                    profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
+                    adapter = new Followerpro_Adapter(activity, profilePostdetails);
+                    follower_listview.setAdapter(adapter);
+
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                else {
+                    Toast.makeText(FollowerProfile.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<GetProfile> call, Throwable t) {
+                dialog.dismiss();
+            }
+        });
     }
 }
