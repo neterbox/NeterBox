@@ -232,12 +232,12 @@ public class ChatBox extends AppCompatActivity {
         ilocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ChatBox.this, Activiy_Map.class);
+                Intent i = new Intent(ChatBox.this, share_location_customview.class);
+//                Intent i = new Intent(ChatBox.this, Activiy_Map.class);
                 startActivity(i);
                 finish();
             }
         });
-
 
         messageEditText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -281,7 +281,6 @@ public class ChatBox extends AppCompatActivity {
              //   onClickSelectContact(v);
                 Intent i = new Intent(ChatBox.this, share_contact.class);
                 startActivity(i);
-
             }
         });
 
@@ -329,7 +328,6 @@ public class ChatBox extends AppCompatActivity {
 
                         showPictureDialog();
 
-
                     } else {
                         //Request Location Permission
                         Helper.checkStoragePermission(context);
@@ -354,7 +352,6 @@ public class ChatBox extends AppCompatActivity {
                         layout_chat_send_container.setVisibility(View.VISIBLE);
                         lpost_upload_option.setVisibility(View.GONE);
 
-
                         takeVideo();
 
                     } else {
@@ -369,16 +366,6 @@ public class ChatBox extends AppCompatActivity {
             }
         });
     }
-
-
-    /*
-    @Override
-    public void onBackPressed() {
-        Intent i=new Intent(context,ChatModule.class);
-        startActivity(i);
-        finish();
-    }*/
-
 
     // TODO : Chat Implementation
 

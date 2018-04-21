@@ -229,11 +229,24 @@
         <!-- google map key: -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDGWcCxK_S1LHZmhhjYdgp2oRV6PMYkl6A" />
+            android:value="AIzaSyCXwZVKtHAgYtNVmv0R0ZjY0emax_rDPlA" />
 
-        <activity android:name=".share_contact" />
-        <activity android:name=".AboutUs" />
-        <activity android:name=".Privacy_Policy"></activity>
+        <activity
+            android:name=".share_contact"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AboutUs"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Privacy_Policy"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".share_location_customview"></activity>
     </application>
 
 </manifest>

@@ -84,9 +84,6 @@ public class Followerpro_Adapter extends BaseAdapter {
         v = LayoutInflater.from(activity).
                 inflate(R.layout.profilelist_item, viewGroup, false);
 
-
-        /* if (view == null) {*/
-//            v = inflater.inflate(R.layout.profilelist_item, null);
             holder = new Followerpro_Adapter.ViewHolder();
             holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
             holder.tlistview_seen = (TextView) v.findViewById(R.id.tlistview_seen);

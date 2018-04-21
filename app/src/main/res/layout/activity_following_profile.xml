@@ -35,6 +35,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tfriend_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
@@ -46,6 +47,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tfriendTitle"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
@@ -95,14 +97,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:id="@+id/lfollowing_followers"
+                    android:id="@+id/lfollowing_following"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:id="@+id/tfollowing_followersno"
+                        android:id="@+id/tfollowing_followingno"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         tools:text="556"
@@ -113,7 +115,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:id="@+id/tfollowing_following"
+                        android:text="FOLLOWING"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/lfollowing_followers"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:id="@+id/tfollowing_followersno"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        tools:text="56"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:id="@+id/tfollowing_followers"
+                        android:layout_marginLeft="@dimen/_4sdp"
                         android:text="FOLLOWERS"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
@@ -124,38 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/lfollowing_hearts"
-                    android:background="#fff"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:id="@+id/tfollowing_heartsno"
-                        android:layout_marginTop="@dimen/_50sdp"
-                        tools:text="56"
-                        android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:id="@+id/tfollowing_hearts"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:text="HEARTS"
-                        android:textColor="#a1a1a1"
-                        android:textSize="@dimen/_10sdp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/lfollowing_subscribers"
+                    android:id="@+id/lfollowing_totalfriend"
                     android:background="#fff"
                     android:orientation="vertical">
 
@@ -163,7 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:id="@+id/tfollowing_subscribersno"
+                        android:id="@+id/tfollowing_friendcountno"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         tools:text="50"
@@ -174,8 +176,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:id="@+id/tfollowing_subscribers"
-                        android:text="SUBSCRIBERS"
+                        android:id="@+id/tfollowing_Friend"
+                        android:text="FRIENDS"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -186,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:id="@+id/lfollowing_likes"
+                    android:id="@+id/lfollowing_totalpost"
                     android:orientation="vertical">
 
                     <TextView
@@ -194,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:layout_marginLeft="@dimen/_5sdp"
-                        android:id="@+id/tfollowing_likesno"
+                        android:id="@+id/tfollowing_totalpostno"
                         android:layout_marginTop="@dimen/_50sdp"
                         tools:text="100"
                         android:textColor="#060606"
@@ -205,8 +207,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:gravity="center"
-                        android:id="@+id/tfollowing_likes"
-                        android:text="LIKES"
+                        android:id="@+id/tfollowing_totalpost"
+                        android:text="POSTS"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -228,7 +230,7 @@
         </LinearLayout>
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/following_profile"
+            android:id="@+id/cifollowing_profile"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:src="@drawable/img1"

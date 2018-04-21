@@ -10,9 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
+import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,19 +30,28 @@ public class Followingpro_Adapter extends BaseAdapter{
     private LayoutInflater inflater;
     public Resources res;
 
-    public Followingpro_Adapter(Activity a) {
+    List<GetProfilePostdetail> getProfilePostdetails;
+    Sessionmanager sessionmanager;
+
+
+    public Followingpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
         this.activity = a;
-        inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+        this.getProfilePostdetails = getProfileDatumList;
+        sessionmanager = new Sessionmanager(activity);
+      //  inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return 6;
+//        return 6;
+        return getProfilePostdetails.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return i;
+//        return i;
+        return getProfilePostdetails.get(i);
+
     }
 
     @Override
@@ -56,14 +69,15 @@ public class Followingpro_Adapter extends BaseAdapter{
 
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View v, ViewGroup viewGroup) {
 
-        View v=view;
-        Followingpro_Adapter.ViewHolder holder;
+        Userpro_Adapter.ViewHolder holder;
+        // inflate the layout for each list row
 
-        if (view == null) {
-            v = inflater.inflate(R.layout.profilelist_item, null);
-            holder = new Followingpro_Adapter.ViewHolder();
+        v = LayoutInflater.from(activity).
+                inflate(R.layout.profilelist_item, viewGroup, false);
+
+            holder = new Userpro_Adapter.ViewHolder();
             holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
             holder.tlistview_seen = (TextView) v.findViewById(R.id.tlistview_seen);
             holder.tlistview_time = (TextView) v.findViewById(R.id.tlistview_time);
@@ -77,9 +91,20 @@ public class Followingpro_Adapter extends BaseAdapter{
             holder.llistview_likes = (LinearLayout) v.findViewById(R.id.llistview_likes);
             holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
             v.setTag(holder);
+        String datetime = getProfilePostdetails.get(i).getPostFile().get(0).getCreated();
+        String[] separated = datetime.split(" ");
+        String date = separated[0];
+        String time = separated[1];
+
+        holder.tlistview_time.setText(time);
+
+        holder = (Userpro_Adapter.ViewHolder) v.getTag();
+        if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
+            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
+            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.follower_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+            holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
+            Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
         }
-        else
-            holder=(Followingpro_Adapter.ViewHolder)v.getTag();
         return v;
     }
 }

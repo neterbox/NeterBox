@@ -96,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/lfollower_likes"
+                    android:id="@+id/lfollower_following"
                     android:background="#fff"
                     android:orientation="vertical">
 
@@ -107,7 +107,7 @@
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
                         tools:text="556"
-                        android:id="@+id/tfollower_likesno"
+                        android:id="@+id/tfollower_followingno"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 
@@ -116,8 +116,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_4sdp"
                         android:gravity="center"
-                        android:id="@+id/tfollower_likes"
-                        android:text="LIKES"
+                        android:id="@+id/tfollower_following"
+                        android:text="FOLLOWING"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -127,7 +127,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/lfollower_subscribers"
+                    android:id="@+id/lfollower_followers"
                     android:background="#fff"
                     android:orientation="vertical">
 
@@ -137,7 +137,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:id="@+id/tfollower_subscribersno"
+                        android:id="@+id/tfollower_followersno"
                         tools:text="56"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
@@ -146,8 +146,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="SUBSCRIBERS"
-                        android:id="@+id/tfollower_subscribers"
+                        android:text="FOLLOWERS"
+                        android:id="@+id/tfollower_followers"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:id="@+id/lfollower_followers"
+                    android:id="@+id/lfollower_totalfriend"
                     android:orientation="vertical">
 
                     <TextView
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:id="@+id/tfollower_followersno"
+                        android:id="@+id/tfollower_friendcount"
                         tools:text="50"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
@@ -175,10 +175,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:id="@+id/tfollower_followers"
-                        android:text="FOLLOWERS"
+                        android:id="@+id/tfollower_Friend"
+                        android:text="FRIENDS"
                         android:textColor="#a1a1a1"
-                        android:textSize="@dimen/_8sdp" />
+                        android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
 
 
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#fff"
-                    android:id="@+id/lfollower_postlikes"
+                    android:id="@+id/lfollower_totalpost"
                     android:gravity="center"
                     android:layout_marginRight="@dimen/_15sdp"
                     android:orientation="vertical">
@@ -198,7 +198,7 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        android:id="@+id/tfollower_postlikesno"
+                        android:id="@+id/tfollower_totalpostno"
                         tools:text="100"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
@@ -208,8 +208,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:gravity="center"
-                        android:text="POST LIKES"
-                        android:id="@+id/tfollower_postlikes"
+                        android:text="POSTS"
+                        android:id="@+id/tfollower_totalpost"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -249,7 +249,7 @@
         </LinearLayout>
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/followerprofile"
+            android:id="@+id/ifollowerprofile"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:src="@drawable/img1"

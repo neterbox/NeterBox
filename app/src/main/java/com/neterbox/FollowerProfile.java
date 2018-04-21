@@ -46,11 +46,13 @@ import static com.neterbox.utils.Sessionmanager.index;
 
 public class FollowerProfile extends AppCompatActivity {
 
-    ListView follower_listview;
+    public static ListView follower_listview;
     LinearLayout lfollower_addfrnd;
-    Followerpro_Adapter adapter;
+    TextView tfollower_followingno, tfollower_followersno, tfollower_friendcount, tfollower_totalpostno;
+
+    public static Followerpro_Adapter adapter;
     ImageView ileft,iright;
-    TextView title,tprofile_name;
+    TextView title,tprofile_name,tcompany_name;
     Activity activity;
     String sender_id, receiver_id,req_receiver_id,id;
     Sessionmanager sessionmanager;
@@ -61,7 +63,7 @@ public class FollowerProfile extends AppCompatActivity {
     private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
     private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
 
-    CircleImageView followerprofile;
+    CircleImageView ifollowerprofile;
     NearbyfriendDatum nearbyfriendData = new NearbyfriendDatum();
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
@@ -72,8 +74,11 @@ public class FollowerProfile extends AppCompatActivity {
         activity = this;
         sessionmanager = new Sessionmanager(this);
         nearbyfriendData = (NearbyfriendDatum) getIntent().getSerializableExtra("profile");
+        user_id= sessionmanager.getValue(Sessionmanager.following_id);
         idMappings();
         listener();
+
+        user_id = sessionmanager.getValue(sessionmanager.Id);
         getprofile(index, user_id);
 
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
@@ -90,11 +95,7 @@ public class FollowerProfile extends AppCompatActivity {
             lfollower_addfrnd.setEnabled(true);
         }
 
-        if(nearbyfriendData!=null)
-        {
-            tprofile_name.setText(nearbyfriendData.getUsers().getName());
-            Glide.with(activity).load(nearbyfriendData.getUsers().getProfilePic()).placeholder(R.drawable.dummy).into(followerprofile);
-        }
+
     }
 
 //        follower_listview.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +107,18 @@ public class FollowerProfile extends AppCompatActivity {
 //        });
 
     public void idMappings(){
-        followerprofile=(CircleImageView)findViewById(R.id.followerprofile);
+        ifollowerprofile=(CircleImageView)findViewById(R.id.ifollowerprofile);
         lfollower_addfrnd=(LinearLayout)findViewById(R.id.lfollower_addfrnd);
         follower_listview =(ListView)findViewById( R.id.follower_listview );
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
+        tfollower_followingno=(TextView)findViewById(R.id.tfollower_followingno);
+        tfollower_followersno=(TextView)findViewById(R.id.tfollower_followersno);
+        tfollower_friendcount=(TextView)findViewById(R.id.tfollower_friendcount);
+        tfollower_totalpostno=(TextView)findViewById(R.id.tfollower_totalpostno);
         title=(TextView)findViewById(R.id.title);
         tprofile_name=(TextView)findViewById(R.id.tprofile_name);
+        tcompany_name=(TextView)findViewById(R.id.tcompany_name);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
         title.setVisibility(View.INVISIBLE);
@@ -167,7 +173,6 @@ public class FollowerProfile extends AppCompatActivity {
                     Toast.makeText(activity, "Please Try Again.", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<SendRequest> call, Throwable t) {
             }
@@ -179,8 +184,38 @@ public class FollowerProfile extends AppCompatActivity {
         Intent i=new Intent(FollowerProfile.this,HomePage.class);
         startActivity(i);
         finish();
-
     }
+
+
+    //TODo data set
+    private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
+        if (!sessionmanager.getValue(Sessionmanager.following_name).equalsIgnoreCase("")) {
+            tprofile_name.setText(sessionmanager.getValue(Sessionmanager.follower_name));
+        }
+
+        if (!sessionmanager.getValue(Sessionmanager.following_title).equalsIgnoreCase("")) {
+            tcompany_name.setText(sessionmanager.getValue(Sessionmanager.following_title));
+        }
+
+        if (!getProfilePostdetail.get(0).getFollowingCount().equals("")) {
+            tfollower_followingno.setText(String.valueOf(getProfilePostdetail.get(0).getFollowingCount()));
+        }
+
+        if (!getProfilePostdetail.get(0).getFollowerCount().equals("")) {
+            tfollower_followersno.setText(String.valueOf(getProfilePostdetail.get(0).getFollowerCount()));
+        }
+
+        if (!getProfilePostdetail.get(0).getFriendCount().equals("")) {
+            tfollower_friendcount.setText(String.valueOf(getProfilePostdetail.get(0).getFriendCount()));
+        }
+
+        tfollower_totalpostno.setText(String.valueOf(getprofile));
+
+        if (sessionmanager.getValue(Sessionmanager.following_pic) != null) {
+            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.following_pic)).placeholder(R.drawable.dummy).into(ifollowerprofile);
+        }
+    }
+
 
     /*TODO get profile API*/
 
@@ -201,6 +236,9 @@ public class FollowerProfile extends AppCompatActivity {
                     Log.e("TOTAL", new Gson().toJson(getprofile));
                     GetProfilePostdetail.add(response.body().getData().getUser());
                     Log.e("Get Profile data", new Gson().toJson(GetProfilePostdetail));
+
+                    int total = response.body().getTotalPostcount();
+                    setData(GetProfilePostdetail, total);
 
                     profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
                     adapter = new Followerpro_Adapter(activity, profilePostdetails);

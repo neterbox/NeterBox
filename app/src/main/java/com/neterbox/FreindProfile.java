@@ -1,6 +1,7 @@
 package com.neterbox;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,8 +17,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.customadapter.Friendpro_Adapter;
+import com.neterbox.customadapter.Userpro_Adapter;
 import com.neterbox.jsonpojo.AddChat.AddChat;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
+import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
+import com.neterbox.jsonpojo.get_profile.GetProfileUser;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.qb.QbDialogHolder;
 import com.neterbox.retrofit.APIClient;
@@ -44,20 +50,28 @@ import retrofit2.Response;
 public class FreindProfile extends Activity {
 
     Sessionmanager sessionmanager;
-    ListView frnd_listview;
+    public static ListView lfrnd_listview;
     LinearLayout lfrnd_chat;
     ImageView ileft, iright;
-    TextView title, tprofile_name, tcompany_name;
-    Friendpro_Adapter adapter;
+    TextView title, tprofile_name, tcompany_name, tfrnd_followingno, tfrnd_following, tfrnd_followersno, tfrnd_followers,
+            tfrnd_friendcount, tfrnd_Friend, tfrnd_totalpostno, tfrnd_totalpost ;
+    public static Friendpro_Adapter adapter;
     Activity activity;
+    String index = "1", user_id;
+
+    CircleImageView iuser_profile;
+    private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
+    private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
+    int  getprofile;
+    GetProfileDatum getfrienddata;
     SharedPreferences sharedPreferences;
     public static final int REQUEST_DIALOG_ID_FOR_UPDATE = 1;
-    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
+
 
     CircleImageView frnd_profile;
     FriendListDatum friendListdata = new FriendListDatum();
     List<QBChatDialog> qbChatDialogs = new ArrayList<>();
-
+    APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,23 +85,28 @@ public class FreindProfile extends Activity {
         idMappings();
         listener();
 
-        Friendpro_Adapter adapter = new Friendpro_Adapter(activity);
-        frnd_listview.setAdapter(adapter);
+        user_id = sessionmanager.getValue(sessionmanager.frndId);
+        getprofile(index, user_id);
 
-        if (friendListdata != null) {
-            tprofile_name.setText(friendListdata.getReceiver().getName());
-            Glide.with(activity).load(friendListdata.getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(frnd_profile);
-        }
     }
 
     public void idMappings() {
-        frnd_listview = (ListView) findViewById(R.id.frnd_listview);
+        lfrnd_listview = (ListView) findViewById(R.id.lfrnd_listview);
         lfrnd_chat = (LinearLayout) findViewById(R.id.lfrnd_chat);
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
         tprofile_name = (TextView) findViewById(R.id.tprofile_name);
         tcompany_name = (TextView) findViewById(R.id.tcompany_name);
+        tfrnd_followingno = (TextView) findViewById(R.id.tfrnd_followingno);
+        tfrnd_following = (TextView) findViewById(R.id.tfrnd_following);
+        tfrnd_followersno = (TextView) findViewById(R.id.tfrnd_followersno);
+        tfrnd_followers = (TextView) findViewById(R.id.tfrnd_followers);
+        tfrnd_friendcount = (TextView) findViewById(R.id.tfrnd_friendcount);
+        tfrnd_Friend = (TextView) findViewById(R.id.tfrnd_Friend);
+        tfrnd_totalpostno = (TextView) findViewById(R.id.tfrnd_totalpostno);
+        tfrnd_totalpost = (TextView) findViewById(R.id.tfrnd_totalpost);
+
         frnd_profile = (CircleImageView) findViewById(R.id.frnd_profile);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
@@ -260,6 +279,83 @@ public class FreindProfile extends Activity {
             @Override
             public void onFailure(Call<AddChat> call, Throwable t) {
                 Toast.makeText(activity, "error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    //TODo data set
+    private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
+
+//        if (!sessionmanager.getValue(Sessionmanager.frndname).equalsIgnoreCase("")) {
+//            tprofile_name.setText(sessionmanager.getValue(Sessionmanager.frndname));
+            tprofile_name.setText(getProfilePostdetail.get(0).getName());
+//        }
+
+        if (!sessionmanager.getValue(Sessionmanager.frndTitle).equalsIgnoreCase("")) {
+            tcompany_name.setText(sessionmanager.getValue(Sessionmanager.frndTitle));
+        }
+
+
+        if (!getProfilePostdetail.get(0).getFollowingCount().equals("")) {
+            tfrnd_followingno.setText(String.valueOf(getProfilePostdetail.get(0).getFollowingCount()));
+        }
+
+        if (!getProfilePostdetail.get(0).getFollowerCount().equals("")) {
+            tfrnd_followersno.setText(String.valueOf(getProfilePostdetail.get(0).getFollowerCount()));
+        }
+
+        if (!getProfilePostdetail.get(0).getFriendCount().equals("")) {
+            tfrnd_friendcount.setText(String.valueOf(getProfilePostdetail.get(0).getFriendCount()));
+        }
+
+        tfrnd_totalpostno.setText(String.valueOf(getprofile));
+
+        if (sessionmanager.getValue(Sessionmanager.profilefriend) != null) {
+            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefriend)).placeholder(R.drawable.dummy).into(frnd_profile);
+        }
+    }
+
+    /*TODO get profile API*/
+
+    public void getprofile(String index, String user_id) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        final Call<GetProfile> getProfileCall = apiInterface.getprofilepojo(index, user_id);
+        getProfileCall.enqueue(new Callback<GetProfile>() {
+            @Override
+            public void onResponse(Call<GetProfile> call, Response<GetProfile> response) {
+                dialog.dismiss();
+                if (response.body().getStatus().equals("Success")) {
+
+                    getprofile = response.body().getTotalPostcount();
+                    Log.e("TOTAL", new Gson().toJson(getprofile));
+
+                    GetProfilePostdetail.add(response.body().getData().getUser());
+                    Log.e("Get_Profile_data", new Gson().toJson(GetProfilePostdetail));
+
+                    int total = response.body().getTotalPostcount();
+                    setData(GetProfilePostdetail, total);
+
+                    profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
+                    adapter = new Friendpro_Adapter(activity, profilePostdetails);
+                    lfrnd_listview.setAdapter(adapter);
+
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                else {
+                    Toast.makeText(FreindProfile.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<GetProfile> call, Throwable t) {
+                dialog.dismiss();
             }
         });
     }

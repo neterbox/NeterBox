@@ -82,5 +82,19 @@
     <string name="publishable_key">pk_52fd2de101cb81a4f7f20bb68758e8482c058e1a</string>
     <string name="Secret_Key">sk_d8833a1c792f40113594fa074ec3167e21af43af</string>
 
+
+    <!--TODO share location custom VIew-->
+
+    <string name="share_activity">Share Activity Demo</string>
+    <string name="shared_activity">Shared Activity Demo</string>
+    <string name="imageview">Share ImageView</string>
+    <string name="share_image">Share Image</string>
+    <string name="share_text">Share Text</string>
+    <string name="select_image">Select Image</string>
+    <string name="enter_text">Enter something to share</string>
+    <string name="shared_text">Shared Text</string>
+    <string name="shared_image">Shared Image</string>
+
+
 </resources>
 

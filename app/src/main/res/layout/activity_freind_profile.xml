@@ -92,10 +92,39 @@
                 android:padding="@dimen/_2sdp">
 
                 <LinearLayout
-                    android:id="@+id/lfrnd_followers"
+                    android:id="@+id/lfrnd_following"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="#fff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tfrnd_followingno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:gravity="center"
+                        tools:text="556"
+                        android:textColor="#060606"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tfrnd_following"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="FOLLOWING"
+                        android:textColor="#a1a1a1"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lfrnd_followers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#fff"
                     android:orientation="vertical">
@@ -106,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
                         android:gravity="center"
-                        tools:text="556"
+                        tools:text="56"
                         android:textColor="#060606"
                         android:textSize="@dimen/_10sdp" />
 
@@ -122,7 +151,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/lfrnd_hearts"
+                    android:id="@+id/lfrnd_totalfriend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -130,36 +159,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tfrnd_heartsno"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_50sdp"
-                        android:gravity="center"
-                        tools:text="56"
-                        android:textColor="#060606"
-                        android:textSize="@dimen/_10sdp" />
-
-                    <TextView
-                        android:id="@+id/tfrnd_hearts"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="HEARTS"
-                        android:textColor="#a1a1a1"
-                        android:textSize="@dimen/_10sdp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/lfrnd_subscribers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tfrnd_subscribersno"
+                        android:id="@+id/tfrnd_friendcount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
@@ -169,7 +169,7 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/tfrnd_subscribers"
+                        android:id="@+id/tfrnd_Friend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -180,7 +180,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/lfrnd_likes"
+                    android:id="@+id/lfrnd_totalpost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -189,7 +189,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tfrnd_likesno"
+                        android:id="@+id/tfrnd_totalpostno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_50sdp"
@@ -199,11 +199,11 @@
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
-                        android:id="@+id/tfrnd_likes"
+                        android:id="@+id/tfrnd_totalpost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="LIKES"
+                        android:text="POSTS"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
@@ -264,7 +264,7 @@
                 android:background="#dadada"
                 android:layout_marginTop="@dimen/_2sdp"></View>
     <ListView
-        android:id="@+id/frnd_listview"
+        android:id="@+id/lfrnd_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -209,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:gravity="center"
-                        android:text="TOTAL POST"
+                        android:text="POSTS"
                         android:textColor="#a1a1a1"
                         android:textSize="@dimen/_10sdp" />
                 </LinearLayout>
