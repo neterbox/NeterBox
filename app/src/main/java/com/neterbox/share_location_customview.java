@@ -26,7 +26,6 @@ public class share_location_customview extends AppCompatActivity {
 
     private final int select_photo = 1; // request code fot gallery intent
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +60,13 @@ public class share_location_customview extends AppCompatActivity {
                 // for
                 // result
                 break;
+
             case R.id.share_image:
 
                 // share image
                 shareImage(imageUri);
-
                 break;
+
             case R.id.btnTextShare:
                 // Share text
                 String getText = textToShare.getText().toString();

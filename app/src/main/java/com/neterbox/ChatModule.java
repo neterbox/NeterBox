@@ -3,6 +3,7 @@ package com.neterbox;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -32,12 +33,16 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
         idMapping();
         Listener();
         fragment = new MainChat();
+
+
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
 //            ft.addToBackStack(null);
             ft.commit();
         }
+
+
 
     }
 
