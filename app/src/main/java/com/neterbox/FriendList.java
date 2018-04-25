@@ -65,6 +65,8 @@ public class FriendList extends Activity {
             {
                 Intent it =new Intent(FriendList.this,FreindProfile.class);
                 it.putExtra("friendlist",(Serializable) friendListData.get(i));
+                it.putExtra("name",friendListData.get(i).getReceiver().getName());
+                it.putExtra("profile_pic",friendListData.get(i).getReceiver().getProfilePic());
                 startActivity(it);
                 finish();
             }

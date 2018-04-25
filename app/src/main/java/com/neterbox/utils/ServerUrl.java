@@ -34,6 +34,7 @@ public class ServerUrl {
     public static final String COMMENTS = "comments/add";
     public static final String UPDATEQBID = "users/updateqbid";
     public static final String FOLLOWERLIST = "Followers/lists";
+    public static final String FOLLOWINGLIST = "Followers/lists";
     public static final String CHANGEPASSWORD = "users/changepassword";
     public static final String FORGOTPASSWORD = "users/forgotpassword";
 

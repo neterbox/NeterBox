@@ -2,6 +2,7 @@ package com.neterbox.customadapter;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.neterbox.FollowerProfile;
+import com.neterbox.FollowingProfile;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.followingadd.Following;
+import com.neterbox.jsonpojo.get_profile.GetProfile;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.utils.Sessionmanager;
 
@@ -28,37 +34,30 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Followerpro_Adapter extends BaseAdapter {
 
     Activity activity;
-//    private LayoutInflater inflater;
     public Resources res;
-
     private ArrayList data;
-    List<GetProfilePostdetail> getProfilePostdetails;
+    List<GetProfilePostdetail> getProfileDatumList;
 
     Sessionmanager sessionmanager;
-
+    private LayoutInflater inflater;
 
     public Followerpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
         this.activity = a;
-        this.getProfilePostdetails = getProfileDatumList;
+        this.getProfileDatumList = getProfileDatumList;
         sessionmanager = new Sessionmanager(activity);
+        Log.e("++++++ postList ++++++",new Gson().toJson(getProfileDatumList));
 //        inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
-
     }
-
-
     @Override
     public int getCount() {
 //        return 6;
-
-        return getProfilePostdetails.size();
+        return getProfileDatumList.size();
     }
 
     @Override
     public Object getItem(int i) {
 //        return i;
-
-        return getProfilePostdetails.get(i);
-
+        return getProfileDatumList.get(i);
     }
 
     @Override
@@ -102,7 +101,7 @@ public class Followerpro_Adapter extends BaseAdapter {
         else
             holder=(Followerpro_Adapter.ViewHolder)v.getTag();*/
 
-        String datetime = getProfilePostdetails.get(i).getPostFile().get(0).getCreated();
+        String datetime = getProfileDatumList.get(i).getPostFile().get(0).getCreated();
         String[] separated = datetime.split(" ");
         String date = separated[0];
         String time = separated[1];
@@ -110,14 +109,14 @@ public class Followerpro_Adapter extends BaseAdapter {
         holder.tlistview_time.setText(time);
 
         holder = (Followerpro_Adapter.ViewHolder) v.getTag();
-        if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
-            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(holder.listview_profile);
-            holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
-            Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
+        if (!(getProfileDatumList.get(i).getPostFile().equals(""))) {
+            String NAME= FollowerProfile.name;
+            holder.tlistview_name.setText(NAME);
+            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.following_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+            holder.tlistview_cap.setText(getProfileDatumList.get(i).getPost().getComments());
+            Glide.with(activity).load(getProfileDatumList.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
+//            holder.tlistview_likes.setText(getProfileDatumList.get(i).getPostLike().get(i).getPostId());
         }
         return v;
-
-
     }
 }

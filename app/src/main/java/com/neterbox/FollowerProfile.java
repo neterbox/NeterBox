@@ -22,9 +22,12 @@ import com.neterbox.customadapter.Followerpro_Adapter;
 import com.neterbox.customadapter.Friendpro_Adapter;
 import com.neterbox.customadapter.Userpro_Adapter;
 import com.neterbox.jsonpojo.cancel_friend_request.CancelFriendRequest;
+import com.neterbox.jsonpojo.followingadd.FollowerDetails;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.jsonpojo.get_profile.GetProfileUser;
+import com.neterbox.jsonpojo.get_profile.GetProfile_0;
 import com.neterbox.jsonpojo.near_by_friend.NearbyfriendDatum;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequest;
 import com.neterbox.jsonpojo.sendfriendrequest.SendRequestReceiver;
@@ -42,6 +45,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.neterbox.R.drawable.greenbox;
+import static com.neterbox.utils.Sessionmanager.follower_pic;
 import static com.neterbox.utils.Sessionmanager.index;
 
 public class FollowerProfile extends AppCompatActivity {
@@ -58,6 +62,9 @@ public class FollowerProfile extends AppCompatActivity {
     Sessionmanager sessionmanager;
     String Profilename;
     String index = "1", user_id;
+    public static String name;
+    public static String followerprofilepic;
+    FollowerDetails followerDetails = new FollowerDetails();
 
     int  getprofile;
     private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
@@ -78,11 +85,17 @@ public class FollowerProfile extends AppCompatActivity {
         idMappings();
         listener();
 
-        user_id = sessionmanager.getValue(sessionmanager.Id);
+        name = getIntent().getStringExtra("name");
+        String followerprofilepic = getIntent().getStringExtra("profile_pic");
+
+        if (followerDetails != null) {
+            tprofile_name.setText(name);
+            Glide.with(activity).load(followerprofilepic).placeholder(R.drawable.dummy).into(ifollowerprofile);
+        }
+        user_id = sessionmanager.getValue(sessionmanager.following_id);
         getprofile(index, user_id);
 
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
-//        receiver_id = nearbyfriendData.getUsers().getId();
         receiver_id = sessionmanager.getValue(Sessionmanager.nearbyuserId);
         req_receiver_id = sessionmanager.getValue(Sessionmanager.frndrecId);
 
@@ -95,9 +108,7 @@ public class FollowerProfile extends AppCompatActivity {
             lfollower_addfrnd.setEnabled(true);
         }
 
-
     }
-
 //        follower_listview.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -121,7 +132,6 @@ public class FollowerProfile extends AppCompatActivity {
         tcompany_name=(TextView)findViewById(R.id.tcompany_name);
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
-        title.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
 
     }
@@ -189,9 +199,6 @@ public class FollowerProfile extends AppCompatActivity {
 
     //TODo data set
     private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
-        if (!sessionmanager.getValue(Sessionmanager.following_name).equalsIgnoreCase("")) {
-            tprofile_name.setText(sessionmanager.getValue(Sessionmanager.follower_name));
-        }
 
         if (!sessionmanager.getValue(Sessionmanager.following_title).equalsIgnoreCase("")) {
             tcompany_name.setText(sessionmanager.getValue(Sessionmanager.following_title));
@@ -211,9 +218,6 @@ public class FollowerProfile extends AppCompatActivity {
 
         tfollower_totalpostno.setText(String.valueOf(getprofile));
 
-        if (sessionmanager.getValue(Sessionmanager.following_pic) != null) {
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.following_pic)).placeholder(R.drawable.dummy).into(ifollowerprofile);
-        }
     }
 
 
@@ -240,7 +244,11 @@ public class FollowerProfile extends AppCompatActivity {
                     int total = response.body().getTotalPostcount();
                     setData(GetProfilePostdetail, total);
 
-                    profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
+
+//                    profilePostdetails=new GetProfilePostdetail();
+                    profilePostdetails= response.body().getData().getUser().getPosetdetail();
+//                    profilePostdetails.addAll(GetProfilePostdetail.get(0).get);
+//
                     adapter = new Followerpro_Adapter(activity, profilePostdetails);
                     follower_listview.setAdapter(adapter);
 

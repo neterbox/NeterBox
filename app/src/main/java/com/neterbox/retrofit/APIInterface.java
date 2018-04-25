@@ -224,6 +224,12 @@ public interface APIInterface {
 
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @FormUrlEncoded
+    @POST(ServerUrl.FOLLOWINGLIST)
+    Call<Followerlist> followinglistpojo(@Field("following_id") String following_id);
+
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
     @POST(ServerUrl.CHANGEPASSWORD)
     Call<ChangePassword> callApi_ChangePassword(@Field("id") String id, @Field("password") String password);
 

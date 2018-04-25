@@ -46,8 +46,10 @@ public class search_followers extends AppCompatActivity {
         activity = this;
         idMappings();
         listener();
+
         sessionmanager = new Sessionmanager(this);
         followerlist(sessionmanager.getValue(Sessionmanager.Id));
+
 
     }
 
@@ -56,6 +58,8 @@ public class search_followers extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it = new Intent(search_followers.this, FollowerProfile.class);
+                it.putExtra("name",followerlistData.get(i).getFollowingDetail().getName());
+                it.putExtra("profile_pic",followerlistData.get(i).getFollowingDetail().getProfilePic());
                 startActivity(it);
                 finish();
 

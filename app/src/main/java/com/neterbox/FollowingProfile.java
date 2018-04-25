@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.neterbox.customadapter.Followerpro_Adapter;
 import com.neterbox.customadapter.Followingpro_Adapter;
 import com.neterbox.customadapter.Userpro_Adapter;
+import com.neterbox.jsonpojo.followingadd.FollowerDetails;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.jsonpojo.get_profile.GetProfileUser;
@@ -42,37 +43,48 @@ public class FollowingProfile extends AppCompatActivity {
 
     Activity activity;
     ImageView ileft,iright;
-    TextView tfriendTitle,tfriend_name;
+    TextView tfollowingTitle,tfollowing_name,title;
     public FollowingProfile followingProfile ;
     String index = "1", user_id;
 
+    FollowerDetails followerDetails = new FollowerDetails();
+
     TextView  tfollowing_followingno, tfollowing_following,tfollowing_followersno, tfollowing_followers, tfollowing_friendcountno
             ,tfollowing_Friend, tfollowing_totalpostno, tfollowing_totalpost;
+
     CircleImageView cifollowing_profile;
+    int  getprofile;
     private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
     private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
+
     Sessionmanager sessionmanager;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-    int  getprofile;
+
+    public static String followingname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_following_profile);
-
+        activity = this;
         sessionmanager = new Sessionmanager(this);
 
         idmapping();
         listener();
 
+        followingname = getIntent().getStringExtra("name");
+        String followingprofilepic = getIntent().getStringExtra("profile_pic");
+
+        if (followerDetails != null) {
+            tfollowing_name.setText(followingname);
+            Glide.with(activity).load(followingprofilepic).placeholder(R.drawable.dummy).into(cifollowing_profile);
+        }
+
         user_id = sessionmanager.getValue(sessionmanager.Id);
         getprofile(index, user_id);
 
-        activity = this;
-
         Resources res =getResources();
         following_listView =(ListView)findViewById( R.id.following_listview );
-
     }
 
     private void listener() {
@@ -98,8 +110,9 @@ public class FollowingProfile extends AppCompatActivity {
     private void idmapping() {
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
-        tfriendTitle=(TextView)findViewById(R.id.tfriendTitle);
-        tfriend_name=(TextView)findViewById(R.id.tfriend_name);
+        title=(TextView)findViewById(R.id.title);
+        tfollowingTitle=(TextView)findViewById(R.id.tfollowingTitle);
+        tfollowing_name=(TextView)findViewById(R.id.tfollowing_name);
         tfollowing_followingno=(TextView)findViewById(R.id.tfollowing_followingno);
         tfollowing_following=(TextView)findViewById(R.id.tfollowing_following);
         tfollowing_followersno=(TextView)findViewById(R.id.tfollowing_followersno);
@@ -114,6 +127,8 @@ public class FollowingProfile extends AppCompatActivity {
         ileft.setImageResource(R.drawable.back);
         iright.setImageResource(R.drawable.menu);
 //        title.setText("Jane Wilson");
+        title.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -124,12 +139,9 @@ public class FollowingProfile extends AppCompatActivity {
     }
     //TODo data set
     private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
-        if (!sessionmanager.getValue(Sessionmanager.follower_name).equalsIgnoreCase("")) {
-            tfriend_name.setText(sessionmanager.getValue(Sessionmanager.follower_name));
-        }
 
         if (!sessionmanager.getValue(Sessionmanager.follower_title).equalsIgnoreCase("")) {
-            tfriendTitle.setText(sessionmanager.getValue(Sessionmanager.follower_title));
+            tfollowingTitle.setText(sessionmanager.getValue(Sessionmanager.follower_title));
         }
 
 
@@ -146,10 +158,10 @@ public class FollowingProfile extends AppCompatActivity {
         }
 
         tfollowing_totalpostno.setText(String.valueOf(getprofile));
-
-        if (sessionmanager.getValue(Sessionmanager.profilefollower) != null) {
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefollower)).placeholder(R.drawable.dummy).into(cifollowing_profile);
-        }
+//
+//        if (sessionmanager.getValue(Sessionmanager.profilefollower) != null) {
+//            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefollower)).placeholder(R.drawable.dummy).into(cifollowing_profile);
+//        }
     }
 
     /*TODO get profile API*/
@@ -168,6 +180,7 @@ public class FollowingProfile extends AppCompatActivity {
                 if (response.body().getStatus().equals("Success")) {
 
                     getprofile = response.body().getTotalPostcount();
+
                     Log.e("TOTAL", new Gson().toJson(getprofile));
                     GetProfilePostdetail.add(response.body().getData().getUser());
                     Log.e("Get Profile data", new Gson().toJson(GetProfilePostdetail));
@@ -175,7 +188,9 @@ public class FollowingProfile extends AppCompatActivity {
                     int total = response.body().getTotalPostcount();
                     setData(GetProfilePostdetail, total);
 
-                    profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
+//                    profilePostdetails.addAll(GetProfilePostdetail);
+                    profilePostdetails= response.body().getData().getUser().getPosetdetail();
+
                     adapter = new Followingpro_Adapter(activity, profilePostdetails);
                     following_listView.setAdapter(adapter);
 

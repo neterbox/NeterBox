@@ -66,4 +66,6 @@ public class GetProfile {
     public void setTotalPostcount(Integer totalPostcount) {
         this.totalPostcount = totalPostcount;
     }
+
+
 }

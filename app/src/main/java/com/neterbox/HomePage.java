@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.updateqb.UpdateQB;
 import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.qb.ChatHelper;
@@ -149,6 +150,8 @@ public class HomePage extends Activity {
                 finish();
             }
         });
+
+        final String profilepic = sessionmanager.getValue(Sessionmanager.profile);
         // set dummy profile if profile pic is not selected
         if(  new Sessionmanager(context).getValue(Sessionmanager.profile) != null)
         {
@@ -165,6 +168,8 @@ public class HomePage extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePage.this, UserProfile.class);
+                i.putExtra("name", Loginname);
+                i.putExtra("profile_pic",profilepic);
                 startActivity(i);
                 finish();
             }

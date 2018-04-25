@@ -67,6 +67,7 @@ public class FreindProfile extends Activity {
     SharedPreferences sharedPreferences;
     public static final int REQUEST_DIALOG_ID_FOR_UPDATE = 1;
 
+    public static String name;
 
     CircleImageView frnd_profile;
     FriendListDatum friendListdata = new FriendListDatum();
@@ -87,6 +88,19 @@ public class FreindProfile extends Activity {
 
         user_id = sessionmanager.getValue(sessionmanager.frndId);
         getprofile(index, user_id);
+
+        name = getIntent().getStringExtra("name");
+        String followerprofilepic = getIntent().getStringExtra("profile_pic");
+
+        if (friendListdata != null) {
+            tprofile_name.setText(name);
+            Glide.with(activity).load(followerprofilepic).placeholder(R.drawable.dummy).into(frnd_profile);
+        }
+
+//        if (friendListdata != null) {
+//            tprofile_name.setText(friendListdata.getReceiver().getName());
+//            Glide.with(activity).load(friendListdata.getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(frnd_profile);
+//        }
 
     }
 
@@ -284,13 +298,12 @@ public class FreindProfile extends Activity {
     }
 
 
-
     //TODo data set
     private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
 
 //        if (!sessionmanager.getValue(Sessionmanager.frndname).equalsIgnoreCase("")) {
 //            tprofile_name.setText(sessionmanager.getValue(Sessionmanager.frndname));
-            tprofile_name.setText(getProfilePostdetail.get(0).getName());
+//            tprofile_name.setText(getProfilePostdetail.get(0).getName());
 //        }
 
         if (!sessionmanager.getValue(Sessionmanager.frndTitle).equalsIgnoreCase("")) {
@@ -312,9 +325,9 @@ public class FreindProfile extends Activity {
 
         tfrnd_totalpostno.setText(String.valueOf(getprofile));
 
-        if (sessionmanager.getValue(Sessionmanager.profilefriend) != null) {
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefriend)).placeholder(R.drawable.dummy).into(frnd_profile);
-        }
+//        if (sessionmanager.getValue(Sessionmanager.profilefriend) != null) {
+//            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefriend)).placeholder(R.drawable.dummy).into(frnd_profile);
+//        }
     }
 
     /*TODO get profile API*/
@@ -341,7 +354,8 @@ public class FreindProfile extends Activity {
                     int total = response.body().getTotalPostcount();
                     setData(GetProfilePostdetail, total);
 
-                    profilePostdetails.addAll(GetProfilePostdetail.get(0).getPosetdetail());
+                    profilePostdetails= response.body().getData().getUser().getPosetdetail();
+
                     adapter = new Friendpro_Adapter(activity, profilePostdetails);
                     lfrnd_listview.setAdapter(adapter);
 

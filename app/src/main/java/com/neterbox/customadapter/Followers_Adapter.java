@@ -28,6 +28,7 @@ public class Followers_Adapter extends BaseAdapter {
     public Resources res;
     List<FollowerlistDatum> followerlistData;
 
+
     public Followers_Adapter(Activity activity, List<FollowerlistDatum> followerlistData) {
 
         this.activity=activity;

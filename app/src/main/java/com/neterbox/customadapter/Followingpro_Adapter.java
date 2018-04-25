@@ -2,6 +2,7 @@ package com.neterbox.customadapter;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.neterbox.FollowerProfile;
+import com.neterbox.FollowingProfile;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.utils.Sessionmanager;
@@ -25,6 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class Followingpro_Adapter extends BaseAdapter{
+
     Activity activity;
     private ArrayList data;
     private LayoutInflater inflater;
@@ -33,12 +38,13 @@ public class Followingpro_Adapter extends BaseAdapter{
     List<GetProfilePostdetail> getProfilePostdetails;
     Sessionmanager sessionmanager;
 
-
     public Followingpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
         this.activity = a;
         this.getProfilePostdetails = getProfileDatumList;
         sessionmanager = new Sessionmanager(activity);
-      //  inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+        Log.e("++++++ postList ++++++",new Gson().toJson(getProfileDatumList));
+
+        //  inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -66,7 +72,6 @@ public class Followingpro_Adapter extends BaseAdapter{
         public CircleImageView listview_profile;
         public LinearLayout llistview_comment, llistview_likes;
     }
-
 
     @Override
     public View getView(int i, View v, ViewGroup viewGroup) {
@@ -100,7 +105,10 @@ public class Followingpro_Adapter extends BaseAdapter{
 
         holder = (Userpro_Adapter.ViewHolder) v.getTag();
         if (!(getProfilePostdetails.get(i).getPostFile().equals(""))) {
-            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
+
+            String NAME= FollowingProfile.followingname;
+            holder.tlistview_name.setText(NAME);
+//            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.follower_name));
             Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.follower_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
             Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);

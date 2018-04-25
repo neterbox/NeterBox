@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -23,28 +25,27 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class Search_Following_Adapter extends BaseAdapter {
+
     Activity activity;
-    String[] itemname;
-    Integer[] imgid;
     private LayoutInflater inflater;
     public Resources res;
 
-    public Search_Following_Adapter(Activity a, String[] itemname, Integer[] imgid) {
-        this.activity = a;
-        this.itemname = itemname;
-        this.imgid = imgid;
+    List<FollowerlistDatum> followerlistData;
 
+    public Search_Following_Adapter(Activity activity, List<FollowerlistDatum> followerlistData) {
+        this.activity=activity;
+        this.followerlistData=followerlistData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return (itemname != null ? itemname.length : 0);
+        return followerlistData.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return itemname[i];
+        return followerlistData.get(i);
     }
 
     @Override
@@ -64,11 +65,18 @@ public class Search_Following_Adapter extends BaseAdapter {
         } else {
             viewHolder = (MyViewHolder) view.getTag();
         }
-        viewHolder.titem2.setText(itemname[i]);
-        viewHolder.textView2.setText(itemname[i]);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.ifollowingprofile);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.followingback);
+
+        viewHolder.titem2.setText(followerlistData.get(i).getFollowerDetail().getName());
+        viewHolder.textView2.setText(followerlistData.get(i).getFollowerDetail().getCompany());
+        Glide.with(activity).load(followerlistData.get(i).getFollowerDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifollowingprofile);
+
         return view;
+
+//        viewHolder.titem2.setText(itemname[i]);
+//        viewHolder.textView2.setText(itemname[i]);
+//        Glide.with(activity).load(imgid[i]).into(viewHolder.ifollowingprofile);
+//        Glide.with(activity).load(imgid[i]).into(viewHolder.followingback);
+//        return view;
     }
 
     class MyViewHolder {
@@ -81,9 +89,6 @@ public class Search_Following_Adapter extends BaseAdapter {
                 titem2 = (TextView) item.findViewById(R.id.titem2);
                 textView2 = (TextView) item.findViewById(R.id.textView2);
                 ifollowingprofile = (CircleImageView) item.findViewById(R.id.ifollowingprofile);
-                lsearchfollowingssprofile = (LinearLayout) item.findViewById(R.id.lsearchfollowingssprofile);
-                followingback = (ImageView) item.findViewById(R.id.followingback);
-
             }
         }
     }

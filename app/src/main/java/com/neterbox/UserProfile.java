@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.customadapter.Userpro_Adapter;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.jsonpojo.get_profile.GetProfileUser;
 import com.neterbox.retrofit.APIClient;
@@ -39,6 +40,9 @@ public class UserProfile extends AppCompatActivity {
     private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
     private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
     Sessionmanager sessionmanager;
+
+    GetProfileDatum getProfileDatum = new GetProfileDatum();
+
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     int  getprofile;
     @Override
@@ -49,6 +53,14 @@ public class UserProfile extends AppCompatActivity {
         sessionmanager = new Sessionmanager(this);
 
         idmapping();
+
+        String followingname = getIntent().getStringExtra("name");
+        String followingprofilepic = getIntent().getStringExtra("profile_pic");
+
+        if (getProfileDatum != null) {
+            user_text.setText(followingname);
+            Glide.with(activity).load(followingprofilepic).placeholder(R.drawable.dummy).into(iuser_profile);
+        }
 
         user_id = sessionmanager.getValue(sessionmanager.Id);
         getprofile(index, user_id);
@@ -74,9 +86,6 @@ public class UserProfile extends AppCompatActivity {
 
     //TODo data set
     private void setData(List<GetProfileUser> getProfilePostdetail, int total) {
-        if (!sessionmanager.getValue(Sessionmanager.Username).equalsIgnoreCase("")) {
-            user_text.setText(sessionmanager.getValue(Sessionmanager.Username));
-        }
 
         if (!sessionmanager.getValue(Sessionmanager.Title).equalsIgnoreCase("")) {
             user_text2.setText(sessionmanager.getValue(Sessionmanager.Title));
@@ -96,10 +105,6 @@ public class UserProfile extends AppCompatActivity {
         }
 
             tuser_totalpostno.setText(String.valueOf(getprofile));
-
-        if (sessionmanager.getValue(Sessionmanager.profile) != null) {
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(iuser_profile);
-        }
 
     }
 

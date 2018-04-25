@@ -34,16 +34,12 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
         Listener();
         fragment = new MainChat();
 
-
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
 //            ft.addToBackStack(null);
             ft.commit();
         }
-
-
-
     }
 
     public void idMapping()

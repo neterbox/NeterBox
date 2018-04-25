@@ -105,6 +105,8 @@ public class Userpro_Adapter extends BaseAdapter {
             Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profile)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
             Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
+//            holder.tlistview_likes.setText(getProfilePostdetails.get(i).getPostLike().get(i).getPostId());
+
         }
         return v;
     }

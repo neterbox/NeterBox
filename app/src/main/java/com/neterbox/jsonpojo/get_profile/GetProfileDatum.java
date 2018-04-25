@@ -22,4 +22,5 @@ public class GetProfileDatum implements Serializable {
     public void setUser(GetProfileUser user) {
         this.user = user;
     }
+
 }
