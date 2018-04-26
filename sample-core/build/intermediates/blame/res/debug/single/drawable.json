@@ -1,39 +1,23 @@
 [
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ratingbar_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\tooltip_frame_dark.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\tooltip_frame_dark.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\0b04a9a89193df7e715c04f77801687752be7e65\\output\\res\\drawable\\notification_icon_background.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_disabled.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
@@ -44,116 +28,116 @@
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_track_material.xml"
-    },
-    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\0b04a9a89193df7e715c04f77801687752be7e65\\output\\res\\drawable\\notification_tile_bg.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\tooltip_frame_light.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\tooltip_frame_light.xml"
     },
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_fab_background.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\drawable\\design_fab_background.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_fab_background.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_fab_background.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\tooltip_frame_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\tooltip_frame_dark.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_check_material.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_password_eye.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_password_eye.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\navigation_empty_icon.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\navigation_empty_icon.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_edit_text_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\tooltip_frame_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\tooltip_frame_light.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_normal.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
     },
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_normal.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ratingbar_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_dialog_material_background.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_circle.xml",
         "source": "D:\\NeterBox\\sample-core\\src\\main\\res\\drawable\\shape_circle.xml"
     },
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_disabled.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\0b04a9a89193df7e715c04f77801687752be7e65\\output\\res\\drawable\\notification_bg_low.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_bottom_navigation_item_background.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
-    },
-    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_vector_test.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_normal.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_normal.xml",
@@ -164,48 +148,32 @@
         "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_switch_thumb_material.xml"
-    },
-    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_disabled.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\drawable\\notification_bg_low.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\drawable\\design_snackbar_background.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_snackbar_background.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_snackbar_background.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
-    },
-    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
-    },
-    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
-    },
-    {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
@@ -220,8 +188,280 @@
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\tooltip_frame_dark.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\tooltip_frame_dark.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\shape_circle.xml",
+        "source": "D:\\6th sem\\NeterBox\\sample-core\\src\\main\\res\\drawable\\shape_circle.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_password_eye.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\drawable\\design_password_eye.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_vector_test.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\0b04a9a89193df7e715c04f77801687752be7e65\\output\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_fab_background.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_fab_background.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_password_eye.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_password_eye.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\navigation_empty_icon.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_normal.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\drawable\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_normal.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_disabled.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
+        "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_normal.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\36936e18189929c5f81b1bc18d9d64c2dfe3d8c9\\output\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
@@ -232,11 +472,11 @@
         "source": "C:\\Users\\sejal\\.android\\build-cache\\7a9bed0de3da37abed6dcebe8421350057223f4a\\output\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_btn_borderless_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
-        "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\drawable\\abc_textfield_search_material.xml"
     }
 ]

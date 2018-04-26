@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\NeterBox\cropper\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\NeterBox\cropper\src\release\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\6th sem\NeterBox\cropper\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\6th sem\NeterBox\cropper\src\release\shaders"/></dataSet></merger>

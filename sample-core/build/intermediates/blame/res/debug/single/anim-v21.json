@@ -1,7 +1,15 @@
 [
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\anim-v21\\design_bottom_sheet_slide_out.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\anim-v21\\design_bottom_sheet_slide_out.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\anim-v21\\design_bottom_sheet_slide_in.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\df3a15fd9e2754954bcf4521cd42d121d2a59373\\output\\res\\anim-v21\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\anim-v21\\design_bottom_sheet_slide_in.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\b082942c7373470c51724af9cb07d3406fdcec5f\\output\\res\\anim-v21\\design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\anim-v21\\design_bottom_sheet_slide_out.xml",

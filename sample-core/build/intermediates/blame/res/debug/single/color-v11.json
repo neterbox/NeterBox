@@ -1,5 +1,13 @@
 [
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\86a8150a79dedc1c220c882626869c483fc2a47d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\e90a8a27473442530f8c51f9b78f37d88ff0ea5f\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },

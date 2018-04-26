@@ -1,5 +1,21 @@
 [
     {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\d54d5d6aa153a9a135e555e420ff91c213e705fb\\output\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\sample-core\\build\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\0b04a9a89193df7e715c04f77801687752be7e65\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },

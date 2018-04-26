@@ -1,7 +1,19 @@
 [
     {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_default.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\41e286ba5acd24d8b798a1ff9d318790dff7e3ed\\output\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "D:\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
@@ -14,6 +26,10 @@
     {
         "merged": "D:\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\41e286ba5acd24d8b798a1ff9d318790dff7e3ed\\output\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
     {
         "merged": "D:\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_spinner.xml",
@@ -32,7 +48,27 @@
         "source": "C:\\Users\\sejal\\.android\\build-cache\\41e286ba5acd24d8b798a1ff9d318790dff7e3ed\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
     },
     {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_track.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_switch_thumb.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_edittext.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_edittext.xml"
+    },
+    {
         "merged": "D:\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
         "source": "C:\\Users\\sejal\\.android\\build-cache\\41e286ba5acd24d8b798a1ff9d318790dff7e3ed\\output\\res\\color-v23\\abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\6th sem\\NeterBox\\cropper\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\DeLL\\.android\\build-cache\\600c21bbe07d7edfbe6efd843db3c19ebd00dc6f\\output\\res\\color-v23\\abc_tint_btn_checkable.xml"
     }
 ]
