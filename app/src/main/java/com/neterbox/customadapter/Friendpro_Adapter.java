@@ -16,8 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.neterbox.FollowerProfile;
+import com.neterbox.FreindProfile;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.jsonpojo.friend_requestlist.FrndReqListModel;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
@@ -36,7 +39,7 @@ public class Friendpro_Adapter extends BaseAdapter {
     public Resources res;
     private ArrayList data;
     List<GetProfilePostdetail> getProfileDatumList;
-
+    GetProfileDatum getProfileDatum = new GetProfileDatum();
     Sessionmanager sessionmanager;
     private LayoutInflater inflater;
 
@@ -51,7 +54,6 @@ public class Friendpro_Adapter extends BaseAdapter {
     public int getCount() {
 //        return 6;
         return getProfileDatumList.size();
-
     }
 
     @Override
@@ -71,6 +73,7 @@ public class Friendpro_Adapter extends BaseAdapter {
         public LinearLayout llistview_comment, llistview_likes;
     }
 
+
     @Override
     public View getView(int i, View v, ViewGroup viewGroup) {
 
@@ -81,7 +84,7 @@ public class Friendpro_Adapter extends BaseAdapter {
                 inflate(R.layout.profilelist_item, viewGroup, false);
 
         holder = new Friendpro_Adapter.ViewHolder();
-        holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
+               holder.tlistview_name = (TextView) v.findViewById(R.id.tlistview_name);
         holder.tlistview_seen = (TextView) v.findViewById(R.id.tlistview_seen);
         holder.tlistview_time = (TextView) v.findViewById(R.id.tlistview_time);
         holder.tlistview_cap = (TextView) v.findViewById(R.id.tlistview_cap);
@@ -95,20 +98,23 @@ public class Friendpro_Adapter extends BaseAdapter {
         holder.listview_profile = (CircleImageView) v.findViewById(R.id.listview_profile);
         v.setTag(holder);
 
-        String datetime = getProfileDatumList.get(i).getPostFile().get(0).getCreated();
-        String[] separated = datetime.split(" ");
-        String date = separated[0];
-        String time = separated[1];
+        String datetime = getProfileDatumList.get(i).getPostFile().get(i).getCreated();
+        String[] seprated = datetime.split("");
+        String date = seprated[0];
+        String time = seprated[1];
 
         holder.tlistview_time.setText(time);
-
         holder = (Friendpro_Adapter.ViewHolder) v.getTag();
+
         if (!(getProfileDatumList.get(i).getPostFile().equals(""))) {
 
-            String NAME= FollowerProfile.name;
+            String NAME= FreindProfile.name;
             holder.tlistview_name.setText(NAME);
+            String PROFILEPIC = FreindProfile.friendprofilepic;
+            Glide.with(activity).load(PROFILEPIC).placeholder(R.drawable.dummy).into(holder.listview_profile);
+//            Glide.with(activity).load(getProfileDatum.getUser().getProfilePic()).into(holder.listview_profile);
 //            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.Name));
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefriend)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+//            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.profilefriend)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_cap.setText(getProfileDatumList.get(i).getPost().getComments());
             Glide.with(activity).load(getProfileDatumList.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
 //            holder.tlistview_likes.setText(getProfileDatumList.get(i).getPostLike().get(i).getPostId());

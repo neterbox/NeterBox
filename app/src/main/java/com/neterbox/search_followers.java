@@ -49,8 +49,6 @@ public class search_followers extends AppCompatActivity {
 
         sessionmanager = new Sessionmanager(this);
         followerlist(sessionmanager.getValue(Sessionmanager.Id));
-
-
     }
 
     private void listener() {
@@ -62,7 +60,6 @@ public class search_followers extends AppCompatActivity {
                 it.putExtra("profile_pic",followerlistData.get(i).getFollowingDetail().getProfilePic());
                 startActivity(it);
                 finish();
-
             }
         });
         ileft.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +80,6 @@ public class search_followers extends AppCompatActivity {
     }
 
     private void idMappings() {
-
         list1 = (ListView) findViewById(R.id.list1);
         ileft = (ImageView) findViewById(R.id.ileft);
         iright = (ImageView) findViewById(R.id.iright);
@@ -95,7 +91,6 @@ public class search_followers extends AppCompatActivity {
 
     public void followerlist(String follower_id) {
         Call<Followerlist> followerlistCall = apiInterface.followerlistpojo(follower_id);
-
         followerlistCall.enqueue(new Callback<Followerlist>() {
             @Override
             public void onResponse(Call<Followerlist> call, Response<Followerlist> response) {
@@ -111,13 +106,11 @@ public class search_followers extends AppCompatActivity {
                     {
                         sessionmanager.createSession_followerlist(followerlistData.get(i));
                     }
-
                     Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(search_followers.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<Followerlist> call, Throwable t) {
                 Toast.makeText(activity, "error", Toast.LENGTH_SHORT).show();

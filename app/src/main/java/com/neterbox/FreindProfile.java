@@ -63,11 +63,12 @@ public class FreindProfile extends Activity {
     private static List<GetProfileUser> GetProfilePostdetail = new ArrayList<>();
     private static List<GetProfilePostdetail> profilePostdetails = new ArrayList<>();
     int  getprofile;
-    GetProfileDatum getfrienddata;
+
     SharedPreferences sharedPreferences;
     public static final int REQUEST_DIALOG_ID_FOR_UPDATE = 1;
 
     public static String name;
+    public static String friendprofilepic;
 
     CircleImageView frnd_profile;
     FriendListDatum friendListdata = new FriendListDatum();
@@ -90,11 +91,11 @@ public class FreindProfile extends Activity {
         getprofile(index, user_id);
 
         name = getIntent().getStringExtra("name");
-        String followerprofilepic = getIntent().getStringExtra("profile_pic");
+        friendprofilepic = getIntent().getStringExtra("profile_pic");
 
         if (friendListdata != null) {
             tprofile_name.setText(name);
-            Glide.with(activity).load(followerprofilepic).placeholder(R.drawable.dummy).into(frnd_profile);
+            Glide.with(activity).load(friendprofilepic).placeholder(R.drawable.dummy).into(frnd_profile);
         }
 
 //        if (friendListdata != null) {
@@ -354,7 +355,7 @@ public class FreindProfile extends Activity {
                     int total = response.body().getTotalPostcount();
                     setData(GetProfilePostdetail, total);
 
-                    profilePostdetails= response.body().getData().getUser().getPosetdetail();
+                    profilePostdetails.addAll(response.body().getData().getUser().getPosetdetail());
 
                     adapter = new Friendpro_Adapter(activity, profilePostdetails);
                     lfrnd_listview.setAdapter(adapter);

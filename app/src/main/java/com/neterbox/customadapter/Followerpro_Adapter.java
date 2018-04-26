@@ -19,6 +19,7 @@ import com.neterbox.FollowingProfile;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.followingadd.Following;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.utils.Sessionmanager;
 
@@ -37,7 +38,7 @@ public class Followerpro_Adapter extends BaseAdapter {
     public Resources res;
     private ArrayList data;
     List<GetProfilePostdetail> getProfileDatumList;
-
+    GetProfileDatum getProfileDatum = new GetProfileDatum();
     Sessionmanager sessionmanager;
     private LayoutInflater inflater;
 
@@ -112,7 +113,10 @@ public class Followerpro_Adapter extends BaseAdapter {
         if (!(getProfileDatumList.get(i).getPostFile().equals(""))) {
             String NAME= FollowerProfile.name;
             holder.tlistview_name.setText(NAME);
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.following_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+            String PROFILEPIC = FollowerProfile.followerprofilepic;
+            Glide.with(activity).load(PROFILEPIC).placeholder(R.drawable.dummy).into(holder.listview_profile);
+//            Glide.with(activity).load(getProfileDatum.getUser().getProfilePic()).into(holder.listview_profile);
+//            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.following_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_cap.setText(getProfileDatumList.get(i).getPost().getComments());
             Glide.with(activity).load(getProfileDatumList.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
 //            holder.tlistview_likes.setText(getProfileDatumList.get(i).getPostLike().get(i).getPostId());

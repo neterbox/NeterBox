@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.neterbox.FollowerProfile;
 import com.neterbox.FollowingProfile;
 import com.neterbox.R;
+import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.get_profile.GetProfilePostdetail;
 import com.neterbox.utils.Sessionmanager;
 
@@ -36,6 +37,7 @@ public class Followingpro_Adapter extends BaseAdapter{
     public Resources res;
 
     List<GetProfilePostdetail> getProfilePostdetails;
+    GetProfileDatum getProfileDatum = new GetProfileDatum();
     Sessionmanager sessionmanager;
 
     public Followingpro_Adapter(Activity a, List<GetProfilePostdetail> getProfileDatumList) {
@@ -108,8 +110,11 @@ public class Followingpro_Adapter extends BaseAdapter{
 
             String NAME= FollowingProfile.followingname;
             holder.tlistview_name.setText(NAME);
+            String PROFILEPIC = FollowingProfile.followingprofilepic;
+            Glide.with(activity).load(PROFILEPIC).placeholder(R.drawable.dummy).into(holder.listview_profile);
+//            Glide.with(activity).load(getProfileDatum.getUser().getProfilePic()).into(holder.listview_profile);
 //            holder.tlistview_name.setText(sessionmanager.getValue(Sessionmanager.follower_name));
-            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.follower_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
+//            Glide.with(activity).load(sessionmanager.getValue(Sessionmanager.follower_pic)).placeholder(R.drawable.dummy).into(holder.listview_profile);
             holder.tlistview_cap.setText(getProfilePostdetails.get(i).getPost().getComments());
             Glide.with(activity).load(getProfilePostdetails.get(i).getPostFile().get(i).getFiles()).into(holder.ilistview_pic);
         }

@@ -61,6 +61,7 @@ public class FollowingProfile extends AppCompatActivity {
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     public static String followingname;
+    public static String followingprofilepic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class FollowingProfile extends AppCompatActivity {
         listener();
 
         followingname = getIntent().getStringExtra("name");
-        String followingprofilepic = getIntent().getStringExtra("profile_pic");
+         followingprofilepic = getIntent().getStringExtra("profile_pic");
 
         if (followerDetails != null) {
             tfollowing_name.setText(followingname);
