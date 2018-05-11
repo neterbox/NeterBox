@@ -2,7 +2,6 @@ package com.neterbox;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.neterbox.qb.BaseActivity;
-import com.neterbox.utils.Constants;
 import com.quickblox.sample.core.utils.ResourceUtils;
 
 public class AttachmentImageActivity extends BaseActivity {
@@ -33,6 +31,7 @@ public class AttachmentImageActivity extends BaseActivity {
         intent.putExtra(EXTRA_URL, url);
         context.startActivity(intent);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

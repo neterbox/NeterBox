@@ -11,9 +11,9 @@ import com.neterbox.jsonpojo.chatlist.ChatListDatum;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
 
 import com.neterbox.jsonpojo.Login.LoginDatum;
+import com.neterbox.jsonpojo.circlepost_list.CirclePostListDatum;
+import com.neterbox.jsonpojo.circlepost_list.CirclePostListPojo;
 import com.neterbox.jsonpojo.circlepostdelete.CirclePostDeleteP;
-import com.neterbox.jsonpojo.circlepostlist.CirclePostListDatum;
-import com.neterbox.jsonpojo.circlepostlist.CirclePostListPojo;
 import com.neterbox.jsonpojo.country.Country;
 import com.neterbox.jsonpojo.editprofile.EditpageDatum;
 import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
@@ -400,5 +400,30 @@ public class Sessionmanager {
         sharedPreferences.edit().putString(comments, circlePostListDatum.getPost().getComments()).apply();
         sharedPreferences.edit().putString(postLike, String.valueOf(circlePostListDatum.getPostlike())).apply();
 
+    }
+
+    public static void saveDtUserInPreference(Context context, FriendListDatum dtUser) {
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String jsonFavorites = gson.toJson(dtUser);
+
+        editor.putString("friendlistdata", jsonFavorites);
+
+        editor.commit();
+    }
+
+    public static FriendListDatum getfrnd(Context context) {
+
+        if (sharedPreferences.contains("friendlistdata")) {
+            String jsonFavorites = sharedPreferences.getString("friendlistdata", null);
+            Gson gson = new Gson();
+            FriendListDatum favoriteItems = gson.fromJson(jsonFavorites,
+                    FriendListDatum.class);
+
+            return favoriteItems;
+
+        } else
+            return null;
     }
 }

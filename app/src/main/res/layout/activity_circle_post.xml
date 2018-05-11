@@ -9,9 +9,10 @@
     <include layout="@layout/image_custom_actionbar"/>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <ListView
         android:id="@+id/li_circle_post"
         android:layout_width="match_parent"
@@ -26,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
         android:orientation="horizontal"
+        android:focusableInTouchMode="true"
         android:layout_gravity="bottom"
         android:gravity="bottom"
         android:visibility="gone">
@@ -34,6 +36,7 @@
             android:id="@+id/lcirclestrip"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
+            android:focusableInTouchMode="true"
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:orientation="horizontal">

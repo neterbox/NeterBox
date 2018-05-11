@@ -52,4 +52,9 @@
             android:layout_gravity="center"
             android:src="@drawable/friendlistarrow" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        tools:background="@color/header_color" />
 </LinearLayout>

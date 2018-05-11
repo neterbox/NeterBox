@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.neterbox.customadapter.Playlist_Adapter;
 import com.neterbox.customadapter.Playvideo_Adapter;
 
 public class Playvideo_page extends AppCompatActivity {

@@ -91,7 +91,7 @@ public class FreindProfile extends Activity {
         getprofile(index, user_id);
 
         name = getIntent().getStringExtra("name");
-        friendprofilepic = getIntent().getStringExtra("profile_pic");
+        friendprofilepic = getIntent().getStringExtra("pic");
 
         if (friendListdata != null) {
             tprofile_name.setText(name);

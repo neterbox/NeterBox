@@ -1,4 +1,4 @@
-package com.neterbox.jsonpojo.circlepostlist;
+package com.neterbox.jsonpojo.circlepost_list;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by DeLL on 19-03-2018.
+ * Created by DeLL on 27-04-2018.
  */
 
 public class CirclePostListDatum {
@@ -28,13 +28,16 @@ public class CirclePostListDatum {
     private CirclePostListUser user;
     @SerializedName("PostFile")
     @Expose
-    private List<CirclePostListPostFile> postFile = null;
+    private List<CircleListPostFile> postFile = null;
     @SerializedName("Comment")
     @Expose
-    private List<CirclePostListComment> comment = null;
+    private List<Object> comment = null;
     @SerializedName("Postlike")
     @Expose
-    private List<CirclePostListPostLike> postlike = null;
+    private String postlike;
+    @SerializedName("is_like")
+    @Expose
+    private Boolean isLike;
 
     public CirclePostListPost getPost() {
         return post;
@@ -76,27 +79,36 @@ public class CirclePostListDatum {
         this.user = user;
     }
 
-    public List<CirclePostListPostFile> getPostFile() {
+    public List<CircleListPostFile> getPostFile() {
         return postFile;
     }
 
-    public void setPostFile(List<CirclePostListPostFile> postFile) {
+    public void setPostFile(List<CircleListPostFile> postFile) {
         this.postFile = postFile;
     }
 
-    public List<CirclePostListComment> getComment() {
+    public List<Object> getComment() {
         return comment;
     }
 
-    public void setComment(List<CirclePostListComment> comment) {
+    public void setComment(List<Object> comment) {
         this.comment = comment;
     }
 
-    public List<CirclePostListPostLike> getPostlike() {
+    public String getPostlike() {
         return postlike;
     }
 
-    public void setPostlike(List<CirclePostListPostLike> postlike) {
+    public void setPostlike(String postlike) {
         this.postlike = postlike;
     }
+
+    public Boolean getIsLike() {
+        return isLike;
+    }
+
+    public void setIsLike(Boolean isLike) {
+        this.isLike = isLike;
+    }
+
 }

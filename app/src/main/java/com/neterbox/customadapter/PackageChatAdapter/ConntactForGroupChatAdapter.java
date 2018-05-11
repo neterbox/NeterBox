@@ -12,10 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
-import com.neterbox.jsonpojo.chatlist.ChatListDatum;
+import com.neterbox.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,23 +28,21 @@ public class ConntactForGroupChatAdapter extends BaseAdapter {
     private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
-    List<ChatListDatum> chatListDatum = new ArrayList<>();
 
 
-    public ConntactForGroupChatAdapter(Context a, List<ChatListDatum> chatListDatum) {
-        this.chatListDatum = chatListDatum;
+    public ConntactForGroupChatAdapter(Context a) {
         this.context = a;
     }
 
 
     @Override
     public int getCount() {
-        return (chatListDatum != null ? chatListDatum.size() : 0);
+        return (Constants.group != null ? Constants.group.size() : 0);
     }
 
     @Override
     public Object getItem(int i) {
-        return chatListDatum.get(i);
+        return Constants.group.get(i);
     }
 
     @Override
@@ -78,10 +75,10 @@ public class ConntactForGroupChatAdapter extends BaseAdapter {
 
         if(holder.tonechatitem != null)
         {
-            holder.tonechatitem.setText(chatListDatum.get(i).getReceiver().getName());
+            holder.tonechatitem.setText(Constants.group.get(i).getReceiver().getName());
         }
       if(holder.icontactsforone != null){
-          Glide.with(context).load(chatListDatum.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
+          Glide.with(context).load(Constants.group.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(holder.icontactsforone);
       }
         return v;
     }

@@ -61,6 +61,7 @@ dependencies {
     compile 'com.github.myinnos:AlphabetIndex-Fast-Scroll-RecyclerView:1.0.8'
     testCompile 'junit:junit:4.12'
     compile "se.emilsjolander:stickylistheaders:${rootProject.stickyListHeaders}"
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.4+'
 //    TODO : Quickblox gradle
 
     compile "com.quickblox:quickblox-android-sdk-messages:$rootProject.qbSdkVersion"

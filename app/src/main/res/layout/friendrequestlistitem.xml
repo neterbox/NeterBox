@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="xyz"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginTop="@dimen/_13sdp"
                 android:padding="2dp"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="#000000" />
@@ -56,7 +56,7 @@
                 android:text="Accept"
                 android:textSize="@dimen/_8sdp"
                 android:textColor="#fff"
-                android:background="#049BE6"
+                android:background="@drawable/bluebox"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/_5sdp"/>
             <Button

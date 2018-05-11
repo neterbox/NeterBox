@@ -2,18 +2,26 @@ package com.neterbox;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -26,11 +34,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.gson.Gson;
 import com.neterbox.customadapter.RecyclerUserListingAdapter;
-import com.neterbox.customadapter.Search_Friend_Adapter;
+import com.neterbox.jsonpojo.addmember.AddMember;
+import com.neterbox.jsonpojo.create_group.AddGroup;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
 import com.neterbox.jsonpojo.friend_list.FriendListPojo;
-import com.neterbox.jsonpojo.register.RegistrationDatum;
-import com.neterbox.jsonpojo.register.RegistrationPojo;
+import com.neterbox.jsonpojo.uploadpic.Uploadpic;
 import com.neterbox.qb.ChatHelper;
 import com.neterbox.qb.QbChatDialogMessageListenerImp;
 import com.neterbox.qb.QbDialogHolder;
@@ -39,6 +47,8 @@ import com.neterbox.qb.managers.DialogsManager;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.AlphabetItem;
+import com.neterbox.utils.Constants;
+import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 import com.quickblox.chat.QBChatService;
 import com.quickblox.chat.QBIncomingMessagesManager;
@@ -55,22 +65,25 @@ import com.quickblox.core.QBEntityCallback;
 import com.quickblox.core.exception.QBResponseException;
 import com.quickblox.sample.core.ui.dialog.ProgressDialogFragment;
 import com.quickblox.users.model.QBUser;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.security.cert.CRLReason;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import in.myinnos.alphabetsindexfastscrollrecycler.IndexFastScrollRecyclerView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.neterbox.utils.Sessionmanager.dialog_Id;
 
 public class Create_group extends AppCompatActivity implements DialogsManager.ManagingDialogsCallbacks {
 
@@ -91,7 +104,7 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     public static final int REQUEST_DIALOG_ID_FOR_UPDATE = 165;
     Context context;
-
+    SharedPreferences sharedPreferences;
 
     TextView tvNoDataFound;
 
@@ -101,31 +114,44 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
     private QBChatDialogMessageListener allDialogsMessagesListener;
     private SystemMessagesListener systemMessagesListener;
     private DialogsAdapter dialogsAdapter;
+    public static final int GALLARY_REQUEST = 2;
+    public static final int CAMERA_REQUEST = 1;
+    public static final int MY_PERMISSIONS_REQUEST_GALLARY = 11;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 12;
 
     String contextStr;
-
     IndexFastScrollRecyclerView rvUserList;
     List<FriendListDatum> userDataList = new ArrayList<>();
     private List<AlphabetItem> mAlphabetItems;
 
     RecyclerUserListingAdapter recyclerUserListingAdapter;
+    FriendListDatum dtUser;
 
 
     CircleImageView ivGroupPic;
     EditText tvGroupName;
 
-    Uri selectedImageUri;
+    Bitmap bitmap;
 
-    FriendListDatum currentUser ;
+    FriendListDatum currentUser;
+    List<FriendListDatum> frndlist;
     Sessionmanager sessionmanager;
+    ArrayList<Integer> occupantIdsList = new ArrayList<Integer>();
+    ArrayList<String> receiverIdsList = new ArrayList<String>();
+    ArrayList<QBUser> selectedUsers;
+    File fileCamera;
+
+    public static List<Integer> frnd_id = new ArrayList<>();
+    public static List<Integer> frnd_qb_id = new ArrayList<>();
 
     public static void startForResult(Activity activity, int code) {
-        startForResult(activity, code, null);
+        startForResult(activity, code, null,dialog_Id);
     }
 
-    public static void startForResult(Activity activity, int code, QBChatDialog dialog) {
+    public static void startForResult(Activity activity, int code, QBChatDialog dialog,String Dialog_id) {
         Intent intent = new Intent(activity, Create_group.class);
         intent.putExtra(EXTRA_QB_DIALOG, dialog);
+        intent.putExtra("action", "add");
         activity.startActivityForResult(intent, code);
     }
 
@@ -136,11 +162,14 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
 
         context = this;
         sessionmanager = new Sessionmanager(this);
-        contextStr = getIntent().getStringExtra("context");
+        contextStr = getIntent().getStringExtra("action");
 
+        dtUser = new FriendListDatum();
         currentUser = new FriendListDatum();
         login_id = sessionmanager.getValue(Sessionmanager.Id);
-
+        sharedPreferences = context.getSharedPreferences(Constants.mypreference, Context.MODE_PRIVATE);
+        currentUser = Sessionmanager.getfrnd(context);
+        dtUser = Sessionmanager.getfrnd(context);
 
         final QBChatDialog dialog = (QBChatDialog) getIntent().getSerializableExtra(EXTRA_QB_DIALOG);
 
@@ -177,39 +206,38 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
 
         }
 
-        final Call<FriendListPojo> friendListPojoCall = apiInterface.friendlistpojo(login_id);
-        friendListPojoCall.enqueue(new Callback<FriendListPojo>()
-        {
+        final ProgressDialog progressDialog = Helper.showProgressDialog(Create_group.this);
+        Call<FriendListPojo> providerListCall = apiInterface.friendlistpojo(sessionmanager.getValue(Sessionmanager.Id));
+        providerListCall.enqueue(new Callback<FriendListPojo>() {
             @Override
             public void onResponse(Call<FriendListPojo> call, Response<FriendListPojo> response) {
-                if (response.body().getStatus().equals("Success"))
-                {
+                if (response.body().getStatus().equals("Success")) {
+                    Log.e("RQSUSERDATALIST", new Gson().toJson(response.body().getData()));
+//                    for (int i=0;i<response.body().getData().size();i++)
+//                    {
+//                        Sessionmanager.saveDtUserInPreference(context,response.body().getData());
+//                    }
+                    progressDialog.dismiss();
 
                     userDataList.clear();
                     progressBar.setVisibility(View.GONE);
-                    userDataList.add(currentUser);
+//                    userDataList.add(dtUser);
 
                     for (FriendListDatum friendListDatum : response.body().getData()) {
+
                         userDataList.add(friendListDatum);
                     }
-
-
-//                    Log.e("FRIEND LIS DATUM",new Gson().toJson(userDataList));
-//                    Collections.sort(userDataList, new Comparator<FriendListDatum>() {
-//                        @Override
-//                        public int compare(final FriendListDatum object1, final FriendListDatum object2)
-//                        {
-//                            Log.e("OBJECT 1",new Gson().toJson(object1));
-//                            Log.e("OBJECT 2",new Gson().toJson(object2));
-//                            return object1.getReceiver().getName().compareTo(object2.getReceiver().getName());
-//                        }
-//                    });
+                    frndlist = new ArrayList<FriendListDatum>();
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+                        frndlist.add(response.body().getData().get(i));
+                    }
 
                     mAlphabetItems = new ArrayList<>();
                     List<String> strAlphabets = new ArrayList<>();
+                    Log.e("USERDATALIST", new Gson().toJson(userDataList));
                     for (int i = 0; i < userDataList.size(); i++) {
-                        String name = userDataList.get(1).getReceiver().getName();
-                        if (!name.equals(null))
+                        String name = userDataList.get(i).getReceiver().getName();
+                        if (name == null || name.trim().isEmpty())
                             continue;
 
                         String word = name.substring(0, 1);
@@ -225,21 +253,19 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
 
                             for (Integer integer : dialog.getOccupants()) {
                                 for (int i = 0; i < userDataList.size(); i++) {
-                                    if (!userDataList.get(i).getReceiver().getQuickbloxId().equals(""))
-                                        if (integer == Integer.parseInt(userDataList.get(i).getReceiver().getQuickbloxId())) {
-                                            userDataList.get(i).getReceiver().setSelected(true);
+                                    if (!userDataList.get(i).getSender().getQuickbloxId().equals(""))
+                                        if (integer == Integer.parseInt(userDataList.get(i).getSender().getQuickbloxId())) {
+                                            userDataList.get(i).getSender().setSelected(true);
                                         }
                                 }
                             }
                         }
 
                         recyclerUserListingAdapter = new RecyclerUserListingAdapter(context, userDataList, dialog.getOccupants());
-                    }
-                    else
-                        {
+                    } else {
                         for (int i = 0; i < userDataList.size(); i++) {
-                            if (isUserMe(userDataList.get(1))) {
-                                userDataList.get(1).getReceiver().setSelected(true);
+                            if (isUserMe(userDataList.get(i))) {
+                                userDataList.get(i).getSender().setSelected(true);
 
                             }
 
@@ -266,18 +292,19 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
                     rvUserList.setIndexbarHighLateTextColor("#ffffff");
                     rvUserList.setIndexBarHighLateTextVisibility(true);
 
-                }
-                else
-                    {
+                } else {
+                    progressDialog.dismiss();
                     progressBar.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<FriendListPojo> call, Throwable t) {
+                progressDialog.dismiss();
                 progressBar.setVisibility(View.GONE);
             }
         });
+
     }
 
     private void Listner() {
@@ -294,73 +321,119 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
         ivGroupPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onSelectImageClick(null);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                            && ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        showPictureDialog();
+
+                    } else {
+                        //Request Location Permission
+                        checkCameraPermission();
+                        checkStoragePermission();
+                    }
+                } else {
+                    showPictureDialog();
+                }
             }
         });
 
         iright.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     if (tvGroupName.getText().toString().trim().length() == 0) {
                         Toast.makeText(context, "Please enter group name", Toast.LENGTH_SHORT).show();
                     } else {
                         if (recyclerUserListingAdapter != null) {
                             List<FriendListDatum> users = recyclerUserListingAdapter.getSelectedUsers();
-
                             List<QBUser> selectedUsers = new ArrayList<QBUser>();
                             selectedUsers.clear();
 
-                            if (users.size() >= MINIMUM_CHAT_OCCUPANTS_SIZE) {
-                                ArrayList<Integer> occupantIdsList = new ArrayList<Integer>();
 
-                                for (FriendListDatum datum : users) {
-                                    if (!(datum.getReceiver().getQuickbloxId().equals(""))) {
-                                        occupantIdsList.add(Integer.parseInt(datum.getReceiver().getQuickbloxId()));
-                                        QBUser qbUser = new QBUser();
-                                        qbUser.setId(Integer.parseInt(datum.getReceiver().getQuickbloxId()));
-                                        qbUser.setLogin(datum.getReceiver().getName());
-                                        qbUser.setEmail(datum.getReceiver().getEmail());
-                                        qbUser.setFullName(datum.getReceiver().getUsername());
-                                        selectedUsers.add(qbUser);
-                                    }
-
+                            List<String> qbIDList=null;
+                            for (FriendListDatum datum : users) {
+                                if (!(datum.getReceiver().getQuickbloxId().equals(""))) {
+                                    QBUser qbUser = new QBUser();
+                                    qbUser.setId(Integer.parseInt(datum.getReceiver().getQuickbloxId()));
+                                    qbUser.setLogin(datum.getReceiver().getName());
+                                    qbUser.setEmail(datum.getReceiver().getEmail());
+                                    qbUser.setFullName(datum.getReceiver().getUsername());
+                                    selectedUsers.add(qbUser);
+                                    qbIDList.add(datum.getReceiver().getId());
                                 }
 
-                                Log.e("qbuser_selected group", ":" + new Gson().toJson(selectedUsers));
-
-                                if (contextStr != null) {
-
-                                    if (isPrivateDialogExist((ArrayList<QBUser>) selectedUsers)) {
-                                        selectedUsers.remove(ChatHelper.getCurrentUser());
-                                        QBChatDialog existingPrivateDialog = QbDialogHolder.getInstance().getPrivateDialogWithUser(selectedUsers.get(0),
-                                                tvGroupName.getText().toString().trim());
-
-                                        for (int i = 0; i < userDataList.size(); i++) {
-                                            ChatBox.startForResult(Create_group.this, REQUEST_DIALOG_ID_FOR_UPDATE, existingPrivateDialog, userDataList.get(i).getReceiver().getName(), userDataList.get(i).getReceiver().getProfilePic());
-                                            finish();
-                                        }
-
-                                    } else {
-                                        ProgressDialogFragment.show(getSupportFragmentManager(), R.string.create_chat);
-                                        createDialog(occupantIdsList);
-
-                                    }
-                                } else {
-                                    passResultToCallerActivity((ArrayList<QBUser>) selectedUsers);
-                                }
-
-                            } else {
-                                Toast.makeText(context, getResources().getString(R.string.select_users_choose_users), Toast.LENGTH_SHORT).show();
                             }
+
+                            if(contextStr.equalsIgnoreCase("add"))
+                            {
+                                String list = TextUtils.join(",", qbIDList);
+                                Log.e("=====List====",":"+list);
+                            }
+
+
+                            Log.e("qbuser_selected group", ":" + new Gson().toJson(selectedUsers));
+
+                            // TODO : CREATE GROUP
+                            ProgressDialogFragment.show(getSupportFragmentManager(), R.string.create_chat);
+                            final String list = TextUtils.join(",", frnd_id);
+                            final String list_qb = TextUtils.join(",", frnd_qb_id);
+
+                            QBChatDialog dialog = new QBChatDialog();
+                            dialog.setName(tvGroupName.getText().toString().trim());
+                            dialog.setPhoto(String.valueOf(bitmap));
+
+                            dialog.setType(QBDialogType.GROUP);
+                            dialog.setOccupantsIds(frnd_qb_id);
+
+                            QBChatDialog dialog1 = DialogUtils.buildDialog(tvGroupName.getText().toString().trim(), QBDialogType.GROUP, frnd_qb_id);
+
+                            QBRestChatService.createChatDialog(dialog1).performAsync(new QBEntityCallback<QBChatDialog>()
+                            {
+                                @Override
+                                public void onSuccess(QBChatDialog result, Bundle params) {
+                                    QbDialogHolder.getInstance().addDialog(result);
+
+                                    sharedPreferences.edit().putString(sessionmanager.dialogId, (String.valueOf(result.getDialogId()))).apply();
+                                    Log.e("DIALOGID", sessionmanager.getValue(Sessionmanager.dialogId));
+                                    String user_id = sessionmanager.getValue(Sessionmanager.Id);
+                                    String dialog_id = sessionmanager.getValue(Sessionmanager.dialogId);
+                                    String sender_qb_id = sessionmanager.getValue(Sessionmanager.Quickbox_Id);
+                                    String group_name = tvGroupName.getText().toString().trim();
+
+                                    ProgressDialogFragment.hide(getSupportFragmentManager());
+                                    if (Helper.isConnectingToInternet(context)) {
+
+
+                                        addgroup(user_id, list, sender_qb_id, list_qb, dialog_id, "group", true, group_name, fileCamera);
+
+                                        ChatBox.startForResult(Create_group.this, REQUEST_DIALOG_ID_FOR_UPDATE, result, result.getName(), result.getPhoto());
+                                    }
+                                }
+
+                                @Override
+                                public void onError(QBResponseException responseException) {
+                                    Log.e("responseException", ":" + responseException);
+                                    ProgressDialogFragment.hide(getSupportFragmentManager());
+                                    Toast.makeText(context,responseException.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     }
+                }
+                catch (Exception e)
+                {
 
-                } catch (Exception e) {
+                    Log.e("e", ":" + e);
                     e.printStackTrace();
                 }
             }
         });
+
+        registerQbChatListeners();
+        dialogsAdapter = new DialogsAdapter(this, new ArrayList<>(QbDialogHolder.getInstance().getDialogs().values()));
+
     }
 
     private void idMapping() {
@@ -406,17 +479,16 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
     }
 
     protected boolean isUserMe(FriendListDatum user) {
-         boolean data = false;
+        boolean data = false;
 
         for (int i = 0; i < userDataList.size(); i++) {
             Log.e("Current USER ", new Gson().toJson(userDataList));
-            data= userDataList != null && userDataList.get(1).getReceiver().getId().equals(user.getReceiver().getId());
+            data = userDataList != null && userDataList.get(i).getReceiver().getId().equals(user.getReceiver().getId());
         }
         return data;
     }
 //        return currentUser != null && currentUser.getReceiver().getId().equals(user.getReceiver().getId());
 
-    
 
     private class SystemMessagesListener implements QBSystemMessageListener {
         @Override
@@ -440,7 +512,7 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
     }
 
     private boolean isPrivateDialogExist(ArrayList<QBUser> allSelectedUsers) {
-        ArrayList<QBUser> selectedUsers = new ArrayList<>();
+
         selectedUsers.addAll(allSelectedUsers);
         selectedUsers.remove(ChatHelper.getCurrentUser());
         boolean b = selectedUsers.size() == 1 && QbDialogHolder.getInstance().hasPrivateDialogWithUser(selectedUsers.get(0));
@@ -448,66 +520,16 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
         return selectedUsers.size() == 1 && QbDialogHolder.getInstance().hasPrivateDialogWithUser(selectedUsers.get(0));
     }
 
-    public void createDialog(ArrayList<Integer> occupantIdsList) {
-        QBChatDialog dialog = new QBChatDialog();
-        dialog.setName(tvGroupName.getText().toString().trim());
-        if (selectedImageUri != null) {
-            group_pic = getPath(selectedImageUri);
-            dialog.setPhoto(group_pic);
-        }
+    public void createDialog(final ArrayList<Integer> frnd_qb) {
 
-        dialog.setType(QBDialogType.GROUP);
-        dialog.setOccupantsIds(occupantIdsList);
 
-        final StringBuilder occupantList = new StringBuilder();
-
-        for (Integer integer : occupantIdsList) {
-            occupantList.append(integer);
-
-        }
-        Log.e("occupantList", ":" + new Gson().toJson(occupantList));
-
-        //for creating GROUP dialog
-        QBChatDialog dialog1 = DialogUtils.buildDialog(tvGroupName.getText().toString().trim(), QBDialogType.GROUP, occupantIdsList);
-
-        QBRestChatService.createChatDialog(dialog1).performAsync(new QBEntityCallback<QBChatDialog>() {
-            @Override
-            public void onSuccess(QBChatDialog result, Bundle params) {
-                QbDialogHolder.getInstance().addDialog(result);
-
-                Log.e("result", ":" + new Gson().toJson(result));
-                ProgressDialogFragment.hide(getSupportFragmentManager());
-                for (int i = 0; i < userDataList.size(); i++) {
-                    ChatBox.startForResult(Create_group.this, REQUEST_DIALOG_ID_FOR_UPDATE, result, userDataList.get(i).getReceiver().getName(), userDataList.get(i).getReceiver().getProfilePic());
-                    finish();
-                }
-            }
-
-            @Override
-            public void onError(QBResponseException responseException) {
-
-            }
-        });
-    }
-
-    public String getPath(Uri uri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = ((Activity) context).managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
     }
 
     private void passResultToCallerActivity(ArrayList<QBUser> selectedUsers) {
         Intent result = new Intent();
         result.putExtra(EXTRA_QB_USERS, selectedUsers);
         result.putExtra("group_name", tvGroupName.getText().toString());
-        if (selectedImageUri != null) {
-            group_pic = getPath(selectedImageUri);
-            if (group_pic != null)
-                result.putExtra("group_pic", group_pic);
-        }
-
+        result.putExtra("group_pic", bitmap);
         setResult(RESULT_OK, result);
         finish();
     }
@@ -529,82 +551,263 @@ public class Create_group extends AppCompatActivity implements DialogsManager.Ma
         dialogsManager.addManagingDialogsCallbackListener(this);
     }
 
-    public void onSelectImageClick(Uri imageUri) {
+    private void showPictureDialog() {
+        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
+        pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera"};
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                choosePhotoFromGallary();
+                                break;
+                            case 1:
+                                takePhotoFromCamera();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
 
-        Intent intent = CropImage.activity(imageUri)
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setMultiTouchEnabled(true)
-                .setCropShape(CropImageView.CropShape.OVAL)
-                .getIntent(Create_group.this);
+    private void checkStoragePermission() {
 
-        startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
+
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    && ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_GALLARY);
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_GALLARY);
+            }
+        }
+    }
+
+    private void checkCameraPermission() {
+        if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+                ) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
+                    android.Manifest.permission.CAMERA)
+                    ) {
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{android.Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        }
+    }
+
+    public void choosePhotoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(galleryIntent, GALLARY_REQUEST);
+    }
+
+    private void takePhotoFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA_REQUEST);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        // handle result of CropImageActivity
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            try {
-                final CropImage.ActivityResult result = CropImage.getActivityResult(data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-//                Log.e("data", ":" + data + "=======" + data.getData());
-                if (resultCode == RESULT_OK && result.getUri() != null && result.getUri() != null) {
-//                    imageUrl= String.valueOf(result.getUri());
+        if (resultCode == this.RESULT_CANCELED) {
+            return;
+        }
+        if (requestCode == GALLARY_REQUEST) {
+            if (data != null) {
+                Uri contentURI = data.getData();
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    String path = saveImage(bitmap);
 
-                    Uri uri =/*data.getData()*/ result.getUri();
+//                    Toast.makeText(context, "Image Saved!", Toast.LENGTH_SHORT).show();
+                    ivGroupPic.setImageBitmap(bitmap);
+                    if(fileCamera != null) {
+                        fileCamera = null;
+                    }
+                        fileCamera = new File(path);
+                    if (Helper.isConnectingToInternet(context)) {
+                        Uploadpic(new Sessionmanager(context).getValue(Sessionmanager.Id), fileCamera);
+                    } else {
+                        Helper.showToastMessage(context, "No Internet Connection");
+                    }
 
-                    File myFile = new File(uri.getPath());
-
-                    selectedImageUri = getImageContentUri(Create_group.this, myFile);
-
-                    Glide.with(Create_group.this).load(getPath(selectedImageUri))
-                            .asBitmap().centerCrop().placeholder(R.drawable.dummy).into(new BitmapImageViewTarget(ivGroupPic) {
-                        @Override
-                        protected void setResource(Bitmap resource) {
-                            RoundedBitmapDrawable circularBitmapDrawable =
-                                    RoundedBitmapDrawableFactory.create(getResources(), resource);
-                            circularBitmapDrawable.setCircular(true);
-                            ivGroupPic.setImageDrawable(circularBitmapDrawable);
-                        }
-                    });
-
-
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Toast.makeText(Create_group.this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(Create_group.this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
-
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            }
+        } else if (requestCode == CAMERA_REQUEST) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            ivGroupPic.setImageBitmap(thumbnail);
+            String imagePath = saveImage(thumbnail);
+            if (Helper.isConnectingToInternet(context)) {
+                if(fileCamera != null) {
+                    fileCamera = null;
+                }
+                fileCamera = new File(imagePath);
+
+                Uploadpic(new Sessionmanager(context).getValue(Sessionmanager.Id), fileCamera);
+            } else {
+                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
             }
 
         }
     }
 
-    public static Uri getImageContentUri(Context context, File imageFile) {
-        String filePath = imageFile.getAbsolutePath();
-        Cursor cursor = context.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                new String[]{MediaStore.Images.Media._ID},
-                MediaStore.Images.Media.DATA + "=? ",
-                new String[]{filePath}, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int id = cursor.getInt(cursor
-                    .getColumnIndex(MediaStore.MediaColumns._ID));
-            Uri baseUri = Uri.parse("content://media/external/images/media");
-            return Uri.withAppendedPath(baseUri, "" + id);
-        } else {
-            if (imageFile.exists()) {
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.DATA, filePath);
-                return context.getContentResolver().insert(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-            } else {
-                return null;
-            }
+    private String saveImage(Bitmap thumbnail) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + "IMAGE_DIRECTORY");
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
         }
+
+        try {
+            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+            File f = new File(path, "DemoPicture.jpg");
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.e("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+
+    public void Uploadpic(String Id, File fileCamera) {
+        final ProgressDialog progressDialog = Helper.showProgressDialog(context);
+
+        RequestBody loginIdReqBody = RequestBody.create(MediaType.parse("text/plain"), Id);
+        Log.e("login_id", "" + Id);
+        if (fileCamera != null) {
+            final RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), fileCamera);
+            MultipartBody.Part userProfile = MultipartBody.Part.createFormData("profile_pic", fileCamera.getName(), requestFile);
+
+            Call<Uploadpic> uploadProfileCall = apiInterface.uploadPic(loginIdReqBody, userProfile);
+            uploadProfileCall.enqueue(new Callback<Uploadpic>() {
+                @Override
+                public void onResponse(Call<Uploadpic> uploadImageCall, Response<Uploadpic> response) {
+                    if (response.body().getStatus().equals("Success")) {
+                        new Sessionmanager(Create_group.this).putSessionValue(Sessionmanager.profile, response.body().getData().getUser().getProfilePic());
+
+                        progressDialog.dismiss();
+
+                        Glide.with(context).load(response.body().getData().getUser().getProfilePic()).into(ivGroupPic);
+                    } else {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Uploadpic> call, Throwable t) {
+                    progressDialog.dismiss();
+
+//                    Helper.showToastMessage(context,t.getMessage());
+                }
+            });
+        }
+    }
+    public void addgroup(String Id, String members, String sender_qb_id, String receiver_qb_id, String dialog_id, String dialog_type, boolean dialog_status, String group_name, File icon) {
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), Id);
+        RequestBody Members = RequestBody.create(MediaType.parse("text/plain"), members);
+        RequestBody Sender_qb_id = RequestBody.create(MediaType.parse("text/plain"), sender_qb_id);
+        RequestBody Receiver_qb_id = RequestBody.create(MediaType.parse("text/plain"), receiver_qb_id);
+        RequestBody Dialog_id = RequestBody.create(MediaType.parse("text/plain"), dialog_id);
+        RequestBody Dialog_type = RequestBody.create(MediaType.parse("text/plain"), dialog_type);
+        Boolean Dialog_status  = dialog_status;
+        RequestBody Group_name = RequestBody.create(MediaType.parse("text/plain"), group_name);
+
+        if (icon != null) {
+            final RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), icon);
+            MultipartBody.Part userProfile = MultipartBody.Part.createFormData("profile_pic", icon.getName(), requestFile);
+
+            Call<AddGroup> chatCall = apiInterface.addgrouppojo(user_id, Members, Sender_qb_id, Receiver_qb_id, Dialog_id, Dialog_type, Dialog_status, Group_name, userProfile);
+
+            chatCall.enqueue(new Callback<AddGroup>()
+            {
+                @Override
+                public void onResponse(Call<AddGroup> chatCall, Response<AddGroup> response)
+                {
+                    if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                        finish();
+                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        {
+                        Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AddGroup> call, Throwable t) {
+                    Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+    public void addmember(String id, String members) {
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("Please Wait...");
+        dialog.show();
+
+        Call<AddMember> circlePostAddPCall = apiInterface.addmemberpojo(id, members);
+        circlePostAddPCall.enqueue(new Callback<AddMember>() {
+            @Override
+            public void onResponse(Call<AddMember> registrationCall, Response<AddMember> response) {
+                if (response.body().getStatus().equalsIgnoreCase("Success")) {
+                    dialog.dismiss();
+                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    dialog.dismiss();
+                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddMember> call, Throwable t) {
+                dialog.dismiss();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

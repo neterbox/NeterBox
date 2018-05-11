@@ -14,8 +14,6 @@ import com.neterbox.R;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * Created by DeLL on 06-01-2018.
  */
@@ -70,7 +68,7 @@ public class Playgrid_Adapter extends BaseAdapter {
         viewHolder.tplaygrid_text.setText(itemname[i]);
         viewHolder.tplaygrid_subtext.setText(itemname1[i]);
         Glide.with(activity).load(imgid[i]).into(viewHolder.iplaygrid_pic);
-        Glide.with(activity).load(imgid[i]).into(viewHolder.iplaygrid_text);
+        Glide.with(activity).load(imgid1[i]).into(viewHolder.iplaygrid_text);
         return view;
     }
     class MyViewHolder {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neterbox.customadapter.Friend_RequestList_Adapter;
@@ -26,6 +27,7 @@ public class FriendRequestList extends Activity {
     ListView requestlist;
     List<FrndReqListModel.Datum> friendRequestListData;
     Activity activity;
+    TextView title;
     String loginuserid;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     Sessionmanager sessionmanager;
@@ -38,6 +40,7 @@ public class FriendRequestList extends Activity {
 
         idMappings();
         listener();
+        title.setText("Friend Request List");
         sessionmanager = new Sessionmanager(this);
         loginuserid = sessionmanager.getValue(Sessionmanager.Id);
         friendreqpojo(loginuserid);
@@ -62,6 +65,7 @@ public class FriendRequestList extends Activity {
     }
     private void idMappings() {
         requestlist = (ListView) findViewById(R.id.requestlist);
+        title = (TextView) findViewById(R.id.title);
     }
 ////////////////Freiend REquest List
 

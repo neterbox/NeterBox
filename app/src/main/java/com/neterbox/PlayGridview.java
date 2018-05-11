@@ -2,19 +2,15 @@ package com.neterbox;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.neterbox.customadapter.Circle_Adapter;
 import com.neterbox.customadapter.Playgrid_Adapter;
-import com.neterbox.customadapter.Playlist_Adapter;
 
 public class PlayGridview extends AppCompatActivity {
 
@@ -24,27 +20,51 @@ public class PlayGridview extends AppCompatActivity {
     TextView title;
 
     String[] itemname = {
-            "Charmis",
+            "Bollywood",
             "Camera",
-            "Cold War"
+            "Cold War",
+            "beauty",
+            "Education",
+            "Hardware",
+            "Technologies",
+            "Mobile",
+            "Enterntainment"
     };
 
     Integer[] imgid = {
-            R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
+            R.drawable.bollywood,
+            R.drawable.camera,
+            R.drawable.cold_war,
+            R.drawable.beauty,
+            R.drawable.educational,
+            R.drawable.hardware,
+            R.drawable.technologies,
+            R.drawable.mobile,
+            R.drawable.enterntainment,
 
     };
     String[] itemname1 = {
-            "Charmis",
-            "Camera",
-            "Cold War"
+            "230 Subscribers",
+            "120 Subscribers",
+            "100 Subscribers",
+            "200 Subscribers",
+            "150 Subscribers",
+            "250 Subscribers",
+            "200 Subscribers",
+            "432 Subscribers",
+            "453 Subscribers"
     };
 
     Integer[] imgid1 = {
-            R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
+            R.drawable.friends,
 
     };
     ImageView ichat, icircle, iplay, iplaygrid_pic;

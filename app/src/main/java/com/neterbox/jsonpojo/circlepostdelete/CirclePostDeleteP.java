@@ -3,13 +3,11 @@ package com.neterbox.jsonpojo.circlepostdelete;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
 /**
  * Created by sejal on 2/3/2018.
  */
 
-public class CirclePostDeleteP implements Serializable {
+public class CirclePostDeleteP {
 
     @SerializedName("status")
     @Expose

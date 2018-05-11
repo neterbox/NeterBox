@@ -41,6 +41,12 @@ public class ChatListDialog {
     @SerializedName("modified")
     @Expose
     private String modified;
+    @SerializedName("group_id")
+    @Expose
+    private String groupId;
+    @SerializedName("icon")
+    @Expose
+    private String icon;
 
     public String getId() {
         return id;
@@ -129,4 +135,21 @@ public class ChatListDialog {
     public void setModified(String modified) {
         this.modified = modified;
     }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
 }

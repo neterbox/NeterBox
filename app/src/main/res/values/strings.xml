@@ -95,6 +95,12 @@
     <string name="shared_text">Shared Text</string>
     <string name="shared_image">Shared Image</string>
 
+    <string name="chat_empty_you_are_alone_here">You\'re all alone out here.</string>
+    <string name="chat_empty_start_new_chat">Start new chat.</string>
+    <string name="session_expired">Session expired.Please try later.</string>
+    <string name="Group">"group"</string>
+    <string name="crop_image">Crop Photo</string>
+
 
 </resources>
 

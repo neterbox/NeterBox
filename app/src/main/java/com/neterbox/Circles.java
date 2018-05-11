@@ -15,10 +15,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.neterbox.customadapter.Circle_Adapter;
-import com.neterbox.jsonpojo.circle.Circlepage;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
+import com.neterbox.jsonpojo.circle.Circlepage;
 import com.neterbox.jsonpojo.city.City;
 import com.neterbox.jsonpojo.city.CityDatum;
 import com.neterbox.jsonpojo.country.Country;
@@ -30,7 +29,6 @@ import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Helper;
 import com.neterbox.utils.Sessionmanager;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +43,7 @@ public class Circles extends Activity {
     TextView title;
     int i;
     String countrystr = "", statestr = "", citystr = "" ,index="1";
-    String country_id = "0", state_id = "0";
+    String country_id = "0", state_id = "0",old_country,old_state;
 
 
     private Spinner spinner1, spinner2, spinner3;
@@ -73,6 +71,15 @@ public class Circles extends Activity {
         datumcountry = new ArrayList<>();
         datumcity = new ArrayList<>();
         circleListData = new ArrayList<>();
+
+//        old_country = getIntent().getStringExtra("Countries_id");
+//        old_state = getIntent().getStringExtra("state_id");
+//
+//        if(old_country != null && old_state != null) {
+//            spinner1.setSelection(Integer.valueOf(old_country));
+//            spinner2.setSelection(Integer.valueOf(old_state));
+//        }
+
         sessionmanager = new Sessionmanager(activity);
         idMappings();
         listener();
@@ -103,8 +110,6 @@ public class Circles extends Activity {
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
         spinner3 = (Spinner) findViewById(R.id.spinner3);
-
-
     }
 
     private void listener() {
@@ -126,7 +131,7 @@ public class Circles extends Activity {
                 it.putExtra("Country id",country_id);
                 it.putExtra("State id",state_id);
                 startActivity(it);
-                finish();
+//                finish();
 
             }
         });
@@ -266,7 +271,7 @@ public class Circles extends Activity {
             @Override
             public void onResponse(Call<Circlepage> call, Response<Circlepage> res) {
                 if (res.body().getStatus() .equals( "Success")) {
-                    for(CircleListDatum  circleListDatum :res.body().getData())
+                    for(CircleListDatum circleListDatum :res.body().getData())
                     {
                         circleListData.add(circleListDatum);
                     }

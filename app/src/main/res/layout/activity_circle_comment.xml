@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.neterbox.Circle_comment">
-
-   <!-- <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <include layout="@layout/image_custom_actionbar" />
-    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,127 +47,18 @@
                 android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
         </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/ll_query"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_below="@+id/header">
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/header_date_textview"
-            android:layout_gravity="center"
-            style="@style/ListDateHeaderStyle" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_chat"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/layout_attachment_preview_container"
-        android:layout_below="@+id/ll_query">
-
-        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-            android:id="@+id/list_chat_messages"
-            style="@style/ListViewWithoutDividerStyle"
-            android:listSelector="@android:color/transparent"
-            android:stackFromBottom="true" />
-
-        <ProgressBar
-            android:id="@+id/progress_chat"
-            style="@style/CenterProgressBarStyle" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/layout_attachment_preview_container"
-        style="@style/MatchWidth"
-        android:layout_height="96dp"
-        android:layout_above="@+id/layout_chat_send_container"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <View
-            android:id="@+id/divider_chat_attachments"
-            style="@style/HorizontalDividerStyle" />
-
-        <com.neterbox.qb.widget.AttachmentPreviewAdapterView
-            android:id="@+id/adapter_view_attachment_preview"
-            style="@style/MatchWidth" />
-    </LinearLayout>
-    <View
-        android:id="@+id/divider_chat"
-        style="@style/HorizontalDividerStyle"
-        android:layout_above="@+id/layout_chat_send_container" />
-    <LinearLayout
-        android:id="@+id/layout_chat_send_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="@dimen/_5sdp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:weightSum="5">
-
-        <ImageView
-            android:id="@+id/button_chat_smiley"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_gravity="bottom"
-            android:layout_margin="5dp"
-            android:layout_weight="0.5"
-            android:src="@drawable/smiley" />
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            android:layout_weight="4">
-
-            <EditText
-                android:id="@+id/edit_comments"
-                android:layout_width="@dimen/_180sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:background="@android:color/transparent"
-                android:hint="Message"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:layout_gravity="center"
-                android:textSize="@dimen/_15sdp" />
-
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/button_chat_attachment"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:src="@drawable/chatattach"
-            android:visibility="gone"/>
-
-        <ImageView
-            android:id="@+id/comment_send"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_gravity="center"
-            android:src="@drawable/chatsendchat" />
-
-    </LinearLayout>
-
-    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>-->
-    <!--<View
+        android:orientation="vertical"></LinearLayout>
+    <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:background="#848484"
         android:layout_marginTop="@dimen/_5sdp"></View>
--->
-    <!--<LinearLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:gravity="bottom"
@@ -207,6 +90,6 @@
             android:layout_margin="@dimen/_3sdp"
             android:src="@drawable/send" />
 
-    </LinearLayout>-->
+    </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>

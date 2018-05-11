@@ -3,11 +3,10 @@ package com.neterbox;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,7 +18,7 @@ import com.neterbox.fragment.MainChat;
 public class ChatModule extends AppCompatActivity implements View.OnClickListener,TabHost.OnTabChangeListener{
 
     Context context;
-    ImageView ileft, iright, ichat, icircle, iplay;
+    public static ImageView ileft,iright,ichat, icircle, iplay;
     TextView title;
     RelativeLayout bottom_layout;
     Fragment fragment;
@@ -33,13 +32,13 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
         idMapping();
         Listener();
         fragment = new MainChat();
-
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
 //            ft.addToBackStack(null);
             ft.commit();
         }
+
     }
 
     public void idMapping()
@@ -48,11 +47,11 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
         iright = (ImageView) findViewById(R.id.iright);
         title = (TextView) findViewById(R.id.title);
         ileft.setImageResource(R.drawable.home);
-        iright.setImageResource(R.drawable.plus);
         icircle = (ImageView) findViewById(R.id.icircle);
         iplay = (ImageView) findViewById(R.id.iplay);
         bottom_layout = (RelativeLayout) findViewById(R.id.bottom_layout);
         title.setText("Contacts");
+
     }
 
     public void Listener()
@@ -65,12 +64,15 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
                 finish();
             }
         });
+
         iright.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ChatModule.this, Create_group.class);
+            public void onClick(View view) {
+                Intent i = new Intent(context, Create_group.class);
+                i.putExtra("action", "create");
                 startActivity(i);
-                finish();
+               finish();
+
             }
         });
 
@@ -106,4 +108,5 @@ public class ChatModule extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onTabChanged(String tabId) {
     }
+
 }

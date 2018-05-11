@@ -1,22 +1,17 @@
 package com.neterbox.customadapter;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.circle.CircleListDatum;
-import com.neterbox.utils.Sessionmanager;
-import com.quickblox.chat.model.QBAttachment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Circle_Adapter extends BaseAdapter {
     Activity activity;
     private LayoutInflater inflater;
+
     List<CircleListDatum> circleList;
     public Circle_Adapter(Activity a,List<CircleListDatum> circleList) {
         this.activity = a;

@@ -16,50 +16,20 @@
             android:layout_height="@dimen/_100sdp"
             android:scaleType="fitXY"
             android:id="@+id/iplaylistitem"
-            android:src="@drawable/profilpicture" />
+            android:src="@drawable/bollywood" />
     </LinearLayout>
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Travel Time"
+    android:text="Bollywood"
     android:textSize="@dimen/_12sdp"
     android:textColor="#fff"
     android:id="@+id/tplaylistitem"
     android:textStyle="bold"
     android:layout_gravity="bottom"
     android:padding="@dimen/_8sdp"
-    android:layout_marginLeft="@dimen/_10sdp"
-
+    android:background="@color/black_opacity"
     />
 
 </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:scaleType="fitXY"
-                android:id="@+id/iplaylistitem2"
-                android:src="@drawable/profilpicture2" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lifestyle"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="#fff"
-            android:id="@+id/tplaylistitem2"
-            android:textStyle="bold"
-            android:layout_gravity="bottom"
-            android:padding="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_10sdp" />
-
-    </FrameLayout>
 </LinearLayout>

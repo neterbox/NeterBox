@@ -23,6 +23,7 @@ public class ServerUrl {
     public static final String LIKE = "posts/addlike";
     public static final String UNLIKE = "posts/unlike";
     public static final String ADDCHAT = "users/chatadd";
+    public static final String EDITPOST = "posts/edit";
     public static final String CIRCLELIST = "circles/lists";
     public static final String CHATLIST = "users/chat_history";
     public static final String ACCEPTFRIENDREQUEST = "friends/accept";
@@ -34,9 +35,14 @@ public class ServerUrl {
     public static final String COMMENTS = "comments/add";
     public static final String UPDATEQBID = "users/updateqbid";
     public static final String FOLLOWERLIST = "Followers/lists";
-    public static final String FOLLOWINGLIST = "Followers/lists";
+    public static final String UNFOLLOW = "Followers/unfollow";
+    public static final String ADDGROUP = "groups/add";
     public static final String CHANGEPASSWORD = "users/changepassword";
     public static final String FORGOTPASSWORD = "users/forgotpassword";
-
+    public static final String DELETEGROUP = "groups/delete";
+    public static final String DELETECHAT = "users/chatdelete";
+    public static final String CIRCLECHAT = "circles/chat";
+    public static final String ADDMEMBER = "groups/add_member";
 
 }
+

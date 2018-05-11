@@ -2,7 +2,6 @@ package com.neterbox.jsonpojo.AddChat;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.neterbox.jsonpojo.updateqb.UpdateQBDatum;
 
 /**
  * Created by DeLL on 23-02-2018.

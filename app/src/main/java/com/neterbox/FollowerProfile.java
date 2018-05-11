@@ -85,30 +85,35 @@ public class FollowerProfile extends AppCompatActivity {
         idMappings();
         listener();
 
-        name = getIntent().getStringExtra("name");
-        String followerprofilepic = getIntent().getStringExtra("profile_pic");
-
-        if (followerDetails != null) {
-            tprofile_name.setText(name);
-            Glide.with(activity).load(followerprofilepic).placeholder(R.drawable.dummy).into(ifollowerprofile);
-        }
-        user_id = sessionmanager.getValue(sessionmanager.following_id);
-        getprofile(index, user_id);
-
         sender_id = sessionmanager.getValue(Sessionmanager.Id);
-        receiver_id = sessionmanager.getValue(Sessionmanager.nearbyuserId);
+        receiver_id = nearbyfriendData.getUsers().getId();
+//        receiver_id = sessionmanager.getValue(Sessionmanager.nearbyuserId);
         req_receiver_id = sessionmanager.getValue(Sessionmanager.frndrecId);
 
-        if(receiver_id.equalsIgnoreCase(req_receiver_id)){
+
+        adapter = new Followerpro_Adapter(activity,profilePostdetails);
+        follower_listview.setAdapter(adapter);
+
+
+        if(receiver_id.equalsIgnoreCase(req_receiver_id))
+        {
             lfollower_addfrnd.setBackgroundColor(Color.GRAY);
             lfollower_addfrnd.setEnabled(false);
         }
-        else {
+        else
+        {
             lfollower_addfrnd.setBackgroundColor(getResources().getColor(R.color.greenbox));
             lfollower_addfrnd.setEnabled(true);
         }
 
+        if(nearbyfriendData!=null)
+        {
+            tprofile_name.setText(nearbyfriendData.getUsers().getName());
+            Glide.with(activity).load(nearbyfriendData.getUsers().getProfilePic()).placeholder(R.drawable.dummy).into(ifollowerprofile);
+        }
     }
+
+
 //        follower_listview.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

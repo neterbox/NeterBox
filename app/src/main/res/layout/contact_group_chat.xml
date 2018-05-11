@@ -58,7 +58,6 @@
         android:padding="@dimen/_5sdp"
         android:layout_width="@dimen/_45sdp"
         android:layout_height="@dimen/_45sdp"
-        android:src="@drawable/charmis"
         app:civ_border_color="#000000" />
 
         <LinearLayout

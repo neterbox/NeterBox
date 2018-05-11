@@ -1,25 +1,23 @@
-package com.neterbox.jsonpojo.circlepostlist;
+package com.neterbox.jsonpojo.followinglist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by DeLL on 20-03-2018.
+ * Created by DeLL on 02-04-2018.
  */
 
-public class CirclePostListComment {
+public class FollowingListFollower {
+
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("comments")
+    @SerializedName("follower_id")
     @Expose
-    private String comments;
-    @SerializedName("post_id")
+    private String followerId;
+    @SerializedName("following_id")
     @Expose
-    private String postId;
-    @SerializedName("user_id")
-    @Expose
-    private String userId;
+    private String followingId;
     @SerializedName("created")
     @Expose
     private String created;
@@ -35,28 +33,20 @@ public class CirclePostListComment {
         this.id = id;
     }
 
-    public String getComments() {
-        return comments;
+    public String getFollowerId() {
+        return followerId;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments;
+    public void setFollowerId(String followerId) {
+        this.followerId = followerId;
     }
 
-    public String getPostId() {
-        return postId;
+    public String getFollowingId() {
+        return followingId;
     }
 
-    public void setPostId(String postId) {
-        this.postId = postId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFollowingId(String followingId) {
+        this.followingId = followingId;
     }
 
     public String getCreated() {
@@ -74,6 +64,5 @@ public class CirclePostListComment {
     public void setModified(String modified) {
         this.modified = modified;
     }
-
 
 }

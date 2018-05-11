@@ -29,7 +29,7 @@ public class Search_Friend_Adapter extends BaseAdapter{
     private LayoutInflater inflater;
     public Resources res;
     String id;
-    List<FriendListDatum> friendListData;
+    List<FriendListDatum> friendListData= new ArrayList<>();
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
 
     public Search_Friend_Adapter(Activity a, List<FriendListDatum> friendListData) {
@@ -68,6 +68,7 @@ public class Search_Friend_Adapter extends BaseAdapter{
         {
             viewHolder = (MyViewHolder) convertView.getTag();
         }
+
         if (!(friendListData.get(i).getReceiver().getProfilePic().equals(""))) {
             Glide.with(activity).load(friendListData.get(i).getReceiver().getProfilePic()).into(viewHolder.ifriendprofile);
         }
@@ -80,12 +81,11 @@ public class Search_Friend_Adapter extends BaseAdapter{
     private class MyViewHolder
     {
         CircleImageView ifriendprofile;
-        TextView titem3,textView3;
+        TextView titem3;
 
         public MyViewHolder(View item)
         {
             titem3 = (TextView)item.findViewById(R.id.titem3);
-            textView3 = (TextView)item.findViewById(R.id.textView3);
             ifriendprofile = (CircleImageView) item.findViewById(R.id.ifriendprofile);
         }
     }

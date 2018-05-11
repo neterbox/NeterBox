@@ -23,13 +23,4 @@
 
     </ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <ListView
-        android:id="@+id/onechat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_weight="1"></ListView>
-
 </LinearLayout>

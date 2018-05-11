@@ -18,17 +18,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-
 import com.google.gson.Gson;
+import com.neterbox.Create_group;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.friend_list.FriendListDatum;
-import com.neterbox.jsonpojo.register.RegistrationDatum;
 import com.neterbox.utils.Sessionmanager;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by user on 10/16/2017.
@@ -40,17 +37,16 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
     Context context;
     List<FriendListDatum> userDatumList;
     private List<FriendListDatum> selectedUsers;
-    private List<Integer> initiallySelectedUsers=new ArrayList<>();
+    private List<Integer> initiallySelectedUsers = new ArrayList<>();
     private ArrayList<Integer> mSectionPositions;
 
 
-//    protected FriendListDatum currentUser;
+    protected FriendListDatum currentUser;
 
     public RecyclerUserListingAdapter(Context context, List<FriendListDatum> userDatumList) {
         this.context = context;
         this.userDatumList = userDatumList;
-//        currentUser= new FriendListDatum();
-//        currentUser = Sessionmanager.getDtUserFromPreference(context);
+        currentUser = Sessionmanager.getfrnd(context);
 
         selectedUsers = new ArrayList<>();
         selectedUsers.clear();
@@ -61,7 +57,7 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
     public RecyclerUserListingAdapter(Context context, List<FriendListDatum> userDatumList, List<Integer> initiallySelectedUsers) {
         this.context = context;
         this.userDatumList = userDatumList;
-//        currentUser= new FriendListDatum();
+        currentUser = Sessionmanager.getfrnd(context);
 
         selectedUsers = new ArrayList<>();
         selectedUsers.clear();
@@ -84,53 +80,43 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
 
 
         Log.e("initially=====" + initiallySelectedUsers.size(), ":" + new Gson().toJson(initiallySelectedUsers));
-//        holder.loginTextView.setText(userDatumList.get(holder.getAdapterPosition()).getReceiver().getName());
-        holder.loginTextView.setText(userDatumList.get(1).getReceiver().getName());
+        holder.loginTextView.setText(userDatumList.get(holder.getAdapterPosition()).getReceiver().getName());
         holder.loginTextView.setTextColor(Color.parseColor("#000000"));
         holder.userCheckBox.setClickable(true);
         holder.userCheckBox.setEnabled(true);
 
-        if(initiallySelectedUsers.size()>0)
-        {
-            for(Integer integer:initiallySelectedUsers)
-            {
-                if(!userDatumList.get(1).getReceiver().getQuickbloxId().equals(""))
-                    if (Integer.parseInt(userDatumList.get(1).getReceiver().getQuickbloxId())==integer) {
+        if (initiallySelectedUsers.size() > 0) {
+            for (Integer integer : initiallySelectedUsers) {
+                if (!userDatumList.get(holder.getAdapterPosition()).getReceiver().getQuickbloxId().equals(""))
+                    if (Integer.parseInt(userDatumList.get(holder.getAdapterPosition()).getReceiver().getQuickbloxId()) == integer) {
 
-//                        if (isUserMe(userDatumList.get(holder.getAdapterPosition()))) {
-                        if (isUserMe(userDatumList.get(1))) {
-                            holder.loginTextView.setText(context.getString(R.string.placeholder_username_you, userDatumList.get(1).getReceiver().getName()));
+                        if (isUserMe(userDatumList.get(holder.getAdapterPosition()))) {
+                            holder.loginTextView.setText(context.getString(R.string.placeholder_username_you, userDatumList.get(position).getReceiver().getName()));
 
                         }
 
                         holder.loginTextView.setTextColor(Color.parseColor("#b1b1b1"));
                         holder.userCheckBox.setClickable(false);
-                        holder.userCheckBox.setChecked(true);
+//                        holder.userCheckBox.setChecked(true);
                         holder.userCheckBox.setEnabled(false);
-                        selectedUsers.add(userDatumList.get(1));
+                        selectedUsers.add(userDatumList.get(holder.getAdapterPosition()));
                         break;
                     }
             }
-        }
-        else
-        {
-            if (isUserMe(userDatumList.get(1))) {
-//                holder.loginTextView.setText(context.getString(R.string.placeholder_username_you, userDatumList.get(position).getReceiver().getName()));
-                holder.loginTextView.setText(context.getString(R.string.placeholder_username_you, userDatumList.get(1).getReceiver().getName()));
+        } else {
+            if (isUserMe(userDatumList.get(holder.getAdapterPosition()))) {
+                holder.loginTextView.setText(context.getString(R.string.placeholder_username_you, userDatumList.get(position).getReceiver().getName()));
                 holder.userCheckBox.setClickable(false);
-                holder.userCheckBox.setChecked(true);
+//                holder.userCheckBox.setChecked(true);
                 holder.userCheckBox.setEnabled(false);
                 holder.loginTextView.setTextColor(Color.parseColor("#b1b1b1"));
 
-                selectedUsers.add(userDatumList.get(1));
-            }
-            else
-                {
-                holder.loginTextView.setText(userDatumList.get(1).getReceiver().getName());
+                selectedUsers.add(userDatumList.get(holder.getAdapterPosition()));
+            } else {
+                holder.loginTextView.setText(userDatumList.get(holder.getAdapterPosition()).getReceiver().getName());
                 holder.loginTextView.setTextColor(Color.parseColor("#000000"));
             }
         }
-
 
 
 //        if (isAvailableForSelection1(userDatumList.get(position))) {
@@ -140,9 +126,8 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
 
 //        if (!(userDatumList.get(position).getProfile_pic().equals("")))
 //
-//        Glide.with(context).load(userDatumList.get(position).getReceiver().getProfilePic())
-        Glide.with(context).load(userDatumList.get(1).getReceiver().getProfilePic())
-                .asBitmap().centerCrop().placeholder(R.drawable.dummy).into(new BitmapImageViewTarget(holder.userImageView) {
+        Glide.with(context).load(userDatumList.get(position).getReceiver().getProfilePic())
+                .asBitmap().centerCrop().placeholder(R.drawable.profilescreen_chatscreen).into(new BitmapImageViewTarget(holder.userImageView) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -158,22 +143,33 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
 
         //if true, your checkbox will be selected, else unselected
 
-        holder.userCheckBox.setChecked(userDatumList.get(1).getReceiver().isSelected());
+        holder.userCheckBox.setChecked(userDatumList.get(holder.getAdapterPosition()).getReceiver().isSelected());
 
         holder.userCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                userDatumList.get(1).getReceiver().setSelected(isChecked);
+                userDatumList.get(holder.getAdapterPosition()).getReceiver().setSelected(isChecked);
 
                 if (isChecked) {
-                    selectedUsers.add(userDatumList.get(1));
+                    selectedUsers.add(userDatumList.get(holder.getAdapterPosition()));
+                    Integer frnd_id = Integer.valueOf(userDatumList.get(holder.getAdapterPosition()).getReceiver().getId());
+                    Integer frnd_qb_id = Integer.valueOf(userDatumList.get(holder.getAdapterPosition()).getReceiver().getQuickbloxId());
+                    Create_group.frnd_id.add(frnd_id);
+                    Create_group.frnd_qb_id.add(frnd_qb_id);
                 } else {
-                    selectedUsers.remove(userDatumList.get(1));
+
+                    if (Create_group.frnd_id != null) {
+                        int p = Create_group.frnd_id.indexOf(userDatumList.get(holder.getAdapterPosition()).getReceiver().getId());
+                        Create_group.frnd_id.remove(p);
+
+                    }
+                    selectedUsers.remove(userDatumList.get(holder.getAdapterPosition()));
                 }
             }
         });
 
     }
+
     @Override
     public int getSectionForPosition(int position) {
         return 0;
@@ -184,7 +180,7 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
         List<String> sections = new ArrayList<>(26);
         mSectionPositions = new ArrayList<>(26);
         for (int i = 0, size = userDatumList.size(); i < size; i++) {
-            String section = String.valueOf(userDatumList.get(1).getReceiver().getName().charAt(0)).toUpperCase();
+            String section = String.valueOf(userDatumList.get(i).getReceiver().getName().charAt(0)).toUpperCase();
             if (!sections.contains(section)) {
                 sections.add(section);
                 mSectionPositions.add(i);
@@ -204,13 +200,13 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
     }
 
     public class DataObjectHolder extends RecyclerView.ViewHolder {
-        CircleImageView userImageView;
+        ImageView userImageView;
         TextView loginTextView;
         CheckBox userCheckBox;
 
         public DataObjectHolder(View convertView) {
             super(convertView);
-            userImageView = (CircleImageView) convertView.findViewById(R.id.image_user);
+            userImageView = (ImageView) convertView.findViewById(R.id.image_user);
             loginTextView = (TextView) convertView.findViewById(R.id.text_user_login);
             userCheckBox = (CheckBox) convertView.findViewById(R.id.checkbox_user);
 
@@ -218,13 +214,7 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
     }
 
     protected boolean isUserMe(FriendListDatum user) {
-        boolean data = false;
-
-        for (int i = 0; i < userDatumList.size(); i++) {
-            Log.e("Current USER ", new Gson().toJson(userDatumList));
-            data= userDatumList != null && userDatumList.get(1).getReceiver().getId().equals(user.getReceiver().getId());
-        }
-        return data;
+        return currentUser != null && currentUser.getReceiver().getId().equals(user.getReceiver().getId());
     }
 
 //    protected boolean isAvailableForSelection(LoginRegisterDatum user) {
@@ -232,9 +222,9 @@ public class RecyclerUserListingAdapter extends RecyclerView.Adapter<RecyclerUse
 //        return isAvailableForSelection1(user) && !initiallySelectedUsers.contains(user.getQb_id());
 //    }
 
-//    protected boolean isAvailableForSelection1(FriendListDatum user) {
-//        return currentUser == null || !currentUser.getReceiver().getId().equals(user.getReceiver().getId());
-//    }
+    protected boolean isAvailableForSelection1(FriendListDatum user) {
+        return currentUser == null || !currentUser.getReceiver().getId().equals(user.getReceiver().getId());
+    }
 
     public List<FriendListDatum> getSelectedUsers() {
         return selectedUsers;

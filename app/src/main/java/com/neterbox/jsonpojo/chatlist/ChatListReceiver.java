@@ -218,4 +218,5 @@ public class ChatListReceiver {
     public void setModified(String modified) {
         this.modified = modified;
     }
+
 }

@@ -58,12 +58,6 @@
             android:windowSoftInputMode="stateHidden"
             tools:ignore="WrongManifestParent" />
         <activity
-            android:name=".Circles"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
             android:name=".EditProfile"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
@@ -99,30 +93,7 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Circle_chat"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Circle_comment"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
-            android:name=".Channel_comment"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
             android:name=".Playvideo_page"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
-            android:name=".Create_group"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden"
@@ -133,21 +104,7 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".SearchFollowings"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".search_followers"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".Settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ChannelSettings"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -158,11 +115,6 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".SearchGroupFriend"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Circleprofilepic"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -182,38 +134,12 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".CirclePost"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="WrongManifestParent" />
-        <activity
-            android:name=".ChatModule"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ChatBox"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".Activiy_Map"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".AttachmentImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".MyVideoView"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Change_password"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -247,6 +173,95 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".share_location_customview"></activity>
+
+        <activity android:name=".AttachmentImageActivity" />
+        <activity
+            android:name=".CirclePost"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name=".ChatModule"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ChatBox"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+
+        <activity
+            android:name=".Circles"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name=".Circle_chat"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Circle_comment"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name=".Channel_comment"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+
+        <activity
+            android:name=".Create_group"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="WrongManifestParent" />
+
+        <activity
+            android:name=".SearchFollowings"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".search_followers"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ChannelSettings"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".Circleprofilepic"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".Change_password"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- google map key: -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCXwZVKtHAgYtNVmv0R0ZjY0emax_rDPlA" />
+
+
+
     </application>
 
 </manifest>

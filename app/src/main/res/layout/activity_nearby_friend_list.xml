@@ -45,6 +45,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
         </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ichatyellow"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:src="@drawable/cameracreategroup"/>
+            <ImageView
+                android:id="@+id/ichatvideo"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_58sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:src="@drawable/videoblue" />
+            <ImageView
+                android:id="@+id/ilocation"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:src="@drawable/map" />
+            <ImageView
+                android:id="@+id/icontact"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_59sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:src="@drawable/share_contact" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+        </LinearLayout>
+</LinearLayout>
+
+    <!--<View--><!--android:layout_width="match_parent"--><!--android:layout_height="@dimen/_1sdp"--><!--android:background="@color/black"/>-->
+
+

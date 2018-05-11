@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +38,7 @@ public class FriendList extends Activity {
     String login_id;
     ImageView ileft,iright;
     TextView title;
+    SwipeRefreshLayout swipelayout;
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     Sessionmanager sessionmanager;
     @Override
@@ -56,6 +58,12 @@ public class FriendList extends Activity {
             Helper.showToastMessage(activity,"No Internet Connection");
         }
 
+        swipelayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                FriendList(login_id);
+            }
+        });
     }
 
     private void listener() {
@@ -64,9 +72,8 @@ public class FriendList extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
                 Intent it =new Intent(FriendList.this,FreindProfile.class);
-                it.putExtra("friendlist",(Serializable) friendListData.get(i));
-                it.putExtra("name",friendListData.get(i).getReceiver().getName());
-                it.putExtra("profile_pic",friendListData.get(i).getReceiver().getProfilePic());
+                it.putExtra("name",(Serializable) friendListData.get(i).getReceiver().getName());
+                it.putExtra("pic",(Serializable) friendListData.get(i).getReceiver().getProfilePic());
                 startActivity(it);
                 finish();
             }
@@ -95,6 +102,7 @@ public class FriendList extends Activity {
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
         title=(TextView)findViewById(R.id.title);
+        swipelayout=(SwipeRefreshLayout) findViewById(R.id.swipelayout);
         ileft.setImageResource(R.drawable.home);
         iright.setVisibility(View.INVISIBLE);
         title.setText("Friends");
@@ -107,26 +115,21 @@ public class FriendList extends Activity {
         dialog.setMessage("Please Wait...");
         dialog.show();
         final Call<FriendListPojo> friendListPojoCall = apiInterface.friendlistpojo(login_id);
-        friendListPojoCall.enqueue(new Callback<FriendListPojo>() {
+        friendListPojoCall.enqueue(new Callback<FriendListPojo>()
+        {
             @Override
-            public void onResponse(Call<FriendListPojo> call, Response<FriendListPojo> response) {
+            public void onResponse(Call<FriendListPojo> call, Response<FriendListPojo> response)
+            {
                 if (response.body().getStatus().equals("Success")) {
                     dialog.dismiss();
                     friendListData = response.body().getData();
-                    Log.e("friendlist_data",new Gson().toJson(friendListData));
                     Search_Friend_Adapter adapter = new Search_Friend_Adapter(activity, friendListData);
                     listview.setAdapter(adapter);
                     for (int i=0;i<friendListData.size();i++)
                     {
-                        Log.e("QBID",friendListData.get(i).getReceiver().getQuickbloxId());
-
                         sessionmanager.createSession_frienddata(friendListData.get(i));
+                        Log.e("FRIEND LIST DATA ",new Gson().toJson(friendListData));
                     }
-
-//                    Intent i = new Intent(FriendRequestList.this, FriendListPojo.class);
-//                    // i.putExtra("login_name",response.body().getData().getUser().getName());
-//                    startActivity(i);
-//                    finish();
                 } else {
                     dialog.dismiss();
                     Toast.makeText(FriendList.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();

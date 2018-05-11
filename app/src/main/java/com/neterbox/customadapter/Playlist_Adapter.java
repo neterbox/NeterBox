@@ -7,14 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.neterbox.R;
 
 import java.util.ArrayList;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by DeLL on 05-01-2018.
@@ -23,19 +21,23 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Playlist_Adapter extends BaseAdapter {
 
     Activity activity;
+    String[] itemname;
+    Integer[] imgid;
     private ArrayList data;
     private LayoutInflater inflater;
     public Resources res;
 
-    public Playlist_Adapter(Activity a) {
+    public Playlist_Adapter(Activity a,String[] itemname, Integer[] imgid) {
         this.activity = a;
+        this.itemname = itemname;
+        this.imgid = imgid;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
 
     @Override
     public int getCount() {
-        return 6;
+        return itemname.length;
     }
 
     @Override
@@ -51,8 +53,8 @@ public class Playlist_Adapter extends BaseAdapter {
     }
     public static class ViewHolder {
 
-        public TextView tplaylistitem,tplaylistitem2;
-        public ImageView iplaylistitem,iplaylistitem2;
+        public TextView tplaylistitem;
+        public ImageView iplaylistitem;
     }
 
 
@@ -66,12 +68,15 @@ public class Playlist_Adapter extends BaseAdapter {
             holder = new Playlist_Adapter.ViewHolder();
             holder.tplaylistitem = (TextView) v.findViewById(R.id.tplaylistitem);
             holder.iplaylistitem = (ImageView) v.findViewById(R.id.iplaylistitem);
-            holder.tplaylistitem2 = (TextView) v.findViewById(R.id.tplaylistitem2);
-            holder.iplaylistitem2 = (ImageView) v.findViewById(R.id.iplaylistitem2);
+//            holder.tplaylistitem2 = (TextView) v.findViewById(R.id.tplaylistitem2);
+//            holder.iplaylistitem2 = (ImageView) v.findViewById(R.id.iplaylistitem2);
             v.setTag(holder);
         }
         else
             holder=(Playlist_Adapter.ViewHolder)v.getTag();
+
+        holder.tplaylistitem.setText(itemname[i]);
+        Glide.with(activity).load(imgid[i]).into(holder.iplaylistitem);
 
         return v;
     }

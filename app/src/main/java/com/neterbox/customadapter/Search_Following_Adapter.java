@@ -2,7 +2,6 @@ package com.neterbox.customadapter;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
-import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
+import com.neterbox.jsonpojo.followinglist.FollowinglistDatum;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,27 +23,26 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class Search_Following_Adapter extends BaseAdapter {
-
     Activity activity;
     private LayoutInflater inflater;
     public Resources res;
+    List<FollowinglistDatum> followinglistData;
 
-    List<FollowerlistDatum> followerlistData;
+    public Search_Following_Adapter(Activity a,  List<FollowinglistDatum> followinglistData) {
+        this.activity = a;
+        this.followinglistData = followinglistData;
 
-    public Search_Following_Adapter(Activity activity, List<FollowerlistDatum> followerlistData) {
-        this.activity=activity;
-        this.followerlistData=followerlistData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return followerlistData.size();
+        return followinglistData.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return followerlistData.get(i);
+        return followinglistData.get(i);
     }
 
     @Override
@@ -54,29 +51,25 @@ public class Search_Following_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-
+    public View getView(int i, View convertView, ViewGroup viewGroup) {
         final MyViewHolder viewHolder;
 
-        if (view == null) {
-            view = inflater.inflate(R.layout.followinglistitem, viewGroup, false);
-            viewHolder = new MyViewHolder(view);
-            view.setTag(viewHolder);
-        } else {
-            viewHolder = (MyViewHolder) view.getTag();
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.followinglistitem,viewGroup, false);
+            viewHolder = new MyViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        }
+        else
+        {
+            viewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        viewHolder.titem2.setText(followerlistData.get(i).getFollowerDetail().getName());
-        viewHolder.textView2.setText(followerlistData.get(i).getFollowerDetail().getCompany());
-        Glide.with(activity).load(followerlistData.get(i).getFollowerDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifollowingprofile);
+        viewHolder.titem2.setText(followinglistData.get(i).getFollowerDetail().getName());
+        viewHolder.textView2.setText(followinglistData.get(i).getFollowerDetail().getCompany());
+        Glide.with(activity).load(followinglistData.get(i).getFollowerDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifollowingprofile);
+        return convertView;
 
-        return view;
-
-//        viewHolder.titem2.setText(itemname[i]);
-//        viewHolder.textView2.setText(itemname[i]);
-//        Glide.with(activity).load(imgid[i]).into(viewHolder.ifollowingprofile);
-//        Glide.with(activity).load(imgid[i]).into(viewHolder.followingback);
-//        return view;
     }
 
     class MyViewHolder {
@@ -89,6 +82,9 @@ public class Search_Following_Adapter extends BaseAdapter {
                 titem2 = (TextView) item.findViewById(R.id.titem2);
                 textView2 = (TextView) item.findViewById(R.id.textView2);
                 ifollowingprofile = (CircleImageView) item.findViewById(R.id.ifollowingprofile);
+                lsearchfollowingssprofile = (LinearLayout) item.findViewById(R.id.lsearchfollowingssprofile);
+                followingback = (ImageView) item.findViewById(R.id.followingback);
+
             }
         }
     }

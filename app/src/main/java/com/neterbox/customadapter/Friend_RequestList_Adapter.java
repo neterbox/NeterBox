@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
 import com.neterbox.jsonpojo.Decline_friend_request.DeclineFriendRequest;
-import com.neterbox.jsonpojo.friend_requestlist.FrndReqListModel;
 import com.neterbox.jsonpojo.accept_friend_request.AcceptFriendRequest;
+import com.neterbox.jsonpojo.friend_requestlist.FrndReqListModel;
 import com.neterbox.retrofit.APIClient;
 import com.neterbox.retrofit.APIInterface;
 import com.neterbox.utils.Helper;
@@ -37,7 +38,7 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
     APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     List<FrndReqListModel.Datum> friendRequestListData;
 
-    public Friend_RequestList_Adapter(Activity a,List<FrndReqListModel.Datum> friendRequestListData) {
+    public Friend_RequestList_Adapter(Activity a, List<FrndReqListModel.Datum> friendRequestListData) {
         this.activity = a;
         this.friendRequestListData=friendRequestListData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
@@ -71,12 +72,12 @@ public class Friend_RequestList_Adapter extends BaseAdapter {
             viewHolder = (MyViewHolder) view.getTag();
         }
 
-        if(!(friendRequestListData.get(i).getReceiver().getName().equals("")))
+        if(!(friendRequestListData.get(i).getSender().getName().equals("")))
         {
-            viewHolder.friendrequestname.setText(friendRequestListData.get(i).getReceiver().getName());
+            viewHolder.friendrequestname.setText(friendRequestListData.get(i).getSender().getName());
         }
-        if(!(friendRequestListData.get(i).getReceiver().getProfilePic().equals(""))){
-            Glide.with(activity).load(friendRequestListData.get(i).getReceiver().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.civiewfrequest);
+        if(!(friendRequestListData.get(i).getSender().getProfilePic().equals(""))){
+            Glide.with(activity).load(friendRequestListData.get(i).getSender().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.civiewfrequest);
         }
         viewHolder.bfriend_request_accept.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,12 +25,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.neterbox.R;
 import com.neterbox.qb.callback.QbEntityCallbackTwoTypeWrapper;
+import com.quickblox.auth.session.QBSessionManager;
 import com.quickblox.chat.model.QBAttachment;
 import com.quickblox.content.QBContent;
 import com.quickblox.content.model.QBFile;
@@ -192,13 +196,6 @@ public class Helper {
         return displaymetrics;
     }
 
-
-    public static void hideSoftKeyboard(Context context) {
-        if(((Activity)context).getCurrentFocus()!=null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(((Activity)context).getCurrentFocus().getWindowToken(), 0);
-        }
-    }
 
     /*TODO For Video Attachment*/
     public void loadFileAsAttachmentVideo(File file, QBEntityCallback<QBAttachment> callback,
@@ -378,5 +375,49 @@ public class Helper {
         return BitmapFactory.decodeStream(context.getContentResolver()
                 .openInputStream(uri), null, o2);
     }
+    public static boolean checkSignIn() {
+        return QBSessionManager.getInstance().getSessionParameters() != null;
+    }
 
+    public static void hideSoftKeyboard(Context context) {
+        if(((Activity)context).getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(((Activity)context).getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    public static void showSnackBar(RelativeLayout ll, String msg)
+    {
+        Snackbar snackbar = Snackbar
+                .make(ll, msg, Snackbar.LENGTH_SHORT);
+        snackbar.setActionTextColor(Color.RED);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(Color.DKGRAY);
+        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.parseColor("#ef3026"));
+        snackbar.show();
+    }
+
+    private static boolean isPanelShown(RelativeLayout lpost_upload_option) {
+        return lpost_upload_option.getVisibility() == View.VISIBLE;
+    }
+
+    public static void slideUpDown(Context context, RelativeLayout lpost_upload_option) {
+        if (!isPanelShown(lpost_upload_option)) {
+            // Show the panel
+            Animation bottomUp = AnimationUtils.loadAnimation(context,
+                    R.anim.bottom_up);
+
+            lpost_upload_option.startAnimation(bottomUp);
+            lpost_upload_option.setVisibility(View.VISIBLE);
+        }
+        else {
+            // Hide the Panel
+            Animation bottomDown = AnimationUtils.loadAnimation(context,
+                    R.anim.bottom_down);
+
+            lpost_upload_option.startAnimation(bottomDown);
+            lpost_upload_option.setVisibility(View.GONE);
+        }
+    }
 }

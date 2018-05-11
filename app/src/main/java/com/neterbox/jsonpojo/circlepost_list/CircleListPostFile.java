@@ -1,32 +1,31 @@
-package com.neterbox.jsonpojo.circlepostlist;
+package com.neterbox.jsonpojo.circlepost_list;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by DeLL on 20-03-2018.
+ * Created by DeLL on 27-04-2018.
  */
 
-public class CirclePostListPostLike {
-
+public class CircleListPostFile {
     @SerializedName("id")
     @Expose
     private String id;
     @SerializedName("post_id")
     @Expose
     private String postId;
-    @SerializedName("user_id")
+    @SerializedName("files")
     @Expose
-    private String userId;
+    private String files;
+    @SerializedName("media_type")
+    @Expose
+    private String mediaType;
     @SerializedName("created")
     @Expose
     private String created;
     @SerializedName("modified")
     @Expose
     private String modified;
-    @SerializedName("likes")
-    @Expose
-    private String likes;
 
     public String getId() {
         return id;
@@ -44,12 +43,20 @@ public class CirclePostListPostLike {
         this.postId = postId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getFiles() {
+        return files;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFiles(String files) {
+        this.files = files;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public String getCreated() {
@@ -68,12 +75,5 @@ public class CirclePostListPostLike {
         this.modified = modified;
     }
 
-    public String getLikes() {
-        return likes;
-    }
-
-    public void setLikes(String likes) {
-        this.likes = likes;
-    }
 
 }

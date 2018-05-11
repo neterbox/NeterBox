@@ -23,8 +23,8 @@ public class Settings extends AppCompatActivity {
         ileft=(ImageView)findViewById(R.id.ileft);
         iright=(ImageView)findViewById(R.id.iright);
         rchangepassword=(RelativeLayout) findViewById(R.id.rchangepassword);
-        llAboutus=(LinearLayout) findViewById(R.id.llAboutus);
-        llPrivacypolicy =(LinearLayout) findViewById(R.id.llPrivacypolicy);
+//        llAboutus=(RelativeLayout) findViewById(R.id.llAboutus);
+//        llPrivacypolicy =(LinearLayout) findViewById(R.id.llPrivacypolicy);
         title=(TextView)findViewById(R.id.title);
         ileft.setImageResource(R.drawable.back);
         iright.setVisibility(View.INVISIBLE);
@@ -62,14 +62,14 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         });
-        rchangepassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(Settings.this,Change_password.class);
-                startActivity(i);
-                finish();
-            }
-        });
+//        rchangepassword.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =new Intent(Settings.this,Change_password.class);
+//                startActivity(i);
+//                finish();
+//            }
+//        });
     }
 
     @Override

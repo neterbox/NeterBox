@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.neterbox.fragment.MainChat">
 
+
     <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"

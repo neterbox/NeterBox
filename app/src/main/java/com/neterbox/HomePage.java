@@ -30,6 +30,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.neterbox.jsonpojo.followerlist.Followerlist;
+import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
+import com.neterbox.jsonpojo.friend_list.FriendListDatum;
+import com.neterbox.jsonpojo.friend_list.FriendListPojo;
 import com.neterbox.jsonpojo.get_profile.GetProfile;
 import com.neterbox.jsonpojo.get_profile.GetProfileDatum;
 import com.neterbox.jsonpojo.updateqb.UpdateQB;
@@ -53,6 +57,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -69,6 +75,8 @@ public class HomePage extends Activity {
     RelativeLayout relative_following, relative_follower, relative_frnd, relative_settings;
     ImageView iback1, iback2, iback3, iback4, ichat, icircle, iplay;
     CircleImageView profile_image;
+    List<FriendListDatum> friendListData;
+    List<FollowerlistDatum> followerlistData;
 
     String Loginname,index,user_id;
 
@@ -96,6 +104,8 @@ public class HomePage extends Activity {
         sharedPreferences = context.getSharedPreferences(Constants.mypreference, Context.MODE_PRIVATE);
         initquickblox();
         updateqbid(sessionmanager.getValue(Sessionmanager.Id),sessionmanager.getValue(Sessionmanager.Quickbox_Id));
+        FriendList(sessionmanager.getValue(Sessionmanager.Id));
+        followerlist(sessionmanager.getValue(Sessionmanager.Id));
         this.Loginname =Loginname;
 
         statusCheck();
@@ -706,4 +716,60 @@ public class HomePage extends Activity {
         }
     });
 }
+
+    public void followerlist(String follower_id) {
+        Call<Followerlist> followerlistCall = apiInterface.followerlistpojo(follower_id);
+
+        followerlistCall.enqueue(new Callback<Followerlist>() {
+            @Override
+            public void onResponse(Call<Followerlist> call, Response<Followerlist> response) {
+                if (response.body().getStatus().equals("Success")) {
+                    Log.e("Followerlist REPONSE",new Gson().toJson(response.body().getData()));
+                    followerlistData = new ArrayList<FollowerlistDatum>();
+                    followerlistData = response.body().getData();
+                    if(Constants.followerlistData!=null)
+                    {
+                        Constants.followerlistData.clear();
+                    }
+                    Constants.followerlistData.addAll(response.body().getData());
+
+                    for(int i=0;i<followerlistData.size();i++)
+                    {
+                        sessionmanager.createSession_followerlist(followerlistData.get(i));
+                    }
+                    followerlistData = new ArrayList<FollowerlistDatum>();
+                    followerlistData = response.body().getData();
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Followerlist> call, Throwable t) {
+            }
+        });
+    }
+
+    public void FriendList(String login_id)
+    {
+        final Call<FriendListPojo> friendListPojoCall = apiInterface.friendlistpojo(login_id);
+        friendListPojoCall.enqueue(new Callback<FriendListPojo>() {
+            @Override
+            public void onResponse(Call<FriendListPojo> call, Response<FriendListPojo> response) {
+                if (response.body().getStatus().equals("Success")) {
+                    friendListData = new ArrayList<FriendListDatum>();
+                    friendListData = response.body().getData();
+                    for (int i=0;i<friendListData.size();i++)
+                    {
+                        sessionmanager.createSession_frienddata(friendListData.get(i));
+                    }
+                    friendListData = new ArrayList<FriendListDatum>();
+                    friendListData = response.body().getData();
+                } else {
+                }
+            }
+            @Override
+            public void onFailure(Call<FriendListPojo> call, Throwable t) {
+            }
+        });
+    }
 }

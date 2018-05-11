@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neterbox.R;
-import com.neterbox.jsonpojo.followerlist.Followerlist;
 import com.neterbox.jsonpojo.followerlist.FollowerlistDatum;
-import com.neterbox.jsonpojo.followingadd.FollowingDatum;
 
 import java.util.List;
 
@@ -30,18 +28,22 @@ public class Followers_Adapter extends BaseAdapter {
 
     public Followers_Adapter(Activity activity, List<FollowerlistDatum> followerlistData) {
 
-        this.activity = activity;
-        this.followerlistData = followerlistData;
+        this.activity=activity;
+        this.followerlistData=followerlistData;
         inflater = (LayoutInflater) activity.getSystemService(activity.LAYOUT_INFLATER_SERVICE);
+
     }
 
+
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return followerlistData.size();
     }
 
     @Override
-    public Object getItem(int i) {
+    public Object getItem(int i)
+    {
         return followerlistData.get(i);
     }
 
@@ -54,27 +56,33 @@ public class Followers_Adapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         final MyViewHolder viewHolder;
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.friendlistitem, viewGroup, false);
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.friendlistitem,viewGroup, false);
             viewHolder = new MyViewHolder(convertView);
             convertView.setTag(viewHolder);
-        } else {
+        }
+        else
+        {
             viewHolder = (MyViewHolder) convertView.getTag();
         }
-        viewHolder.titem3.setText(followerlistData.get(i).getFollowingDetail().getName());
-        viewHolder.textView3.setText(followerlistData.get(i).getFollowingDetail().getCompany());
-        Glide.with(activity).load(followerlistData.get(i).getFollowingDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifriendprofile);
+
+            viewHolder.titem3.setText(followerlistData.get(i).getFollowingDetail().getName());
+            viewHolder.textView3.setText(followerlistData.get(i).getFollowingDetail().getCompany());
+            Glide.with(activity).load(followerlistData.get(i).getFollowingDetail().getProfilePic()).placeholder(R.drawable.dummy).into(viewHolder.ifriendprofile);
         return convertView;
     }
 
-    static class MyViewHolder {
+    static class MyViewHolder
+    {
         CircleImageView ifriendprofile;
-        TextView titem3, textView3;
+        TextView titem3,textView3;
 
-        public MyViewHolder(View item) {
-            titem3 = (TextView) item.findViewById(R.id.titem3);
-            textView3 = (TextView) item.findViewById(R.id.textView3);
+        public MyViewHolder(View item)
+        {
+            titem3 = (TextView)item.findViewById(R.id.titem3);
+            textView3 = (TextView)item.findViewById(R.id.textView3);
             ifriendprofile = (CircleImageView) item.findViewById(R.id.ifriendprofile);
         }
     }
-}
+    }

@@ -3,6 +3,8 @@ package com.neterbox.jsonpojo.chatlist;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by DeLL on 14-03-2018.
  */
@@ -13,7 +15,7 @@ public class ChatListDatum {
     private ChatListDialog tblDailog;
     @SerializedName("Receiver")
     @Expose
-    private ChatListReceiver receiver;
+    private List<ChatListReceiver> receiver = null;
 
     public ChatListDialog getTblDailog() {
         return tblDailog;
@@ -23,11 +25,13 @@ public class ChatListDatum {
         this.tblDailog = tblDailog;
     }
 
-    public ChatListReceiver getReceiver() {
+    public List<ChatListReceiver> getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(ChatListReceiver receiver) {
+    public void setReceiver(List<ChatListReceiver> receiver) {
         this.receiver = receiver;
     }
+
+
 }
